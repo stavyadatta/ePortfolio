@@ -1,4 +1,6 @@
 const Firestore = require('@google-cloud/firestore')
+const admin = require('firebase-admin')
+admin.initializeApp()
 
 const db = new Firestore({
     projectId: 'impressive-hall-288310',
@@ -33,6 +35,13 @@ async function addingData(data, name){
     })
 }
 
+// updating array fields in a document (The data needs to be under a single datatye)
+async function updatingArray(data, name, parameter){
+    const res = await db.collection('users').doc(name).update({
+        [parameter]: admin.firestore.FieldValue.arrayUnion(data)
+    })
+}
+
 // updates name of the id with a given object
 async function updatingData(data, name){
     const res = await db.collection('users').doc(name).update(data).then((res) => {
@@ -49,6 +58,17 @@ async function demoInitialize(db) {
         console.log(doc.id, '=>', doc.data())
     })
 }
+
+// deletion of documents
+
+async function deleteData(name){
+    const res = await db.collection('users').doc(name).delete().then((res) => {
+        console.log("Successfully Deleted", name)
+        return res
+    }).catch((err) => {
+        console.log(err)
+    })
+}
 // const snapshot = await db.collection('users').get();
 // snapshot.forEach((doc) => {
 //   console.log(doc.id, '=>', doc.data());
@@ -56,5 +76,7 @@ async function demoInitialize(db) {
 
 module.exports = {
     addingData: addingData,
-    updatingData: updatingData
+    updatingData: updatingData,
+    updatingArray: updatingArray,
+    deleteData: deleteData
 }

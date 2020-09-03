@@ -7,12 +7,12 @@ app.get('/', (req, res) => {
     res.send("Hello World")
 })
 
-app.listen(3000, () => {
-    console.log("listening on 3000")
-})
+// app.listen(3000, () => {
+//     console.log("listening on 3000")
+// })
 const testObj = {password: 886094}
 
 
-userDB.updatingData(testObj, 'Stavya')
-
+//userDB.updatingData(testObj, 'Stavya')
+userDB.deleteData("Te")
 
