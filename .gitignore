@@ -3,5 +3,5 @@
 .env
 /server/node_modules
 ePortfolio-98216637d759.json
-server/package-lock.json
-server/package.json
+/server/package-lock.json
+/server/package.json
