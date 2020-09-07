@@ -10,11 +10,14 @@ exports.createProject = (req, res) => {
     const project = new Project({
         projectName: req.body.projectName,
         projectDesc: req.body.projectDesc,
-        userId: req.body.userId,
-        projectBody: req.body.projectBody
+        projectBody: req.body.projectBody,
+        projectTags: req.body.projectTags,
+        userId: req.body.userId
     });
 
-    Project.create(project, (err, data)=>{
+    const user = req.body.userId;
+
+    Project.create(user, project, (err, data)=>{
         if(err){
                 res.status(500).send({message:err.message||"Error creating project"});
                 return;            
