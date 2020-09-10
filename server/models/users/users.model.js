@@ -23,7 +23,7 @@ class User {
         const res = await userCollection.add(this.dataObject).then((res => {
             console.log("Added users", res.body)
         })).catch((err) => {
-            console.log(err)
+            throw err
         })
     }
     static async searchUser(userId) {
@@ -31,17 +31,20 @@ class User {
     }
     async update(updateObject){
         const data = await User.searchUser(this.dataObject.userId)
+        if (data.empty) {
+            console.log("empty data")
+            return;
+        }
         data.forEach(doc => {
             const res = userCollection.doc(doc.id).update(updateObject.data)
         })
     }
     async delete() {
         const data = await User.searchUser(this.dataObject.userId)
-        console.log(this.dataObject.userId)
         if (data.empty) {
-            console.log("empty")
+            console.log("empty data")
+            return;
         }
-        console.log("Prinitng in delete")
         data.forEach(doc => {
             console.log(doc.id)
             const res = userCollection.doc(doc.id).delete().then((res) => {
@@ -53,21 +56,21 @@ class User {
     }
 }
 
-const object = {
-    name: "Abhaya",
-    id: "stavyadatta",
-    email: "stavyadatta@gmail.com",
-    bio: "I am CS student"
-}
+// const object = {
+//     name: "Abhaya",
+//     id: "stavyadatta",
+//     email: "stavyadatta@gmail.com",
+//     bio: "I am CS student"
+// }
 
-const some = new User(object)
+// const some = new User(object)
 
-const updateObject = {
-    userId: "stavyadatta",
-    data: {
-        name: "kshikitj"
-    }
-}
+// const updateObject = {
+//     userId: "stavyadatta",
+//     data: {
+//         name: "kshikitj"
+//     }
+// }
 
 
 module.exports = User

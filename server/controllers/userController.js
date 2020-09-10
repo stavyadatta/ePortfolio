@@ -1,11 +1,24 @@
 const User = require('../models/users/users.model.js')
+const validator = require('validator')
 
-const object = {
-    name: "Ishani",
-    email: "xxxyyyyyzzzz",
-    userId: "ishaniSingh",
-    bio: "I am crazy"
+async function addUser(addData) {
+    if (checkingUserObject(addData)) {
+        const user = new User(addData)
+        user.add().then((res) => {
+            return "User Added"
+        })
+    } else {
+        throw new Error("User Object is not valid")
+    }
 }
 
-const user = new User(object)
-user.add()
+function checkingUserObject(addData) { 
+    if (addData.hasOwnProperty('name','bio', 'email', 'userId')) {
+        return validator.isEmail(addData.email)
+        
+    }
+    return false
+}
+
+module.exports = addUser
+

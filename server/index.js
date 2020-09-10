@@ -1,16 +1,12 @@
 const express = require('express')
-const userDB = require('./db/userDB.js')
+const addUser = require('./controllers/userController.js')
 const app = new express()
 const port = process.env.PORT || 3000
 
 app.use(express.json())
 
 app.post('/user/add', (req, res) => {
-    userDB.addUser(req.body, "test3").then((user) => {
-        res.send("Added")
-    }).catch((err) => {
-        res.send(err)
-    })
+    res.send(addUser(req.body))
 })
 
 app.post('/user/update', (req, res) => {
