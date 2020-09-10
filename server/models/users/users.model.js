@@ -4,7 +4,7 @@ const admin = require('firebase-admin')
 
 const db = new Firestore({
     projectId: 'impressive-hall-288310',
-    keyFilename: '../../../ePortfolio-98216637d759.json',
+    keyFilename: 'ePortfolio-98216637d759.json',
 });
 
 const userCollection = db.collection('users');
@@ -14,7 +14,7 @@ class User {
     constructor(user){
         this.dataObject = {
             name: user.name,
-            userId: user.id,
+            userId: user.userId,
             email: user.email,
             bio: user.bio
         }
@@ -70,4 +70,4 @@ const updateObject = {
 }
 
 
-some.update(updateObject)
+module.exports = User
