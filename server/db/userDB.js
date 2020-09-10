@@ -1,6 +1,11 @@
 const Firestore = require('@google-cloud/firestore')
 const admin = require('firebase-admin')
-admin.initializeApp()
+var serviceAccount = require("../../ePortfolio-98216637d759.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://impressive-hall-288310.firebaseio.com/"
+})
 
 const db = new Firestore({
     projectId: 'impressive-hall-288310',
@@ -19,16 +24,12 @@ const db = new Firestore({
 // checks if the object has the fields as required in the object 
 
 function checkingObject(data){
-    if (data.hasOwnProperty('name', 'email', 'password', 'bio')){
-        return true
-    } else {
-        return false
-    }
+    return data.hasOwnProperty('name', 'email', 'password', 'bio')
 }
 
-async function addingData(data, name){
-    const res = await db.collection('users').doc(name).set(data).then((res) => {
-        console.log("Successfully added", name)
+async function addUser(data, name){
+    const res = await db.collection('users').add(data).then((res) => {
+        console.log("Successfully added", data.name)
         return res
     }).catch((err) => {
         console.log(err)
@@ -75,7 +76,7 @@ async function deleteData(name){
 // });
 
 module.exports = {
-    addingData: addingData,
+    addUser: addUser,
     updatingData: updatingData,
     updatingArray: updatingArray,
     deleteData: deleteData
