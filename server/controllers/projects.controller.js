@@ -6,26 +6,22 @@ exports.createProject = (req, res) => {
         res.status(400).send({message:"Request needs body"});
         return;
     };
+    if(!req.body.projectName){
+        res.status(400).send({message:"Project needs a name"});
+        return;
+    };
 
-    const project = new Project({
-        projectName: req.body.projectName,
-        projectDesc: req.body.projectDesc,
-        projectBody: req.body.projectBody,
-        projectTags: req.body.projectTags,
-        userId: req.body.userId
-    });
-
-    const user = req.body.userId;
-
-    Project.create(user, project, (err, data)=>{
+    req.body.userId = req.params.userId;
+    
+    Project.create(req.body, (err, data)=>{
         if(err){
                 res.status(500).send({message:err.message||"Error creating project"});
-                return;            
-        };
+        }else{
+            res.status(200).send(data)
+        }
 
-        res.status(200).send(data);
-    });
-};
+    }).catch(error=>{res.send(error)});
+}
 
 //read
 exports.findAllProjects = (req, res) => {
@@ -58,21 +54,18 @@ exports.findProjectByProjectId = (req, res) => {
 exports.findProjectByUserId = (req, res) => {
     Project.getByUserId(req.params.userId, (err, data) => {
         if(err){
-            if(err.kind = "not_found"){
+            if(err.kind = 'not_found'){
                 res.status(404).send({message:err.message});
-                return;
             } else {
                 res.status(500).send({message:err.message||`Error fetching projects with UserID: ${req.params.projectId} projects`});
-                return;
             }
-        };
+        }else res.status(200).send(data);
 
-        res.status(200).send(data);
-    });
+    }).catch(err => console.log(err));
 };
 
 //update
-exports.updateProjectById = (req, res) => {
+exports.updateProjectById = async (req, res) => {
     Project.updateByProjectId(req.params.projectId, (err, data) => {
         if(!req.body){
             res.status(400).send({message:"Request needs body"});
