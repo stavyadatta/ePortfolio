@@ -1,7 +1,7 @@
 const User = require('../models/users/users.model.js')
 const validator = require('validator')
 
-async function addUser(addData) {
+function addUser(addData) {
     if (checkingUserObject(addData)) {
         const user = new User(addData)
         user.add().then((res) => {

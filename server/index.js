@@ -10,11 +10,7 @@ app.post('/user/add', (req, res) => {
 })
 
 app.post('/user/update', (req, res) => {
-    userDB.updateUser(req.body, "random").then((user) => {
-        res.send("Updated")
-    }).catch((err) => {
-        res.send(err)
-    })
+    res.send()
 
 })
 
