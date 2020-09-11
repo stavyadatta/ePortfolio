@@ -56,21 +56,4 @@ class User {
     }
 }
 
-// const object = {
-//     name: "Abhaya",
-//     id: "stavyadatta",
-//     email: "stavyadatta@gmail.com",
-//     bio: "I am CS student"
-// }
-
-// const some = new User(object)
-
-// const updateObject = {
-//     userId: "stavyadatta",
-//     data: {
-//         name: "kshikitj"
-//     }
-// }
-
-
 module.exports = User
