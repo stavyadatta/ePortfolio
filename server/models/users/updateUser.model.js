@@ -1,13 +1,19 @@
+
 class UserUpdate {
 
-    constructor(user) {
-        this.update = {
-            userId: user.id,
-            updateData: {
-                name: user.name,
-                email: user.email,
-                bio: user.bio
-            }
+    constructor(user) {            
+        if (user.hasOwnProperty('userId')){ 
+            // To remove the userId from the given object and then copying object
+            // in the field
+            const userId = user.userId
+            delete user.userId            
+            this.update = {
+                userId: userId,
+                updateData: user
+        }} else {
+            throw new Error("Invalid update object")
         }
     }
 }
+
+module.exports = UserUpdate

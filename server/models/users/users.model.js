@@ -29,8 +29,8 @@ class User {
     static async searchUser(userId) {
         return await userCollection.where('userId', '==', userId).get();
     }
-    async update(updateObject){
-        const data = await User.searchUser(this.dataObject.userId)
+    static async update(updateObject){
+        const data = await User.searchUser(updateObject.update.userId)
         if (data.empty) {
             console.log("empty data")
             return;
@@ -39,7 +39,7 @@ class User {
             const res = userCollection.doc(doc.id).update(updateObject.data)
         })
     }
-    async delete() {
+    static async delete() {
         const data = await User.searchUser(this.dataObject.userId)
         if (data.empty) {
             console.log("empty data")
