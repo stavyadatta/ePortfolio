@@ -21,16 +21,27 @@ function checkingUserObject(addData) {
     return false
 }
 
-function updatingObject(updateData) {
+async function updateUser(updateData) {
     const updateObject = new UserUpdate(updateData)
-    console.log(updateObject)
+    User.update(updateObject).then((res) => {
+        return "Updated"
+    }).catch((err) => {
+        console.log(err)
+    })
+    
+}
+async function deleteUser(deleteData) {
+    if (deleteData.hasOwnProperty("userId")) {
+        User.delete(deleteData).then((res) => {
+            return res
+        })
+    }
 }
 
-module.exports = addUser
-
-var x = {
-    userId: "1234",
-    name: 'Stavya'
+module.exports = {
+    addUser: addUser,
+    updateUser: updateUser,
+    deleteUser: deleteUser
 }
-updatingObject(x)
+
 

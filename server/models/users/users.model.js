@@ -36,11 +36,13 @@ class User {
             return;
         }
         data.forEach(doc => {
-            const res = userCollection.doc(doc.id).update(updateObject.data)
+            const res = userCollection.doc(doc.id).update(updateObject.update.updateData).then((res) => {
+                return "Updated"
+            })
         })
     }
-    static async delete() {
-        const data = await User.searchUser(this.dataObject.userId)
+    static async delete(userData) {
+        const data = await User.searchUser(userData.userId)
         if (data.empty) {
             console.log("empty data")
             return;
