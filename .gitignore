@@ -1,5 +1,5 @@
 /node_modules
 /.vscode
 .env
-/server/node_modules
+/functions/node_modules
 /impressive-hall-288310-1d73c8a9acc8.json
