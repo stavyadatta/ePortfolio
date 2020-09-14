@@ -34,6 +34,7 @@ class Project{
 
 //Read
 Project.getAll = (result) => {
+    return "YES"
 
 }
 
