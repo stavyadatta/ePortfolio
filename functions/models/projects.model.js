@@ -11,81 +11,61 @@ admin.initializeApp({
 const db = admin.firestore();
 const users = db.collection('users');
 
-//Create
-const Project = function(project) {
-    this.projectName = project.projectName,
-    this.projectDesc = project.projectDesc,
-    this.projectBody = project.projectBody,
-    this.projectBody = project.projectTags,
-    this.userId = project.userId
-};
+//Create and Update
+class Project{
+    constructor(project){
+        this.userId = project.userId;
+        delete project.userId;
 
-Project.create = async (newProject, result) => {
-    const userId = newProject.userId;
-    const userProjects = users.doc(userId);
-    try{
-        //Check if user exists first
-        doc = await userProjects.get();
-
-        if(!doc.exists){
-            result({
-                kind:"not_found", 
-                message:"User does not exist"
-            }, null);
-            return;
-        }
-
-    
-        res = await userProjects.collection('projects').add(newProject);
-        console.log("Created project:", res.id, ", for user:", userId);
-        result(null, {message:"Created project:"+res.id+", for user:"+userId});
-    } catch(error) {
-        result(error, null);
+        this.dataObject = project;
+        this.userRef = users.doc(this.userId);
+        this.projects = this.userRef.collection('projects');
     }
-}
+
+    create() {
+        this.projects.add(this.dataObject).catch(err=>{throw err});
+    }
+
+    update() {
+        this.projects.update(this.dataObject).catch(err=>{throw err});
+    }
+
+};
 
 //Read
 Project.getAll = (result) => {
 
 }
 
-Project.getByProjectId = async (userId, projectId, result) => {
-    try{
-        const userProjects = users.doc(userId).collection('projects');
-        const res = await userProjects.doc(projectId).get();
+Project.getByProjectId = async (userId, projectId) => {
+    const userProjects = users.doc(userId).collection('projects');
+    const res =  await userProjects.doc(projectId).get();
 
-        if (res.empty) {
-            console.log('No matching documents for user:', userId);
-            result(
-                {kind:"not_found", 
-                message:"User has no projects"},
-                null);
-            return;
-        };
-
-        result(null, res.docs.map(doc => doc.data()));
-    } catch(error) {
-        result(error, null);
+    if (res.empty) {
+        return 'No matching documents for user:' + userId;
+    } else {
+        return res.data();
     }
 }
 
-Project.getByUserId = async (userId, result) => {
-    try{
-        const userProjects = users.doc(userId).collection('projects');
+Project.getByUserId = async (userId) => {    
+    const snapshot = await users.doc(userId).collection('projects').get();
     
-        const res = await(await userProjects.get()).docs;
-        if (res.empty) {
-            console.log('No matching documents for user:', userId);
-            result(
-                {kind:'not_found', 
-                message:'User has no projects'},
-                null);
-        } else result(null, res); 
-    } catch(error) {
-        result(error, null);
-    }
+    if (snapshot.empty) {
+        return 'No matching documents for user:' + userId;
+    } else{
+        const res = [];
+        let i = 0;
+        snapshot.forEach(doc => {
+            console.log(doc.data());
+            res[i++] = doc.data();
+        })
 
+        return res;
+    } 
 }
+
+/*
 //tags is an array of up to 10 tags to filter by
 Project.filterByTag = async (userId, tags, result) => {
     try{
@@ -106,29 +86,15 @@ Project.filterByTag = async (userId, tags, result) => {
         result(error, null);
     }
 }
-
-//Update
-Project.updateByProjectId = async (userId, projectId, project, result) => {
-    try {
-        const userProjects = users.doc(userId).collection('projects');
-        const res = await userProjects.doc(projectId).update(project);
-
-        result(null, res);
-    }catch(error) {
-        result(error, null);
-    }
-}
+*/
 
 //Delete
-Project.deleteByProjectId = async (userId, projectId, result) => {
-    try{
-        const userProjects = users.doc(userId).collection('projects');
-        const res = await userProjects.doc(projectId).delete();
-
-        result(null, res);
-    } catch(error) {
-        result(error, null);
-    }
+Project.deleteById = (userId, projectId) => {
+        users.doc(userId)
+        .collection('projects').doc(projectId)
+        .delete().then(
+            console.log('Project Deleted'), 
+            e=>console.log(e.message));
 }
 
 module.exports = Project;

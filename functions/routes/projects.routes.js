@@ -3,27 +3,37 @@ module.exports = app => {
 
     app.post(
         '/user/:userId/project',
-        project.createProject
+        (req, res) => {
+            res.send(project.createProject(req));
+        }
     );
 
     app.get(
         '/user/:userId/project/:projectId', 
-        project.findProjectByProjectId
+        async (req, res)=>{
+            res.status(200).send(await project.findByProjectId(req));
+        }
     );
 
     app.get(
         '/user/:userId/project', 
-        project.findProjectByUserId
+        async (req, res)=>{
+            res.status(200).send(await project.findByUserId(req));
+        }
     );
 
     app.put(
         '/user/:userId/project/:projectId', 
-        project.updateProjectById
+        (req, res)=>{
+            res.status(200).send(project.updateProject(req));
+        }
     );
 
     app.delete(
         '/user/:userId/project/:projectId', 
-        project.deleteProjectByProjectId
+        (req, res)=>{
+            res.send(project.delete(req));
+        }
     );
 }
 

@@ -1,5 +1,7 @@
 const functions = require('firebase-functions');
 
+const port = process.env.PORT || 3000
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
@@ -19,8 +21,8 @@ app.get('/', (req, res) => {
 });
 
 
-app.listen(3000, () => {
-    console.log("listening on 3000")
+app.listen(port, () => {
+    console.log("listening on ", port)
 });
 
 exports.app = functions.https.onRequest(app);
