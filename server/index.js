@@ -6,13 +6,15 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 
 app.post('/user/add', (req, res) => {
-    res.send(userController.addUser(req.body))
+    var x = userController.addUser(req.body)
+    res.send("Added")
+
 })
 
 app.post('/user/update', (req, res) => {
     userController.updateUser(req.body).then((response) => {
         console.log(response)
-        res.send(response)
+        res.send("Updated")
 
     })
 })
@@ -23,10 +25,13 @@ app.post('/user/delete', (req, res) => {
     })
 })
 
+app.get
+
 
 app.listen(port, () => {
     console.log("listening on " + port)
 })
+
 //const testObj = {password: 886094}
 
 

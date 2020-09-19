@@ -7,6 +7,8 @@ function addUser(addData) {
         const user = new User(addData)
         user.add().then((res) => {
             return "User Added"
+        }).catch((error) => {
+            console.log(error)
         })
     } else {
         throw new Error("User Object is not valid")
@@ -34,6 +36,8 @@ async function deleteUser(deleteData) {
     if (deleteData.hasOwnProperty("userId")) {
         User.delete(deleteData).then((res) => {
             return res
+        }).catch(err => {
+            console.log(err)
         })
     }
 }
