@@ -7,24 +7,6 @@ h2 { font-weight: bold; }
   background: linear-gradient(to right, #FFFFFF 50%, #082F4E 50%);
 }
 
-input {
-  width: 490px;
-  font-size: 19;
-  padding-top: 10px;
-  padding-bottom: 11px;
-  padding-left: 11px;
-  border: none;
-  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.16);
-  color: #5D5757;
-  opacity: 0.62;
-}
-
-input:focus {
-  color: #0F446E;
-  outline: none;
-  opacity: 1.0;
-}
-
 .login_fields_container {
   position: relative;
   top: 37%;
@@ -38,7 +20,7 @@ input:focus {
 
 .password_elements {
   position: relative;
-  top: 7px;
+  top: 12px;
 }
 
 #login_icon_unhovered {
@@ -76,15 +58,14 @@ input:focus {
 
 #register_btn {
   border-radius: 50px;
-  width: 167px;
+  width: 233px;
   height: 30px;
   padding-bottom: 3px;
   border: 3px solid white;
   background-color: #082F4E;
   color: white;
   position: absolute;
-  top: 60px;
-  left: 37px;
+  top: 61px;
   outline: none;
 }
 
@@ -95,8 +76,8 @@ input:focus {
 
 .create_account_container {
   position: absolute;
-  left: 67.9%;
-  top: 45.6%;
+  left: 67.4%;
+  top: 45.5%;
 }
 
 

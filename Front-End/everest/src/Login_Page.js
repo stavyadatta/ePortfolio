@@ -1,20 +1,26 @@
 import React, {useState} from "react";
 import "./Login_Page.css";
+import EntryBox from "./Entry_Box";
 import Login_Unhovered from "./login_btns/login_unhovered.png";
 import Login_Hovered from "./login_btns/login_hovered.png";
 
 function LoginPage() {
 
+	const animate_to_register_page = () => {
+	
+	}
+
     return (
     	<div className = "login_page">
     		<div className = "create_account_container">
         		<h2 id = "create_account_header">Create an Account</h2>
-        		<button id = "register_btn">Register</button>
+				<button id = "register_btn" 
+				onClick = {animate_to_register_page}>Register</button>
       		</div>
-      	<div className = "login_fields_container">
-        	<h2 id = "login_header">Login</h2>
-        	<LoginFields />
-      	</div>
+      		<div className = "login_fields_container">
+        		<h2 id = "login_header">Login</h2>
+        		<LoginFields />
+      		</div>
     	</div>
 	);
 	
@@ -66,13 +72,6 @@ function PasswordComponents(props) {
         </div>
     );
     
-}
-
-function EntryBox(props) {
-	return (
-		<input id = {props.id} type = {props.textType} placeholder = {props.default} 
-		onChange = {props.onChange} />
-	);
 }
 
 export default LoginPage;
