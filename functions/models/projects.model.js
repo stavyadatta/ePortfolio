@@ -1,7 +1,6 @@
 const admin = require("firebase-admin");
 
-var serviceAccount = require(__dirname+'/impressive-hall-288310-1d73c8a9acc8.json');
-
+serviceAccount = require('./impressive-hall-288310-1d73c8a9acc8.json')
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -22,15 +21,16 @@ class Project{
         this.projects = this.userRef.collection('projects');
     }
 
-    create() {
-        this.projects.add(this.dataObject).catch(err=>{throw err});
+    async create() {
+        return await this.projects.add(this.dataObject)
+            .catch(err=>{throw err});
     }
 
-    update() {
-        this.projects.update(this.dataObject).catch(err=>{throw err});
+    async update() {
+        return await this.projects.update(this.dataObject).catch(err=>{throw err});
     }
 
-};
+}
 
 //Read
 Project.getAll = (result) => {
@@ -93,9 +93,9 @@ Project.filterByTag = async (userId, tags, result) => {
 Project.deleteById = (userId, projectId) => {
         users.doc(userId)
         .collection('projects').doc(projectId)
-        .delete().then(
-            console.log('Project Deleted'), 
-            e=>console.log(e.message));
+        .delete()
+        .then(console.log('Project Deleted'))
+        .catch(e=>console.log(e.message));
 }
 
 module.exports = Project;

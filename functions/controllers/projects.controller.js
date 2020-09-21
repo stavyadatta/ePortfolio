@@ -1,18 +1,16 @@
 const Project = require("../models/projects.model");
 
 //create
-exports.createProject = (req) => {
-    try{
+exports.createProject = async (req) => {
         const data = req.body
         data.userId = req.params.userId
         validateAdd(data);
 
         const project = new Project(data);
 
-        project.create().then(console.log("Project Created"));
+        await project.create().catch(err=>{throw err});
 
         return "Project created for user: " + project.userId;
-    }catch(err){throw err}
 }
 
 function validateAdd(data){
@@ -20,7 +18,7 @@ function validateAdd(data){
     if(!data){
         res = false;
         throw new Error("No data");
-    };
+    }
     if(!data.userId){
         res =  false;
         throw new Error("No userId");
@@ -28,7 +26,7 @@ function validateAdd(data){
     if(!data.projectName){
         res =  false;
         throw new Error("No projectName");
-    };
+    }
     return res;
 }
 
@@ -56,18 +54,17 @@ exports.findByUserId = async (req) => {
 
 //update
 exports.updateProject = (req) => {
-    try{
-        const data = req.body;
-        data.userId = req.params.userId;
-        data.projectId = req.params.projectId;
-        validateUpdate(data);
+    const data = req.body;
+    data.userId = req.params.userId;
+    data.projectId = req.params.projectId;
+    validateUpdate(data);
 
-        const project = new Project(data);
+    const project = new Project(data);
 
-        project.update().then(console.log("Project updated"));
+    project.update().then(console.log("Project updated")).catch(e=>console.log(e.message));
 
-        return "Project: updated for user: " + project.userId;
-    }catch(err){throw err}
+    return "Project: updated for user: " + project.userId;
+
 }
 
 function validateUpdate(data){
@@ -75,7 +72,7 @@ function validateUpdate(data){
     if(!data){
         res = false;
         throw new Error("No data");
-    };
+    }
     if(!data.userId){
         res =  false;
         throw new Error("No userId");
@@ -83,7 +80,7 @@ function validateUpdate(data){
     if(!data.projectId){
         res =  false;
         throw new Error("No projectId");
-    };
+    }
     return res;
 }
 

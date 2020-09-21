@@ -3,8 +3,8 @@ module.exports = app => {
 
     app.post(
         '/user/:userId/project',
-        (req, res) => {
-            res.send(project.createProject(req));
+        async (req, res) => {
+            res.send(project.createProject(req)).catch(e=>console.log(e));
         }
     );
 
