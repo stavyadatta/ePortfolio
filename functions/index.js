@@ -1,22 +1,13 @@
 const functions = require('firebase-functions');
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
-
 const express = require('express')
+const userRouter = require('./routers/user.routes.js')
+const port = process.env.PORT || 3000
+
 const app = new express()
+app.use(express.json())
+app.use(userRouter)
 
-app.get('/', (req, res) => {
-    console.log("Hello World")
-    res.send("Hello World")
-})
+// Create and Deploy Your First Cloud Functions
+// https://firebase.google.com/docs/functions/write-firebase-functions
 
-app.listen(3000, () => {
-    console.log("listening on 3000")
-})
-
+exports.app = functions.https.onRequest(app)
