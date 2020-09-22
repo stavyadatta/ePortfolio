@@ -1,0 +1,83 @@
+* { font-family: "Nanum Gothic"; }
+h2 { font-weight: bold; }
+
+.login_page {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to right, #FFFFFF 50%, #082F4E 50%);
+}
+
+.login_fields_container {
+  position: relative;
+  top: 37%;
+}
+
+.user_inputs {
+  position: absolute;
+  left: 7%;
+  top: 65px;
+}
+
+.password_elements {
+  position: relative;
+  top: 12px;
+}
+
+#login_icon_unhovered {
+  position: relative;
+  left: -30px;
+  top: 6.5px;
+  height: 20px;
+  width: 20px;
+  opacity: 0.7;
+}
+
+#forgot_password {
+  position: absolute;
+  left: 77.6%;
+  top: 125%;
+  font-size: 9px;
+  color: #0F446E;
+}
+
+#forgot_password:hover {
+  text-decoration: underline;
+}
+
+#login_header {
+  position: absolute;
+  left: 7%;
+  font-size: 29px;
+  color: #082F4E;
+}
+
+#create_account_header {
+  color: white;
+  font-size: 26px;
+}
+
+#register_btn {
+  border-radius: 50px;
+  width: 233px;
+  height: 30px;
+  padding-bottom: 3px;
+  border: 3px solid white;
+  background-color: #082F4E;
+  color: white;
+  position: absolute;
+  top: 61px;
+  outline: none;
+}
+
+#register_btn:hover {
+  background-color: white;
+  color: #082F4E;
+}
+
+.create_account_container {
+  position: absolute;
+  left: 67.4%;
+  top: 45.5%;
+}
+
+
