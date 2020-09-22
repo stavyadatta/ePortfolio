@@ -4,13 +4,16 @@ const Project = require("../models/projects.model");
 exports.createProject = async (req) => {
         const data = req.body
         data.userId = req.params.userId
-        validateAdd(data);
+        try{
+            validateAdd(data);
 
-        const project = new Project(data);
+            const project = new Project(data);
 
-        await project.create().catch(err=>{throw err});
+            await project.create();
 
-        return "Project created for user: " + project.userId;
+            return {message: "Project: "+project.dataObject.projectName+" created for user: "+project.userId};
+
+        }catch(err){throw err}
 }
 
 function validateAdd(data){
