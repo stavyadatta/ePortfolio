@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import LoginPage from "./Login_Page";
-import EntryBox from "./Entry_Box";
 
 function App() {
   return(
