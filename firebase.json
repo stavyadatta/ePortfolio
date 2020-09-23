@@ -1,6 +1,7 @@
 {
   "functions": {
     "predeploy": [
+      "npm install lint",
       "npm --prefix \"$RESOURCE_DIR\" run lint"
     ],
     "source": "functions"
