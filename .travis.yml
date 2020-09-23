@@ -8,5 +8,4 @@ install:
   - npm --prefix ./functions install
   - npm --prefix ./Front-End/everest install
 after_success:
-  deploy:
-    - firebase deploy --token $FIREBASE_TOKEN
+  - firebase deploy --token $FIREBASE_TOKEN
