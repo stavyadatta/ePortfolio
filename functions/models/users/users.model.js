@@ -20,9 +20,12 @@ class User {
         }
     }
     async add() {
-        const res = await userCollection.add(this.dataObject).then((res => {
-            return("Added users", res.body)
-        })).catch((err) => {
+        // const res = await userCollection.add(this.dataObject).then((res => {
+        //     return("Added users", res.body)
+        // })).catch((err) => {
+        //     throw err
+        // })
+        return await userCollection.add(this.dataObject).catch((err) => {
             throw err
         })
     }
@@ -33,13 +36,13 @@ class User {
         const data = await User.searchUser(updateObject.update.userId)
         if (data.empty) {
             console.log("empty data")
-            return;
-        }
-        data.forEach(doc => {
-            const res = userCollection.doc(doc.id).update(updateObject.update.updateData).then((res) => {
-                return "Updated"
+            return "Empty data";
+        } else {
+            data.forEach(doc => {
+                const res = userCollection.doc(doc.id).update(updateObject.update.updateData)
             })
-        })
+            return "Updated"
+        }
     }
     static async delete(userData) {
         const data = await User.searchUser(userData.userId)

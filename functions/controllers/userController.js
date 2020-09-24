@@ -2,14 +2,13 @@ const User = require('../models/users/users.model.js')
 const UserUpdate = require('../models/users/updateUser.model.js')
 const validator = require('validator')
 
-function addUser(addData) {
+async function addUser(addData) {
     if (checkingUserObject(addData)) {
         const user = new User(addData)
-        user.add().then((res) => {
-            return "User Added"
-        }).catch((error) => {
+        var x = await user.add().catch((error) => {
             console.log(error)
         })
+        return `User ${user.dataObject.name} has been added`
     } else {
         throw new Error("User Object is not valid")
     }
@@ -25,11 +24,11 @@ function checkingUserObject(addData) {
 
 async function updateUser(updateData) {
     const updateObject = new UserUpdate(updateData)
-    User.update(updateObject).then((res) => {
-        return "Updated"
-    }).catch((err) => {
+    await User.update(updateObject).catch((err) => {
         console.log(err)
+        throw err
     })
+    return `User ${updateObject.update.userId} updated`
     
 }
 async function deleteUser(deleteData) {
