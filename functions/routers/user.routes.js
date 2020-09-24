@@ -18,7 +18,7 @@ router.post('/user/update', async (req, res) => {
         console.log(response)
         return res.send(response)
     }).catch((error) => {
-        console.log(error)
+        throw error
     })
 })
 
@@ -26,7 +26,14 @@ router.post('/user/delete', async (req, res) => {
     await userController.deleteUser(req.body).then((response) => {
         return res.send(response)
     }).catch((error) => {
-        console.log(error)
+        throw error
+    })
+})
+router.post('/user/read', async(req, res) => {
+    await userController.getUser(req.body).then((response) => {
+        return res.send(response)
+    }).catch((error) => {
+        throw error
     })
 })
 module.exports = router

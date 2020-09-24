@@ -39,14 +39,30 @@ async function deleteUser(deleteData) {
             throw err
         })
         return `deleted User ${deleteData.userId}`
+    }else {
+        wrongObjectType()
     }
-    throw err("User has no property userId")
+}
+async function getUser(getData) {
+    if (getData.hasOwnProperty("userId")){
+        const data = await User.readUser(getData.userId)
+        return data
+    } else {
+        return wrongObjectType()
+    }
+}
+
+function wrongObjectType() {
+    throw new Error("Object has no property userId")
 }
 
 module.exports = {
     addUser: addUser,
     updateUser: updateUser,
-    deleteUser: deleteUser
+    deleteUser: deleteUser,
+    getUser: getUser
 }
+
+
 
 

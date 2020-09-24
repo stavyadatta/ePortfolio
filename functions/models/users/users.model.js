@@ -20,17 +20,25 @@ class User {
         }
     }
     async add() {
-        // const res = await userCollection.add(this.dataObject).then((res => {
-        //     return("Added users", res.body)
-        // })).catch((err) => {
-        //     throw err
-        // })
         return await userCollection.add(this.dataObject).catch((err) => {
             throw err
         })
     }
     static async searchUser(userId) {
         return await userCollection.where('userId', '==', userId).get();
+    }
+    static async readUser(userId) {
+        const user = await User.searchUser(userId)
+        let returnObject = {}
+        // console.log(user, "User in model")
+        if (user.empty){
+            throw new Error("No user with such userId")
+        } else {
+            user.forEach(user => {
+                returnObject = user.data()
+            })
+            return returnObject
+        }
     }
     static async update(updateObject){
         const data = await User.searchUser(updateObject.update.userId)
