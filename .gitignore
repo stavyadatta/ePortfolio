@@ -6,3 +6,4 @@
 *.log
 .firebase
 /functions/
+/firebase.config.json
