@@ -11,7 +11,7 @@ class UserUpdate {
                 userId: userId,
                 updateData: user
         }} else {
-            throw new Error("Invalid update object")
+            throw new Error("Invalid update object, needs to have userId")
         }
     }
 }

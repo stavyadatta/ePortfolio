@@ -7,22 +7,23 @@ const { response } = require('express');
 const port = process.env.PORT || 3000
 const router = new express.Router()
 
-router.post('/user/add', (req, res) => {
-    var x = userController.addUser(req.body)
-    res.send("Added")
+router.post('/user/add', async (req, res) => {
+    const x = await userController.addUser(req.body)
+    console.log(x)
+    res.send(x)
 })
 
-router.post('/user/update', (req, res) => {
-    userController.updateUser(req.body).then((response) => {
+router.post('/user/update', async (req, res) => {
+    await userController.updateUser(req.body).then((response) => {
         console.log(response)
-        return res.send("Updated")
+        return res.send(response)
     }).catch((error) => {
         console.log(error)
     })
 })
 
-router.post('/user/delete', (req, res) => {
-    userController.deleteUser(req.body).then((response) => {
+router.post('/user/delete', async (req, res) => {
+    await userController.deleteUser(req.body).then((response) => {
         return res.send(response)
     }).catch((error) => {
         console.log(error)
