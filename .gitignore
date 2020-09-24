@@ -2,6 +2,7 @@
 /.vscode
 .env
 /functions/node_modules
-*/impressive-hall-288310-*.json
+**/impressive-hall-288310-**.json
 *.log
 .firebase
+/functions/
