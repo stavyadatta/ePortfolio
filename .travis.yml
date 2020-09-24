@@ -5,5 +5,7 @@ script:
   - echo "Deploying"
 install:
   - npm install -g firebase-tools
+  - npm --prefix ./functions install
+  - npm --prefix ./Front-End/everest install
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
