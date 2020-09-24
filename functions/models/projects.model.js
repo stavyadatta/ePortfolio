@@ -8,26 +8,21 @@ admin.initializeApp({
   });
 
 const db = admin.firestore();
-const users = db.collection('users');
+projects = db.collection('projects');
 
 //Create and Update
 class Project{
     constructor(project){
-        this.userId = project.userId;
-        delete project.userId;
-
         this.dataObject = project;
-        this.userRef = users.doc(this.userId);
-        this.projects = this.userRef.collection('projects');
     }
 
     async create() {
-        return await this.projects.add(this.dataObject)
+        return await projects.add(this.dataObject)
             .catch(err=>{throw err});
     }
 
     async update() {
-        return await this.projects.update(this.dataObject).catch(err=>{throw err});
+        return await projects.update(this.dataObject).catch(err=>{throw err});
     }
 
 }
@@ -39,8 +34,7 @@ Project.getAll = (result) => {
 }
 
 Project.getByProjectId = async (userId, projectId) => {
-    const userProjects = users.doc(userId).collection('projects');
-    const res =  await userProjects.doc(projectId).get();
+    const res =  await projects.doc(projectId).get();
 
     if (res.empty) {
         return 'No matching documents for user:' + userId;
@@ -50,7 +44,7 @@ Project.getByProjectId = async (userId, projectId) => {
 }
 
 Project.getByUserId = async (userId) => {    
-    const snapshot = await users.doc(userId).collection('projects').get();
+    const snapshot = await projects.where("userId","==", userId).get();
     
     if (snapshot.empty) {
         return 'No matching documents for user:' + userId;
@@ -91,8 +85,7 @@ Project.filterByTag = async (userId, tags, result) => {
 
 //Delete
 Project.deleteById = (userId, projectId) => {
-        users.doc(userId)
-        .collection('projects').doc(projectId)
+        projects.doc(projectId)
         .delete()
         .then(console.log('Project Deleted'))
         .catch(e=>console.log(e.message));

@@ -3,7 +3,6 @@ const Project = require("../models/projects.model");
 //create
 exports.createProject = async (req) => {
         const data = req.body
-        data.userId = req.params.userId
         try{
             validateAdd(data);
 
@@ -11,7 +10,7 @@ exports.createProject = async (req) => {
 
             await project.create();
 
-            return {message: "Project: "+project.dataObject.projectName+" created for user: "+project.userId};
+            return {message: "Project: "+project.dataObject.projectName+" created for user: "+project.dataObject.userId};
 
         }catch(err){throw err}
 }
@@ -67,7 +66,6 @@ exports.updateProject = (req) => {
     project.update().then(console.log("Project updated")).catch(e=>console.log(e.message));
 
     return "Project: updated for user: " + project.userId;
-
 }
 
 function validateUpdate(data){

@@ -2,38 +2,62 @@ module.exports = app => {
     const project = require('../controllers/projects.controller.js');
 
     app.post(
-        '/user/:userId/project',
+        '/project',
         async (req, res) => {
-            res.send(await project.createProject(req).catch(e=>console.log(e)));
+            project.createProject(req).then(
+                result=>res.send(result),
+                error=>{
+                    console.log(error.message);
+                    res.status(500).send({"error":error.message})
+                }
+                );
         }
     );
 
     app.get(
         '/user/:userId/project/:projectId', 
         async (req, res)=>{
-            res.status(200).send(await project.findByProjectId(req));
+            project.findByProjectId(req).then(
+                result=>res.send(result),
+                error=>{
+                    console.log(error.message);
+                    res.status(500).send({"error":error.message})
+                }
+            )
         }
     );
 
     app.get(
         '/user/:userId/project', 
         async (req, res)=>{
-            res.status(200).send(await project.findByUserId(req));
+            project.findByUserId(req).then(
+                result=>res.send(result),
+                error=>{
+                    console.log(error.message);
+                    res.status(500).send({"error":error.message})
+                }
+            )
         }
     );
 
     app.put(
         '/user/:userId/project/:projectId', 
         (req, res)=>{
-            res.status(200).send(project.updateProject(req));
+            project.updateProject(req).then(
+                result=>res.send(result),
+                error=>{
+                    console.log(error.message);
+                    res.status(500).send({"error":error.message})
+                }
+            )
         }
     );
 
     app.delete(
         '/user/:userId/project/:projectId', 
         (req, res)=>{
-            res.send(project.delete(req));
+            res.send(project.delete(req))
         }
-    );
+    )
 }
 
