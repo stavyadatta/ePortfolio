@@ -22,8 +22,8 @@ router.post('/user/update', async (req, res) => {
     })
 })
 
-router.post('/user/delete', (req, res) => {
-    userController.deleteUser(req.body).then((response) => {
+router.post('/user/delete', async (req, res) => {
+    await userController.deleteUser(req.body).then((response) => {
         return res.send(response)
     }).catch((error) => {
         console.log(error)

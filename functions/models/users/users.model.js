@@ -48,16 +48,18 @@ class User {
         const data = await User.searchUser(userData.userId)
         if (data.empty) {
             console.log("empty data")
-            return;
-        }
-        data.forEach(doc => {
-            console.log(doc.id)
-            const res = userCollection.doc(doc.id).delete().then((res) => {
-                return("deleted")
-            }).catch((err) => {
-                console.log(err)
+            throw new Error("UserId not found")
+        } else {
+            data.forEach(async (doc) => {
+                console.log(doc.id)
+                const res = await userCollection.doc(doc.id).delete().catch((err) => {
+                    console.log(err)
+                    throw err
+                })
             })
-        })
+            return `deleted`
+        }
+            
     }
 }
 

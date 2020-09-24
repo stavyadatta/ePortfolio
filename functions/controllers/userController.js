@@ -32,13 +32,15 @@ async function updateUser(updateData) {
     
 }
 async function deleteUser(deleteData) {
+    var x = ''
     if (deleteData.hasOwnProperty("userId")) {
-        User.delete(deleteData).then((res) => {
-            return res
-        }).catch(err => {
+        x = await User.delete(deleteData).catch(err => {
             console.log(err)
+            throw err
         })
+        return `deleted User ${deleteData.userId}`
     }
+    throw err("User has no property userId")
 }
 
 module.exports = {
