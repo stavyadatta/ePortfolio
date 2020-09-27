@@ -1,0 +1,22 @@
+{
+  "functions": {
+    "predeploy": [
+      "npm --prefix ./functions run lint"
+    ],
+    "source": "functions"
+  },
+  "hosting": {
+    "predeploy":[
+      "npm --prefix ./Front-End/everest run build"
+    ],
+    "public": "Front-End/everest/build",
+    "ignore": [
+      "firebase.json",
+      "**/node_modules/**"
+    ],
+    "rewrites": [{
+      "source": "**",
+      "function": "app"
+    }]
+  }
+}

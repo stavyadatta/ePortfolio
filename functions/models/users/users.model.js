@@ -21,7 +21,7 @@ class User {
     }
     async add() {
         const res = await userCollection.add(this.dataObject).then((res => {
-            console.log("Added users", res.body)
+            return("Added users", res.body)
         })).catch((err) => {
             throw err
         })
@@ -50,7 +50,7 @@ class User {
         data.forEach(doc => {
             console.log(doc.id)
             const res = userCollection.doc(doc.id).delete().then((res) => {
-                console.log("deleted")
+                return("deleted")
             }).catch((err) => {
                 console.log(err)
             })
