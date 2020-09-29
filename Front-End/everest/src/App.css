@@ -1,4 +1,4 @@
-* { font-family: "Nanum Gothic"; }
+/** { font-family: "Nanum Gothic"; }
 h2 { 
     font-weight: bold;
     font-size: 26px; 
@@ -82,5 +82,4 @@ h2 {
     position: absolute;
     left: 57%;
     top: 25%;
-}
-
+}*/

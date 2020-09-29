@@ -1,83 +1,151 @@
-* { font-family: "Nanum Gothic"; }
-h2 { font-weight: bold; }
+* {
+	font-family: "Karla";
+}
+h2 {
+	font-weight: bold;
+}
 
 .login_page {
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(to right, #FFFFFF 50%, #082F4E 50%);
+	height: 100vh;
+	width: 100vw;
+	background: linear-gradient(to right, #ffffff 50%, #082f4e 50%);
 }
 
 .login_fields_container {
-  position: relative;
-  top: 37%;
+	position: relative;
+	top: 37.4%;
 }
 
 .user_inputs {
-  position: absolute;
-  left: 7%;
-  top: 65px;
+	position: absolute;
+	left: 6%;
+	top: 67px;
 }
 
 .password_elements {
-  position: relative;
-  top: 12px;
+	position: relative;
+	top: 11px;
 }
 
 #login_icon_unhovered {
-  position: relative;
-  left: -30px;
-  top: 6.5px;
-  height: 20px;
-  width: 20px;
-  opacity: 0.7;
+	position: absolute;
+	left: 460px;
+	top: 8.25px;
+	height: 20px;
+	width: 20px;
+	opacity: 0.7;
+}
+
+.small_btn {
+	font-size: 9px;
+	color: #0f446e;
+	background-color: white;
+	outline: none;
+	border: none;
+}
+
+.small_btn:hover {
+	text-decoration: underline;
 }
 
 #forgot_password {
-  position: absolute;
-  left: 77.6%;
-  top: 125%;
-  font-size: 9px;
-  color: #0F446E;
+	position: absolute;
+	left: 81.1%;
+	top: 123.5%;
 }
 
-#forgot_password:hover {
-  text-decoration: underline;
+#back_to_login {
+	position: absolute;
+	left: 37.15%;
+	top: 61.9%;
+}
+
+/* same as register btn, can make component */
+#next {
+	border-radius: 50px;
+	width: 150px;
+	height: 22px;
+	padding-bottom: 1px;
+	border: 1px solid #082f4e;
+	background-color: white;
+	color: #082f4e;
+	position: absolute;
+	left: 6.1%;
+	top: 67%;
+	outline: none;
+}
+
+#next:hover {
+	background-color: #082f4e;
+	color: white;
+	border: 1px solid #082f4e;
+}
+
+/* end */
+
+#reset_password {
+	position: absolute;
+	top: 37.4%;
+	left: 6%;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+	color: #082f4e;
+	background-color: white;
+	outline: none;
+	border: none;
+}
+
+.forgot_your_password {
+	opacity: 0;
+	display: "none";
+}
+
+#forgot_pwd_entry {
+	position: absolute;
+	left: 6%;
+	top: 47.6%;
+}
+
+#confirm_email_pwd {
+	position: absolute;
+	left: 6%;
+	top: 55%;
 }
 
 #login_header {
-  position: absolute;
-  left: 7%;
-  font-size: 29px;
-  color: #082F4E;
+	position: absolute;
+	left: 6%;
+	font-size: 26px;
+	color: #082f4e;
 }
 
 #create_account_header {
-  color: white;
-  font-size: 26px;
+	color: white;
+	font-size: 26px;
 }
 
 #register_btn {
-  border-radius: 50px;
-  width: 233px;
-  height: 30px;
-  padding-bottom: 3px;
-  border: 3px solid white;
-  background-color: #082F4E;
-  color: white;
-  position: absolute;
-  top: 61px;
-  outline: none;
+	border-radius: 50px;
+	width: 218px;
+	height: 30px;
+	padding-bottom: 1px;
+	border: 3px solid white;
+	background-color: #082f4e;
+	color: white;
+	position: absolute;
+	left: 1px;
+	top: 57px;
+	outline: none;
 }
 
 #register_btn:hover {
-  background-color: white;
-  color: #082F4E;
+	background-color: white;
+	color: #082f4e;
 }
 
 .create_account_container {
-  position: absolute;
-  left: 67.4%;
-  top: 45.5%;
+	position: absolute;
+	left: 68.5%;
+	top: 47.1%;
 }
-
-

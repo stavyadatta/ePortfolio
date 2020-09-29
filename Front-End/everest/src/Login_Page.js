@@ -1,24 +1,39 @@
 import React, { useState } from 'react';
 import './Login_Page.css';
+import RegisterPage from './Register_Page';
 import EntryBox from './Entry_Box';
+import { TimelineLite } from 'gsap';
 import Login_Unhovered from './login_btns/login_unhovered.png';
 import Login_Hovered from './login_btns/login_hovered.png';
+import { firebase } from './firebase';
 
 function LoginPage() {
-	const animate_to_register_page = () => {};
+	const animate = () => {
+		const active = { opacity: 1, display: 'block', duration: 0.65 };
+		const inactive = { opacity: 0, display: 'none', duration: 0.18 };
+		const login_page = document.getElementsByClassName('login_page');
+		const register_page = document.getElementsByClassName('register_page');
+
+		let tl = new TimelineLite();
+		tl.fromTo(login_page, active, inactive).fromTo(register_page, inactive, active);
+	};
 
 	return (
-		<div className="login_page">
-			<div className="create_account_container">
-				<h2 id="create_account_header">Create an Account</h2>
-				<button id="register_btn" onClick={animate_to_register_page}>
-					Register
-				</button>
+		<div className="forms">
+			<div className="login_page">
+				<RetrievePassword />
+				<div className="create_account_container">
+					<h2 id="create_account_header">Create an Account</h2>
+					<button id="register_btn" onClick={animate}>
+						Register
+					</button>
+				</div>
+				<div className="login_fields_container">
+					<h2 id="login_header">Login</h2>
+					<LoginFields />
+				</div>
 			</div>
-			<div className="login_fields_container">
-				<h2 id="login_header">Login</h2>
-				<LoginFields />
-			</div>
+			<RegisterPage />
 		</div>
 	);
 }
@@ -41,29 +56,7 @@ function LoginFields() {
 		//execute authentication code here...
 		console.log(userName, password);
 
-		var firebase = require('firebase/app');
-
-		// Add the Firebase products that you want to use
-		require('firebase/auth');
-		require('firebase/firestore');
-
-		var firebaseConfig = {
-			apiKey: 'AIzaSyDs5WVLmuha65hLYcLaffqkZZ6mCcHIJLE',
-			authDomain: 'fir-auth-f9ad7.firebaseapp.com',
-			databaseURL: 'https://fir-auth-f9ad7.firebaseio.com',
-			projectId: 'fir-auth-f9ad7',
-			storageBucket: 'fir-auth-f9ad7.appspot.com',
-			messagingSenderId: '810991043154',
-			appId: '1:810991043154:web:0e258579192f65a55cd58b',
-			measurementId: 'G-56GJJ1GDZG'
-		};
-
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-
-		// Make auth and firestore references
 		const auth = firebase.auth();
-		const db = firebase.firestore();
 
 		auth.signInWithEmailAndPassword(userName, password).catch(function(error) {
 			var errorCode = error.code;
@@ -74,16 +67,6 @@ function LoginFields() {
 	};
 
 	//Use this to observe when user is logged in or logged out
-	const authChange = () => {
-		auth.onAuthStateChanged(function(user) {
-			if (user) {
-				var email = user.email;
-				alert('Active User ' + email);
-			} else {
-				alert('No Active User');
-			}
-		});
-	};
 
 	return (
 		<form className="user_inputs">
@@ -112,8 +95,70 @@ function PasswordComponents(props) {
 				onMouseEnter={() => setLoginImage(Login_Hovered)}
 				onMouseLeave={() => setLoginImage(Login_Unhovered)}
 			/>
-			<p id="forgot_password">Forgot your Password?</p>
+			<ForgotPassword />
 		</div>
+	);
+}
+
+function ForgotPassword() {
+	return (
+		<SmallBtn
+			id="forgot_password"
+			callBack={(e) => {
+				animateComponents(e, 'login_fields_container', 'forgot_your_password');
+			}}
+			text="Forgot your Password?"
+		/>
+	);
+}
+
+function animateComponents(event, pageClassOne, pageClassTwo) {
+	event.preventDefault();
+	const active = { opacity: 1, display: 'block', duration: 0.2 };
+	const inactive = { opacity: 0, display: 'none', duration: 0.2 };
+	const pageOne = document.getElementsByClassName(pageClassOne);
+	const pageTwo = document.getElementsByClassName(pageClassTwo);
+
+	const tl = new TimelineLite();
+	tl.fromTo(pageOne, active, inactive);
+	tl.fromTo(pageTwo, inactive, active);
+}
+
+function RetrievePassword() {
+	return (
+		<div className="forgot_your_password">
+			<h2 id="reset_password">Reset Password</h2>
+			<EntryBox
+				id="forgot_pwd_entry"
+				textType="text"
+				default="Enter Email Address"
+				/*onChange = {""}*/
+			/>
+			<EntryBox
+				id="confirm_email_pwd"
+				textType="text"
+				default="Confirm Email Address"
+				/*onChange = {""}*/
+			/>
+
+			<SmallBtn
+				id="back_to_login"
+				callBack={(e) => {
+					animateComponents(e, 'forgot_your_password', 'login_fields_container');
+				}}
+				text="Back to Login"
+			/>
+
+			<button id="next">Next</button>
+		</div>
+	);
+}
+
+function SmallBtn(props) {
+	return (
+		<button className="small_btn" id={props.id} onClick={props.callBack}>
+			{props.text}
+		</button>
 	);
 }
 
