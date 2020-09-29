@@ -13,7 +13,6 @@
     "ignore": [
       "firebase.json",
       "**/node_modules/**"
-<<<<<<< HEAD
     ]
   },
   "emulators": {
@@ -21,20 +20,17 @@
       "port": 5001
     },
     "firestore": {
-      "port": 8082
+      "port": 8080
     },
     "hosting": {
       "port": 5000
     },
     "ui": {
       "enabled": true
-    }
-=======
-    ],
+    },
     "rewrites": [{
       "source": "**",
       "function": "app"
     }]
->>>>>>> master
   }
 }
