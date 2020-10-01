@@ -36,7 +36,6 @@ async function updateUser(updateData) {
 async function deleteUser(deleteData) {
     var userData = ''
     if (deleteData.hasOwnProperty("userId")) {
-        var y = ''
         userData = await User.delete(deleteData).catch(err => {
             console.log(err)
             return err.message
