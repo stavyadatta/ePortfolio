@@ -8,6 +8,7 @@ before_deploy:
   - npm --prefix ./functions install
   - npm --prefix ./Front-End/everest install
 deploy:
+  skip_cleanup: true
   provider: firebase
   token: $FIREBASE_TOKEN
   on: 
