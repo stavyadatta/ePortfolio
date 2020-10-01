@@ -1,0 +1,9 @@
+.small_btn {
+    font-size: 9px;
+    color: #0F446E;
+    background-color: white;
+    outline: none;
+    border: none;
+}
+  
+.small_btn:hover { text-decoration: underline; }

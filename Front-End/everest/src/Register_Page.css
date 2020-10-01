@@ -34,8 +34,8 @@ h2 {
 
 .switch_to_login_container {
     position: absolute;
-    left: 15.5%;
-    top: 47.1%;
+    left: 16%;
+    top: 47.5%;
 }
 
 #register_header {
@@ -70,7 +70,7 @@ h2 {
     background-color: white;
     color: #082F4E;
     position: absolute;
-    top: 122.7%;
+    top: 122.8%;
     outline: none;
 }
   
@@ -83,6 +83,6 @@ h2 {
 .register_container {
     position: absolute;
     left: 56.6%;
-    top: 29.1%;
+    top: 28.5%;
 }
 
