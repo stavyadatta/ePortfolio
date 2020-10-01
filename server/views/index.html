@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup authentication</title>
+
+</head>
+
+<body>
+    <div class="container">
+          
+            <input id="email" type="email" placeholder="Email">
+               
+            
+          
+            <input id="password" type="password" placeholder="Password">
+
+            <button onclick="signIn()" id="signIn" class="btn btn-action"> Log in</button>
+
+
+            <button onclick= "signUp()" id="signUp" class="btn btn-secondary"> Sign Up</button>
+
+            <button onclick="signOut()" id = "signOut" class="btn btn-action hide">Log out</button>
+    </div>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+
+    <script>
+        var firebaseConfig = {
+        apiKey: 'AIzaSyDs5WVLmuha65hLYcLaffqkZZ6mCcHIJLE',
+        authDomain: 'fir-auth-f9ad7.firebaseapp.com',
+        databaseURL: 'https://fir-auth-f9ad7.firebaseio.com',
+        projectId: 'fir-auth-f9ad7',
+        storageBucket: 'fir-auth-f9ad7.appspot.com',
+        messagingSenderId: '810991043154',
+        appId: '1:810991043154:web:0e258579192f65a55cd58b',
+        measurementId: 'G-56GJJ1GDZG'
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        //Update firstore settings
+        //db.settings({ timestampsInSnapshots: true});
+    </script>
+
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        function signUp(){
+             var email = document.getElementById("email");
+             var  password = document.getElementById("password");
+            const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+            promise.catch(e => alert(e.message));
+            alert("User successfully added");
+        };
+
+        function signIn(){
+             var email = document.getElementById("email");
+            var password = document.getElementById("password");
+            auth.signInWithEmailAndPassword(email.value, password.value).catch(function(error){
+               
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            window.alert("Error : "+ errorMessage);
+        });
+        };
+        
+
+            
+        function signOut(){
+            auth.signOut();
+            alert("User successfully signed out");
+        }
+        //To check the status whehter user is still signed in or is successfully signed out
+        auth.onAuthStateChanged(function(user){
+            if(user){
+                var email= user.email;
+                alert("Active User " + email);
+
+            }else{
+                alert("No Active User");
+            }
+
+        });
+
+    
+    </script>
+
+</body>
+
+</html>
