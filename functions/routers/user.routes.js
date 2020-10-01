@@ -22,14 +22,14 @@ router.post('/user/update', async (req, res) => {
     })
 })
 
-router.post('/user/delete', async (req, res) => {
+router.delete('/user/delete', async (req, res) => {
     await userController.deleteUser(req.body).then((response) => {
         return res.send(response)
     }).catch((error) => {
         throw error
     })
 })
-router.post('/user/read', async(req, res) => {
+router.get('/user/read', async(req, res) => {
     await userController.getUser(req.body).then((response) => {
         return res.send(response)
     }).catch((error) => {

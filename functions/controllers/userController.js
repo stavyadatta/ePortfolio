@@ -3,20 +3,22 @@ const UserUpdate = require('../models/users/updateUser.model.js')
 const validator = require('validator')
 
 async function addUser(addData) {
-    if (checkingUserObject(addData)) {
+    if (await checkingUserObject(addData)) {
         const user = new User(addData)
         var x = await user.add().catch((error) => {
             console.log(error)
         })
         return `User ${user.dataObject.name} has been added`
     } else {
-        throw new Error("User Object is not valid")
+        return "Either the email is wrong or the userId already exist"
     }
 }
 
-function checkingUserObject(addData) { 
+async function checkingUserObject(addData) { 
     if (addData.hasOwnProperty('name','bio', 'email', 'userId')) {
-        return validator.isEmail(addData.email)
+        const userExistence = await User.searchUser(addData.userId)
+        const userExist = userExistence.empty
+        return (validator.isEmail(addData.email) && userExist)
         
     }
     return false
@@ -32,14 +34,20 @@ async function updateUser(updateData) {
     
 }
 async function deleteUser(deleteData) {
-    var x = ''
+    var userData = ''
     if (deleteData.hasOwnProperty("userId")) {
-        x = await User.delete(deleteData).catch(err => {
+        var y = ''
+        userData = await User.delete(deleteData).catch(err => {
             console.log(err)
-            throw err
+            return err.message
         })
-        return `deleted User ${deleteData.userId}`
-    }else {
+        if (userData !== false) {
+            console.log(x)
+            return `deleted User ${deleteData.userId}`
+        } else {
+            return 'UserId not found'
+        }
+    } else {
         wrongObjectType()
     }
 }

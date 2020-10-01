@@ -32,7 +32,8 @@ class User {
         let returnObject = {}
         // console.log(user, "User in model")
         if (user.empty){
-            throw new Error("No user with such userId")
+            //throw new Error("No user with such userId")
+            return "No user with such userId"
         } else {
             user.forEach(user => {
                 returnObject = user.data()
@@ -55,8 +56,8 @@ class User {
     static async delete(userData) {
         const data = await User.searchUser(userData.userId)
         if (data.empty) {
-            console.log("empty data")
-            throw new Error("UserId not found")
+            console.log("empty")
+            return false
         } else {
             data.forEach(async (doc) => {
                 console.log(doc.id)
