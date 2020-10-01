@@ -59,7 +59,6 @@ function LoginFields() {
 		const auth = firebase.auth();
 
 		auth.signInWithEmailAndPassword(userName, password).catch(function(error) {
-			var errorCode = error.code;
 			var errorMessage = error.message;
 
 			window.alert('Error : ' + errorMessage);

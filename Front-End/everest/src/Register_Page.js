@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Register_Page.css';
 import EntryBox from './Entry_Box';
-import LoginPage from './Login_Page';
 import { firebase } from './firebase';
 
 function RegisterPage() {
@@ -33,7 +32,6 @@ function RegisterPage() {
 		const auth = firebase.auth();
 
 		auth.createUserWithEmailAndPassword(email, pwd).catch(function(error) {
-			var errorCode = error.code;
 			var errorMessage = error.message;
 
 			window.alert('Error : ' + errorMessage);

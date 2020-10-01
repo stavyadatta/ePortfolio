@@ -6,9 +6,6 @@
     "source": "functions"
   },
   "hosting": {
-    "predeploy":[
-      "npm --prefix ./Front-End/everest run build"
-    ],
     "public": "Front-End/everest/build",
     "ignore": [
       "firebase.json",
