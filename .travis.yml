@@ -3,16 +3,12 @@ node_js:
   - "14.9.0"
 jobs:
   include:
-    - stage: install
-      script:
-        - npm install -g firebase-tools
-        - npm --prefix ./functions install
-        - npm --prefix ./Front-End/everest install
-    - stage: build
-      script:
-        - npm --prefix ./Front-End/everest run build
     - stage: deploy to production
-      script: skip
+      script:
+      - npm install -g firebase-tools
+      - npm --prefix ./functions install
+      - npm --prefix ./Front-End/everest install
+      - npm --prefix ./Front-End/everest run build
       deploy:
         skip_cleanup: true
         provider: firebase
