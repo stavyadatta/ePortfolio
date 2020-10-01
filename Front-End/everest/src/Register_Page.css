@@ -59,6 +59,7 @@ h2 {
     row-gap: 15px;
     position: absolute;
     top: 199.5%;
+    left: 2%;
 }
 
 #register {
@@ -83,6 +84,6 @@ h2 {
 .register_container {
     position: absolute;
     left: 56.6%;
-    top: 28.5%;
+    top: 28.8%;
 }
 

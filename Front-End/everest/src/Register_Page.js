@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register_Page.css";
 import EntryBox from "./Generic_Components/Entry_Box";
 import animateComponents from "./Generic_Components/Page_Animations";
-import { firebase } from './firebase';
+//import { firebase } from './firebase';
 
 function RegisterPage() {
 
@@ -22,12 +22,12 @@ function RegisterPage() {
     }
 
     const fieldAuthentications = () => {
-      console.log(firstName, lastName, confirmPassword);
-      const auth = firebase.auth();
-		  auth.createUserWithEmailAndPassword(email, pwd).catch(function(error) {
-			  var errorMessage = error.message;
-			  window.alert('Error : ' + errorMessage);
-		  });
+      console.log(firstName, lastName, email, pwd, confirmPassword);
+      // const auth = firebase.auth();
+		  // auth.createUserWithEmailAndPassword(email, pwd).catch(function(error) {
+			//   var errorMessage = error.message;
+			//   window.alert('Error : ' + errorMessage);
+		  // });
     }
 
     return (
