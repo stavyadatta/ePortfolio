@@ -28,7 +28,7 @@ async function updateUser(updateData) {
     const updateObject = new UserUpdate(updateData)
     await User.update(updateObject).catch((err) => {
         console.log(err)
-        throw err
+        return err
     })
     return `User ${updateObject.update.userId} updated`
     
@@ -41,7 +41,6 @@ async function deleteUser(deleteData) {
             return err.message
         })
         if (userData !== false) {
-            console.log(x)
             return `deleted User ${deleteData.userId}`
         } else {
             return 'UserId not found'
