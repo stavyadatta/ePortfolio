@@ -1,14 +1,12 @@
 * { font-family: "Karla"; }
 h1, h5 { color: white; }
-p { 
-    color: white;
-    font-size: 10px;
-}
 
 #profile_pic_label {
     position: absolute;
     left: 20.5%;
     top: 115%;
+    color: white;
+    font-size: 10px;
 }
 
 #profile_pic_label:hover { text-decoration: underline;}

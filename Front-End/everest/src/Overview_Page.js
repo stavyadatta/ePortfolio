@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import User from "./Icons/user_profile.png";
 import "./Overview_Page.css";
+import {Link} from "react-router-dom";
 
 function OverviewPage() {
     const [selected, setSelected] = useState("");
@@ -23,7 +24,10 @@ function OverviewPage() {
         <button className = "overview_btns" id = "welcome" onClick = {checkClicked}>Welcome</button>
         <button className = "overview_btns" id = "profile" onClick = {checkClicked}>My Profile</button>
         <button className = "overview_btns" id = "about_me" onClick = {checkClicked}>About Me</button>
-        <button className = "overview_btns" id = "artifacts" onClick = {checkClicked}>Artifacts</button>
+        <Link to = "/project">
+            <button className = "overview_btns" id = "artifacts" onClick = {checkClicked}>Artifacts</button>
+        </Link>
+       
       </div>
 
     </div>
