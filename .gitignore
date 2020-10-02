@@ -1,6 +1,10 @@
 /node_modules
 /.vscode
 .env
+/functions/node_modules
+**/impressive-hall-288310-**.json
+*.log
+/firebase.config.json
 /server/node_modules
 ePortfolio-98216637d759.json
 /server/package-lock.json
@@ -11,3 +15,4 @@ functions/cloud-storage/impressive-hall-288310-505de956c046.json
 functions/package-lock.json
 firebase-debug.log
 firestore-debug.log
+.firebase
