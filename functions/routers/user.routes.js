@@ -18,7 +18,7 @@ router.post('/user/update', async (req, res) => {
         console.log(response)
         return res.send(response)
     }).catch((error) => {
-        throw error
+        return res.send(error)
     })
 })
 
