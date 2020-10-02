@@ -6,7 +6,7 @@ const validator = require('validator')
 async function addUser(addData) {
     if (await checkingUserObject(addData)) {
         const user = new User(addData)
-        var x = await user.add().catch((error) => {
+        await user.add().catch((error) => {
             console.log(error)
         })
         return `User ${user.dataObject.name} has been added`
