@@ -1,0 +1,90 @@
+* { font-family: "Karla"; }
+h1, h5 { color: white; }
+p { 
+    color: white;
+    font-size: 10px;
+}
+
+#profile_pic_label {
+    position: absolute;
+    left: 20.5%;
+    top: 115%;
+}
+
+#profile_pic_label:hover { text-decoration: underline;}
+
+.profile_picture {
+    position: absolute;
+    left: 155%;
+    top: -130%;
+}
+
+.profile_overview_page {
+    background-color: #082F4E;
+    height: 100vh;
+    width: 100vw;
+}
+
+.overview_btns {
+    background-color: #082F4E;
+    outline: none;
+    border: none;
+    padding-bottom: 4px;
+    padding-right: 1.5px;
+    font-size: 14px;
+    color: white;
+}
+
+#welcome { border-bottom: 2px solid white; }
+#profile_pic {
+    width: 150px;
+    height: 150px;
+    /* position: absolute;
+    top: -16px;
+    left: 480px; */
+}
+
+.page_headers {
+    position: absolute;
+    top: 40%;
+    left: 15%;
+}
+
+#description {
+    font-size: 12px;
+    font-weight: lighter;
+    position: absolute;
+    top: 44px;
+}
+
+.selected { border-bottom: 2px solid white; }
+.overview_btns:hover{ border-bottom: 2px solid white; }
+
+.header_overview_btns {
+    display: flex;
+    flex-direction: row;
+    column-gap: 110px;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 15%;
+    top: 15%;
+    justify-content: center;
+}
+
+#add_projects {
+    position: absolute;
+    top: 210%;
+    background-color: #082F4E;
+    border: 2px solid white;
+    border-radius: 50px;
+    color: white;
+    width: 170px;
+    height: 22px;
+    font-size: 12px;
+    outline: none;
+}
+
+#add_projects:hover {
+    background-color: white;
+    color: #082F4E;
+}
