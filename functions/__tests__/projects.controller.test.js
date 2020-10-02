@@ -1,7 +1,6 @@
 const projects = require("../controllers/projects.controller.js");
 
 jest.mock('firebase', ()=>{
-    const
 })
 
 test("Creates a project", () => {
