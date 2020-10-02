@@ -2,6 +2,7 @@ const User = require('../models/users/users.model.js')
 const UserUpdate = require('../models/users/updateUser.model.js')
 const validator = require('validator')
 
+
 async function addUser(addData) {
     if (await checkingUserObject(addData)) {
         const user = new User(addData)
