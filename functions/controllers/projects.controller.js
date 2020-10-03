@@ -61,8 +61,6 @@ exports.updateProject = async (req) => {
         const project = new Project(data);
         project.projectId = req.params.projectId
 
-        console.log(data);
-
         validateUpdate(data);
 
         return await project.update();
@@ -86,5 +84,10 @@ function validateUpdate(data){
 
 //delete
 exports.delete = async (req) => {
-    return await Project.deleteById(req.params.userId, req.params.projectId);
+    try {
+        await Project.deleteById(req.params.userId, req.params.projectId);
+
+    } catch (error){
+        throw error;
+    }
 };

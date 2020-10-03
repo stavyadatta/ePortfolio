@@ -28,7 +28,6 @@ class Project{
 
     async update() {
         try{
-            console.log(this.dataObject);
             const result = await projects.doc(this.projectId).update(this.dataObject);
             return `Project projectId: ${this.projectId} updated`;
         }catch(error){
@@ -57,7 +56,6 @@ Project.getByUserId = async (userId) => {
         const res = [];
         let i = 0;
         snapshot.forEach(doc => {
-            console.log(doc.data());
             res[i++] = doc.data();
         })
 
@@ -89,11 +87,13 @@ Project.filterByTag = async (userId, tags, result) => {
 */
 
 //Delete
-Project.deleteById = (userId, projectId) => {
-        projects.doc(projectId)
-        .delete()
-        .then(console.log('Project Deleted'))
-        .catch(e=>console.log(e.message));
+Project.deleteById = async (projectId) => {
+    try{
+        await projects.doc(projectId).delete();
+    } catch(error){
+        console.log(error.message)
+        throw error
+    }
 }
 
 module.exports = Project;
