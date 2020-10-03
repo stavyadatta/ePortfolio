@@ -1,13 +1,6 @@
-const Firestore = require('@google-cloud/firestore')
-const functions = require('firebase-functions')
-const admin = require('firebase-admin')
-admin.initializeApp(functions.config().firebase);
+const admin = require('../firebase.admin');
 
-
-const db = new Firestore({
-    projectId: 'impressive-hall-288310',
-    keyFilename: 'ePortfolio-98216637d759.json',
-});
+const db = admin.firestore();
 
 const userCollection = db.collection('users');
 
@@ -74,4 +67,4 @@ class User {
     }
 }
 
-module.exports = User
+module.exports = User;

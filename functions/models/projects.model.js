@@ -1,17 +1,12 @@
-const admin = require('firebase-admin');
-const functions = require('firebase-functions')
-const serviceAccount = require('../../firebase.config');
-
-admin.initializeApp(functions.config().firebase);
-
+const admin = require('./firebase.admin');
 const db = admin.firestore();
 projects = db.collection('projects');
 
 //Create and Update
 class Project{
-    projectId;
     constructor(project){
         this.dataObject = project;
+        this.projectId = ""
     }
 
     async create() {

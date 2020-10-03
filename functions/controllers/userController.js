@@ -47,7 +47,7 @@ async function deleteUser(deleteData) {
             return 'UserId not found'
         }
     } else {
-        wrongObjectType()
+        return wrongObjectType()
     }
 }
 async function getUser(getData) {

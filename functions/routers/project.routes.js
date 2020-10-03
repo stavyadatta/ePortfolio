@@ -31,7 +31,7 @@ router.get('/user/:userId/project', async (req, res)=>{
         return res.send(result);
     }catch(error){
         console.log(error.message);
-        res.status(500).send({"error":error.message})
+        return res.status(500).send({"error":error.message})
     }
 });
 
@@ -42,7 +42,7 @@ router.put('/project/:projectId', async (req, res)=>{
         return res.send(result);
     }catch(error){
         console.log(error.message);
-        res.status(500).send({"error":error.message})
+        return res.status(500).send({"error":error.message})
     }
 });
 
@@ -50,10 +50,10 @@ router.put('/project/:projectId', async (req, res)=>{
 router.delete('/project/:projectId', async (req, res)=>{
     try{
         const result = await project.delete(req);
-        res.send(result);
+        return res.send(result);
     }catch(error){
         console.log(error.message);
-        res.status(500).send({"error":error.message})
+        return res.status(500).send({"error":error.message})
     }
 });
 
