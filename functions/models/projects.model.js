@@ -1,10 +1,8 @@
 const admin = require('firebase-admin');
+const functions = require('firebase-functions')
 const serviceAccount = require('../../firebase.config');
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount.firebase_key),
-    databaseURL: 'https://impressive-hall-288310.firebase.io'
-  });
+admin.initializeApp(functions.config().firebase);
 
 const db = admin.firestore();
 projects = db.collection('projects');
