@@ -1,11 +1,4 @@
-const admin = require('firebase-admin');
-const serviceAccount = require('../../firebase.config.json');
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://impressive-hall-288310.firebase.io'
-  });
-
+const admin = require('./firebase.admin');
 const db = admin.firestore();
 projects = db.collection('projects');
 
@@ -13,30 +6,35 @@ projects = db.collection('projects');
 class Project{
     constructor(project){
         this.dataObject = project;
+        this.projectId = ""
     }
 
     async create() {
-        return await projects.add(this.dataObject)
-            .catch(err=>{throw err});
+        try{
+            const result = await projects.add(this.dataObject);
+            return `Project projectId: ${this.dataObject.projectId} 
+                    created for user userId: ${this.dataObject.userId}`;
+        }catch(error){
+            throw error;
+        }
     }
 
     async update() {
-        return await projects.update(this.dataObject).catch(err=>{throw err});
+        try{
+            const result = await projects.doc(this.projectId).update(this.dataObject);
+            return `Project projectId: ${this.projectId} updated`;
+        }catch(error){
+            throw error;
+        }
     }
-
 }
 
 //Read
-Project.getAll = (result) => {
-    return "YES"
-
-}
-
-Project.getByProjectId = async (userId, projectId) => {
+Project.getByProjectId = async (projectId) => {
     const res =  await projects.doc(projectId).get();
 
     if (res.empty) {
-        return 'No matching documents for user:' + userId;
+        return 'No matching documents with projectID: ' + projectId;
     } else {
         return res.data();
     }
@@ -51,7 +49,6 @@ Project.getByUserId = async (userId) => {
         const res = [];
         let i = 0;
         snapshot.forEach(doc => {
-            console.log(doc.data());
             res[i++] = doc.data();
         })
 
@@ -83,11 +80,13 @@ Project.filterByTag = async (userId, tags, result) => {
 */
 
 //Delete
-Project.deleteById = (userId, projectId) => {
-        projects.doc(projectId)
-        .delete()
-        .then(console.log('Project Deleted'))
-        .catch(e=>console.log(e.message));
+Project.deleteById = async (projectId) => {
+    try{
+        await projects.doc(projectId).delete();
+    } catch(error){
+        console.log(error.message)
+        throw error
+    }
 }
 
 module.exports = Project;

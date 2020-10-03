@@ -47,7 +47,7 @@ exports.findAllProjects = (req, res) => {
 */
 
 exports.findByProjectId = async (req) => {
-    return await Project.getByProjectId(req.params.userId, req.params.projectId);
+    return await Project.getByProjectId(req.params.projectId);
 };
 
 exports.findByUserId = async (req) => {
@@ -55,17 +55,18 @@ exports.findByUserId = async (req) => {
 };
 
 //update
-exports.updateProject = (req) => {
-    const data = req.body;
-    data.userId = req.params.userId;
-    data.projectId = req.params.projectId;
-    validateUpdate(data);
+exports.updateProject = async (req) => {
+    try{
+        let data = req.body;
+        const project = new Project(data);
+        project.projectId = req.params.projectId
 
-    const project = new Project(data);
+        validateUpdate(data);
 
-    project.update().then(console.log("Project updated")).catch(e=>console.log(e.message));
-
-    return "Project: updated for user: " + project.userId;
+        return await project.update();
+    } catch(error){
+        throw error;
+    }
 }
 
 function validateUpdate(data){
@@ -74,18 +75,19 @@ function validateUpdate(data){
         res = false;
         throw new Error("No data");
     }
-    if(!data.userId){
+    if(data.userId){
         res =  false;
-        throw new Error("No userId");
-    }
-    if(!data.projectId){
-        res =  false;
-        throw new Error("No projectId");
+        throw new Error("Cannot update userId");
     }
     return res;
 }
 
 //delete
-exports.delete = (req) => {
-    return Project.deleteById(req.params.userId, req.params.projectId);
+exports.delete = async (req) => {
+    try {
+        await Project.deleteById(req.params.userId, req.params.projectId);
+
+    } catch (error){
+        throw error;
+    }
 };
