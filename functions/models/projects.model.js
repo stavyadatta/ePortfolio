@@ -1,8 +1,8 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('../../firebase.config.json');
+const serviceAccount = require('../../firebase.config');
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(serviceAccount.firebase_key),
     databaseURL: 'https://impressive-hall-288310.firebase.io'
   });
 
@@ -11,32 +11,38 @@ projects = db.collection('projects');
 
 //Create and Update
 class Project{
+    projectId;
     constructor(project){
         this.dataObject = project;
     }
 
     async create() {
-        return await projects.add(this.dataObject)
-            .catch(err=>{throw err});
+        try{
+            const result = await projects.add(this.dataObject);
+            return `Project projectId: ${this.dataObject.projectId} 
+                    created for user userId: ${this.dataObject.userId}`;
+        }catch(error){
+            throw error;
+        }
     }
 
     async update() {
-        return await projects.update(this.dataObject).catch(err=>{throw err});
+        try{
+            console.log(this.dataObject);
+            const result = await projects.doc(this.projectId).update(this.dataObject);
+            return `Project projectId: ${this.projectId} updated`;
+        }catch(error){
+            throw error;
+        }
     }
-
 }
 
 //Read
-Project.getAll = (result) => {
-    return "YES"
-
-}
-
-Project.getByProjectId = async (userId, projectId) => {
+Project.getByProjectId = async (projectId) => {
     const res =  await projects.doc(projectId).get();
 
     if (res.empty) {
-        return 'No matching documents for user:' + userId;
+        return 'No matching documents with projectID: ' + projectId;
     } else {
         return res.data();
     }
