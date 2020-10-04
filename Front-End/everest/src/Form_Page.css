@@ -1,0 +1,18 @@
+#form_header {
+  left: 6%;
+  font-size: 26px;
+  color: #082f4e;
+  text-shadow: none;
+}
+
+
+.form_page {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to right, #ffffff 100%);
+}
+
+
+.form_fields {
+  width: 30rem;
+}
