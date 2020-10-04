@@ -31,6 +31,7 @@ function LoginPage() {
 			alert('Error : ' + errorMessage);
 			setIsAuthenticated(false);
 		});
+		
     }
 
 	return (

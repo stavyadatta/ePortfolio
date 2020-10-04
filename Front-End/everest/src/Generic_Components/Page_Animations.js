@@ -1,4 +1,4 @@
-import {TimelineLite} from "gsap";
+import gsap from "gsap";
 
 function animateComponents(event, compClassOne, compClassTwo, durationOne, durationTwo) {
 	event.preventDefault();
@@ -7,7 +7,7 @@ function animateComponents(event, compClassOne, compClassTwo, durationOne, durat
 	const compOne = document.getElementsByClassName(compClassOne);
 	const compTwo = document.getElementsByClassName(compClassTwo);
 
-	const tl = new TimelineLite();
+	let tl = gsap.timeline();
 	tl.fromTo(compOne, active, inactive);
 	tl.fromTo(compTwo, inactive, active);
 }

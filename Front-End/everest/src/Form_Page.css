@@ -1,42 +1,18 @@
-* {
-    font-family: "Karla";
-  }
-  
-  h2 {
-    font-weight: bold;
-  }
-  
-  .form_page {
-    height: 100vh;
-    width: 100vw;
-    background: linear-gradient(to right, #ffffff 100%);
-  }
-  
-  .form_fields_container {
-    position: relative;
-    top: 10%;
-  }
-  
-  
-  .desc_elements,
-  .file_elements,
-  .tags_elements,
-  .submit_elements,
-  .body_elements {
-    position: relative;
-    top: 11px;
-  }
-  
-  
-  
-  
-  
-  #form_header {
-    position: absolute;
-    left: 6%;
-    font-size: 26px;
-    color: #082f4e;
-    /* text-decoration: none; */
-    text-shadow: none;
-  }
-  
+#form_header {
+  left: 6%;
+  font-size: 26px;
+  color: #082f4e;
+  text-shadow: none;
+}
+
+
+.form_page {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to right, #ffffff 100%);
+}
+
+
+.form_fields {
+  width: 30rem;
+}

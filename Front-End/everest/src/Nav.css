@@ -1,194 +1,156 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-  }
+/************************************************* HEADER SECTION **********************************************/
   
-  /* #search {
-    width: 250px;
-  } */
-  
-  body {
-    font-family: "Baloo Tammudu 2", cursive;
-    /* border: 2px solid black */
-    /* background-image: url(mountains.jpg); */
-  }
-  
-  header {
-    background-color: #082f4e;
-    /* border: 5px solid greenyellow; */
-    /* padding-left: 10px;
-      margin-top: 0px; */
-    display: flex;
-  }
-  
-  #project_header {
-    color: white;
-    font-size: xx-large;
-    margin: 20px 10px 10px 25px;
-    text-shadow: 3px 3px 2px black;
-    /* border: 5px solid greenyellow; */
-    flex: 1;
-    /* padding: 10px 10px; */
-  }
-  
-  #search {
-    position: absolute;
-    top: 45px;
-    right: 25px;
-    position: relative;
-    top: 30px;
-    /* color:white; */
-    /* margin-right: 30px; */
-    /* border: 5px solid red; */
-  }
-  
-  i.far.fa-arrow-alt-circle-left,
-  i.far.fa-arrow-alt-circle-right {
-    color: #082f4e;
-    font-size: 24px;
-    position: relative;
-    top: 2px;
-  }
-  
-  i.material-icons {
-    color: #082f4e;
-    font-size: 40px;
-    /* border: 2px solid black; */
-    margin-top: 40px;
-  }
-  
-  .topButtons {
-    display: flex;
-  }
-  
-  div.addProject {
-    color: #082f4e;
-    padding-left: 30px;
-    /* border: 2px solid black; */
-    flex: 5;
-  
-    /* width: 150px;
-      height: 30px; */
-  }
-  
-  a.addProject {
-    /* The Button name as link  */
-    position: relative;
-    bottom: 12px;
-    font-size: x-large;
-  }
-  
-  div.goBack {
-    color: #082f4e;
-    padding-right: 20px;
-    padding-top: 10px;
-    /* border: 2px solid black; */
-  
-  
-      position: absolute;
-      top: 80px;
-        right: 25px;	 
-  }
-  
-  /*********************************  MAIN STARTS  ************************************************/
-  
-  .section1,
-  .section2,
-  .section3 {
-    display: flex;
-    align-items: center;
-  }
-  
-  img.projectImage1 {
-    width: 500px;
-    height: 350px;
-    border-radius: 12px;
-    border: 1px solid #082f4e;
-    margin-left: 20px;
-    /* flex: 1; */
-  }
-  
-  div.project1Text {
-    padding: 100px;
-    /* align-items: center; */
-  }
-  
-  #project1header {
-    color: #082f4e;
-    text-decoration: none;
-    text-shadow: none;
-  }
-  
-  #project1para {
-    padding: 50px 100px 100px 30px;
-  }
-  
-  /******************************************************************************************/
-  /* p {
-      text-align: justify;
-  } */
-  
-  div.project2Text {
-    margin-left: 40px;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    padding-right: 100px;
-    /* margin-left: 20px; */
-    /* align-items: center; */
-    /* border: 2px solid black; */
-  }
-  
-  img.projectImage2 {
-    width: 500px;
-    height: 350px;
-    border-radius: 12px;
-    border: 1px solid #082f4e;
-    margin-right: 20px;
-    /* flex: 1; */
-  }
-  
-  /******************************************************************************************/
-  
-  img.projectImage3 {
-    /* There is an issue with the sizing of Project 3 image */
-    width: 1200px;
-    height: 350px;
-    border-radius: 12px;
-    border: 1px solid #082f4e;
-    margin-left: 20px;
-    /* flex: 1; */
-  }
-  
-  div.project3Text {
-    padding: 100px;
-    /* align-items: center; */
-  }
-  
-  /******************************************  ANCHOR TAGS ************************************************/
-  
-  a.addProject,
-  a.goBack,
-  a.project1header,
-  a.project2header,
-  a.project3header,
-  a.nextPageButton {
-    text-decoration: none;
-  }
-  
-  a {
-    color: #082f4e;
-  } /* Unvisited link  */
-  a:visited {
-    color: #082f4e;
-  } /* Visited link    */
-  a:hover {
-    color: rgb(45, 231, 255);
-  } /* Mouse over link */
-  
-  a.goBack:hover {
-    color: rgb(255, 154, 59);
-  }
-  a.nextPageButton:hover {
-    color: rgb(255, 154, 59);
-  }
+#project_header {
+  background-color: #082f4e;
+  display: flex;
+}
+
+
+#project_header_title {
+  color: white;
+  font-size: xx-large;
+  margin: 20px 10px 10px 25px;
+  text-shadow: 3px 3px 2px black;
+  flex: 1;
+}
+
+
+
+/************************************************* TOP BUTTONS DIV **********************************************/
+
+.topButtons {
+  display: flex;
+}
+
+
+div.addProject {
+  color: #082f4e;
+  flex: 5;
+}
+
+/************************************************* ADD PROJECT BUTTONS **********************************************/
+
+a.addProject {            /* The Button name as link  */
+  position: absolute;
+  top: 17%;
+  left: 5%;
+  font-size: x-large;
+  text-decoration: none;    
+}
+
+.material-icons {
+  color: #082f4e;
+  width: 40px;
+  height: 40px;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+
+/************************************************* GO BACK BUTTONS **********************************************/
+
+div.goBack {
+  color: #082f4e;
+  padding-right: 20px;
+  padding-top: 10px;
+  position: absolute;
+  top: 80px;
+  right: 25px;	 
+}
+
+a.goBack {                /* The Button name as link  */
+  position: relative;
+  left: 5px;
+  bottom: 2px;
+  text-decoration: none;    
+}
+
+i.far.fa-arrow-alt-circle-left {
+  color: #082f4e;
+  font-size: 24px;
+  position: relative;
+  top: 2px;
+}
+
+/*********************************  MAIN STARTS  ************************************************/
+
+.section1 {
+  display: flex;
+  align-items: center;
+}
+
+img.projectImage1 {
+  margin-left: 20px;
+  margin-right: 150px;
+  width: 500px;
+  height: 350px;
+  border-radius: 12px;
+  border: 1px solid #082f4e;
+}
+
+div.project1Text {
+  padding: 100px;
+}
+
+#project1header {
+  color: #082f4e;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+#project1desc {
+  font-size: large;
+  padding: 50px 100px 100px 0px;
+}
+
+
+/******************************************  ANCHOR TAGS ************************************************/
+
+a.addProject,
+a.goBack,
+a.project1header,
+a.project2header,
+a.project3header,
+a.nextPageButton {
+  text-decoration: none;
+}
+
+a {
+  color: #082f4e;
+} /* Unvisited link  */
+a:visited {
+  color: #082f4e;
+} /* Visited link    */
+a:hover {
+  color: rgb(45, 231, 255);
+} /* Mouse over link */
+
+a.goBack:hover {
+  color: rgb(255, 154, 59);
+}
+a.nextPageButton:hover {
+  color: rgb(255, 154, 59);
+}
+
+
+/************************************************* CAN USE LATER **********************************************/
+
+
+/* body {
+  font-family: "Baloo Tammudu 2", cursive;
+} */
+
+/* #search {
+  position: absolute;
+  top: 45px;
+  right: 25px;
+  position: relative;
+  top: 30px;
+} */
+
+/*.section1,
+.section2,
+.section3 {
+  display: flex;
+  align-items: center;
+} */

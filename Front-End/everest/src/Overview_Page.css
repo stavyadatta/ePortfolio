@@ -1,62 +1,48 @@
 * { font-family: "Karla"; }
-h1, h5 { color: white; }
-
-#profile_pic_label {
-    position: absolute;
-    left: 20.5%;
-    top: 115%;
-    color: white;
-    font-size: 10px;
-}
-
-#profile_pic_label:hover { text-decoration: underline;}
-
-.profile_picture {
-    position: absolute;
-    left: 155%;
-    top: -130%;
-}
+h1 { color: #082F4E; }
 
 .profile_overview_page {
-    background-color: #082F4E;
+    background-color: #FDFDFD;
     height: 100vh;
     width: 100vw;
 }
 
+#profile_background {
+    position: absolute;
+    bottom: 11%;
+    right: 14%;
+    width: 60%;
+    height: 60%;
+}
+
 .overview_btns {
-    background-color: #082F4E;
+    background-color: white;
     outline: none;
     border: none;
     padding-bottom: 4px;
     padding-right: 1.5px;
-    font-size: 14px;
-    color: white;
+    font-size: 16px;
+    color: #082F4E;
 }
 
 #welcome { border-bottom: 2px solid white; }
-#profile_pic {
-    width: 150px;
-    height: 150px;
-    /* position: absolute;
-    top: -16px;
-    left: 480px; */
-}
+
 
 .page_headers {
     position: absolute;
-    top: 40%;
-    left: 15%;
+    top: 30%;
+    left: 10%;
 }
 
 #description {
-    font-size: 12px;
-    font-weight: lighter;
+    font-size: 16px;
     position: absolute;
-    top: 44px;
+    left: 1%;
+    top: 120%;
 }
 
 .selected { border-bottom: 2px solid white; }
-.overview_btns:hover{ border-bottom: 2px solid white; }
+.overview_btns:hover{ font-weight: bold; }
 
 .header_overview_btns {
     display: flex;
@@ -64,7 +50,7 @@ h1, h5 { color: white; }
     column-gap: 110px;
     flex-wrap: wrap;
     position: absolute;
-    left: 15%;
+    left: 10%;
     top: 15%;
     justify-content: center;
 }
