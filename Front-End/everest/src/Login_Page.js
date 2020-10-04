@@ -69,8 +69,30 @@ function LoginFields(props) {
       	</div>
     );
 
+		const auth = firebase.auth();
+
+		auth.signInWithEmailAndPassword(userName, password).catch(function(error) {
+			var errorMessage = error.message;
+
+			window.alert('Error : ' + errorMessage);
+		});
+	};
+
+	//Use this to observe when user is logged in or logged out
+
+	return (
+		<form className="user_inputs">
+			<EntryBox
+				id="email_entry"
+				textType="text"
+				default="Enter Username or Email Address"
+				onChange={updateField}
+			/>
+			<PasswordComponents authenticate={fieldAuthentications} onChange={updateField} />
+		</form>
+	);
 }
-  
+
 function PasswordComponents(props) {
     
 	const [loginImage, setLoginImage] = useState(Login_Unhovered); 

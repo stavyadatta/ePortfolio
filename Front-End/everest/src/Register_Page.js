@@ -5,12 +5,27 @@ import animateComponents from "./Generic_Components/Page_Animations";
 import { firebase } from './firebase';
 
 function RegisterPage() {
+	const [ firstName, setFirstName ] = useState('');
+	const [ lastName, setLastName ] = useState('');
+	const [ email, setEmail ] = useState('');
+	const [ pwd, setPwd ] = useState('');
+	const [ confirmPassword, setConfirmPassword ] = useState('');
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [pwd, setPwd] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+	const updateField = (e) => {
+		let fieldValue = e.target.value;
+		if (e.target.id === 'first_name') {
+			setFirstName(fieldValue);
+		} else if (e.target.id === 'last_name') {
+			setLastName(fieldValue);
+		} else if (e.target.id === 'reg_email_entry') {
+			setEmail(fieldValue);
+		} else if (e.target.id === 'reg_password_entry') {
+			setPwd(fieldValue);
+		} else {
+			setConfirmPassword(fieldValue);
+		}
+		return;
+	};
 
     const updateFields = e => {
     	let fieldValue = e.target.value; 

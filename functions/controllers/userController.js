@@ -2,22 +2,24 @@ const User = require('../models/users/users.model.js')
 const UserUpdate = require('../models/users/updateUser.model.js')
 const validator = require('validator')
 
-function addUser(addData) {
-    if (checkingUserObject(addData)) {
+
+async function addUser(addData) {
+    if (await checkingUserObject(addData)) {
         const user = new User(addData)
-        user.add().then((res) => {
-            return "User Added"
-        }).catch((error) => {
+        await user.add().catch((error) => {
             console.log(error)
         })
+        return `User ${user.dataObject.name} has been added`
     } else {
-        throw new Error("User Object is not valid")
+        return "Either the email is wrong or the userId already exist"
     }
 }
 
-function checkingUserObject(addData) { 
+async function checkingUserObject(addData) { 
     if (addData.hasOwnProperty('name','bio', 'email', 'userId')) {
-        return validator.isEmail(addData.email)
+        const userExistence = await User.searchUser(addData.userId)
+        const userExist = userExistence.empty
+        return (validator.isEmail(addData.email) && userExist)
         
     }
     return false
@@ -25,27 +27,49 @@ function checkingUserObject(addData) {
 
 async function updateUser(updateData) {
     const updateObject = new UserUpdate(updateData)
-    User.update(updateObject).then((res) => {
-        return "Updated"
-    }).catch((err) => {
+    await User.update(updateObject).catch((err) => {
         console.log(err)
+        return err
     })
+    return `User ${updateObject.update.userId} updated`
     
 }
 async function deleteUser(deleteData) {
+    var userData = ''
     if (deleteData.hasOwnProperty("userId")) {
-        User.delete(deleteData).then((res) => {
-            return res
-        }).catch(err => {
+        userData = await User.delete(deleteData).catch(err => {
             console.log(err)
+            return err.message
         })
+        if (userData !== false) {
+            return `deleted User ${deleteData.userId}`
+        } else {
+            return 'UserId not found'
+        }
+    } else {
+        return wrongObjectType()
     }
+}
+async function getUser(getData) {
+    if (getData.hasOwnProperty("userId")){
+        const data = await User.readUser(getData.userId)
+        return data
+    } else {
+        return wrongObjectType()
+    }
+}
+
+function wrongObjectType() {
+    throw new Error("Object has no property userId")
 }
 
 module.exports = {
     addUser: addUser,
     updateUser: updateUser,
-    deleteUser: deleteUser
+    deleteUser: deleteUser,
+    getUser: getUser
 }
+
+
 
 
