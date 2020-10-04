@@ -1,11 +1,10 @@
 * { font-family: "Karla"; }
 h2 { font-weight: bold; }
 
-
 .login_page {
-	height: 100vh;
-	width: 100vw;
-	background: linear-gradient(to right, #ffffff 50%, #082f4e 50%);
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to right, #FFFFFF 50%, #082F4E 50%);
 }
 
 .login_fields_container {
@@ -40,7 +39,6 @@ h2 { font-weight: bold; }
 }
 
 #login_header {
-
   position: absolute;
   left: 6%;
   font-size: 26px;
@@ -48,8 +46,8 @@ h2 { font-weight: bold; }
 }
 
 #create_account_header {
-	color: white;
-	font-size: 26px;
+  color: white;
+  font-size: 26px;
 }
 
 #register_btn {
@@ -67,8 +65,8 @@ h2 { font-weight: bold; }
 }
 
 #register_btn:hover {
-	background-color: white;
-	color: #082f4e;
+  background-color: white;
+  color: #082F4E;
 }
 
 .create_account_container {

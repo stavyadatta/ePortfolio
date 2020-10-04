@@ -17,10 +17,10 @@ function Nav(props) {
 
                 <Link to="/form">
                     <div className="addProject">
-                        <a>
-                            <Plus className="material-icons"/>
-                        </a>
-                        <a href="#" className="addProject">
+                   
+                        <Plus className="material-icons"/>
+                        
+                        <a href="#top" className="addProject">
                             Add Project
                         </a>
                     </div>
@@ -28,10 +28,10 @@ function Nav(props) {
 
                 <Link to="/profile">
                     <div className="goBack">     {/* Will route back to the Overview Page */}                        
-                        <a>
+                       
                             <i className="far fa-arrow-alt-circle-left"></i>
-                        </a>
-                        <a className="goBack">
+                    
+                        <a href = "#top" className="goBack">
                             Go Back
                         </a>
                     </div>
@@ -54,7 +54,7 @@ function ImagePage(props) {
       <div className="section1">
       {/* {console.log(props.location.state.pName)} */}
       
-      {props.location.state ? <img src={props.location.state ? project_image : "whatever.jpg"} className="projectImage1" /> : null }
+      {props.location.state ? <img src={props.location.state ? project_image : "whatever.jpg"} className="projectImage1" alt = "proj_image"/> : null }
         
         <div className="project1Text">
           <h2 id="project1header">{props.location.state ? props.location.state.pName : ""}</h2>

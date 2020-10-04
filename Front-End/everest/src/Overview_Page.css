@@ -1,10 +1,14 @@
-* { font-family: "Karla"; }
-h1 { color: #082F4E; }
+p { 
+    color: white; 
+    font-size: 40px;
+    font-family: 'Frank Ruhl Libre', serif;
+
+}
 
 .profile_overview_page {
-    background-color: #FDFDFD;
     height: 100vh;
     width: 100vw;
+    background: #082F4E; 
 }
 
 #profile_background {
@@ -16,22 +20,60 @@ h1 { color: #082F4E; }
 }
 
 .overview_btns {
-    background-color: white;
+    background-color: #082F4E;
     outline: none;
     border: none;
     padding-bottom: 4px;
     padding-right: 1.5px;
     font-size: 16px;
-    color: #082F4E;
+    color: white;
+    font-family: "Karla";
 }
 
-#welcome { border-bottom: 2px solid white; }
+.overview_btns:hover { text-decoration: underline; }
 
+#achievement_image {
+    width: 95%;
+    position: absolute;
+    bottom: 0%;
+}
+
+#sun_image {
+    width: 28%;
+    position: absolute;
+    bottom: 14%;
+    right: 16%;
+}
+
+.buttons {
+    position: absolute;
+    left: 93.5%;
+    bottom: 2%;
+}
+
+#home_btn, #about_btn, #signout_btn {
+    transform: scale(0.45, 0.45);
+}
+
+#about_btn {
+    position: relative;
+    top: 24px;
+}
+
+#home_btn {
+    position: relative;
+    top: 49px;
+}
+
+#home_btn:hover, #about_btn:hover, #signout_btn:hover {
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px white;
+}
 
 .page_headers {
     position: absolute;
-    top: 30%;
-    left: 10%;
+    top: 28%;
+    left: 8%;
 }
 
 #description {
@@ -41,34 +83,14 @@ h1 { color: #082F4E; }
     top: 120%;
 }
 
-.selected { border-bottom: 2px solid white; }
-.overview_btns:hover{ font-weight: bold; }
-
 .header_overview_btns {
     display: flex;
     flex-direction: row;
-    column-gap: 110px;
+    column-gap: 120px;
     flex-wrap: wrap;
     position: absolute;
-    left: 10%;
-    top: 15%;
+    left: 8%;
+    top: 14%;
     justify-content: center;
 }
 
-#add_projects {
-    position: absolute;
-    top: 210%;
-    background-color: #082F4E;
-    border: 2px solid white;
-    border-radius: 50px;
-    color: white;
-    width: 170px;
-    height: 22px;
-    font-size: 12px;
-    outline: none;
-}
-
-#add_projects:hover {
-    background-color: white;
-    color: #082F4E;
-}

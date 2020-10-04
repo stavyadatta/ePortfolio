@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 76 76">
+  <g id="Group_24" data-name="Group 24" transform="translate(-1347 -656)">
+    <circle id="Ellipse_6" data-name="Ellipse 6" cx="38" cy="38" r="38" transform="translate(1347 656)" fill="#fff"/>
+    <g id="Icon_awesome-home" data-name="Icon awesome-home" transform="translate(1369 681)">
+      <path id="Icon_awesome-home-2" data-name="Icon awesome-home" d="M15.82,8.868l-10.4,8.643v9.328a.907.907,0,0,0,.9.911l6.323-.017a.907.907,0,0,0,.9-.911V21.375a.907.907,0,0,1,.9-.911h3.611a.907.907,0,0,1,.9.911v5.444a.915.915,0,0,0,.263.646.9.9,0,0,0,.639.268l6.321.018a.907.907,0,0,0,.9-.911V17.5l-10.4-8.637A.683.683,0,0,0,15.82,8.868Zm16.433,5.875L27.535,10.82V2.937a.68.68,0,0,0-.677-.683H23.7a.68.68,0,0,0-.677.683V7.069L17.969,2.877a2.69,2.69,0,0,0-3.442,0L.245,14.742a.687.687,0,0,0-.09.962l1.439,1.764a.673.673,0,0,0,.954.093L15.82,6.534a.683.683,0,0,1,.863,0L29.956,17.562a.673.673,0,0,0,.954-.091l1.439-1.764a.687.687,0,0,0-.1-.964Z" transform="translate(0.001 -2.254)" fill="#082f4e" stroke="#082f4e" stroke-width="1"/>
+    </g>
+  </g>
+</svg>
