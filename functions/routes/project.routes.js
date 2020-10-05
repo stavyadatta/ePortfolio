@@ -1,4 +1,4 @@
-const project = require('../controllers/projects.controller.js');
+const project = require('../controllers/project.controller.js');
 const functions = require('firebase-functions');
 
 //Create

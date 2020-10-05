@@ -1,34 +1,35 @@
-const userController = require('../controllers/userController.js')
+const userController = require('../controllers/user.controller.js')
 const functions = require('firebase-functions');
 
-exports.add = functions.https.onRequest(async (req, res) => {
-    const x = await userController.addUser(req.body)
+exports.add = functions.https.onCall(async (data, context) => {
+    const x = await userController.addUser(data)
     console.log(x)
-    res.send(x)
+    return x
 })
 
-exports.update = functions.https.onRequest(async (req, res) => {
-    await userController.updateUser(req.body).then((response) => {
-        console.log(response)
-        return res.send(response)
-    }).catch((error) => {
-        return res.send(error)
-    })
+exports.update = functions.https.onCall(async (data, context) => {
+    try{
+        let response = await userController.updateUser(data)
+        return response
+    }catch(error){
+        return functions.https.HttpsError(error)
+    }
 })
 
-exports.delete = functions.https.onRequest(async (req, res) => {
-    await userController.deleteUser(req.body).then((response) => {
-        return res.send(response)
-    }).catch((error) => {
-        throw error
-    })
+exports.delete = functions.https.onCall(async (data, context) => {
+    try{
+        let response = await userController.deleteUser(data)
+        return response
+    }catch(error){
+        return functions.https.HttpsError(error)
+    }
 })
 
-exports.getOne = functions.https.onRequest(async(req, res) => {
-    await userController.getUser(req.body).then((response) => {
-        return res.send(response)
-    }).catch((error) => {
-        throw error
-    })
+exports.getOne = functions.https.onCall(async (data, context) => {
+    try{
+        let response = await userController.getUser(data)
+        return response
+    }catch(error){
+        return functions.https.HttpsError(error)
+    }
 })
-module.exports = router
