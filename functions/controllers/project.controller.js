@@ -1,8 +1,7 @@
-const Project = require("../models/projects.model");
+const Project = require("../models/project.model");
 
 //create
-exports.createProject = async (req) => {
-        const data = req.body
+exports.createProject = async (data) => {
         try{
             validateAdd(data);
 
@@ -46,18 +45,17 @@ exports.findAllProjects = (req, res) => {
 };
 */
 
-exports.findByProjectId = async (req) => {
-    return await Project.getByProjectId(req.body.projectId);
+exports.findByProjectId = async (data) => {
+    return await Project.getByProjectId(data.projectId);
 };
 
-exports.findByUserId = async (req) => {
-    return await Project.getByUserId(req.body.userId);
+exports.findByUserId = async (data) => {
+    return await Project.getByUserId(data.userId);
 };
 
 //update
-exports.updateProject = async (req) => {
+exports.updateProject = async (data) => {
     try{
-        let data = req.body;
         const project = new Project(data);
 
         validateUpdate(data);
@@ -88,16 +86,16 @@ function validateUpdate(data){
 //delete
 exports.delete = async (req) => {
     try {
-        let res = await Project.deleteById(req.body.projectId);
-        let check = await Project.getByProjectId(req.body.projectId);
+        let res = await Project.deleteById(data.projectId);
+        let check = await Project.getByProjectId(data.projectId);
         console.log(check);
         if(check.not_found){
             return {
-                message:`Project projectId: ${req.body.projectId} deleted`
+                message:`Project projectId: ${data.projectId} deleted`
             }
         } else {
             return {
-                message:`Project projectId: ${req.body.projectId} could not be deleted`,
+                message:`Project projectId: ${data.projectId} could not be deleted`,
                 error:'delete_error'
             }
         }

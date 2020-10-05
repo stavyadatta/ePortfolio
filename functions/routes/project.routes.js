@@ -3,56 +3,54 @@ const functions = require('firebase-functions');
 
 //Create
 
-exports.add = functions.https.onRequest(async (req, res) => {
+exports.add = functions.https.onCall(async (data, context) => {
     try {
-        const result = await project.createProject(req);
-        return res.send(result);
+        const result = await project.createProject(data);
+        return result;
     } catch(error) {
-        console.log(error.message);
-        return res.status(500).send({"error":error.message})
+        throw new functions.https.HttpsError(error);
     }
 });
 
 //Read
-exports.getOne = functions.https.onRequest(async (req, res) => {
+exports.getOne = functions.https.onCall(async (data, context) => {
     try{
-        const result = await project.findByProjectId(req);
-        return res.send(result);
-
+        const result = await project.findByProjectId(data);
+        return result;
     }catch(error) {
         console.log(error.message);
-        return res.status(500).send({"error":error.message});
+        throw new functions.https.HttpsError(error);
     }
 });
 
-exports.getByUser = functions.https.onRequest(async (req, res)=>{
+exports.getByUser = functions.https.onCall(async (data, context)=>{
     try{
-        const result = await project.findByUserId(req);
-        return res.send(result);
+        const result = await project.findByUserId(data);
+        return result;
     }catch(error){
         console.log(error.message);
-        return res.status(500).send({"error":error.message})
+        throw new functions.https.HttpsError(error);
     }
 });
 
 //Update
-exports.update = functions.https.onRequest( async (req, res)=>{
+exports.update = functions.https.onCall(async (data, context)=>{
     try{
-        const result = await project.updateProject(req);
-        return res.send(result);
+        const result = await project.updateProject(data);
+        return result;
     }catch(error){
         console.log(error.message);
-        return res.status(500).send({"error":error.message})
+        throw new functions.https.HttpsError(error);
     }
 });
 
 //Delete
-exports.delete = functions.https.onRequest( async (req, res)=>{
+exports.delete = functions.https.onCall(async (data, context)=>{
     try{
-        const result = await project.delete(req);
-        return res.send(result);
+        const result = await project.delete(data);
+        return result;
     }catch(error){
         console.log(error.message);
-        return res.status(500).send({"error":error.message})
+        throw new functions.https.HttpsError(error);
     }
 });
