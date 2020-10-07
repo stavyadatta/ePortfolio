@@ -1,0 +1,5 @@
+{
+    "scripts":{
+        "start":"(cd Front-End/everest;npm run build) && firebase emulators:start"
+    }
+}

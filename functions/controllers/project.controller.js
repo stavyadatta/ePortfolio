@@ -1,16 +1,15 @@
-const Project = require("../models/projects.model");
+const Project = require("../models/project.model");
 
 //create
-exports.createProject = async (req) => {
-        const data = req.body
+exports.createProject = async (data) => {
         try{
             validateAdd(data);
 
             const project = new Project(data);
 
-            await project.create();
+            let res = await project.create();
 
-            return {message: "Project: "+project.dataObject.projectName+" created for user: "+project.dataObject.userId};
+            return res;
 
         }catch(err){throw err}
 }
@@ -46,20 +45,18 @@ exports.findAllProjects = (req, res) => {
 };
 */
 
-exports.findByProjectId = async (req) => {
-    return await Project.getByProjectId(req.params.projectId);
+exports.findByProjectId = async (data) => {
+    return await Project.getByProjectId(data.projectId);
 };
 
-exports.findByUserId = async (req) => {
-    return await Project.getByUserId(req.params.userId);
+exports.findByUserId = async (data) => {
+    return await Project.getByUserId(data.userId);
 };
 
 //update
-exports.updateProject = async (req) => {
+exports.updateProject = async (data) => {
     try{
-        let data = req.body;
         const project = new Project(data);
-        project.projectId = req.params.projectId
 
         validateUpdate(data);
 
@@ -75,18 +72,33 @@ function validateUpdate(data){
         res = false;
         throw new Error("No data");
     }
+    if(!data.projectId){
+        throw new Error("No projectId")
+    }
     if(data.userId){
         res =  false;
         throw new Error("Cannot update userId");
     }
+    
     return res;
 }
 
 //delete
 exports.delete = async (req) => {
     try {
-        await Project.deleteById(req.params.userId, req.params.projectId);
-
+        let res = await Project.deleteById(data.projectId);
+        let check = await Project.getByProjectId(data.projectId);
+        console.log(check);
+        if(check.not_found){
+            return {
+                message:`Project projectId: ${data.projectId} deleted`
+            }
+        } else {
+            return {
+                message:`Project projectId: ${data.projectId} could not be deleted`,
+                error:'delete_error'
+            }
+        }
     } catch (error){
         throw error;
     }

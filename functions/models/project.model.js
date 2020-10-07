@@ -12,8 +12,7 @@ class Project{
     async create() {
         try{
             const result = await projects.add(this.dataObject);
-            return `Project projectId: ${this.dataObject.projectId} 
-                    created for user userId: ${this.dataObject.userId}`;
+            return {projectId: result.id, userId: this.dataObject.userId};
         }catch(error){
             throw error;
         }
@@ -31,10 +30,11 @@ class Project{
 
 //Read
 Project.getByProjectId = async (projectId) => {
-    const res =  await projects.doc(projectId).get();
-
-    if (res.empty) {
-        return 'No matching documents with projectID: ' + projectId;
+    const res =  await projects.doc(projectId).get().data;
+    if (!res) {
+        return {
+            error:`No matching documents with projectID: ${projectId}`, not_found: true
+        };
     } else {
         return res.data();
     }
