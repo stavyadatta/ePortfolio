@@ -4,15 +4,15 @@ export var firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/firestore');
 
-export var firebaseConfig = {
-	apiKey: 'AIzaSyDs5WVLmuha65hLYcLaffqkZZ6mCcHIJLE',
-	authDomain: 'fir-auth-f9ad7.firebaseapp.com',
-	databaseURL: 'https://fir-auth-f9ad7.firebaseio.com',
-	projectId: 'fir-auth-f9ad7',
-	storageBucket: 'fir-auth-f9ad7.appspot.com',
-	messagingSenderId: '810991043154',
-	appId: '1:810991043154:web:0e258579192f65a55cd58b',
-	measurementId: 'G-56GJJ1GDZG'
+const firebaseConfig = {
+	apiKey: "AIzaSyArZEwLWk_Ghu1ZDxXmuOOz3NyASt8ezpc",
+	authDomain: "impressive-hall-288310.firebaseapp.com",
+	databaseURL: "https://impressive-hall-288310.firebaseio.com",
+	projectId: "impressive-hall-288310",
+	storageBucket: "impressive-hall-288310.appspot.com",
+	messagingSenderId: "955883012726",
+	appId: "1:955883012726:web:e527a673ef6c5794385557",
+	measurementId: "G-N1JX5XFSV3"
 };
 
 // Initialize Firebase
