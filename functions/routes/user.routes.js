@@ -33,3 +33,11 @@ exports.getOne = functions.https.onCall(async (data, context) => {
         return functions.https.HttpsError(error)
     }
 })
+
+// this is testing the test function 
+
+exports.basicTest = function(){
+    const a = 1;
+    const b = 5;
+    return a + b;
+}
