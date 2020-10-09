@@ -27,21 +27,43 @@ afterAll(() =>{
 });
 
 describe('testing the test function', () => {
-    var add = firebase.functions().httpsCallable('user-add');
+    const add = firebase.functions().httpsCallable('user-add');
+    const update = firebase.functions().httpsCallable('user-update');
+    const del = firebase.functions().httpsCallable('user-delete');
+
     it('test function returning 6', () => {
         expect(user.basicTest()).toBe(6)
     })
+    const dataAdd = { 
+        userId: "userd",
+        name: "Stavya",
+        bio: "i am Hot",
+        email: "stavyadatta@gmail.com"
+    }
+    const dataUpdate = {
+        userId: "userd",
+        name: "Stavya2",
+        bio: 'I am cool'
+    }
+    const dataDelete = {
+        userId: "userd"
+    }
 
     it('testing user add functions', async () => {
-        const data = { 
-            userId: "userd",
-            name: "Stavya",
-            bio: "i am Hot",
-            email: "stavyadatta@gmail.com"
-        }
+        const message = await add(dataAdd)
 
-        const message = await add(data)
+        expect(message.data).toBe(`User ${dataAdd.name} has been added`)
 
-        expect(message.data).toBe(`User ${data.name} has been added`)
     })
+    
+    it('testing user update ', async () => {
+        const message = await update(dataUpdate)
+        expect(message.data).toBe(`User ${dataUpdate.userId} updated`)
+    })
+
+    it('testing user delete', async () => {
+        const message = await del(dataDelete)
+        expect(message.data).toBe(`deleted User ${dataDelete.userId}`)
+    })
+    
 })

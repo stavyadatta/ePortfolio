@@ -16,14 +16,14 @@ async function addUser(addData) {
 }
 
 async function checkingUserObject(addData) { 
-    // if (addData.hasOwnProperty('name','bio', 'email', 'userId')) {
-    //     const userExistence = await User.searchUser(addData.userId)
-    //     const userExist = userExistence.empty
-    //     console.log(userExist)
-    //     return true // (validator.isEmail(addData.email) && userExist)
+    if (addData.hasOwnProperty('name','bio', 'email', 'userId')) {
+        const userExistence = await User.searchUser(addData.userId)
+        const userExist = userExistence.empty
+        console.log(userExist)
+        return (validator.isEmail(addData.email) && userExist)
         
-    // }
-    return true
+    }
+    return false
 }
 
 async function updateUser(updateData) {
