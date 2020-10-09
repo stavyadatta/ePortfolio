@@ -1,6 +1,7 @@
 const userController = require('../controllers/user.controller.js')
 const functions = require('firebase-functions');
 
+
 exports.add = functions.https.onCall(async (data, context) => {
     const x = await userController.addUser(data)
     console.log(x)

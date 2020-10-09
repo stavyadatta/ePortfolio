@@ -7,7 +7,7 @@ async function addUser(addData) {
     if (await checkingUserObject(addData)) {
         const user = new User(addData)
         await user.add().catch((error) => {
-            console.log(error)
+            throw new Error("error in user.controller \n" + error)
         })
         return `User ${user.dataObject.name} has been added`
     } else {
@@ -16,13 +16,14 @@ async function addUser(addData) {
 }
 
 async function checkingUserObject(addData) { 
-    if (addData.hasOwnProperty('name','bio', 'email', 'userId')) {
-        const userExistence = await User.searchUser(addData.userId)
-        const userExist = userExistence.empty
-        return (validator.isEmail(addData.email) && userExist)
+    // if (addData.hasOwnProperty('name','bio', 'email', 'userId')) {
+    //     const userExistence = await User.searchUser(addData.userId)
+    //     const userExist = userExistence.empty
+    //     console.log(userExist)
+    //     return true // (validator.isEmail(addData.email) && userExist)
         
-    }
-    return false
+    // }
+    return true
 }
 
 async function updateUser(updateData) {
