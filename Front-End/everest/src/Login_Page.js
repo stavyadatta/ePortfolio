@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
+
 import "./Login_Page.css";
 import RegisterPage from "./Register_Page";
 import RetrievePassword from "./Reset_Password";
@@ -7,29 +10,36 @@ import EntryBox from "./Generic_Components/Entry_Box";
 import SmallBtn from "./Generic_Components/Small_Btn";
 import Login_Unhovered from "./Icons/login_btns/login_unhovered.png";
 import Login_Hovered from "./Icons/login_btns/login_hovered.png";
-import {Link} from "react-router-dom";
 import { firebase } from './firebase';
+import authActions from "./Store/Actions/authActions"
+
 
 function LoginPage() {
+	const dispatch = useDispatch();
+	let authState = useSelector(state=>state.auth)
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
   
     const updateField = e => {
     	let fieldValue = e.target.value; 
-    	if (e.target.id === "email_entry") { setEmail(fieldValue); }
+    	if (e.target.id === "email_entry") { 
+			setEmail(fieldValue); 
+		}
     	else { setPassword(fieldValue); }
     }
 
 	const fieldAuthentications = () => {
 		const auth = firebase.auth();
-		setIsAuthenticated(true)
-		auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+		auth.signInWithEmailAndPassword(email, password).then(()=>{
+			if(auth.currentUser){
+				dispatch(authActions.login());
+			}
+		}
+		).catch(function(error) {
 			console.log(error.message);
 			var errorMessage = error.message;
 			alert('Error : ' + errorMessage);
-			setIsAuthenticated(false);
 		});
 		
     }
@@ -48,7 +58,7 @@ function LoginPage() {
 					<div className = "login_fields_container">
 						<h2 id = "login_header">Login</h2>
 						<LoginFields authenticate = {fieldAuthentications} updateField = {updateField} 
-						linkTo = {isAuthenticated}/>
+						loggedIn = {authState}/>
 					</div>
 				</div>	
 			</div>
@@ -65,7 +75,7 @@ function LoginFields(props) {
     		default = "Enter Email Address"
         	onChange = {props.updateField} />
     		<PasswordComponents authenticate = {props.authenticate} 
-        	onChange = {props.updateField} linkTo = {props.linkTo}/>
+        	onChange = {props.updateField} loggedIn = {props.loggedIn}/>
       	</div>
     );
 
@@ -79,7 +89,7 @@ function PasswordComponents(props) {
     	<div className = "password_elements">
         	<EntryBox id = "password_entry" textType = "password" 
             default = "Enter Password" onChange = {props.onChange} />
-			<Link to = {props.linkTo ? "/profile" : "/"}> 
+			<Link to = {props.loggedIn ? "/profile" : "/"}> 
 				<img id = "login_icon_unhovered" src={loginImage} alt="Login" 
             	onClick = {props.authenticate} 
             	onMouseEnter = {() => setLoginImage(Login_Hovered)}
