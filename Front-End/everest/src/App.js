@@ -11,6 +11,7 @@ import { useSelector } from "react-redux"
 function App() {  
   let authState = useSelector(state => state.auth);
   let routes = {}
+
   if(authState){
     routes = 
       <Switch>
