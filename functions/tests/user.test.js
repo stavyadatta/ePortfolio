@@ -30,6 +30,7 @@ describe('testing the test function', () => {
     const add = firebase.functions().httpsCallable('user-add');
     const update = firebase.functions().httpsCallable('user-update');
     const del = firebase.functions().httpsCallable('user-delete');
+    const getOne =  firebase.functions().httpsCallable('user-getOne');
 
     it('test function returning 6', () => {
         expect(user.basicTest()).toBe(6)
@@ -48,6 +49,7 @@ describe('testing the test function', () => {
     const dataDelete = {
         userId: "userd"
     }
+    const dataGet = dataDelete
 
     it('testing user add functions', async () => {
         const message = await add(dataAdd)
@@ -61,6 +63,14 @@ describe('testing the test function', () => {
         expect(message.data).toBe(`User ${dataUpdate.userId} updated`)
     })
 
+    it('testing user getOne function', async () => {
+        const message = await getOne(dataGet)
+        expect(message.data).toMatchObject({
+            "bio": "I am cool", 
+            "email": "stavyadatta@gmail.com", 
+            "name": "Stavya2", 
+            "userId": "userd"})
+    })
     it('testing user delete', async () => {
         const message = await del(dataDelete)
         expect(message.data).toBe(`deleted User ${dataDelete.userId}`)
