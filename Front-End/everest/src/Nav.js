@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux"
 
 import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
-import firebase from "./firebase"
+import firebase from "./Firebase"
 import projectActions from "./Store/Actions/projectActions"
 import "./Nav.css";
 import project_image from "./Images/project_image.jpg";
@@ -31,8 +31,6 @@ function Nav(props) {
 
             <div><button onClick={GetProjects}>Get Projects</button></div>
 
-        
-        
             <div className="topButtons">
 
                 <Link to="/form">

@@ -10,7 +10,7 @@ import EntryBox from "./Generic_Components/Entry_Box";
 import SmallBtn from "./Generic_Components/Small_Btn";
 import Login_Unhovered from "./Icons/login_btns/login_unhovered.png";
 import Login_Hovered from "./Icons/login_btns/login_hovered.png";
-import firebase from './firebase';
+import firebase from './Firebase';
 import authActions from "./Store/Actions/authActions"
 
 
@@ -31,6 +31,7 @@ function LoginPage() {
 
 	const fieldAuthentications = () => {
 		const auth = firebase.auth();
+		
 		auth.signInWithEmailAndPassword(email, password).then(()=>{
 			if(auth.currentUser){
 				dispatch(authActions.login());
@@ -78,7 +79,6 @@ function LoginFields(props) {
         	onChange = {props.updateField} loggedIn = {props.loggedIn}/>
       	</div>
     );
-
 }
   
 function PasswordComponents(props) {

@@ -9,7 +9,7 @@ import FormPage from "./Form_Page";
 import { useSelector } from "react-redux"
 
 function App() {  
-  let authState = useSelector(state => state.auth);
+  let authState = useSelector(state => state.firebase.auth.uid);
   let routes = {}
 
   if(authState){
