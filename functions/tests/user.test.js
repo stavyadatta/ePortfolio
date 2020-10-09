@@ -26,7 +26,7 @@ afterAll(() =>{
     adminStub.mockRestore();
 });
 
-describe('testing the test function', () => {
+describe('testing the user test function', () => {
     const add = firebase.functions().httpsCallable('user-add');
     const update = firebase.functions().httpsCallable('user-update');
     const del = firebase.functions().httpsCallable('user-delete');
