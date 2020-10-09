@@ -10,7 +10,7 @@ import EntryBox from "./Generic_Components/Entry_Box";
 import SmallBtn from "./Generic_Components/Small_Btn";
 import Login_Unhovered from "./Icons/login_btns/login_unhovered.png";
 import Login_Hovered from "./Icons/login_btns/login_hovered.png";
-import { firebase } from './firebase';
+import firebase from './firebase';
 import authActions from "./Store/Actions/authActions"
 
 

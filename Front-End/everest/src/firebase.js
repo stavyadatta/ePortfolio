@@ -1,8 +1,9 @@
-export var firebase = require('firebase/app');
+const firebase = require('firebase/app');
 
 // Add the Firebase products that you want to use
 require('firebase/auth');
 require('firebase/firestore');
+require('firebase/functions');
 
 const firebaseConfig = {
 	apiKey: "AIzaSyArZEwLWk_Ghu1ZDxXmuOOz3NyASt8ezpc",
@@ -17,3 +18,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+export default firebase;

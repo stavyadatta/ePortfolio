@@ -1,16 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux"
+
+import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
+import firebase from "./firebase"
+import projectActions from "./Store/Actions/projectActions"
 import "./Nav.css";
 import project_image from "./Images/project_image.jpg";
-import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
+
 
 function Nav(props) {
-  return (
+    const dispatch = useDispatch();
+
+    function GetProjects(){
+        firebase.functions().httpsCallable('project-getByUser')(
+            {
+            userId:firebase.auth().currentUser.uid
+            }
+        ).then(data=>{
+            dispatch(projectActions.add(data))
+        })
+    }
+
+    return (
 
         <div> 
             <header id = "project_header">
                 <h2 id = "project_header_title">Projects</h2>                
             </header>
+
+            <div><button onClick={GetProjects}>Get Projects</button></div>
+
         
         
             <div className="topButtons">
@@ -63,5 +83,8 @@ function ImagePage(props) {
       </div>
     );
   }
+
+
+
 
 export default Nav;

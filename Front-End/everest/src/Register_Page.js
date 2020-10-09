@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register_Page.css";
 import EntryBox from "./Generic_Components/Entry_Box";
 import animateComponents from "./Generic_Components/Page_Animations";
-import { firebase } from './firebase';
+import firebase from './firebase';
 
 function RegisterPage() {
 
