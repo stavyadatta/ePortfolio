@@ -1,36 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux"
-
-import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
-import firebase from "./firebase"
-import projectActions from "./Store/Actions/projectActions"
 import "./Nav.css";
-import project_image from "./Images/project_image.jpg";
+import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
+import Project from "./Generic_Components/Project";
+import projects from "./random_data.json";
 
+function Nav() {
 
-function Nav(props) {
-    const dispatch = useDispatch();
+  function createProject(project) {
+      return (
+        <Project 
+            key={project.id}
+            name={project.name}
+            description={project.desc}
+            image={project.imgURL}
+        />
+      );
+  }
 
-    function GetProjects(){
-        firebase.functions().httpsCallable('project-getByUser')(
-            {
-            userId:firebase.auth().currentUser.uid
-            }
-        ).then(data=>{
-            dispatch(projectActions.add(data))
-        })
-    }
-
-    return (
+  return (
 
         <div> 
             <header id = "project_header">
                 <h2 id = "project_header_title">Projects</h2>                
             </header>
-
-            <div><button onClick={GetProjects}>Get Projects</button></div>
-
         
         
             <div className="topButtons">
@@ -59,8 +52,10 @@ function Nav(props) {
             
             </div>
 
-            <div>   
-                <ImagePage {...props} />
+            <div className="projects"> 
+
+                {projects.map(createProject)}    {/* PROJECTS GETTING RENDERED HERE */}
+                 
             </div>
     
         </div>
@@ -68,22 +63,6 @@ function Nav(props) {
     
   );
 }
-
-function ImagePage(props) {
-    return (
-      <div className="section1">
-      {/* {console.log(props.location.state.pName)} */}
-      
-      {props.location.state ? <img src={props.location.state ? project_image : "whatever.jpg"} className="projectImage1" alt = "proj_image"/> : null }
-        
-        <div className="project1Text">
-          <h2 id="project1header">{props.location.state ? props.location.state.pName : ""}</h2>
-          <p id="project1desc">{props.location.state ? props.location.state.pDesc : ""}</p>
-        </div>
-      </div>
-    );
-  }
-
 
 
 

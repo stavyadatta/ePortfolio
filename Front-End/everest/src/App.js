@@ -8,7 +8,7 @@ import Nav from "./Nav";
 import FormPage from "./Form_Page";
 import { useSelector } from "react-redux"
 
-function App() {  
+function App() {
   let authState = useSelector(state => state.auth);
   let routes = {}
 
