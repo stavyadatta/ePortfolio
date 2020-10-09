@@ -26,9 +26,9 @@ function OverviewPage() {
      
       
       <div className = "page_headers">
-        <p>Welcome,</p>
-        <p>Niphan Sethi</p>
-        {/* <h1 id = "description">Here is a guide to get started</h1> */}
+        <p>Welcome ,</p>
+        <p id = "userName">Niphan Sethi</p>
+        <h1 id = "description">Here is a guide to get started</h1>
       </div>
 
       <div className = "header_overview_btns">

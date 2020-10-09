@@ -3,6 +3,7 @@ import "./Login_Page.css";
 import RegisterPage from "./Register_Page";
 import RetrievePassword from "./Reset_Password";
 import animateComponents from "./Generic_Components/Page_Animations";
+import BindKeyToComponent from "./Generic_Components/Bind_Key_To_Component";
 import EntryBox from "./Generic_Components/Entry_Box";
 import SmallBtn from "./Generic_Components/Small_Btn";
 import Login_Unhovered from "./Icons/login_btns/login_unhovered.png";
@@ -23,16 +24,22 @@ function LoginPage() {
     }
 
 	const fieldAuthentications = () => {
-		const auth = firebase.auth();
-		setIsAuthenticated(true)
-		auth.signInWithEmailAndPassword(email, password).catch(function(error) {
-			console.log(error.message);
-			var errorMessage = error.message;
-			alert('Error : ' + errorMessage);
-			setIsAuthenticated(false);
-		});
-		
-    }
+		if (email === "" || password === "") { alert("Error : One or more fields are empty."); } 
+		else {
+			const auth = firebase.auth();
+			setIsAuthenticated(true)
+			auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+				console.log(error.message);
+				var errorMessage = error.message;
+				alert('Error : ' + errorMessage);
+				setIsAuthenticated(false);
+			});
+		}
+	}
+	
+	
+	// can submit login fields by pressing enter key 
+	BindKeyToComponent(["Enter", "NumpadEnter"], fieldAuthentications);
 
 	return (
 		<div>
