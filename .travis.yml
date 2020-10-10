@@ -9,7 +9,7 @@ jobs:
       - npm --prefix ./functions install
       - npm --prefix ./Front-End/everest install
       - npm --prefix ./Front-End/everest run build
-      - npm test
+      - cd functions && npm test
       deploy:
         skip_cleanup: true
         provider: firebase
