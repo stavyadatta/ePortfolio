@@ -23,8 +23,17 @@ function RegisterPage() {
 
     const fieldAuthentications = () => {
       console.log(firstName, lastName, email, pwd, confirmPassword);
-      const auth = firebase.auth();
-		  auth.createUserWithEmailAndPassword(email, pwd).catch(function(error) {
+      let auth = firebase.auth();
+		  auth.createUserWithEmailAndPassword(email, pwd).then(()=>
+        firebase.functions().httpsCallable('user-add')(
+          {
+            "userId": firebase.auth().currentUser.uid,
+            "name": `${firstName} ${lastName}`,
+            "bio": "",
+            "email":email
+          }
+        )
+      ).catch(function(error) {
 			  var errorMessage = error.message;
 			  window.alert('Error : ' + errorMessage);
 		  });

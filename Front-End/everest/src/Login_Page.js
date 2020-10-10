@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
 
 import "./Login_Page.css";
 import RegisterPage from "./Register_Page";
@@ -12,13 +10,9 @@ import SmallBtn from "./Generic_Components/Small_Btn";
 import Login_Unhovered from "./Icons/login_btns/login_unhovered.png";
 import Login_Hovered from "./Icons/login_btns/login_hovered.png";
 import firebase from './Firebase';
-import authActions from "./Store/Actions/authActions"
 
 
 function LoginPage() {
-	const dispatch = useDispatch();
-	let authState = useSelector(state=>state.auth)
-
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
   
@@ -34,12 +28,10 @@ function LoginPage() {
 		if (email === "" || password === "") { alert("Error : One or more fields are empty."); } 
 		else {
 			const auth = firebase.auth();
-			setIsAuthenticated(true)
 			auth.signInWithEmailAndPassword(email, password).catch(function(error) {
 				console.log(error.message);
 				var errorMessage = error.message;
 				alert('Error : ' + errorMessage);
-				setIsAuthenticated(false);
 			});
 		}
 	}
@@ -61,8 +53,7 @@ function LoginPage() {
 					</div>
 					<div className = "login_fields_container">
 						<h2 id = "login_header">Login</h2>
-						<LoginFields authenticate = {fieldAuthentications} updateField = {updateField} 
-						loggedIn = {authState}/>
+						<LoginFields authenticate = {fieldAuthentications} updateField = {updateField}/>
 					</div>
 				</div>	
 			</div>
@@ -92,12 +83,12 @@ function PasswordComponents(props) {
     	<div className = "password_elements">
         	<EntryBox id = "password_entry" textType = "password" 
             default = "Enter Password" onChange = {props.onChange} />
-			<Link to = {props.loggedIn ? "/profile" : "/"}> 
+			<div> 
 				<img id = "login_icon_unhovered" src={loginImage} alt="Login" 
             	onClick = {props.authenticate} 
             	onMouseEnter = {() => setLoginImage(Login_Hovered)}
             	onMouseLeave = {() => setLoginImage(Login_Unhovered)} />
-			</Link>
+			</div>
         	<ForgotPassword />
         </div>
     );

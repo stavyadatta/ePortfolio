@@ -7,10 +7,19 @@ import Home_Btn from "./Icons/home_btn.svg";
 import About_Btn from "./Icons/about_btn.svg";
 import Signout_Btn from "./Icons/signout_btn.svg";
 
+import { useSelector } from "react-redux"
+
+import firebase from "./Firebase"
+
 function OverviewPage() {
+  let userProfile = useSelector(state=>state.firebase.profile)
   
   const [selected, setSelected] = useState("");
   const checkClicked = e => { setSelected(e.target.id); console.log(selected); }
+
+  const handleLogout = function(){ 
+    firebase.auth().signOut()
+  }
 
   return(
     <div className = "profile_overview_page">
@@ -21,13 +30,13 @@ function OverviewPage() {
       <div className = "buttons">
         <img src={Home_Btn} id = "home_btn" alt="home"/>
         <img src={About_Btn} id = "about_btn" alt="about"/>
-        <img src={Signout_Btn} id = "signout_btn" alt="signout"/>
+        <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
       </div>
      
       
       <div className = "page_headers">
-        <p>Welcome ,</p>
-        <p id = "userName">Niphan Sethi</p>
+        <p>Welcome,</p>
+        <p id = "userName">{userProfile.name}</p>
         <h1 id = "description">Here is a guide to get started</h1>
       </div>
 
