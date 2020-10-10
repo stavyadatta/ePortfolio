@@ -1,4 +1,4 @@
-const admin = require('../firebase.admin');
+const admin = require('./firebase.admin');
 
 const db = admin.firestore();
 
@@ -9,13 +9,13 @@ class User {
     constructor(user){
         this.dataObject = {
             name: user.name,
-            userId: user.userId,
             email: user.email,
             bio: user.bio
         }
+        this.userId = user.userId
     }
     async add() {
-        return await userCollection.add(this.dataObject).catch((err) => {
+        return await userCollection.doc(this.userId).set(this.dataObject).catch((err) => {
             throw err
         })
     }
