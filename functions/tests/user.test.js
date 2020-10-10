@@ -3,11 +3,11 @@ const firebase_config = {
     storageBucket: "impressive-hall-288310.appspot.com",
     projectId: "impressive-hall-288310"
 }
-const test = require('firebase-functions-test')({
-    databaseURL: "https://impressive-hall-288310.firebaseio.com",
-    storageBucket: "impressive-hall-288310.appspot.com",
-    projectId: "impressive-hall-288310"
-},'/home/stavyadatta/Documents/IT_Project/ePortfolio/functions/testingKey.json')
+// const test = require('firebase-functions-test')({
+//     databaseURL: "https://impressive-hall-288310.firebaseio.com",
+//     storageBucket: "impressive-hall-288310.appspot.com",
+//     projectId: "impressive-hall-288310"
+// },'/home/stavyadatta/Documents/IT_Project/ePortfolio/functions/testingKey.json')
 const admin = require('firebase-admin');
 const firebase = require("firebase");
 firebase.initializeApp(firebase_config);
