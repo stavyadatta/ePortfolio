@@ -27,11 +27,11 @@ describe('testing the projects function', () => {
 
     const addData = {
         userId: 'Josh',
-        bio: 'something something'
+        projectName: 'TestProject'
     }
 
     it('testing add project function', async () => {
         const message = await add(addData)
-        expect(message.data).toMatchObject(message)
+        expect(message.data.userId).toBe(addData.userId)
     })
 })
