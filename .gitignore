@@ -17,4 +17,3 @@ functions/package-lock.json
 firebase-debug.log
 firestore-debug.log
 .firebase
-functions/testingKey.json
