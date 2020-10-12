@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux"
 
 import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
 import "./Nav.css";

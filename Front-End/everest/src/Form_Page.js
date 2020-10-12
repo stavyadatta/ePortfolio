@@ -10,7 +10,7 @@ function FormPage(props) {
   const [pDesc, setPDesc] = useState("");
   const [pBody, setPBody] = useState("");
   const [pTags, setPTags] = useState("");
-  const [pImg, setPImg] = useState("");
+  //const [pImg, setPImg] = useState("");
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -27,7 +27,7 @@ function FormPage(props) {
           setPTags(fieldValue);
         }
     if (e.target.id === "myFile") {
-            setPImg(fieldValue);
+            //setPImg(fieldValue);
           }
     
 
