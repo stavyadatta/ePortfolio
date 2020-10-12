@@ -39,7 +39,6 @@ Project.getByProjectId = async (projectId) => {
         };
     } else {
         const data = res.data();
-        console.log(data + ' adding data')
         data.projectId = projectId;
         return data;
     }
@@ -90,7 +89,6 @@ Project.filterByTag = async (userId, tags, result) => {
 //Delete
 Project.deleteById = async (projectId) => {
     try{
-        console.log(projectId + ' in the model')
         await projects.doc(projectId).delete();
     } catch(error){
         console.log(error.message)

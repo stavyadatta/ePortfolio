@@ -50,7 +50,6 @@ exports.findByProjectId = async (data) => {
 };
 
 exports.findByUserId = async (data) => {
-    console.log(data.userId + 'at the controller')
     return await Project.getByUserId(data.userId);
 };
 
@@ -87,7 +86,6 @@ function validateUpdate(data){
 //delete
 exports.delete = async (data) => {
     try {
-        console.log(data.projectId + ' the projectId to delete')
         let res = await Project.deleteById(data.projectId);
         // let check = await Project.getByProjectId(data.projectId);
         //console.log(check);
