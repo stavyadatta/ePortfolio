@@ -30,27 +30,54 @@ afterAll(() =>{
 });
 
 //describe('testing the projects function', () => {
-    const add = firebase.functions().httpsCallable('project-add');
-    const update = firebase.functions().httpsCallable('project-update')
+const add = firebase.functions().httpsCallable('project-add');
+const update = firebase.functions().httpsCallable('project-update')
+const getByUser = firebase.functions().httpsCallable('project-getByUser')
+const deleteProj = firebase.functions().httpsCallable('project-delete')
+const getOne = firebase.functions().httpsCallable('project-getOne')
 
-    const addData = {
-        userId: 'Josh',
-        projectName: 'TestProject'
+const addData = {
+    userId: 'Josh',
+    projectName: 'TestProject'
+}
+let projectId =''
+
+const userIdObj = {
+    userId: 'Josh'
+}
+
+
+it('testing add project function', async () => {
+    const message = await add(addData)
+    projectId = message.data.projectId
+    expect(message.data.userId).toBe(addData.userId)
+})
+
+it('testing getByUser function', async () => {
+    const message = await getByUser(userIdObj)
+    for (i = 0; i < message.data.length; i++) {
+        expect(message.data[i].userId).toBe(userIdObj.userId)
     }
-    let projectId =''
-    // const updateData = {
-    //     userId: 
-    // }
+})
 
-    it('testing add project function', async () => {
-        const message = await add(addData)
-        projectId = message.data.projectId
-        expect(message.data.userId).toBe(addData.userId)
-    })
+it('testing getOne Project function', async () => {
+    const message = await getOne({projectId: projectId})
+    expect(message.data.userId).toBe(addData.userId)
+})
 
-    it('testing update project function', async () => {
-        console.warn(projectId)
-        const message = await update({ "projectId": projectId, "bio": 'stavya'})
-        expect(message.data).toBe({result: `Project ${projectId} updated`})
-    })
+it('testing delete function', async() => {
+    const message = await deleteProj({projectId: projectId})
+    expect(message.data.message).toBe(`Project projectId: ${projectId} deleted`)
+})
+
+
+
+// it('testing update project function', async () => {
+//     console.warn(projectId)
+//     const message = await update({ "projectId": projectId.toString(), "bio": 'stavya'})
+//     expect(message.data).toBe({result: `Project ${projectId} updated`})
+// })
+
+
+    
 //})

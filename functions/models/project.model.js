@@ -20,6 +20,7 @@ class Project{
 
     async update() {
         try{
+            
             const result = await projects.doc(this.projectId).update(this.dataObject);
             return `Project projectId: ${this.projectId} updated`;
         }catch(error){
@@ -38,6 +39,7 @@ Project.getByProjectId = async (projectId) => {
         };
     } else {
         const data = res.data();
+        console.log(data + ' adding data')
         data.projectId = projectId;
         return data;
     }
@@ -47,6 +49,7 @@ Project.getByUserId = async (userId) => {
     const snapshot = await projects.where("userId","==", userId).get();
     
     if (snapshot.empty) {
+        console.log("entering empty part")
         return 'No matching documents for user:' + userId;
     } else{
         const res = [];
@@ -87,6 +90,7 @@ Project.filterByTag = async (userId, tags, result) => {
 //Delete
 Project.deleteById = async (projectId) => {
     try{
+        console.log(projectId + ' in the model')
         await projects.doc(projectId).delete();
     } catch(error){
         console.log(error.message)
