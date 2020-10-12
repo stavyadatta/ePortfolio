@@ -3,11 +3,11 @@ const firebase_config = {
     storageBucket: "impressive-hall-288310.appspot.com",
     projectId: "impressive-hall-288310"
 }
-// const test = require('firebase-functions-test')({
-//     databaseURL: "https://impressive-hall-288310.firebaseio.com",
-//     storageBucket: "impressive-hall-288310.appspot.com",
-//     projectId: "impressive-hall-288310"
-// },'/home/stavyadatta/Documents/IT_Project/ePortfolio/functions/testingKey.json')
+const test = require('firebase-functions-test')({
+    databaseURL: "https://impressive-hall-288310.firebaseio.com",
+    storageBucket: "impressive-hall-288310.appspot.com",
+    projectId: "impressive-hall-288310"
+},'/home/stavyadatta/Documents/IT_Project/ePortfolio/functions/testingKey.json')
 const admin = require('firebase-admin');
 const firebase = require("firebase");
 firebase.initializeApp(firebase_config);
@@ -26,15 +26,12 @@ afterAll(() =>{
     adminStub.mockRestore();
 });
 
-describe('testing the user test function', () => {
+//describe('testing the user test function', () => {
     const add = firebase.functions().httpsCallable('user-add');
     const update = firebase.functions().httpsCallable('user-update');
     const del = firebase.functions().httpsCallable('user-delete');
     const getOne =  firebase.functions().httpsCallable('user-getOne');
 
-    it('test function returning 6', () => {
-        expect(user.basicTest()).toBe(6)
-    })
     const dataAdd = { 
         userId: "userd",
         name: "Stavya",
@@ -76,4 +73,4 @@ describe('testing the user test function', () => {
         expect(message.data).toBe(`deleted User ${dataDelete.userId}`)
     })
     
-})
+//})

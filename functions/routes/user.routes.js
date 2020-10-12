@@ -19,6 +19,7 @@ exports.update = functions.https.onCall(async (data, context) => {
 
 exports.delete = functions.https.onCall(async (data, context) => {
     try{
+        //console.log(process.env)
         let response = await userController.deleteUser(data)
         return response
     }catch(error){

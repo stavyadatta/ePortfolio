@@ -40,7 +40,7 @@ exports.update = functions.https.onCall(async (data, context)=>{
         return result;
     }catch(error){
         console.log(error.message);
-        throw new functions.https.HttpsError(error);
+        throw new Error(error.message);
     }
 });
 
