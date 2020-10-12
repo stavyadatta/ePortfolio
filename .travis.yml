@@ -4,7 +4,7 @@ node_js:
 os: linux
 dist: xenial
 before_install:
-- openssl aes-256-cbc -K $encrypted_37abd775b748_key -iv $encrypted_37abd775b748_iv -in .env.local.enc -out ~/ePortfolio/Front-End/everest/.env.local -d
+- openssl aes-256-cbc -K $encrypted_37abd775b748_key -iv $encrypted_37abd775b748_iv -in .env.local.enc -out ./Front-End/everest/.env.local -d
 install:
 - npm install -g firebase-tools
 - npm --prefix ./functions install
