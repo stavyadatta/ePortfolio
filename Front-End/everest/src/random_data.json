@@ -1,14 +1,14 @@
 [
     {
       "id": "1",
-      "name": "Project 1",
+      "name": "Project_1",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "imgURL": "https://aventislearning.com/wp-content/uploads/2017/02/project-management-workshop.jpg"
       
     },
     {
       "id": "2",
-      "name": "Project 2",
+      "name": "Project_2",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "imgURL":"https://www.virvelle.com/wp-content/uploads/2018/12/project-management.jpg"
       
@@ -16,10 +16,12 @@
     },
     {
       "id": "3",
-      "name": "Project 3",
+      "name": "Project_3",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "imgURL":"https://d2slcw3kip6qmk.cloudfront.net/marketing/blog/2017Q2/project-planning-header@2x.png",
       "phone": "+918 372 574"
     }
+
 ]
   
+

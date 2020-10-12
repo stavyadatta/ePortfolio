@@ -32,7 +32,7 @@ div.addProject {
 
 a.addProject {            /* The Button name as link  */
   position: absolute;
-  top: 17%;
+  top: 15%;
   left: 5%;
   font-size: x-large;
   text-decoration: none;    
@@ -42,7 +42,7 @@ a.addProject {            /* The Button name as link  */
   color: #082f4e;
   width: 40px;
   height: 40px;
-  margin-top: 40px;
+  margin-top: 22px;
   margin-left: 20px;
 }
 
@@ -84,7 +84,8 @@ i.far.fa-arrow-alt-circle-left {
 }
 
 .projectImage {
-  margin-left: 20px;
+  margin-top: 50px;
+  margin-left: 60px;
   margin-right: 150px;
   width: 500px;
   height: 350px;
@@ -101,13 +102,16 @@ i.far.fa-arrow-alt-circle-left {
   text-decoration: none;
   text-shadow: none;
   position: relative;
-  bottom: 9.375rem;
+  bottom: 5rem; 
 }
 
 .projectDesc {
   font-size: large;
   color: rgb(0,0,0,0.6);
   padding: 50px 100px 100px 0px;
+  position: relative;
+  top: 3rem; /* NEW */
+  right: 7rem; /* NEW */
 }
 
 
