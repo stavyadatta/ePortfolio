@@ -4,9 +4,9 @@ projects = db.collection('projects');
 
 //Create and Update
 class Project{
-    constructor(project){
+    constructor(project, projectId){
         this.dataObject = project;
-        this.projectId = ""
+        this.projectId = projectId;
     }
 
     async create() {
