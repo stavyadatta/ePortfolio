@@ -1,9 +1,13 @@
 p { 
     color: white; 
-    font-size: 40px;
-    font-family: 'Frank Ruhl Libre', serif;
-
+    font-size: 42px;
+    font-family: 'Lusitana', serif;
 }
+
+/* #userName {
+    position: relative;
+    left: 2.8%;
+} */
 
 .profile_overview_page {
     height: 100vh;
@@ -39,10 +43,10 @@ p {
 }
 
 #sun_image {
-    width: 28%;
+    width: 25%;
     position: absolute;
-    bottom: 14%;
-    right: 16%;
+    bottom: 17%;
+    right: 18%;
 }
 
 .buttons {
@@ -67,7 +71,7 @@ p {
 
 #home_btn:hover, #about_btn:hover, #signout_btn:hover {
     border-radius: 50px;
-    box-shadow: 0px 0px 10px white;
+    box-shadow: 0px 0px 12px white;
 }
 
 .page_headers {
@@ -77,10 +81,10 @@ p {
 }
 
 #description {
-    font-size: 16px;
+    font-size: 20px;
+    color: #FFFFFF;
     position: absolute;
-    left: 1%;
-    top: 120%;
+    top: 130%;
 }
 
 .header_overview_btns {
@@ -93,4 +97,3 @@ p {
     top: 14%;
     justify-content: center;
 }
-

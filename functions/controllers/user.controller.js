@@ -1,5 +1,5 @@
-const User = require('../models/users/users.model.js')
-const UserUpdate = require('../models/users/updateUser.model.js')
+const User = require('../models/users.model.js')
+const UserUpdate = require('../models/updateUser.model.js')
 const validator = require('validator')
 
 

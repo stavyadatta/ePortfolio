@@ -1,20 +1,19 @@
 language: node_js
 node_js:
-  - "14.9.0"
-jobs:
-  include:
-    - stage: deploy to production
-      script:
-      - npm install -g firebase-tools
-      - npm --prefix ./functions install
-      - npm --prefix ./Front-End/everest install
-      - npm --prefix ./Front-End/everest run build
-      deploy:
-        skip_cleanup: true
-        provider: firebase
-        token: $FIREBASE_TOKEN
-        on: 
-          branch: master
-
-  
-
+- 14.9.0
+os: linux
+dist: xenial
+before_install:
+- openssl aes-256-cbc -K $encrypted_37abd775b748_key -iv $encrypted_37abd775b748_iv -in .env.local.enc -out ./Front-End/everest/.env.local -d
+install:
+- npm install -g firebase-tools
+- npm --prefix ./functions install
+- npm --prefix ./Front-End/everest install
+script:
+- npm --prefix ./Front-End/everest run build
+deploy:
+  cleanup: false
+  provider: firebase
+  token: "$FIREBASE_TOKEN"
+  on:
+    branch: master

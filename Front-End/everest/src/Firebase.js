@@ -1,11 +1,12 @@
-export var firebase = require('firebase/app');
+const firebase = require('firebase/app');
 
 // Add the Firebase products that you want to use
 require('firebase/auth');
 require('firebase/firestore');
+require('firebase/functions');
 
 const firebaseConfig = {
-	apiKey: "AIzaSyArZEwLWk_Ghu1ZDxXmuOOz3NyASt8ezpc",
+	apiKey: process.env.REACT_APP_API_KEY,
 	authDomain: "impressive-hall-288310.firebaseapp.com",
 	databaseURL: "https://impressive-hall-288310.firebaseio.com",
 	projectId: "impressive-hall-288310",
@@ -17,3 +18,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+firebase.firestore();
+if(process.env.FUNCTIONS_EMULATOR) 
+	firebase.functions().useFunctionsEmulator(`http://localhost:5001`);
+
+export default firebase;
