@@ -1,3 +1,4 @@
+const path = require('path')
 const firebase_config = {
     databaseURL: "https://impressive-hall-288310.firebaseio.com",
     storageBucket: "impressive-hall-288310.appspot.com",
@@ -7,7 +8,7 @@ const test = require('firebase-functions-test')({
     databaseURL: "https://impressive-hall-288310.firebaseio.com",
     storageBucket: "impressive-hall-288310.appspot.com",
     projectId: "impressive-hall-288310"
-},'/home/stavyadatta/Documents/IT_Project/ePortfolio/functions/testingKey.json')
+},path.join(__dirname, '../testingKey.json'))
 
 
 const admin = require('firebase-admin');
