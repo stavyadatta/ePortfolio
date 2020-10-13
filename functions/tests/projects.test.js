@@ -65,6 +65,10 @@ it('testing getOne Project function', async () => {
     const message = await getOne({projectId: projectId})
     expect(message.data.userId).toBe(addData.userId)
 })
+it('testing update project function', async () => {
+    const message = await update({ "projectId": projectId.toString(), "bio": 'Stavya'})
+    expect(message.data).toBe(`Project projectId: ${projectId} updated`)
+})
 
 it('testing delete function', async() => {
     const message = await deleteProj({projectId: projectId})
@@ -73,11 +77,7 @@ it('testing delete function', async() => {
 
 
 
-// it('testing update project function', async () => {
-//     console.warn(projectId)
-//     const message = await update({ "projectId": projectId.toString(), "bio": 'stavya'})
-//     expect(message.data).toBe({result: `Project ${projectId} updated`})
-// })
+
 
 
     

@@ -30,51 +30,49 @@ afterAll(() =>{
     adminStub.mockRestore();
 });
 
-//describe('testing the user test function', () => {
-    const add = firebase.functions().httpsCallable('user-add');
-    const update = firebase.functions().httpsCallable('user-update');
-    const del = firebase.functions().httpsCallable('user-delete');
-    const getOne =  firebase.functions().httpsCallable('user-getOne');
+const add = firebase.functions().httpsCallable('user-add');
+const update = firebase.functions().httpsCallable('user-update');
+const del = firebase.functions().httpsCallable('user-delete');
+const getOne =  firebase.functions().httpsCallable('user-getOne');
 
-    const dataAdd = { 
-        userId: "userd",
-        name: "Stavya",
-        bio: "i am Hot",
-        email: "stavyadatta@gmail.com"
-    }
-    const dataUpdate = {
-        userId: "userd",
-        name: "Stavya2",
-        bio: 'I am cool'
-    }
-    const dataDelete = {
-        userId: "userd"
-    }
-    const dataGet = dataDelete
+const dataAdd = { 
+    userId: "userd",
+    name: "Stavya",
+    bio: "i am Hot",
+    email: "stavyadatta@gmail.com"
+}
+const dataUpdate = {
+    userId: "userd",
+    name: "Stavya2",
+    bio: 'I am cool'
+}
+const dataDelete = {
+    userId: "userd"
+}
+const dataGet = dataDelete
 
-    it('testing user add functions', async () => {
-        const message = await add(dataAdd)
+it('testing user add functions', async () => {
+    const message = await add(dataAdd)
 
-        expect(message.data).toBe(`User ${dataAdd.name} has been added`)
+    expect(message.data).toBe(`User ${dataAdd.name} has been added`)
 
-    })
-    
-    it('testing user update ', async () => {
-        const message = await update(dataUpdate)
-        expect(message.data).toBe(`User ${dataUpdate.userId} updated`)
-    })
+})
 
-    it('testing user getOne function', async () => {
-        const message = await getOne(dataGet)
-        expect(message.data).toMatchObject({
-            "bio": "I am cool", 
-            "email": "stavyadatta@gmail.com", 
-            "name": "Stavya2", 
-            })
-    })
-    it('testing user delete', async () => {
-        const message = await del(dataDelete)
-        expect(message.data).toBe(`deleted User ${dataDelete.userId}`)
-    })
-    
-//})
+it('testing user update ', async () => {
+    const message = await update(dataUpdate)
+    expect(message.data).toBe(`User ${dataUpdate.userId} updated`)
+})
+
+it('testing user getOne function', async () => {
+    const message = await getOne(dataGet)
+    expect(message.data).toMatchObject({
+        "bio": "I am cool", 
+        "email": "stavyadatta@gmail.com", 
+        "name": "Stavya2", 
+        })
+})
+it('testing user delete', async () => {
+    const message = await del(dataDelete)
+    expect(message.data).toBe(`deleted User ${dataDelete.userId}`)
+})
+
