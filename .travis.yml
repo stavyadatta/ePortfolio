@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "14.9.0"
+before_install:
+  -   openssl aes-256-cbc -K $encrypted_9e09dc4a4da7_key -iv $encrypted_9e09dc4a4da7_iv -in functions/serviceAccountKey.json.enc -out functions/serviceAccountKey.json -d
 jobs:
   include:
     - stage: deploy to production

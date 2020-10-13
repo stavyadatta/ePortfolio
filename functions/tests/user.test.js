@@ -1,3 +1,4 @@
+const path = require('path')
 const firebase_config = {
     databaseURL: "https://impressive-hall-288310.firebaseio.com",
     storageBucket: "impressive-hall-288310.appspot.com",
@@ -7,11 +8,15 @@ const test = require('firebase-functions-test')({
     databaseURL: "https://impressive-hall-288310.firebaseio.com",
     storageBucket: "impressive-hall-288310.appspot.com",
     projectId: "impressive-hall-288310"
-},'/home/stavyadatta/Documents/IT_Project/ePortfolio/functions/testingKey.json')
+}, path.join(__dirname, '../serviceAccountKey.json'))
+
 const admin = require('firebase-admin');
 const firebase = require("firebase");
 firebase.initializeApp(firebase_config);
-firebase.functions().useFunctionsEmulator('http://localhost:5001') 
+
+const HOST = process.env.PORT||'http://localhost:5001'
+console.warn(HOST)
+firebase.functions().useFunctionsEmulator(HOST) 
 
 let user,adminStub;
 
