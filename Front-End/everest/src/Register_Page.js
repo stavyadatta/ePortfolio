@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register_Page.css";
 import EntryBox from "./Generic_Components/Entry_Box";
 import animateComponents from "./Generic_Components/Page_Animations";
-import { firebase } from './firebase';
+import firebase from './Firebase';
 
 function RegisterPage() {
 
@@ -23,8 +23,17 @@ function RegisterPage() {
 
     const fieldAuthentications = () => {
       console.log(firstName, lastName, email, pwd, confirmPassword);
-      const auth = firebase.auth();
-		  auth.createUserWithEmailAndPassword(email, pwd).catch(function(error) {
+      let auth = firebase.auth();
+		  auth.createUserWithEmailAndPassword(email, pwd).then(()=>
+        firebase.functions().httpsCallable('user-add')(
+          {
+            "userId": firebase.auth().currentUser.uid,
+            "name": `${firstName} ${lastName}`,
+            "bio": "",
+            "email":email
+          }
+        )
+      ).catch(function(error) {
 			  var errorMessage = error.message;
 			  window.alert('Error : ' + errorMessage);
 		  });

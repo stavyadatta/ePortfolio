@@ -5,7 +5,7 @@ exports.createProject = async (data) => {
         try{
             validateAdd(data);
 
-            const project = new Project(data);
+            const project = new Project(data, "");
 
             let res = await project.create();
 
@@ -56,9 +56,19 @@ exports.findByUserId = async (data) => {
 //update
 exports.updateProject = async (data) => {
     try{
-        const project = new Project(data);
-
         validateUpdate(data);
+
+        let updateData = {};
+        let projectId = "";
+        let keys = Object.keys(data);
+        keys.forEach(element => {
+            if(element === "projectId")
+                projectId = data.projectId;
+            else
+                updateData[element] = data[element];
+        });
+        const project = new Project(updateData, projectId);
+
 
         return await project.update();
     } catch(error){
