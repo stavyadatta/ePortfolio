@@ -14,8 +14,9 @@ install:
 - npm --prefix ./Front-End/everest install
 script:
 - npm --prefix ./Front-End/everest run build
-- firebase emulators:exec --project impressive-hall-288310 
-- cd functions && npm test
+- cd functions
+- firebase emulators:exec --project impressive-hall-288310 --only firestore,functions 'npm test'
+
 deploy:
   skip_cleanup: true
   provider: firebase
