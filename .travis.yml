@@ -11,6 +11,7 @@ jobs:
       - npm --prefix ./functions install
       - npm --prefix ./Front-End/everest install
       - npm --prefix ./Front-End/everest run build
+      - firebase emulators:exec --project impressive-hall-288310 --token $FIREBASE_TOKEN --only functions,firestore
       - cd functions && npm test
       deploy:
         skip_cleanup: true
