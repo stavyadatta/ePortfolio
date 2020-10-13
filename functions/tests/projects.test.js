@@ -73,11 +73,11 @@ it('testing delete function', async() => {
 
 
 
-it('testing update project function', async () => {
-    console.warn(projectId)
-    const message = await update({ "projectId": projectId.toString(), "bio": 'stavya'})
-    expect(message.data).toBe({result: `Project ${projectId} updated`})
-})
+// it('testing update project function', async () => {
+//     console.warn(projectId)
+//     const message = await update({ "projectId": projectId.toString(), "bio": 'stavya'})
+//     expect(message.data).toBe({result: `Project ${projectId} updated`})
+// })
 
 
     

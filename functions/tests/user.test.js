@@ -15,7 +15,6 @@ const firebase = require("firebase");
 firebase.initializeApp(firebase_config);
 
 const HOST = process.env.PORT||'http://localhost:5001'
-console.warn(HOST)
 firebase.functions().useFunctionsEmulator(HOST) 
 
 let user,adminStub;
@@ -71,7 +70,7 @@ afterAll(() =>{
             "bio": "I am cool", 
             "email": "stavyadatta@gmail.com", 
             "name": "Stavya2", 
-            "userId": "userd"})
+            })
     })
     it('testing user delete', async () => {
         const message = await del(dataDelete)
