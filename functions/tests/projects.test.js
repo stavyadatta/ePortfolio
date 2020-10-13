@@ -8,7 +8,7 @@ const test = require('firebase-functions-test')({
     databaseURL: "https://impressive-hall-288310.firebaseio.com",
     storageBucket: "impressive-hall-288310.appspot.com",
     projectId: "impressive-hall-288310"
-},path.join(__dirname, '../testingKey.json'))
+},path.join(__dirname, '../serviceAccountKey.json'))
 
 
 const admin = require('firebase-admin');

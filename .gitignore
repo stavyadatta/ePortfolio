@@ -18,3 +18,4 @@ firebase-debug.log
 firestore-debug.log
 .firebase
 functions/testingKey.json
+functions/serviceAccountKey.json
