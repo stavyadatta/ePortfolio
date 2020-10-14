@@ -16,6 +16,8 @@ functions/package-lock.json
 firebase-debug.log
 firestore-debug.log
 .firebase
+functions/testingKey.json
+functions/serviceAccountKey.json
 Front-End/everest/package-lock.json
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.

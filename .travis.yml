@@ -4,16 +4,26 @@ node_js:
 os: linux
 dist: xenial
 before_install:
-- openssl aes-256-cbc -K $encrypted_37abd775b748_key -iv $encrypted_37abd775b748_iv -in .env.local.enc -out ./Front-End/everest/.env.local -d
+- openssl aes-256-cbc -K $encrypted_8f3247421601_key -iv $encrypted_8f3247421601_iv
+  -in serviceAccountKey.json.enc -out functions/serviceAccountKey.json -d
+- openssl aes-256-cbc -K $encrypted_37abd775b748_key -iv $encrypted_37abd775b748_iv
+  -in .env.local.enc -out ./Front-End/everest/.env.local -d
 install:
 - npm install -g firebase-tools
 - npm --prefix ./functions install
 - npm --prefix ./Front-End/everest install
 script:
 - npm --prefix ./Front-End/everest run build
+- cd functions
+- firebase emulators:exec --project impressive-hall-288310 --only firestore,functions 'npm test'
+cache:
+  npm: true
+  directories:
+    - /home/travis/.cache/firebase/emulators
 deploy:
   skip_cleanup: true
   provider: firebase
-  token: "$FIREBASE_TOKEN"
+  token:
+    secure: "$FIREBASE_TOKEN"
   on:
     branch: master

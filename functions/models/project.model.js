@@ -20,6 +20,7 @@ class Project{
 
     async update() {
         try{
+            
             const result = await projects.doc(this.projectId).update(this.dataObject);
             return `Project projectId: ${this.projectId} updated`;
         }catch(error){
