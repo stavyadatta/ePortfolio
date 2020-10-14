@@ -48,7 +48,6 @@ Project.getByUserId = async (userId) => {
     const snapshot = await projects.where("userId","==", userId).get();
     
     if (snapshot.empty) {
-        console.log("entering empty part")
         return 'No matching documents for user:' + userId;
     } else{
         const res = [];
