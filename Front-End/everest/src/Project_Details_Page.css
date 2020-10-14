@@ -1,16 +1,61 @@
-* { font-family: "Karla"; }
+projectDetail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    color: white;
+    font-size: 100px;
+}
+
+.projectHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 25em;
+    background: #082F4E;
+}
 
 .projectTitle{
-    color: #082F4E; 
-    font-size: 42px;
+    color: white; 
+    font-size: 2em;
 }
 
-.projectDesc{
-    color: #082F4E; 
-    font-size: 24px;
+.projectDescription{
+    display: inline-block;
+    background: white;
+    padding:1em;
+    padding-left: 4em;
+    width: 100%
 }
 
+.descriptionTitle{
+    display: inline-block;
+    color: #a5a5a5; 
+    text-align: left;
+    font-size: 2em;
+    padding:2rem;
+    width: 100%;
+}  
+
+.descriptionBody{
+    color: #a5a5a5; 
+    text-align: left;
+    font-size: 1em;
+    padding:2rem;
+    width: 100%;
+}
 .projectContent{
-    color: #082F4E; 
-    font-size: 12px;
+    display: inline-block;
+    background: #a5a5a5;
+    padding:1em;
+    padding-left: 4em;
+    width: 100%
+}
+.contentBody{
+    color: white;
+    text-align: left;
+    font-size: 1em;
+    padding:2rem;
+    width: 100%;
 }

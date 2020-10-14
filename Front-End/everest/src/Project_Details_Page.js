@@ -5,26 +5,22 @@ import { connect } from 'react-redux'
 
 import "./Project_Details_Page.css";
 
-function ProjectDetailsPage(props) {
+function ProjectDetailsPage(props){
     let project = props.project;
 
     return (
-        <div>
-            <div className="container section project-details">
-                <div className="card z-depth-5">
-                    <div className="card-content">
-                        <span className="card-title">{project.projectName}</span>
-                        <p>{project.projectBody}</p>
-                    </div>
-                    <div className="card-action grey lighten-4 grey-text">
-                        <div>
-                            
-                        </div>
-                        <div>Posted at:</div>
-                    </div>
-                </div>
+        <projectDetails>
+            <div className="projectHeader">
+                <div className="projectTitle">{project.projectName}</div>
             </div>
-        </div>
+            <div className="projectDescription">
+                <div className="descriptionTitle">Description</div>
+                <div className="descriptionBody">{project.projectDesc}</div>
+            </div>
+            <div className="projectContent">
+                <div className="contentBody">{project.projectBody}</div>
+            </div>
+        </projectDetails>
     );
 }
 

@@ -7,6 +7,7 @@ import OverviewPage from "./Overview_Page";
 import Nav from "./Nav";
 import FormPage from "./Form_Page";
 import projectDetailsPage from "./Project_Details_Page"
+import NavBar from "./NavBar"
 
 import { useSelector } from "react-redux"
 
