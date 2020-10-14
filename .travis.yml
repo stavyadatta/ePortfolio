@@ -24,7 +24,6 @@ cache:
 deploy:
   skip_cleanup: true
   provider: firebase
-  token:
-    secure: "$FIREBASE_TOKEN"
+  token: "$FIREBASE_TOKEN"
   on:
     branch: master
