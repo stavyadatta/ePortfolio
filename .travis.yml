@@ -26,4 +26,4 @@ deploy:
   provider: firebase
   token: "$FIREBASE_TOKEN"
   on:
-    branch: stavya/error_CI
+    branch: master
