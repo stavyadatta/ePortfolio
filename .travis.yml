@@ -16,6 +16,7 @@ script:
 - npm --prefix ./Front-End/everest run build
 - cd functions
 - firebase emulators:exec --project impressive-hall-288310 --only firestore,functions 'npm test'
+- cd ..
 cache:
   npm: true
   directories:
