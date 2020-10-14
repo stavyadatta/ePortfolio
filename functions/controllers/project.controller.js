@@ -94,21 +94,12 @@ function validateUpdate(data){
 }
 
 //delete
-exports.delete = async (req) => {
+exports.delete = async (data) => {
     try {
         let res = await Project.deleteById(data.projectId);
-        let check = await Project.getByProjectId(data.projectId);
-        console.log(check);
-        if(check.not_found){
             return {
                 message:`Project projectId: ${data.projectId} deleted`
             }
-        } else {
-            return {
-                message:`Project projectId: ${data.projectId} could not be deleted`,
-                error:'delete_error'
-            }
-        }
     } catch (error){
         throw error;
     }
