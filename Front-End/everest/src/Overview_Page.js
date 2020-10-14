@@ -45,7 +45,7 @@ function OverviewPage() {
         <button className = "overview_btns" id = "welcome" onClick = {checkClicked}>Welcome</button>
         <button className = "overview_btns" id = "profile" onClick = {checkClicked}>My Profile</button>
         <button className = "overview_btns" id = "about_me" onClick = {checkClicked}>About Me</button>
-        <Link to = "/addproject">
+        <Link to = "/projects">
             <button className = "overview_btns" id = "artifacts" onClick = {checkClicked}>Portfolio Artifacts</button>
         </Link>
        

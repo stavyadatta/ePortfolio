@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Nav.css";
-import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
-import Project from "./Generic_Components/Project";
-import projects from "./random_data.json";
+import { ReactComponent as Plus }  from "./Icons/add_circle_outline-24px.svg";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
-function Nav() {
+import "./Nav.css";
+import Project from "./Generic_Components/Project";
+
+function Nav(props) {
 
   function createProject(project) {
       return (
         <Project 
-            key={project.id}
-            name={project.name}
-            description={project.desc}
+            id={project.id}
+            name={project.projectName}
+            description={project.projectDesc}
             image={project.imgURL}
         />
       );
@@ -54,7 +57,7 @@ function Nav() {
 
             <div className="projects"> 
 
-                {projects.map(createProject)}    {/* PROJECTS GETTING RENDERED HERE */}
+                {props.projects.map(createProject)}    {/* PROJECTS GETTING RENDERED HERE */}
                  
             </div>
     
@@ -64,6 +67,15 @@ function Nav() {
   );
 }
 
+const mapStateToProps = (state)=>{
+    return {
+        projects: state.firestore.ordered.projects
+    }
+}
 
-
-export default Nav;
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection:'projects'}
+    ])
+) (Nav);

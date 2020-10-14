@@ -79,17 +79,13 @@ i.far.fa-arrow-alt-circle-left {
   align-items: center;
 }
 
-.projects {
-    
-}
-
 .projectImage {
   margin-top: 50px;
   margin-left: 60px;
   margin-right: 150px;
-  width: 500px;
-  height: 350px;
-  border-radius: 12px;
+  width: 100px;
+  height: 70px;
+  border-radius: 2px;
   border: 1px solid #082f4e;
 }
 

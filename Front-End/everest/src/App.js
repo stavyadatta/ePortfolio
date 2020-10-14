@@ -25,15 +25,9 @@ function App() {
       </Switch>
   } else {
     routes = 
-    //   <Switch>
-    //     <Route path="/login" component={LoginPage}/>    
-    //     <Redirect to = "/login"/>
-    //   </Switch>
-    <Switch>
-        <Route path = "/profile" component = {OverviewPage}/>
-        <Route path="/addproject" component={Nav} />
-        <Route path="/form" component={FormPage} />     
-        <Redirect to = "/profile"/>
+      <Switch>
+        <Route path="/login" component={LoginPage}/>    
+        <Redirect to = "/login"/>
       </Switch>
   }
   return (
