@@ -6,6 +6,8 @@ import LoginPage from "./Login_Page";
 import OverviewPage from "./Overview_Page";
 import Nav from "./Nav";
 import FormPage from "./Form_Page";
+import projectDetailsPage from "./Project_Details_Page"
+
 import { useSelector } from "react-redux"
 
 function App() {  
@@ -16,8 +18,9 @@ function App() {
     routes = 
       <Switch>
         <Route path = "/profile" component = {OverviewPage}/>
-        <Route path="/addproject" component={Nav} />
-        <Route path="/form" component={FormPage} />     
+        <Route path="/projects" component={Nav} />
+        <Route path="/form" component={FormPage} />
+        <Route path="/project/:id" component={projectDetailsPage}/>
         <Redirect to = "/profile"/>
       </Switch>
   } else {
