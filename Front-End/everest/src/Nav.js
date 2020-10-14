@@ -9,6 +9,7 @@ import "./Nav.css";
 import Project from "./Generic_Components/Project";
 
 function Nav(props) {
+    console.log(props)
 
   function createProject(project) {
       return (
@@ -75,7 +76,8 @@ const mapStateToProps = (state)=>{
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-        {collection:'projects'}
-    ])
+    firestoreConnect(props=>{
+        return [
+        {collection:'projects', where:['userId', '==', props.match.params.uid]}
+    ]})
 ) (Nav);

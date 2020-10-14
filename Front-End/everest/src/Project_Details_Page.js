@@ -31,6 +31,7 @@ function ProjectDetailsPage(props) {
 const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.match.params.id;
 	return {
+        profile: state.firebase.profile,
 		project: state.firestore.data.projects && state.firestore.data.projects[id],
 	};
 };

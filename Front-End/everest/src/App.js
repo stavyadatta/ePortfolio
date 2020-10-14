@@ -18,7 +18,7 @@ function App() {
     routes = 
       <Switch>
         <Route path = "/profile" component = {OverviewPage}/>
-        <Route path="/projects" component={Nav} />
+        <Route path="/projects/:uid" component={Nav} />
         <Route path="/form" component={FormPage} />
         <Route path="/project/:id" component={projectDetailsPage}/>
         <Redirect to = "/profile"/>
