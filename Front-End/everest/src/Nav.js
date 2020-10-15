@@ -21,6 +21,12 @@ function Nav(props) {
         />
       );
   }
+  //check if data is loaded
+  if(!props.projects){
+    return(
+        <div>Loading...</div>
+    )
+}
 
   return (
 

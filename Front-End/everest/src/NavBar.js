@@ -1,14 +1,73 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-function NavBar(){
+import './Navbar.css'
+
+function NavBar(props){
+    if(!props.profile.isEmpty){
+        return (<LoggedInNavbar profile={props.profile}/>)
+    } else {
+        return (<LoggedOutNavbar/>)
+    }
+}
+
+function LoggedInNavbar(props){
     return(
-        <nav>
-            <ul>
-                <li>My Page</li>
-                <li>Artefacts</li>
-            </ul>
-        </nav>
+        <div className="Navbar">
+            <div className="navLogo">
+                <div className="navButton">logogohere</div>
+            </div>
+            <div className="NavbarButtons">
+                <Link to = "/">
+                    <div className="navButton">Home</div>
+                </Link>
+                <Link to="/profile">
+                    <div className="navButton">My Account</div>
+                </Link>
+                <Link to="/profile">
+                    <div className="navButton">My Page</div>
+                </Link>
+                <Link to={"/projects/"+props.profile.uid}>
+                    <div className="navButton"> My Projects</div>
+                </Link>
+            </div>
+            <div className="navUser">
+                <Link to="/profile">
+                    <div className="navButton">{props.profile.name}</div>
+                </Link>
+            </div>
+        </div>
     )
 }
 
-export default NavBar;
+function LoggedOutNavbar(){
+    return(
+        <div className="Navbar">
+            <div className="navLogo">
+                <Link to="/">
+                    <div className="navButton">logogohere</div>
+                </Link>
+            </div>
+            <div className="NavbarButtons"></div>
+            <div className="navUser">
+                <Link to="/login">
+                    <div className="navButton" id="sign-up">Sign-up</div>
+                </Link>
+                <Link to="/login">
+                    <div className="navButton" id="login">Login</div>
+                </Link>
+            </div>
+        </div>
+    )
+}
+
+const mapStateToProps = (state) => {
+	return {
+        profile: state.firebase.profile,
+        auth: state.firebase.auth
+	};
+};
+
+
+export default connect(mapStateToProps)(NavBar);

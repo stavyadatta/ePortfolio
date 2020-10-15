@@ -7,7 +7,7 @@ import OverviewPage from "./Overview_Page";
 import Nav from "./Nav";
 import FormPage from "./Form_Page";
 import projectDetailsPage from "./Project_Details_Page"
-import NavBar from "./NavBar"
+import Navbar from "./Navbar"
 
 import { useSelector } from "react-redux"
 
@@ -32,10 +32,12 @@ function App() {
       </Switch>
   }
   return (
-    <Router>
-      {routes}
-    </Router>
-
+    <div>
+      <Router>
+        <Navbar/>
+        {routes}
+      </Router>
+    </div>
   );  
 }
 

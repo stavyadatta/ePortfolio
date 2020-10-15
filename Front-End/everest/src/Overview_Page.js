@@ -8,7 +8,6 @@ import About_Btn from "./Icons/about_btn.svg";
 import Signout_Btn from "./Icons/signout_btn.svg";
 
 import { useSelector } from "react-redux"
-import { firestoreConnect } from 'react-redux-firebase'
 
 import firebase from "./Firebase"
 
@@ -57,6 +56,4 @@ function OverviewPage() {
   );
 }
 
-export default firestoreConnect([
-  {collection:'projects'}
-])(OverviewPage);
+export default OverviewPage;

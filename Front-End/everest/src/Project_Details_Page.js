@@ -7,7 +7,7 @@ import "./Project_Details_Page.css";
 
 function ProjectDetailsPage(props){
     let project = props.project;
-    let details = props.projectDetails
+    let details = props.projectDetails;
 
     //check if data is loaded
     if(!project || !details){
@@ -18,6 +18,9 @@ function ProjectDetailsPage(props){
     return (
         <div className="projectLayout">
             <div className="projectHeader">
+                <div className="detailImageWrap">
+                    <img className="detailImage" alt={project.imageText} src="gs://impressive-hall-288310.appspot.com/images/2020-10-10-171608_4.jpg"/>
+                </div>
                 <div className="projectTitle">{project.projectName}</div>
             </div>
             <div className="projectDescription">
@@ -25,13 +28,12 @@ function ProjectDetailsPage(props){
                 <div className="descriptionBody">{project.projectDesc}</div>
             </div>
             <ProjectDetailList details={details}/>
-            
         </div>
     );
 }
 
 const ProjectDetailList = (props) => {
-    return (props.details.map((detail)=>(<ProjectDetail detail={detail}></ProjectDetail>)))
+    return (props.details.map((detail)=>(<ProjectDetail key={detail.id} detail={detail}></ProjectDetail>)))
 }
 
 const ProjectDetail = (props)=>{
@@ -62,7 +64,6 @@ const ProjectDetail = (props)=>{
                 </div>
             )
     }
-    
 }
 
 const mapStateToProps = (state, ownProps) => {
