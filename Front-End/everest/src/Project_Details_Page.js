@@ -4,6 +4,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 
 import "./Project_Details_Page.css";
+import defaultProjectImage from "./Images/project_image.jpg"
 
 function ProjectDetailsPage(props){
     let project = props.project;
@@ -15,13 +16,26 @@ function ProjectDetailsPage(props){
             <div>Loading...</div>
         )
     }
+
+    let postDate = new Date(project.postDate.seconds*1000)
+    let dateString = 
+        postDate.getDay() + 
+        "." + postDate.getMonth() + 
+        "." + postDate.getFullYear();
+
+    let imageUrl = project.imageUrl ? project.imageUrl : defaultProjectImage
+
     return (
         <div className="projectLayout">
             <div className="projectHeader">
                 <div className="detailImageWrap">
-                    <img className="detailImage" alt={project.imageText} src="gs://impressive-hall-288310.appspot.com/images/2020-10-10-171608_4.jpg"/>
+                    <img className="detailImage" alt="" src={imageUrl}/>
                 </div>
-                <div className="projectTitle">{project.projectName}</div>
+                <div className="projectTitle">
+                    {project.projectName}
+                    <div className="projectAuthor">{project.authorName}</div>
+                    <div className="projectDate">{dateString}</div>
+                </div>
             </div>
             <div className="projectDescription">
                 <div className="descriptionTitle">Description</div>

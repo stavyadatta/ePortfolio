@@ -28,6 +28,7 @@ function App() {
     routes = 
       <Switch>
         <Route path="/login" component={LoginPage}/>    
+        <Route path="/project/:id" component={projectDetailsPage}/>
         <Redirect to = "/login"/>
       </Switch>
   }

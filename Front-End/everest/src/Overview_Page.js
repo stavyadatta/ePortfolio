@@ -13,8 +13,6 @@ import firebase from "./Firebase"
 
 function OverviewPage() {
   let userProfile = useSelector(state=>state.firebase.profile)
-  let userAuth = useSelector(state=>state.firebase.auth)
-
   
   const [selected, setSelected] = useState("");
   const checkClicked = e => { setSelected(e.target.id); console.log(selected); }
@@ -46,7 +44,7 @@ function OverviewPage() {
         <button className = "overview_btns" id = "welcome" onClick = {checkClicked}>Welcome</button>
         <button className = "overview_btns" id = "profile" onClick = {checkClicked}>My Profile</button>
         <button className = "overview_btns" id = "about_me" onClick = {checkClicked}>About Me</button>
-        <Link to = {"/projects/"+userAuth.uid}>
+        <Link to = "/addproject">
             <button className = "overview_btns" id = "artifacts" onClick = {checkClicked}>Portfolio Artifacts</button>
         </Link>
        

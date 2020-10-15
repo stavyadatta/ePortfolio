@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import './Navbar.css'
 
 function NavBar(props){
-    if(!props.profile.isEmpty){
-        return (<LoggedInNavbar profile={props.profile}/>)
+    if(!props.profile.isEmpty && !props.auth.isEmpty){
+        return (<LoggedInNavbar auth={props.auth} profile={props.profile}/>)
     } else {
         return (<LoggedOutNavbar/>)
     }
@@ -28,7 +28,7 @@ function LoggedInNavbar(props){
                 <Link to="/profile">
                     <div className="navButton">My Page</div>
                 </Link>
-                <Link to={"/projects/"+props.profile.uid}>
+                <Link to={"/projects/"+props.auth.uid}>
                     <div className="navButton"> My Projects</div>
                 </Link>
             </div>

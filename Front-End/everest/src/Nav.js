@@ -1,41 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Plus }  from "./Icons/add_circle_outline-24px.svg";
-import { connect } from "react-redux";
-import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux";
 
+import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
 import "./Nav.css";
-import Project from "./Generic_Components/Project";
+import project_image from "./Images/project_image.jpg";
+
 
 function Nav(props) {
-    console.log(props)
-
-  function createProject(project) {
-      return (
-        <Project 
-            id={project.id}
-            name={project.projectName}
-            description={project.projectDesc}
-            image={project.imgURL}
-        />
-      );
-  }
-  //check if data is loaded
-  if(!props.projects){
-    return(
-        <div>Loading...</div>
-    )
-}
-
-  return (
+    return (
 
         <div> 
             <header id = "project_header">
                 <h2 id = "project_header_title">Projects</h2>                
             </header>
-        
-        
+
             <div className="topButtons">
 
                 <Link to="/form">
@@ -62,10 +40,8 @@ function Nav(props) {
             
             </div>
 
-            <div className="projects"> 
-
-                {props.projects.map(createProject)}    {/* PROJECTS GETTING RENDERED HERE */}
-                 
+            <div>   
+                <ImagePage {...props} />
             </div>
     
         </div>
@@ -74,16 +50,22 @@ function Nav(props) {
   );
 }
 
-const mapStateToProps = (state)=>{
-    return {
-        projects: state.firestore.ordered.projects
-    }
-}
+function ImagePage(props) {
+    return (
+      <div className="section1">
+      {/* {console.log(props.location.state.pName)} */}
+      
+      {props.location.state ? <img src={props.location.state ? project_image : "whatever.jpg"} className="projectImage1" alt = "proj_image"/> : null }
+        
+        <div className="project1Text">
+          <h2 id="project1header">{props.location.state ? props.location.state.pName : ""}</h2>
+          <p id="project1desc">{props.location.state ? props.location.state.pDesc : ""}</p>
+        </div>
+      </div>
+    );
+  }
 
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect(props=>{
-        return [
-        {collection:'projects', where:['userId', '==', props.match.params.uid]}
-    ]})
-) (Nav);
+
+
+
+export default Nav;

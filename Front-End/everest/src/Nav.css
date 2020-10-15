@@ -32,7 +32,7 @@ div.addProject {
 
 a.addProject {            /* The Button name as link  */
   position: absolute;
-  top: 15%;
+  top: 17%;
   left: 5%;
   font-size: x-large;
   text-decoration: none;    
@@ -42,7 +42,7 @@ a.addProject {            /* The Button name as link  */
   color: #082f4e;
   width: 40px;
   height: 40px;
-  margin-top: 22px;
+  margin-top: 40px;
   margin-left: 20px;
 }
 
@@ -74,40 +74,34 @@ i.far.fa-arrow-alt-circle-left {
 
 /*********************************  MAIN STARTS  ************************************************/
 
-.project {
+.section1 {
   display: flex;
   align-items: center;
 }
 
-.projectImage {
-  margin-top: 50px;
-  margin-left: 60px;
+img.projectImage1 {
+  margin-left: 20px;
   margin-right: 150px;
-  width: 100px;
-  height: 70px;
-  border-radius: 2px;
+  width: 500px;
+  height: 350px;
+  border-radius: 12px;
   border: 1px solid #082f4e;
 }
 
-/* div.project1Text {
+div.project1Text {
   padding: 100px;
-} */
+}
 
-.projectName {
+#project1header {
   color: #082f4e;
   text-decoration: none;
   text-shadow: none;
-  position: relative;
-  bottom: 5rem; 
 }
 
-.projectDesc {
+#project1desc {
   font-size: large;
   color: rgb(0,0,0,0.6);
   padding: 50px 100px 100px 0px;
-  position: relative;
-  top: 3rem; /* NEW */
-  right: 7rem; /* NEW */
 }
 
 
