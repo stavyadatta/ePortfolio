@@ -32,7 +32,6 @@ function FormPage(props) {
   };
 
   const submitHandler = () => {
-   
     props.history.push({pathname:"/addproject",state:{pName:pName, pDesc: pDesc, pBody: pBody, pTags:pTags, PImg: pImg }}); /* CHANGHES TO PROJECT PAGE (WITH DETAILS) WHEN CLICKED ON SAVE PROJECT */
   };
 

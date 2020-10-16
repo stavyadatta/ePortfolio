@@ -70,7 +70,7 @@ function LoginFields(props) {
     	<div className = "user_inputs">
     		<EntryBox id = "email_entry" textType = "text" 
     		default = "Enter Email Address"
-        	onChange = {props.updateField} />
+        	onChange = {props.updateField} readonly = {false}/>
     		<PasswordComponents authenticate = {props.authenticate} 
         	onChange = {props.updateField} linkTo = {props.linkTo}/>
       	</div>
@@ -85,7 +85,8 @@ function PasswordComponents(props) {
     return(
     	<div className = "password_elements">
         	<EntryBox id = "password_entry" textType = "password" 
-            default = "Enter Password" onChange = {props.onChange} />
+            default = "Enter Password" onChange = {props.onChange} 
+			readonly = {false}/>
 			<Link to = {props.linkTo ? "/profile" : "/"}> 
 				<img id = "login_icon_unhovered" src={loginImage} alt="Login" 
             	onClick = {props.authenticate} 

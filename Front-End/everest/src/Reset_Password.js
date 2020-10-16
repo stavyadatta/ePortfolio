@@ -14,7 +14,7 @@ function RetrievePassword() {
 			<div className = "forgot_pwd_fields">
 				<EntryBox id = "forgot_pwd_entry" textType = "text" 
 				default = "Enter Email Address"
-        		/*onChange = {""}*/ />
+        		/*onChange = {""}*/ readonly = {false}/>
 				<SubmitForm />
 				<SmallBtn id = "back_to_login" 
 				callBack = {(e) => {animateComponents(e, "forgot_your_password", "login_fields_container", 0.5, 0.3)}} 
@@ -36,7 +36,7 @@ function SubmitForm() {
 		<div className = "submit_reset_password">
 			<EntryBox id = "confirm_email_pwd" textType = "text" 
 			default = "Confirm Email Address"
-			/*onChange = {""}*/ />
+			/*onChange = {""}*/ readonly = {false}/>
 			<img id = "submit_icon_unhovered" 
 			src={submitImage} alt="Submit" 
 			onClick = {retrieve} 
