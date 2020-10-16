@@ -1,0 +1,209 @@
+p {
+	color: white;
+	font-size: 48px;
+	font-family: 'Lusitana', serif;
+	word-spacing: 8px;
+}
+
+.home_page {
+	height: 200vh;
+	width: 100vw;
+	background: linear-gradient(to bottom, #082f4e 50%, #ffffff 50%);
+}
+
+#homepage_image {
+	width: 18%;
+	position: absolute;
+	height: 75%;
+	top: -2%;
+}
+
+.page_headers {
+	position: absolute;
+	top: 45%;
+	left: 35%;
+}
+
+#description {
+	font-size: 18px;
+	color: #d6d6d6c9;
+	position: absolute;
+	top: 100%;
+	left: 5%;
+	word-spacing: 2px;
+}
+
+#heading {
+	font-size: 33px;
+	font-family: 'Lusitana', serif;
+	font-weight: bold;
+	color: #0e4f85;
+	position: absolute;
+	bottom: -15%;
+	right: 30%;
+	left: 42.4%;
+	word-spacing: 6px;
+}
+
+#feature {
+	font-size: 18.5px;
+	font-family: 'Lusitana', serif;
+	color: #b8b8b8d3;
+	position: absolute;
+	bottom: -19%;
+	right: 28%;
+	left: 36.7%;
+	word-spacing: 1px;
+}
+
+.header_overview_btns {
+	display: flex;
+	flex-direction: row;
+	column-gap: 75px;
+	flex-wrap: wrap;
+	position: absolute;
+	left: 62%;
+	top: 5%;
+	justify-content: center;
+}
+
+.overview_btns {
+	background-color: #082f4e;
+	outline: none;
+	border: none;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	padding-left: 20px;
+	font-size: 20px;
+	color: white;
+	font-family: "Karla";
+}
+
+.bottom_portfolio_btns {
+	display: inline-flex;
+	flex-direction: column;
+	gap: 5px;
+	position: absolute;
+	left: 77.9%;
+	top: 84%;
+	justify-content: center;
+}
+
+.bottom_btns {
+	background-color: #082f4e;
+	outline: none;
+	border-color: rgb(248, 248, 248);
+	border-radius: 30px;
+	padding-bottom: 5px;
+	padding-right: 20px;
+	padding-left: 20px;
+	font-size: 18.5px;
+	color: white;
+
+	font-family: "Karla";
+}
+
+#No_Coding_Required_Ftr {
+	width: 20%;
+	position: absolute;
+	height: 44%;
+	top: 130%;
+	right: 76%;
+	padding: 35px;
+	border: 9px groove rgba(255, 255, 255, 0);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.137), 0 6px 20px 0 rgba(0, 0, 0, 0.11);
+	text-align: center;
+}
+
+.text {
+	position: absolute;
+	top: 165%;
+	right: 81%;
+	font-size: 22px;
+	font-family: 'Lusitana', serif;
+	word-spacing: 5px;
+	color: rgba(89, 89, 102, 0.507);
+}
+
+#Templates_Provided_Ftr {
+	width: 20%;
+	position: absolute;
+	height: 44%;
+	top: 130%;
+	right: 52%;
+	padding: 35px;
+	border: 9px groove rgba(255, 255, 255, 0);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.137), 0 6px 20px 0 rgba(0, 0, 0, 0.11);
+	text-align: center;
+}
+
+.text1 {
+	position: absolute;
+	top: 165%;
+	right: 56%;
+	font-size: 22px;
+	font-family: 'Lusitana', serif;
+	word-spacing: 5px;
+	color: rgba(89, 89, 102, 0.507);
+}
+
+#Responsive_Ftr {
+	width: 20%;
+	position: absolute;
+	height: 44%;
+	top: 130%;
+	right: 28%;
+	padding: 35px;
+	border: 9px groove rgba(255, 255, 255, 0);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.137), 0 6px 20px 0 rgba(0, 0, 0, 0.11);
+	text-align: center;
+}
+
+.text2 {
+	position: absolute;
+	top: 165%;
+	right: 34%;
+	font-size: 22px;
+	font-family: 'Lusitana', serif;
+	word-spacing: 5px;
+	color: rgba(89, 89, 102, 0.507);
+}
+
+#Secure_Ftr {
+	width: 21%;
+	position: absolute;
+	height: 44%;
+	top: 130%;
+	right: 3%;
+	padding: 35px;
+	border: 9px groove rgba(255, 255, 255, 0);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.137), 0 6px 20px 0 rgba(0, 0, 0, 0.11);
+	text-align: center;
+}
+
+.text3 {
+	position: absolute;
+	top: 165%;
+	right: 11.5%;
+	font-size: 22px;
+	font-family: 'Lusitana', serif;
+	word-spacing: 5px;
+	color: rgba(89, 89, 102, 0.507);
+}
+
+#Get_Started_Unhovered_Icon {
+	width: 15%;
+	position: absolute;
+
+	height: 15%;
+	top: 185%;
+	right: -1%;
+}
+
+.container:hover .overlay {
+	width: 15%;
+	position: absolute;
+	height: 15%;
+	top: 185%;
+	right: -1%;
+}

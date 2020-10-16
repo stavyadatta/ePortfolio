@@ -1,7 +1,7 @@
-p { 
-    color: white; 
-    font-size: 42px;
-    font-family: 'Lusitana', serif;
+p {
+	color: white;
+	font-size: 42px;
+	font-family: 'Lusitana', serif;
 }
 
 /* #userName {
@@ -10,90 +10,96 @@ p {
 } */
 
 .profile_overview_page {
-    height: 100vh;
-    width: 100vw;
-    background: #082F4E; 
+	height: 100vh;
+	width: 100vw;
+	background: #082f4e;
 }
 
 #profile_background {
-    position: absolute;
-    bottom: 11%;
-    right: 14%;
-    width: 60%;
-    height: 60%;
+	position: absolute;
+	bottom: 11%;
+	right: 14%;
+	width: 60%;
+	height: 60%;
 }
 
 .overview_btns {
-    background-color: #082F4E;
-    outline: none;
-    border: none;
-    padding-bottom: 4px;
-    padding-right: 1.5px;
-    font-size: 16px;
-    color: white;
-    font-family: "Karla";
+	background-color: #082f4e;
+	outline: none;
+	border: none;
+	padding-bottom: 4px;
+	padding-right: 1.5px;
+	font-size: 16px;
+	color: white;
+	font-family: "Karla";
 }
 
-.overview_btns:hover { text-decoration: underline; }
+.overview_btns:hover {
+	text-decoration: underline;
+}
 
 #achievement_image {
-    width: 95%;
-    position: absolute;
-    bottom: 0%;
+	width: 95%;
+	position: absolute;
+	bottom: 0%;
 }
 
 #sun_image {
-    width: 25%;
-    position: absolute;
-    bottom: 17%;
-    right: 18%;
+	width: 25%;
+	position: absolute;
+	bottom: 17%;
+	right: 18%;
 }
 
 .buttons {
-    position: absolute;
-    left: 93.5%;
-    bottom: 2%;
+	position: absolute;
+	left: 93.5%;
+	bottom: 2%;
 }
 
-#home_btn, #about_btn, #signout_btn {
-    transform: scale(0.45, 0.45);
+#home_btn,
+#about_btn,
+#signout_btn {
+	transform: scale(0.45, 0.45);
 }
 
 #about_btn {
-    position: relative;
-    top: 24px;
+	position: relative;
+	top: 24px;
 }
 
 #home_btn {
-    position: relative;
-    top: 49px;
+	position: relative;
+	top: 49px;
 }
 
-#home_btn:hover, #about_btn:hover, #signout_btn:hover {
-    border-radius: 50px;
-    box-shadow: 0px 0px 12px white;
+#home_btn:hover,
+#about_btn:hover,
+#signout_btn:hover {
+	border-radius: 50px;
+	box-shadow: 0px 0px 12px white;
 }
 
 .page_headers {
-    position: absolute;
-    top: 28%;
-    left: 8%;
+	position: absolute;
+	top: 28%;
+	left: 8%;
 }
 
 #description {
-    font-size: 20px;
-    color: #FFFFFF;
-    position: absolute;
-    top: 130%;
+	font-size: 20px;
+	color: #ffffff;
+	position: absolute;
+	top: 130%;
 }
 
 .header_overview_btns {
-    display: flex;
-    flex-direction: row;
-    column-gap: 120px;
-    flex-wrap: wrap;
-    position: absolute;
-    left: 8%;
-    top: 14%;
-    justify-content: center;
+	display: flex;
+	flex-direction: row;
+	column-gap: 120px;
+	flex-wrap: wrap;
+	position: absolute;
+	left: 8%;
+	top: 14%;
+	justify-content: center;
 }

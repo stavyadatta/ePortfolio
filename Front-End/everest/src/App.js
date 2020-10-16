@@ -2,8 +2,8 @@ import React from "react";
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 
 import "./App.css";
-import LoginPage from "./Login_Page";
-import OverviewPage from "./Overview_Page";
+import LoginPage from "./Home_Page";
+import OverviewPage from "./Home_Page";
 import Nav from "./Nav";
 import FormPage from "./Form_Page";
 import { useSelector } from "react-redux"
