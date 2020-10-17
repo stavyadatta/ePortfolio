@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
+import firebase from './Firebase'
 
 import './Navbar.css'
 
 function NavBar(props){
+    const [imageAsUrl, setImageAsUrl] = useState({imgUrl:''})
+    const [imageLoaded, setImageLoadState] = useState(false)
+
+    if(props.profile.imgUrl && !imageLoaded){
+        firebase.storage()
+        .ref('photos')
+        .child(props.profile.imgUrl)
+        .getDownloadURL()
+        .then(fireBaseUrl => {
+            setImageAsUrl({imgUrl: fireBaseUrl})
+        })
+        setImageLoadState(true)
+    }
+
     if(!props.profile.isEmpty && !props.auth.isEmpty){
-        return (<LoggedInNavbar auth={props.auth} profile={props.profile}/>)
+        return (<LoggedInNavbar auth={props.auth} profile={props.profile} imgUrl={imageAsUrl.imgUrl}/>)
     } else {
         return (<LoggedOutNavbar/>)
     }
@@ -33,9 +49,8 @@ function LoggedInNavbar(props){
                 </Link>
             </div>
             <div className="navUser">
-                <Link to="/profile">
-                    <div className="navButton">{props.profile.name}</div>
-                </Link>
+                <div className="navButton">{props.profile.name}</div>
+                <img className="navProfilePicture"src={props.imgUrl} alt=""></img>
             </div>
         </div>
     )
@@ -61,6 +76,7 @@ function LoggedOutNavbar(){
         </div>
     )
 }
+
 
 const mapStateToProps = (state) => {
 	return {

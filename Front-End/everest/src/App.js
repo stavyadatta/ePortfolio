@@ -11,8 +11,15 @@ import Navbar from "./Navbar"
 
 import { useSelector } from "react-redux"
 
-function App() {  
+function App() {
   let authState = useSelector(state => state.firebase.auth.uid);
+  let isInitializing = useSelector(state => state.firebase.isInitializing);
+  let isLoadingAuth = useSelector(state => !state.firebase.auth.isLoaded);
+
+  if(isInitializing || isLoadingAuth){
+    return(<div>Loding...</div>)
+  }
+
   let routes = {}
 
   if(authState){
