@@ -23,7 +23,7 @@ function ProjectDetailsPage(props){
         "." + postDate.getMonth() + 
         "." + postDate.getFullYear();
 
-    let imageUrl = project.imageUrl ? project.imageUrl : defaultProjectImage
+    let imageUrl = project.imgUrl ? project.imgUrl : defaultProjectImage
 
     return (
         <div className="projectLayout">
@@ -47,38 +47,68 @@ function ProjectDetailsPage(props){
 }
 
 const ProjectDetailList = (props) => {
-    return (props.details.map((detail)=>(<ProjectDetail key={detail.id} detail={detail}></ProjectDetail>)))
+    return (props.details.map((detail)=>{
+        let background = detail.position%2===0?"#a5a5a5":"white";
+        let textColor = detail.position%2===1?"#a5a5a5":"white";
+        let style = {background: background, color:textColor}
+        return (
+            <ProjectDetail key={detail.id} detail={detail} styles={style}></ProjectDetail>
+            )
+}))
 }
 
 const ProjectDetail = (props)=>{
     let detail=props.detail;
+    let style=props.styles
+    let res = "";
     switch(detail.type){
         case 'right-image':
-            return(
-                <div className="projectContent">
-                    <div className="halfDetailText">{props.detail.text}</div>
-                    <div className="detailImageWrap">
-                        <img className="detailImage" alt={detail.imageText} src={detail.imageUrl}/>
-                    </div>                
-                </div>
-            )
+            res = <RightImgProjectDetail detail={detail} styles={style}/>
+            break;
         case 'left-image':
-            return(
-                <div className="projectContent">
-                    <div className="detailImageWrap">
-                        <img className="detailImage" alt={detail.imageText} src={detail.imageUrl}/>
-                    </div>
-                    <div className="halfDetailText">{detail.text}</div>
-                </div>
-            )
+            res =<LeftImgProjectDetail detail={detail} styles={style}/>
+            break;
         default:
-            return(
-                <div className="projectContent">
-                    <div className="detailText">{props.detail.text}</div>
-                </div>
-            )
+            res =<DefaultDetail detail={detail} styles={style}/>
     }
+    return res;
 }
+
+const RightImgProjectDetail = (props) => {
+    return (
+    <div className="projectDetail" style={props.styles}>
+        <div className="detailTitle">{props.detail.title}</div>
+        <div className="projectDetailContent">
+            <div className="halfDetailText">{props.detail.text}</div>
+            <div className="detailImageWrap">
+                <img className="detailImage" alt={props.detail.imgText} src={props.detail.imgUrl}/>
+            </div> 
+        </div>
+    </div>
+)
+}
+
+const LeftImgProjectDetail = (props) => (
+    <div className="projectDetail" style={props.styles}>
+        <div className="detailTitle">{props.detail.title}</div>
+        <div className="projectDetailContent">
+            <div className="detailImageWrap">
+                <img className="detailImage" alt={props.detail.imgText} src={props.detail.imgUrl}/>
+            </div>
+            <div className="halfDetailText">{props.detail.text}</div>
+        </div>
+    </div>
+)
+
+const DefaultDetail = (props) => (
+    <div className="projectDetail" style={props.styles}>
+        <div className="detailTitle">{props.detail.title}</div>
+        <div className="projectDetailContent">
+            <div className="detailText">{props.detail.text}</div>
+        </div>
+    </div>
+)
+
 
 const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.match.params.id;
@@ -94,7 +124,7 @@ export default compose(
     firestoreConnect(props => {
         let pid = props.match.params.id;
          return [
-            { collection: "projectDetails" },
+            { collection: "projectDetails", orderBy:'position', where:[['projectId', '==', pid]], },
             { collection: "projects", doc: pid }
           ]
         }
