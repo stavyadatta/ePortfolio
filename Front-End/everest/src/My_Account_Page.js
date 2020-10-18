@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import firebase from "firebase"
 import "./My_Account_Page.css";
 import animateComponents from "./Generic_Components/Page_Animations";
 import HeaderEntry from "./Generic_Components/Entry_With_Header";
@@ -58,6 +59,13 @@ function MyAccountPage() {
 	const updateDatabase = () => {
 		//need someone to fill this in
 		//use the placeholder values of the "active" components
+		firebase.functions().httpsCallable("user-update")({
+			userId: "",
+			firstName: document.getElementById("fname_active").placeholder,
+			lastName: document.getElementById("lname_active").placeholder,
+			email: document.getElementById("email_input_active").placeholder,
+			template: document.getElementById("template_active").placeholder
+		})
 		console.log(document.getElementById("fname_active").placeholder);
 		console.log(document.getElementById("lname_active").placeholder);
 		console.log(document.getElementById("email_input_active").placeholder);
