@@ -4,7 +4,7 @@ const firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/firestore');
 require('firebase/functions');
-
+require('firebase/storage')
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_API_KEY,
 	authDomain: "impressive-hall-288310.firebaseapp.com",
@@ -19,7 +19,10 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
+const storage = firebase.storage()
 if(process.env.FUNCTIONS_EMULATOR) 
 	firebase.functions().useFunctionsEmulator(`http://localhost:5001`);
 
-export default firebase;
+export  {
+	storage, firebase as default
+}

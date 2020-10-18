@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
 import random_data from "./random_data";
+import {storage} from "./Firebase"
 // import { Link } from "react-router-dom";
 // import { withRouter } from "react-router-dom";
 // import {Redirect} from "react-router-dom";
@@ -41,6 +42,7 @@ function FormPage(props) {
 
   function handleSubmit (event) {
 
+    
     event.preventDefault();
 
     const projectDetails= {
@@ -64,6 +66,27 @@ function FormPage(props) {
     // );
 
   }
+
+  const allInputs = {imgUrl: ''}
+  const [imageAsFile, setImageAsFile] = useState('')
+  const [imageAsUrl, setImageAsUrl] = useState(allInputs)
+  
+  console.log(imageAsFile)
+  const handleImageAsFile = (e) => {
+    const image = e.target.files[0]
+    setImageAsFile(imageFile => (image))
+  }
+
+  const handleFireBaseUpload = e => {
+    e.preventDefault()
+    console.log('start of upload')
+    // async magic goes here...
+    if(imageAsFile === '' ) {
+      console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
+    }
+    const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+  }
+
 
 
 
