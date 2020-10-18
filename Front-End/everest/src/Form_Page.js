@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "./Form_Page.css";
 import random_data from "./random_data";
 import {storage} from "./Firebase"
+import firebase from "firebase"
+const HOST = process.env.PORT||'http://localhost:5001'
+firebase.functions().useFunctionsEmulator(HOST) 
+
 // import { Link } from "react-router-dom";
 // import { withRouter } from "react-router-dom";
 // import {Redirect} from "react-router-dom";
@@ -107,13 +111,15 @@ function FormPage(props) {
       //return firebaseUrl
       setImageAsUrl(prevObject => ({...prevObject, imgUrl: firebaseUrl}));
       const projectDetails= {
-        id: (random_data.length + 1),
-        name: pName,
-        desc: pDesc,
+        userId: (random_data.length + 1),
+        projectName: pName,
+        projectDesc: pDesc,
         imgURL: firebaseUrl,    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
-        tags: pTags.split(","),
-        body: pBody
+        projectTags: pTags.split(","),
+        projectBody: pBody
       };
+      const add = firebase.functions().httpsCallable('project-add')
+      await add(projectDetails)
   
       console.log(projectDetails);
       random_data.push(projectDetails);
