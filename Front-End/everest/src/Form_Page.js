@@ -15,6 +15,10 @@ function FormPage(props) {
   const [pTags, setPTags] = useState("");      // COULD BE useState([])
 //   const [pImg, setPImg] = useState("");    // Should be set when chosen an image file to upload 
 
+  const allInputs = {imgUrl: ''};
+  const [imageAsFile, setImageAsFile] = useState('');
+  const [imageAsUrl, setImageAsUrl] = useState(allInputs);
+
   const updateField = (e) => {
 
     let fieldValue = e.target.value;
@@ -41,10 +45,10 @@ function FormPage(props) {
 
 
   function handleSubmit (event) {
-
-    
     event.preventDefault();
-
+    const imgUrl = handleFireBaseUpload(event);
+    console.log('Url')
+    console.log(imgUrl)
     const projectDetails= {
       id: (random_data.length + 1),
       name: pName,
@@ -52,7 +56,7 @@ function FormPage(props) {
       imgURL: "https://aventislearning.com/wp-content/uploads/2017/02/project-management-workshop.jpg",    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
       tags: pTags.split(","),
       body: pBody
-    }
+    };
 
     console.log(projectDetails);
     random_data.push(projectDetails);
@@ -67,24 +71,42 @@ function FormPage(props) {
 
   }
 
-  const allInputs = {imgUrl: ''}
-  const [imageAsFile, setImageAsFile] = useState('')
-  const [imageAsUrl, setImageAsUrl] = useState(allInputs)
   
-  console.log(imageAsFile)
+  console.log(imageAsFile);
   const handleImageAsFile = (e) => {
-    const image = e.target.files[0]
-    setImageAsFile(imageFile => (image))
+    const image = e.target.files[0];
+    setImageAsFile(imageFile => (image));
   }
 
   const handleFireBaseUpload = e => {
-    e.preventDefault()
-    console.log('start of upload')
+    e.preventDefault();
+    console.log('start of upload');
     // async magic goes here...
     if(imageAsFile === '' ) {
-      console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
+      console.error(`not an image, the image file is a ${typeof(imageAsFile)}`);
     }
-    const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+    const re = /(?:\.([^.]+))?$/;
+    var uploadTask = '';
+    const ext = re.exec(imageAsFile.name)[1];
+    if(ext === 'jpg' || ext === 'png') {
+      uploadTask = storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile);
+    } else {
+      uploadTask = storage.ref(`/files/${imageAsFile.name}`).put(imageAsFile);
+    }
+    uploadTask.on('state_changed', snapshot => {
+      console.log(snapshot)
+    }, err => {
+      console.log(err)
+    }, () => {
+      return storage.ref('images').child(imageAsFile.name).getDownloadURL()
+        .then(fireBaseUrl => {
+          console.log('fireBaseUrl')
+          setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
+          console.log(fireBaseUrl + ' Hello there it is')
+          })
+    })
+
+
   }
 
 
@@ -100,7 +122,7 @@ function FormPage(props) {
 
             <h2 id="form_header">Project Details</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="name_entry">Project Name</label>
                 <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName}/>
 
@@ -114,7 +136,7 @@ function FormPage(props) {
                 <input type="text" id="tags_entry" name="projectTags" placeholder="Enter Project Tags separated by comma" onChange={updateField} value={pTags}/>
 
                 <label htmlFor="main_image_upload">Main Project Image Upload</label>
-                <input type="file" id="main_image_upload" name="mainImage" />  {/* MIGHT NEED TO USE VALUE PROPERTY LATER INSIDE THIS INPUT TAG*/}
+                <input type="file" id="main_image_upload" name="mainImage" onChange={handleImageAsFile} />  {/* MIGHT NEED TO USE VALUE PROPERTY LATER INSIDE THIS INPUT TAG*/}
 
                 <input type="submit" id="submitButton" value="Save Project"/>
             </form>
