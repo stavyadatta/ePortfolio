@@ -17,36 +17,57 @@ function App() {
   let isLoadingAuth = useSelector(state => !state.firebase.auth.isLoaded);
 
   if(isInitializing || isLoadingAuth){
-    return(<div>Loding...</div>)
+    return(<div>Loading...</div>)
   }
 
   let routes = {}
 
   if(authState){
-    routes = 
+    routes = <AuthRoutes/>;
+  } else {
+    routes = <UnAuthRoutes/>;
+  }
+  return (
+    <div>
+      <Router>
+        {routes}
+      </Router>
+    </div>
+  );  
+}
+
+function AuthRoutes(){
+  return(
+    <Switch>
+      <Route path = "/profile" component = {OverviewPage}/>
+      <NavbarRoutes/>
+      <Redirect to = "/profile"/>
+    </Switch>
+  )
+}
+
+function NavbarRoutes(){
+  return(
+    <div>
+      <Navbar/>
       <Switch>
-        <Route path = "/profile" component = {OverviewPage}/>
         <Route path="/projects/:uid" component={Nav} />
         <Route path="/form" component={FormPage} />
         <Route path="/project/:id" component={projectDetailsPage}/>
         <Redirect to = "/profile"/>
       </Switch>
-  } else {
-    routes = 
-      <Switch>
-        <Route path="/login" component={LoginPage}/>    
-        <Route path="/project/:id" component={projectDetailsPage}/>
-        <Redirect to = "/login"/>
-      </Switch>
-  }
-  return (
-    <div>
-      <Router>
-        <Navbar/>
-        {routes}
-      </Router>
     </div>
-  );  
+  )
+}
+
+function UnAuthRoutes(){
+  return(
+    <Switch>
+      <Route path="/login" component={LoginPage}/>    
+      <Route path="/project/:id" component={projectDetailsPage}/>
+      <Redirect to = "/login"/>
+    </Switch>
+  )
 }
 
 export default App;
