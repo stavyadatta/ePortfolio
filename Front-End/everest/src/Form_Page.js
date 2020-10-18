@@ -44,23 +44,23 @@ function FormPage(props) {
 
 
 
-  function handleSubmit (event) {
+  async function handleSubmit (event) {
     event.preventDefault();
-    const imgUrl = handleFireBaseUpload(event);
+    const imgUrl = await handleFireBaseUpload(event);
     console.log('Url')
     console.log(imgUrl)
-    const projectDetails= {
-      id: (random_data.length + 1),
-      name: pName,
-      desc: pDesc,
-      imgURL: "https://aventislearning.com/wp-content/uploads/2017/02/project-management-workshop.jpg",    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
-      tags: pTags.split(","),
-      body: pBody
-    };
+    // const projectDetails= {
+    //   id: (random_data.length + 1),
+    //   name: pName,
+    //   desc: pDesc,
+    //   imgURL: "https://aventislearning.com/wp-content/uploads/2017/02/project-management-workshop.jpg",    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
+    //   tags: pTags.split(","),
+    //   body: pBody
+    // };
 
-    console.log(projectDetails);
-    random_data.push(projectDetails);
-    alert("PROJECT HAS BEEN ADDED");
+    // console.log(projectDetails);
+    // random_data.push(projectDetails);
+    // alert("PROJECT HAS BEEN ADDED");
 
     // const pdata = new FormData(event.target);
     // props.history.push({pathname:"/addproject",state:{pName:pName, pDesc: pDesc, pBody: pBody, pTags:pTags, PImg: pImg }}); /* CHANGHES TO PROJECT PAGE (WITH DETAILS) WHEN CLICKED ON SAVE PROJECT */
@@ -78,13 +78,15 @@ function FormPage(props) {
     setImageAsFile(imageFile => (image));
   }
 
-  const handleFireBaseUpload = e => {
+  const handleFireBaseUpload = async e => {
     e.preventDefault();
     console.log('start of upload');
     // async magic goes here...
     if(imageAsFile === '' ) {
       console.error(`not an image, the image file is a ${typeof(imageAsFile)}`);
     }
+
+
     const re = /(?:\.([^.]+))?$/;
     var uploadTask = '';
     const ext = re.exec(imageAsFile.name)[1];
@@ -93,17 +95,29 @@ function FormPage(props) {
     } else {
       uploadTask = storage.ref(`/files/${imageAsFile.name}`).put(imageAsFile);
     }
-    uploadTask.on('state_changed', snapshot => {
+
+
+    return await uploadTask.on('state_changed', async snapshot => {
       console.log(snapshot)
     }, err => {
       console.log(err)
-    }, () => {
-      return storage.ref('images').child(imageAsFile.name).getDownloadURL()
-        .then(fireBaseUrl => {
-          console.log('fireBaseUrl')
-          setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
-          console.log(fireBaseUrl + ' Hello there it is')
-          })
+    }, async () => {
+      console.log('snapshot');
+      const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
+      //return firebaseUrl
+      setImageAsUrl(prevObject => ({...prevObject, imgUrl: firebaseUrl}));
+      const projectDetails= {
+        id: (random_data.length + 1),
+        name: pName,
+        desc: pDesc,
+        imgURL: firebaseUrl,    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
+        tags: pTags.split(","),
+        body: pBody
+      };
+  
+      console.log(projectDetails);
+      random_data.push(projectDetails);
+      alert("PROJECT HAS BEEN ADDED");
     })
 
 
