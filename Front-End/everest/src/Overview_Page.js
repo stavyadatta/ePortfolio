@@ -49,20 +49,16 @@ function OverviewPage() {
       <div className = "buttons">
         <img src={Home_Btn} id = "home_btn" alt="home"/>
         <img src={About_Btn} id = "about_btn" alt="about"/>     
-      <CreateCarousel />
         <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
       </div>
-     
-      
-      <div className = "page_headers">
-        <p>Welcome,</p>
-        <p id = "userName">{userProfile.name}</p>
-        <h1 id = "description">Here is a guide to get started</h1>
-      </div>
+      <CreateCarousel userProfile={userProfile}/>
 
       <div className = "header_overview_btns">
         <button className = "overview_btns" id = {onPage === "welcome" ? "active_page" : onPage} onClick = {changePageRender}>Welcome</button>
-        <button className = "overview_btns" id = {onPage === "account" ? "active_page" : onPage} onClick = {changePageRender}>My Account</button>
+        <Link to={"/myaccount"}>
+          <button className = "overview_btns" id = {onPage === "account" ? "active_page" : onPage} onClick = {changePageRender}>My Account</button>
+        </Link>
+        
         <button className = "overview_btns" id = {onPage === "about" ? "active_page" : onPage} onClick = {changePageRender}>About Me</button>
         <Link to = "/addproject">
             <button className = "overview_btns" id = {onPage === "artifacts" ? "active_page" : onPage} onClick = {changePageRender}>Portfolio Artifacts</button>

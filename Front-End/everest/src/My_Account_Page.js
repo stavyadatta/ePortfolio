@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import firebase from "firebase"
 import "./My_Account_Page.css";
 import animateComponents from "./Generic_Components/Page_Animations";
 import HeaderEntry from "./Generic_Components/Entry_With_Header";
@@ -9,14 +8,19 @@ import Back_Icon from "./Icons/back_icon.svg";
 import Home from "./Icons/home_btn.svg";
 import About from "./Icons/about_btn.svg";
 import Signout from "./Icons/signout_btn.svg";
+import firebase from "./Firebase";
+import { useSelector } from "react-redux"
 
 function MyAccountPage() {
+
 
 	const [editable, setEditable] = useState(false);
 	const [fname, setFName] = useState("");
 	const [lname, setLName] = useState("");
 	const [template, setTemplate] = useState("");
 	const [email, setEmail] = useState("");
+	
+	let userProfile = useSelector(state=>(state.firebase.profile));
     
 	const enableEdits = e => {
 		changeReadOnly(false, "");
@@ -59,17 +63,26 @@ function MyAccountPage() {
 	const updateDatabase = () => {
 		//need someone to fill this in
 		//use the placeholder values of the "active" components
+
+		let fname = document.getElementById("fname_active").placeholder;
+		let lname = document.getElementById("lname_active").placeholder;
+		let email = document.getElementById("email_input_active").placeholder;
+		let template = document.getElementById("template_active").placeholder;
+
+		let user = firebase.auth().currentUser
+
 		firebase.functions().httpsCallable("user-update")({
-			userId: "",
-			firstName: document.getElementById("fname_active").placeholder,
-			lastName: document.getElementById("lname_active").placeholder,
-			email: document.getElementById("email_input_active").placeholder,
-			template: document.getElementById("template_active").placeholder
-		})
-		console.log(document.getElementById("fname_active").placeholder);
-		console.log(document.getElementById("lname_active").placeholder);
-		console.log(document.getElementById("email_input_active").placeholder);
-		console.log(document.getElementById("template_active").placeholder);
+			userId: user.uid,
+			firstName: fname,
+			lastName: lname,
+			email: email,
+			template: template
+		}).then(()=>{
+			user.updateEmail(email)
+		}).then(()=>{
+			//Send email verification
+		}).catch(e=>console.log(e));
+
 	}
 	
 	return(
@@ -83,7 +96,7 @@ function MyAccountPage() {
 				<img src = {Signout} id = "signout_icon" alt = "signout"/>
 			</div>
 			<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>
-			<UserInfo Editable = {editable} Update = {updateField}/>
+			<UserInfo Editable = {editable} Update = {updateField} userProfile={userProfile}/>
 
 		</div>
 	);
@@ -112,16 +125,17 @@ function SetBackground() {
 }
 
 function UserInfo(props) {
+	let profile = props.userProfile;
 	return(
 		<div className = "user_info">
 			
 			<HeaderEntry divClassName = "user_first_name" header = "First Name:" 
-			entryID = {props.Editable ? "fname_active" : "fname"} default = "Niphan" 
+			entryID = {props.Editable ? "fname_active" : "fname"} default = {profile.firstName} 
 			onChange = {props.Update} readOnly = {true}/>
 
 			<HeaderEntry divClassName = "user_last_name" header = "Last Name:" 
 			onChange = {props.Update} entryID = {props.Editable ? "lname_active" : "lname"} 
-			default = "Sethi" readOnly = {true}/>
+			default = {profile.lastName} readOnly = {true}/>
 
 			<HeaderEntry divClassName = "user_id" header = "User ID:"
 			entryID = "id" default = "12345" readOnly = {true}/>
@@ -131,7 +145,7 @@ function UserInfo(props) {
 			onChange = {props.Update} readOnly = {true}/>
 
 			<HeaderEntry divClassName = "user_email" header = "Email Address:" 
-			entryID = {props.Editable ? "email_input_active" : "email_input"} default = "sethiniphan@gmail.com" 
+			entryID = {props.Editable ? "email_input_active" : "email_input"} default = {profile.email}
 			onChange = {props.Update} readOnly = {true}/>
 
 			<HeaderEntry divClassName = "url_link" header = "Link for Sharing:" 
@@ -162,6 +176,7 @@ function changeReadOnly(readonly_status, active_string) {
 	document.getElementById("template" + active_string).readOnly = readonly_status;
 	document.getElementById("email_input" + active_string).readOnly = readonly_status;
 }
+
 
 
 export default MyAccountPage;
