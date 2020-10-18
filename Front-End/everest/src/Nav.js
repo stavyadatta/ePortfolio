@@ -1,18 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
 import "./Nav.css";
 import project_image from "./Images/project_image.jpg";
-import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
+
 
 function Nav(props) {
-  return (
+    return (
 
         <div> 
             <header id = "project_header">
                 <h2 id = "project_header_title">Projects</h2>                
             </header>
-        
-        
+
             <div className="topButtons">
 
                 <Link to="/form">
@@ -63,5 +64,8 @@ function ImagePage(props) {
       </div>
     );
   }
+
+
+
 
 export default Nav;
