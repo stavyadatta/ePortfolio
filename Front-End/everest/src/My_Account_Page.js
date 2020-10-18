@@ -21,6 +21,7 @@ function MyAccountPage() {
 	const [email, setEmail] = useState("");
 	
 	let userProfile = useSelector(state=>(state.firebase.profile));
+	let userAuth = useSelector(state=>(state.firebase.auth));
     
 	const enableEdits = e => {
 		changeReadOnly(false, "");
@@ -96,7 +97,7 @@ function MyAccountPage() {
 				<img src = {Signout} id = "signout_icon" alt = "signout"/>
 			</div>
 			<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>
-			<UserInfo Editable = {editable} Update = {updateField} userProfile={userProfile}/>
+			<UserInfo Editable = {editable} Update = {updateField} userProfile={userProfile} uid={userAuth.uid}/>
 
 		</div>
 	);
@@ -126,6 +127,7 @@ function SetBackground() {
 
 function UserInfo(props) {
 	let profile = props.userProfile;
+	let uid = props.uid
 	return(
 		<div className = "user_info">
 			
@@ -138,7 +140,7 @@ function UserInfo(props) {
 			default = {profile.lastName} readOnly = {true}/>
 
 			<HeaderEntry divClassName = "user_id" header = "User ID:"
-			entryID = "id" default = "12345" readOnly = {true}/>
+			entryID = "id" default = {uid} readOnly = {true}/>
 
 			<HeaderEntry divClassName = "chosen_template" header = "Portfolio Template:" 
 			entryID = {props.Editable ? "template_active" : "template"} default = "Professional" 
@@ -149,7 +151,7 @@ function UserInfo(props) {
 			onChange = {props.Update} readOnly = {true}/>
 
 			<HeaderEntry divClassName = "url_link" header = "Link for Sharing:" 
-			entryID = "url_input" default = "www.randomurltest.com" readOnly = {true}/>
+			entryID = "url_input" default = {"https://impressive-hall-288310.web.app/projects/"+uid} readOnly = {true}/>
 
 		</div>
 	);
