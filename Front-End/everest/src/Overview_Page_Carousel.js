@@ -21,7 +21,7 @@ function CreateCarousel(props) {
         >
             <div className = "slide_content">
                 <h3>Welcome,</h3>
-                <h3>{props.userProfile.name}</h3>
+                <h3>{props.userProfile.firstName} {props.userProfile.lastName}</h3>
                 <h5 id = "guide_message">Here is a guide to get you started</h5>
             </div>
 
