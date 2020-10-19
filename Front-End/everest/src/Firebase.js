@@ -4,6 +4,7 @@ const firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/firestore');
 require('firebase/functions');
+require('firebase/storage');
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_API_KEY,
@@ -19,6 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
+firebase.storage();
 if(process.env.FUNCTIONS_EMULATOR) 
 	firebase.functions().useFunctionsEmulator(`http://localhost:5001`);
 

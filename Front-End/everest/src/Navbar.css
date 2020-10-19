@@ -1,0 +1,62 @@
+.Navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    color: white;
+    background-color: #082F4E;
+    top: 0;
+}
+
+.Navbar a{
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.navLogo{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 20%;
+    height: 100%;
+}
+
+.NavbarButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+}
+
+.navButton {
+    color: white;
+
+}
+
+.navButton #login{
+    background-color: #082F4E;
+    color: white;
+}
+
+.navButton #sign-up{
+    background-color: white;
+    color: #082F4E;
+}
+
+.navUser{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 20%;
+    height: 100%;
+}
+
+.navProfilePicture{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0.5em;
+    object-fit: cover;
+}
