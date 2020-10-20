@@ -8,7 +8,8 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
 
-function ProjectList() {
+function ProjectList(props) {
+    let user = props.user
 
   function createProject(project) {
       return (
@@ -69,11 +70,11 @@ function ProjectList() {
 
 
 const mapStateToProps = (state, ownProps) => {
-    const id = ownProps.match.params.id;
+    const userId = ownProps.match.params.userId;
     return {
         profile: state.firebase.profile,
         project:
-            state.firestore.data.projects && state.firestore.data.projects[id],
+            state.firestore.data.projects && state.firestore.data.projects[userId],
         projectDetails: state.firestore.ordered.projectDetails,
     };
 };
