@@ -4,6 +4,9 @@ import "./ProjectList.css";
 import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
 import Project from "./Generic_Components/Project";
 import projects from "./random_data";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+import { connect } from "react-redux";
 
 function ProjectList() {
 
@@ -65,28 +68,27 @@ function ProjectList() {
 }
 
 
-// const mapStateToProps = (state, ownProps) => {
-//     const id = ownProps.match.params.id;
-//     return {
-//         profile: state.firebase.profile,
-//         project:
-//             state.firestore.data.projects && state.firestore.data.projects[id],
-//         projectDetails: state.firestore.ordered.projectDetails,
-//     };
-// };
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.match.params.id;
+    return {
+        profile: state.firebase.profile,
+        project:
+            state.firestore.data.projects && state.firestore.data.projects[id],
+        projectDetails: state.firestore.ordered.projectDetails,
+    };
+};
 
-// export default compose(
-//     connect(mapStateToProps),
-//     firestoreConnect((props) => {
-//         let pid = props.match.params.id;
-//         return [
-//             {
-//                 collection: "projectDetails",
-//                 orderBy: "position",
-//                 where: [["projectId", "==", pid]],
-//             },
-//             { collection: "projects", doc: pid },
-//         ];
-//     })
-// )(ProjectDetailsPage);
-export default ProjectList;
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect((props) => {
+        let pid = props.match.params.userId ;
+        return [
+            {
+                collection: "projects",
+                orderBy: "position",
+                where: [["projectId", "==", pid]],
+            }
+        ];
+    })
+)(ProjectList);
+//export default ProjectList;
