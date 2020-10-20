@@ -15,8 +15,8 @@ function ProjectList() {
             description={project.desc}
             image={project.imgURL}
         />
-      );
-  }
+    );
+}
 
   return (
 
@@ -65,5 +65,28 @@ function ProjectList() {
 }
 
 
+// const mapStateToProps = (state, ownProps) => {
+//     const id = ownProps.match.params.id;
+//     return {
+//         profile: state.firebase.profile,
+//         project:
+//             state.firestore.data.projects && state.firestore.data.projects[id],
+//         projectDetails: state.firestore.ordered.projectDetails,
+//     };
+// };
 
+// export default compose(
+//     connect(mapStateToProps),
+//     firestoreConnect((props) => {
+//         let pid = props.match.params.id;
+//         return [
+//             {
+//                 collection: "projectDetails",
+//                 orderBy: "position",
+//                 where: [["projectId", "==", pid]],
+//             },
+//             { collection: "projects", doc: pid },
+//         ];
+//     })
+// )(ProjectDetailsPage);
 export default ProjectList;

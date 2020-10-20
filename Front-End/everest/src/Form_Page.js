@@ -19,9 +19,9 @@ function FormPage(props) {
   const [pTags, setPTags] = useState("");      // COULD BE useState([])
 //   const [pImg, setPImg] = useState("");    // Should be set when chosen an image file to upload 
 
-  const allInputs = {imgUrl: ''};
+ // const allInputs = {imgUrl: ''};
   const [imageAsFile, setImageAsFile] = useState('');
-  const [imageAsUrl, setImageAsUrl] = useState(allInputs);
+  //const [imageAsUrl, setImageAsUrl] = useState(allInputs);
 
   const updateField = (e) => {
 
@@ -109,9 +109,9 @@ function FormPage(props) {
       console.log('snapshot');
       const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
       //return firebaseUrl
-      setImageAsUrl(prevObject => ({...prevObject, imgUrl: firebaseUrl}));
+      //setImageAsUrl(prevObject => ({...prevObject, imgUrl: firebaseUrl}));
       const projectDetails= {
-        userId: (random_data.length + 1),
+        userId: 'stavya',
         projectName: pName,
         projectDesc: pDesc,
         imgURL: firebaseUrl,    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
