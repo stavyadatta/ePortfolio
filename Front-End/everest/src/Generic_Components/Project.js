@@ -1,6 +1,6 @@
 import React from 'react';
-import "../ProjectList.css";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import "../Nav.css";
 
 function Project(props) {
 
@@ -8,16 +8,13 @@ function Project(props) {
       <div className="project">
 
         <img className="projectImage" src={props.image} alt="projectImage" />
-    
-        {/* <h2 className="projectName">{props.name}</h2> */}
-        <Link to="/profile" className="projectName">{props.name}</Link>       {/*  NEEDS TO BE LINKED TO THE INDIVIDUAL PROJECT PAGE  */}
+
+        <Link to = {"/project/"+props.id} >
+          <h2 className="projectName" >{props.name}</h2>
+        </Link>
 
         <p className="projectDesc">{props.description}</p>
 
-        <p className="projectBody">{props.body}</p>
-
-        <p className="projectTags">{props.tags}</p>
-        
 
       </div>
     );
