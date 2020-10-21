@@ -45,6 +45,20 @@ function FormPage(props) {
 
 };
 
+async function objectProjects(firebaseURL) {
+  const projectObjects = {
+    userId: userId,
+    projectName: pName,
+    projectDesc: pDesc,
+    imgURL: firebaseURL,    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
+    projectTags: pTags.split(","),
+    projectBody: pBody
+  };
+  const add = firebase.functions().httpsCallable('project-add')
+  await add(projectObjects)
+
+}
+
 
 
   async function handleSubmit (event) {
@@ -52,26 +66,6 @@ function FormPage(props) {
     const imgUrl = await handleFireBaseUpload(event);
     console.log('Url')
     console.log(imgUrl)
-    // const projectDetails= {
-    //   id: (random_data.length + 1),
-    //   name: pName,
-    //   desc: pDesc,
-    //   imgURL: "https://aventislearning.com/wp-content/uploads/2017/02/project-management-workshop.jpg",    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
-    //   tags: pTags.split(","),
-    //   body: pBody
-    // };
-
-    // console.log(projectDetails);
-    // random_data.push(projectDetails);
-    // alert("PROJECT HAS BEEN ADDED");
-
-    // const pdata = new FormData(event.target);
-    // props.history.push({pathname:"/addproject",state:{pName:pName, pDesc: pDesc, pBody: pBody, pTags:pTags, PImg: pImg }}); /* CHANGHES TO PROJECT PAGE (WITH DETAILS) WHEN CLICKED ON SAVE PROJECT */
-  
-    // return (
-    //     random_data.push(projectDetails)
-    // );
-
   }
 
   
@@ -88,7 +82,9 @@ function FormPage(props) {
     console.log('start of upload');
     // async magic goes here...
     if(imageAsFile === '' ) {
-      console.error(`not an image, the image file is a ${typeof(imageAsFile)}`);
+      await objectProjects('');
+      alert("PROJECT HAS BEEN ADDED")
+      return;
     }
 
 
@@ -109,21 +105,7 @@ function FormPage(props) {
     }, async () => {
       console.log('snapshot');
       const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
-      //return firebaseUrl
-      //setImageAsUrl(prevObject => ({...prevObject, imgUrl: firebaseUrl}));
-      const projectDetails= {
-        userId: userId,
-        projectName: pName,
-        projectDesc: pDesc,
-        imgURL: firebaseUrl,    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
-        projectTags: pTags.split(","),
-        projectBody: pBody
-      };
-      const add = firebase.functions().httpsCallable('project-add')
-      await add(projectDetails)
-  
-      console.log(projectDetails);
-      random_data.push(projectDetails);
+      await objectProjects(firebaseUrl)
       alert("PROJECT HAS BEEN ADDED");
     })
 
