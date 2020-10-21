@@ -82,7 +82,7 @@ async function objectProjects(firebaseURL) {
     console.log('start of upload');
     // async magic goes here...
     if(imageAsFile === '' ) {
-      await objectProjects('');
+      await objectProjects(undefined);
       alert("PROJECT HAS BEEN ADDED")
       return;
     }

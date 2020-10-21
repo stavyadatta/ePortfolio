@@ -19,14 +19,17 @@ function ProjectList(props) {
 
 
   function createProject(project) {
-      return (
-        <Project 
-            key={project.id}
-            name={project.projectName}
-            description={project.projectDesc}
-            image={project.imgURL}
-        />
-    );
+    if (project.imgURL == undefined) {
+        project.imgURL = "https://www.virvelle.com/wp-content/uploads/2018/12/project-management.jpg";
+    }
+    return (
+    <Project 
+        key={project.id}
+        name={project.projectName}
+        description={project.projectDesc}
+        image={project.imgURL}
+    />
+);
 }
 
   return (
