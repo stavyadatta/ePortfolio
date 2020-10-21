@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import "./ProjectList.css";
 import {ReactComponent as Plus}  from "./Icons/add_circle_outline-24px.svg";
 import Project from "./Generic_Components/Project";
-import projects from "./random_data";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import firebase from "./Firebase";
 
 function ProjectList(props) {
     const projects = props.projects;
@@ -35,7 +33,7 @@ function ProjectList(props) {
 
         <div> 
             <header id = "project_header">
-                <h2 id = "project_header_title"></h2>                
+                <h2 id = "project_header_title">Projects</h2>                
             </header>
         
         
@@ -79,7 +77,6 @@ function ProjectList(props) {
 
 
 const mapStateToProps = (state, ownProps) => {
-    const userId = ownProps.match.params.userId;
     return {
         projects:state.firestore.ordered.projects 
     };

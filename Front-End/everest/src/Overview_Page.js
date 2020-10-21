@@ -7,8 +7,6 @@ import Home_Btn from "./Icons/home_btn.svg";
 import About_Btn from "./Icons/about_btn.svg";
 import Signout_Btn from "./Icons/signout_btn.svg";
 
-import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux";
 import { connect } from "react-redux";
 
 import { useSelector } from "react-redux"
@@ -61,8 +59,7 @@ function OverviewPage() {
   );
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const userId = ownProps.match.params.userId;
+const mapStateToProps = (state) => {
   return {
       auth:state.firebase.auth
   };
