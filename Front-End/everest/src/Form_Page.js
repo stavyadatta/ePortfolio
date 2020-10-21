@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Form_Page.css";
 import random_data from "./random_data";
 import firebase from "./Firebase";
-
+import {connect, useSelector} from "react-redux";
 
 // import { Link } from "react-router-dom";
 // import { withRouter } from "react-router-dom";
@@ -16,7 +16,8 @@ function FormPage(props) {
   const [pBody, setPBody] = useState("");
   const [pTags, setPTags] = useState("");      // COULD BE useState([])
 //   const [pImg, setPImg] = useState("");    // Should be set when chosen an image file to upload 
-
+  const userAuth = useSelector(state => state.firebase.auth);
+  const userId = userAuth.uid;
  // const allInputs = {imgUrl: ''};
   const [imageAsFile, setImageAsFile] = useState('');
   //const [imageAsUrl, setImageAsUrl] = useState(allInputs);
@@ -111,7 +112,7 @@ function FormPage(props) {
       //return firebaseUrl
       //setImageAsUrl(prevObject => ({...prevObject, imgUrl: firebaseUrl}));
       const projectDetails= {
-        userId: 'stavya',
+        userId: userId,
         projectName: pName,
         projectDesc: pDesc,
         imgURL: firebaseUrl,    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
@@ -172,4 +173,10 @@ function FormPage(props) {
 }
 
 // export default withRouter(FormPage);      //MIGHT NEED LATER
-export default FormPage;
+//export default FormPage;
+const mapStateToProps = (state) => {
+  return {
+      auth:state.firebase.auth
+  };
+};
+export default connect(mapStateToProps)(FormPage)
