@@ -20,10 +20,9 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
+firebase.storage();
 const storage = firebase.storage();
 if(process.env.FUNCTIONS_EMULATOR) 
 	firebase.functions().useFunctionsEmulator(`http://localhost:5001`);
 
-export  {
-	storage, firebase as default
-}
+export default firebase

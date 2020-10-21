@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
 import random_data from "./random_data";
-import {storage} from "./Firebase"
+import firebse from "./Firebase"
 import firebase from "firebase"
 const HOST = process.env.PORT||'http://localhost:5001'
 firebase.functions().useFunctionsEmulator(HOST) 
@@ -84,6 +84,8 @@ function FormPage(props) {
 
   const handleFireBaseUpload = async e => {
     e.preventDefault();
+
+    let storage = firebase.storage();
     console.log('start of upload');
     // async magic goes here...
     if(imageAsFile === '' ) {

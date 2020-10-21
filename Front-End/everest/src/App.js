@@ -54,11 +54,10 @@ function NavbarRoutes() {
     <div>
       <Navbar />
       <Switch>
-        <Route path="/projects/:uid" component={Navbar} />
         <Route path="/form" component={FormPage} />
         <Route path="/project/:id" component={projectDetailsPage} />
+        <Route path="/projects/:userId" component={projectList} />
         <Redirect to="/profile" />
-        <Route to="/projec/:userId" component={projectList} />
       </Switch>
     </div>
   );
@@ -69,6 +68,7 @@ function UnAuthRoutes() {
     <Switch>
       <Route path="/login" component={LoginPage} />
       <Route path="/project/:id" component={projectDetailsPage} />
+      <Route path="/projects/:userId" component={projectList} />
       <Redirect to="/login" />
     </Switch>
   );

@@ -7,16 +7,25 @@ import projects from "./random_data";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import firebase from "./Firebase";
 
 function ProjectList(props) {
-    const user = props.project;
+    const projects = props.projects;
+
+    //placeholder
+    if(!projects){
+        console.log("loading");
+        return (<div>Loading...</div>)
+    }
+
+
 
   function createProject(project) {
       return (
         <Project 
             key={project.id}
-            name={project.name}
-            description={project.desc}
+            name={project.projectName}
+            description={project.projectDesc}
             image={project.imgURL}
         />
     );
@@ -26,7 +35,7 @@ function ProjectList(props) {
 
         <div> 
             <header id = "project_header">
-                <h2 id = "project_header_title">Projects</h2>                
+                <h2 id = "project_header_title"></h2>                
             </header>
         
         
@@ -58,7 +67,7 @@ function ProjectList(props) {
 
             <div className="projects"> 
 
-                {user.map(createProject)}    {/* PROJECTS GETTING RENDERED HERE */}
+                {projects.map(createProject)}    {/* PROJECTS GETTING RENDERED HERE */}
                  
             </div>
     
@@ -72,22 +81,18 @@ function ProjectList(props) {
 const mapStateToProps = (state, ownProps) => {
     const userId = ownProps.match.params.userId;
     return {
-        profile: state.firebase.profile,
-        project:
-            state.firestore.data.projects && state.firestore.data.projects[userId],
-        projectDetails: state.firestore.ordered.projectDetails,
+        projects:state.firestore.ordered.projects 
     };
 };
 
 export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => {
-        let userId = props.match.params.userId ;
+        let userId = props.match.params.userId;
         return [
             {
                 collection: "projects",
-                orderBy: "position",
-                where: [["userId", "==", userId]],
+                where:[["userId", "==", userId]]
             }
         ];
     })
