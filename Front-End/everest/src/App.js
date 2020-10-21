@@ -9,10 +9,10 @@ import {
 import "./App.css";
 import LoginPage from "./Login_Page";
 import OverviewPage from "./Overview_Page";
-import ProjectList from "./ProjectList";
 import FormPage from "./Form_Page";
 import projectDetailsPage from "./Project_Details_Page";
 import Navbar from "./Navbar";
+import projectList from "./ProjectList"
 
 import { useSelector } from "react-redux";
 
@@ -54,10 +54,11 @@ function NavbarRoutes() {
     <div>
       <Navbar />
       <Switch>
-        <Route path="/projects/:uid" component={Nav} />
+        <Route path="/projects/:uid" component={Navbar} />
         <Route path="/form" component={FormPage} />
         <Route path="/project/:id" component={projectDetailsPage} />
         <Redirect to="/profile" />
+        <Route to="/projec/:userId" component={projectList} />
       </Switch>
     </div>
   );

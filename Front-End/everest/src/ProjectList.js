@@ -9,7 +9,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 
 function ProjectList(props) {
-    let user = props.user
+    const user = props.project;
 
   function createProject(project) {
       return (
@@ -58,7 +58,7 @@ function ProjectList(props) {
 
             <div className="projects"> 
 
-                {projects.map(createProject)}    {/* PROJECTS GETTING RENDERED HERE */}
+                {user.map(createProject)}    {/* PROJECTS GETTING RENDERED HERE */}
                  
             </div>
     
@@ -82,12 +82,12 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => {
-        let pid = props.match.params.userId ;
+        let userId = props.match.params.userId ;
         return [
             {
                 collection: "projects",
                 orderBy: "position",
-                where: [["projectId", "==", pid]],
+                where: [["userId", "==", userId]],
             }
         ];
     })
