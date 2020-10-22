@@ -9,9 +9,9 @@ async function addUser(addData) {
         await user.add().catch((error) => {
             throw new Error("error in user.controller \n" + error)
         })
-        return `User ${user.dataObject.name} has been added`
+        return `User ${user.dataObject.firstName} has been added`
     } else {
-        return "Either the email is wrong or the userId already exist"
+        return "Either the data is the wrong format or the userId already exist"
     }
 }
 

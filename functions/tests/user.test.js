@@ -37,14 +37,13 @@ const getOne =  firebase.functions().httpsCallable('user-getOne');
 
 const dataAdd = { 
     userId: "userd",
-    name: "Stavya",
-    bio: "i am Hot",
+    firstName: "Stavya",
+    lastName: "Datta",
     email: "stavyadatta@gmail.com"
 }
 const dataUpdate = {
     userId: "userd",
-    name: "Stavya2",
-    bio: 'I am cool'
+    firstName: "Stavya2",
 }
 const dataDelete = {
     userId: "userd"
@@ -54,7 +53,7 @@ const dataGet = dataDelete
 it('testing user add functions', async () => {
     const message = await add(dataAdd)
 
-    expect(message.data).toBe(`User ${dataAdd.name} has been added`)
+    expect(message.data).toBe(`User ${dataAdd.firstName} has been added`)
 
 })
 
