@@ -13,9 +13,6 @@ function RegisterPage() {
     const [pwd, setPwd] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    let authId = useSelector(state=>state.firebase.auth.uid)
-    let authState = authId != null;
-
     const updateFields = e => {
     	let fieldValue = e.target.value; 
       if (e.target.id === "first_name") { setFirstName(fieldValue); }
