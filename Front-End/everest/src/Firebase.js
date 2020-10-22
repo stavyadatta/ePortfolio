@@ -16,12 +16,12 @@ const firebaseConfig = {
 	appId: "1:955883012726:web:e527a673ef6c5794385557",
 	measurementId: "G-N1JX5XFSV3"
 };
-
+console.log(process.env);
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 firebase.storage();
-if(process.env.FUNCTIONS_EMULATOR || process.env.NODE_ENV==="development") 
-	firebase.functions().useFunctionsEmulator(process.env.HOST||`http://localhost:5001`);
+if(process.env.FUNCTIONS_EMULATOR) 
+	firebase.functions().useFunctionsEmulator(`http://localhost:5001`);
 
 export default firebase;
