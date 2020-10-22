@@ -65,7 +65,6 @@ it('testing user update ', async () => {
 it('testing user getOne function', async () => {
     const message = await getOne(dataGet)
     expect(message.data).toMatchObject({
-          userId: "userd",
           firstName: "Stavya2",
           lastName: "Datta",
           email: "stavyadatta@gmail.com"
