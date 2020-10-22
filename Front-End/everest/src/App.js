@@ -11,8 +11,10 @@ import LoginPage from "./Login_Page";
 import OverviewPage from "./Overview_Page";
 import Nav from "./Nav";
 import FormPage from "./Form_Page";
-import projectDetailsPage from "./Project_Details_Page";
+import ProjectDetailsPage from "./Project_Details_Page";
+import ProjectEditPage from "./Project_Edit_Page";
 import Navbar from "./Navbar";
+ 
 
 import { useSelector } from "react-redux";
 
@@ -56,7 +58,8 @@ function NavbarRoutes() {
       <Switch>
         <Route path="/projects/:uid" component={Nav} />
         <Route path="/form" component={FormPage} />
-        <Route path="/project/:id" component={projectDetailsPage} />
+        <Route path="/project/:id/edit" component={ProjectEditPage} />
+        <Route path="/project/:id" component={ProjectDetailsPage} />
         <Redirect to="/profile" />
       </Switch>
     </div>
@@ -67,7 +70,7 @@ function UnAuthRoutes() {
   return (
     <Switch>
       <Route path="/login" component={LoginPage} />
-      <Route path="/project/:id" component={projectDetailsPage} />
+      <Route path="/project/:id" component={ProjectDetailsPage} />
       <Redirect to="/login" />
     </Switch>
   );
