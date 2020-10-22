@@ -3,7 +3,6 @@ import "./Register_Page.css";
 import EntryBox from "./Generic_Components/Entry_Box";
 import animateComponents from "./Generic_Components/Page_Animations";
 import firebase from "./Firebase";
-import { useSelector } from "react-redux";
 
 function RegisterPage() {
   const [firstName, setFirstName] = useState("");
