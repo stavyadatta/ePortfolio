@@ -14,7 +14,6 @@ import FormPage from "./Form_Page";
 import projectDetailsPage from "./Project_Details_Page";
 import Navbar from "./Navbar";
 import verifyPage from "./Verify_Page";
-import firebase from "./Firebase";
 
 import { useSelector } from "react-redux";
 
