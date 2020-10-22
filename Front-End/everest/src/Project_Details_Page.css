@@ -4,7 +4,6 @@
     align-items: center;
     flex-wrap: wrap;
     flex-direction: row;
-    color: white;
     font-size: 150%;
     min-height: 300px;
     height: 60vh;
@@ -18,28 +17,23 @@
     padding-left: 6rem;
     height: 100%;
     width: 100%;
-    background: #082F4E;
 }
 
 .projectTitle{
-    color: white; 
     width: 50%;
     font-size: larger;
 }
 
 .projectAuthor{
-    color: white; 
     font-size: x-large;
 }
 
 .projectDate{
-    color: #a5a5a5;
     font-size: large;
 }
 
 .projectDescription{
     display: inline-block;
-    background: white;
     padding: 1em;
     padding-left:8rem;
     padding-right:8rem;
@@ -48,14 +42,12 @@
 
 .descriptionTitle{
     display: inline-block;
-    color: #a5a5a5; 
     text-align: left;
     font-size: large;
     width: 100%;
 }  
 
 .descriptionBody{
-    color: #a5a5a5; 
     text-align: left;
     font-size: small;
     width: 100%;
