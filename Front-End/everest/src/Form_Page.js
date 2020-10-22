@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
-import random_data from "./random_data";
 import firebase from "./Firebase";
 import {connect, useSelector} from "react-redux";
 
@@ -87,7 +86,6 @@ async function objectProjects(firebaseURL) {
       return;
     }
 
-
     const re = /(?:\.([^.]+))?$/;
     var uploadTask = '';
     const ext = re.exec(imageAsFile.name)[1];
@@ -96,7 +94,6 @@ async function objectProjects(firebaseURL) {
     } else {
       uploadTask = storage.ref(`/files/${imageAsFile.name}`).put(imageAsFile);
     }
-
 
     return await uploadTask.on('state_changed', async snapshot => {
       console.log(snapshot)
@@ -108,12 +105,7 @@ async function objectProjects(firebaseURL) {
       await objectProjects(firebaseUrl)
       alert("PROJECT HAS BEEN ADDED");
     })
-
-
   }
-
-
-
 
   return (
 

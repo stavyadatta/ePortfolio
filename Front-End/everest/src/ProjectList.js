@@ -19,7 +19,7 @@ function ProjectList(props) {
 
 
   function createProject(project) {
-    if (project.imgURL == undefined) {
+    if (!project.imgURL) {
         project.imgURL = "https://www.virvelle.com/wp-content/uploads/2018/12/project-management.jpg";
     }
     return (
