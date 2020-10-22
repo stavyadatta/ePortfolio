@@ -13,25 +13,48 @@ import Nav from "./Nav";
 import FormPage from "./Form_Page";
 import projectDetailsPage from "./Project_Details_Page";
 import Navbar from "./Navbar";
+import verifyPage from "./Verify_Page";
+import firebase from "./Firebase";
 
 import { useSelector } from "react-redux";
 
 function App() {
-  let authState = useSelector((state) => state.firebase.auth.uid);
-  let isInitializing = useSelector((state) => state.firebase.isInitializing);
-  let isLoadingAuth = useSelector((state) => !state.firebase.auth.isLoaded);
 
-  if (isInitializing || isLoadingAuth) {
+  //true if auth is loaded and not empty
+  let authState = useSelector(state => 
+    !state.firebase.auth.isEmpty &&
+    state.firebase.auth.isLoaded);
+
+  //true if profile is loaded and not empty
+  let profileState = useSelector(state => 
+    !state.firebase.profile.isEmpty && 
+    state.firebase.profile.isLoaded);
+  
+  //true if a logged in user has verified their email
+  let emailVerified = useSelector(state=>state.firebase.auth.emailVerified);
+
+  //true when any info is still loading
+  let loading = useSelector(state => 
+    !state.firebase.auth.isLoaded ||
+    !state.firebase.profile.isLoaded ||
+    state.firebase.isInitializing);
+
+  if (loading) {
     return <div>Loading...</div>;
   }
 
   let routes = {};
 
-  if (authState) {
-    routes = <AuthRoutes />;
-  } else {
+  if (authState && profileState) {
+    if(emailVerified){  //Logged in and verified
+      routes = <AuthRoutes />;
+    }else{              //Logged in and not verified
+      routes = <UnVerifiedRoutes/>
+    }
+  } else {              //Logged out
     routes = <UnAuthRoutes />;
   }
+
   return (
     <div>
       <Router>{routes}</Router>
@@ -61,6 +84,15 @@ function NavbarRoutes() {
       </Switch>
     </div>
   );
+}
+
+function UnVerifiedRoutes(){
+  return(
+    <Switch>
+      <Route path="/verify" component={verifyPage}/>
+      <Redirect to="/verify"/>
+  </Switch>
+  )
 }
 
 function UnAuthRoutes() {

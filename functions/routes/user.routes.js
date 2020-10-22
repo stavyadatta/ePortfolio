@@ -4,11 +4,13 @@ const functions = require('firebase-functions');
 
 exports.add = functions.https.onCall(async (data, context) => {
     try{
-        const response = await userController.addUser(data)
-        console.log(response)
-        return response
+      console.log(data)
+      const response = await userController.addUser(data)
+      console.log(response)
+      return response
     }catch(error){
-        return functions.https.HttpsError(500, error)
+      console.log(error);
+      return new functions.https.HttpsError(500, error)
     }
 })
 

@@ -3,6 +3,7 @@ import "./Register_Page.css";
 import EntryBox from "./Generic_Components/Entry_Box";
 import animateComponents from "./Generic_Components/Page_Animations";
 import firebase from './Firebase';
+import { useSelector } from "react-redux"
 
 function RegisterPage() {
 
@@ -11,6 +12,9 @@ function RegisterPage() {
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    let authId = useSelector(state=>state.firebase.auth.uid)
+    let authState = authId != null;
 
     const updateFields = e => {
     	let fieldValue = e.target.value; 
@@ -22,21 +26,34 @@ function RegisterPage() {
     }
 
     const fieldAuthentications = () => {
-      console.log(firstName, lastName, email, pwd, confirmPassword);
       let auth = firebase.auth();
-		  auth.createUserWithEmailAndPassword(email, pwd).then(()=>
-        firebase.functions().httpsCallable('user-add')(
-          {
-            "userId": firebase.auth().currentUser.uid,
-            "name": `${firstName} ${lastName}`,
-            "bio": "",
-            "email":email
-          }
-        )
-      ).catch(function(error) {
-			  var errorMessage = error.message;
-			  window.alert('Error : ' + errorMessage);
-		  });
+      //check fields are filled out
+      if(firstName === "" || lastName === "" || pwd === "" || confirmPassword==="" || email===""){
+        alert("Please fill all required fields")
+        return;
+      }
+
+      //check if password confirmation matches
+      if(pwd !== confirmPassword){
+        alert("Passwords do not match")
+        return;
+      }
+
+      //create user auth and sign user in
+      auth.createUserWithEmailAndPassword(email, pwd)
+      .then(res=>{
+        firebase.functions().httpsCallable("user-add")({
+          firstName:firstName,
+          lastName:lastName,
+          email:email,
+          userId:res.user.uid
+        })
+        return res.user;
+      })
+      .then(user=>{
+        user.sendEmailVerification();
+      })
+      .catch(e=>window.alert(e));
     }
 
     return (
@@ -76,7 +93,6 @@ function AllRegisterFields(props) {
       <button id = "register" onClick = {props.authenticate}>Register</button>
     </div>
   );
-
 }
 
 

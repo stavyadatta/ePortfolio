@@ -21,7 +21,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 firebase.storage();
-if(process.env.FUNCTIONS_EMULATOR) 
-	firebase.functions().useFunctionsEmulator(`http://localhost:5001`);
+if(process.env.FUNCTIONS_EMULATOR || process.env.NODE_ENV==="development") 
+	firebase.functions().useFunctionsEmulator(process.env.HOST||`http://localhost:5001`);
 
 export default firebase;

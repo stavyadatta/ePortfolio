@@ -16,7 +16,7 @@ async function addUser(addData) {
 }
 
 async function checkingUserObject(addData) { 
-    if (addData.hasOwnProperty('name','bio', 'email', 'userId')) {
+    if (addData.hasOwnProperty('firstName', 'email', 'userId')) {
         const userExistence = await User.searchUser(addData.userId)
         const userExist = userExistence.exists
         return (validator.isEmail(addData.email) && !userExist)
