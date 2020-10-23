@@ -44,7 +44,8 @@ function FormPage(props) {
 
 };
 
-async function objectProjects(firebaseURL) {
+// formats the objects to be sent with certain URL
+async function projectObjectDetails(firebaseURL) {
   const projectObjects = {
     userId: userId,
     projectName: pName,
@@ -62,13 +63,10 @@ async function objectProjects(firebaseURL) {
 
   async function handleSubmit (event) {
     event.preventDefault();
-    const imgUrl = await handleFireBaseUpload(event);
-    console.log('Url')
-    console.log(imgUrl)
+    await handleFireBaseUpload(event);
   }
 
-  
-  console.log(imageAsFile);
+
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
     setImageAsFile(imageFile => (image));
@@ -78,10 +76,9 @@ async function objectProjects(firebaseURL) {
     e.preventDefault();
 
     let storage = firebase.storage();
-    console.log('start of upload');
     // async magic goes here...
     if(imageAsFile === '' ) {
-      await objectProjects(undefined);
+      await projectObjectDetails(undefined);
       alert("PROJECT HAS BEEN ADDED")
       return;
     }
@@ -102,7 +99,7 @@ async function objectProjects(firebaseURL) {
     }, async () => {
       console.log('snapshot');
       const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
-      await objectProjects(firebaseUrl)
+      await projectObjectDetails(firebaseUrl)
       alert("PROJECT HAS BEEN ADDED");
     })
   }
@@ -131,7 +128,7 @@ async function objectProjects(firebaseURL) {
                 <input type="text" id="tags_entry" name="projectTags" placeholder="Enter Project Tags separated by comma" onChange={updateField} value={pTags}/>
 
                 <label htmlFor="main_image_upload">Main Project Image Upload</label>
-                <input type="file" id="main_image_upload" name="mainImage" onChange={handleImageAsFile} />  {/* MIGHT NEED TO USE VALUE PROPERTY LATER INSIDE THIS INPUT TAG*/}
+                <input type="file" id="main_image_upload" name="mainImage" accept="image/*" onChange={handleImageAsFile} />  {/* MIGHT NEED TO USE VALUE PROPERTY LATER INSIDE THIS INPUT TAG*/}
 
                 <input type="submit" id="submitButton" value="Save Project"/>
             </form>

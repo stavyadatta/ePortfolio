@@ -8,7 +8,7 @@ exports.add = functions.https.onCall(async (data, context) => {
         const result = await project.createProject(data);
         return result;
     } catch(error) {
-        throw new Error(error);
+        throw new functions.https.HttpsError(error);
     }
 });
 

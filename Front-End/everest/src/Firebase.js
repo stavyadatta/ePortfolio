@@ -21,8 +21,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 firebase.storage();
-// if(process.env.FUNCTIONS_EMULATOR) 
-// 	console.log('entering the firebase.js')
-// 	firebase.functions().useFunctionsEmulator(process.env.HOST||`http://localhost:5001`);
+if(process.env.FUNCTIONS_EMULATOR) 
+	console.log('entering the firebase.js')
+	firebase.functions().useFunctionsEmulator(process.env.HOST||`http://localhost:5001`);
 
 export default firebase
