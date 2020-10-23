@@ -8,7 +8,12 @@ import Home_Btn from "./Icons/home_btn.svg";
 import About_Btn from "./Icons/about_btn.svg";
 import Signout_Btn from "./Icons/signout_btn.svg";
 
+import { useSelector } from "react-redux"
+
+import firebase from "./Firebase"
+
 function OverviewPage() {
+  let userProfile = useSelector(state=>state.firebase.profile)
   
   const [onPage, setOnPage] = useState("welcome");
   const changePageRender = e => {
@@ -31,6 +36,10 @@ function OverviewPage() {
     };
   }
 
+  const handleLogout = function(){ 
+    firebase.auth().signOut()
+  }
+
   return(
     <div className = "profile_overview_page">
       <div className = "background_graphics">
@@ -39,15 +48,17 @@ function OverviewPage() {
       </div>
       <div className = "buttons">
         <img src={Home_Btn} id = "home_btn" alt="home"/>
-        <img src={About_Btn} id = "about_btn" alt="about"/>
-        <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick = {SignOut}/>
+        <img src={About_Btn} id = "about_btn" alt="about"/>     
+        <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
       </div>
-     
-      <CreateCarousel />
+      <CreateCarousel userProfile={userProfile}/>
 
       <div className = "header_overview_btns">
         <button className = "overview_btns" id = {onPage === "welcome" ? "active_page" : onPage} onClick = {changePageRender}>Welcome</button>
-        <button className = "overview_btns" id = {onPage === "account" ? "active_page" : onPage} onClick = {changePageRender}>My Account</button>
+        <Link to={"/myaccount"}>
+          <button className = "overview_btns" id = {onPage === "account" ? "active_page" : onPage} onClick = {changePageRender}>My Account</button>
+        </Link>
+        
         <button className = "overview_btns" id = {onPage === "about" ? "active_page" : onPage} onClick = {changePageRender}>About Me</button>
         <Link to = "/addproject">
             <button className = "overview_btns" id = {onPage === "artifacts" ? "active_page" : onPage} onClick = {changePageRender}>Portfolio Artifacts</button>

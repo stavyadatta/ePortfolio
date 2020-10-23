@@ -4,9 +4,9 @@ projects = db.collection('projects');
 
 //Create and Update
 class Project{
-    constructor(project){
+    constructor(project, projectId){
         this.dataObject = project;
-        this.projectId = ""
+        this.projectId = projectId;
     }
 
     async create() {
@@ -20,6 +20,7 @@ class Project{
 
     async update() {
         try{
+            
             const result = await projects.doc(this.projectId).update(this.dataObject);
             return `Project projectId: ${this.projectId} updated`;
         }catch(error){
@@ -30,13 +31,16 @@ class Project{
 
 //Read
 Project.getByProjectId = async (projectId) => {
-    const res =  await projects.doc(projectId).get().data;
+    const res =  await projects.doc(projectId).get();
     if (!res) {
         return {
-            error:`No matching documents with projectID: ${projectId}`, not_found: true
+            error: 'not_found',
+            message:`No matching documents with projectID: ${projectId}`
         };
     } else {
-        return res.data();
+        const data = res.data();
+        data.projectId = projectId;
+        return data;
     }
 }
 
@@ -49,7 +53,9 @@ Project.getByUserId = async (userId) => {
         const res = [];
         let i = 0;
         snapshot.forEach(doc => {
-            res[i++] = doc.data();
+            res[i] = doc.data();
+            res[i].projectId = doc.id;
+            i++;
         })
 
         return res;
