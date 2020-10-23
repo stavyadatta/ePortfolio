@@ -91,49 +91,27 @@ function RegisterPage() {
 }
 
 function NameFields(props) {
-  return (
-    <div className="name_fields">
-      <EntryBox
-        id="first_name"
-        textType="text"
-        default="First Name"
-        onChange={props.fieldInfo}
-      />
-      <EntryBox
-        id="last_name"
-        textType="text"
-        default="Last Name"
-        onChange={props.fieldInfo}
-      />
+  return(
+    <div className = "name_fields">
+      <EntryBox id = "first_name" textType = "text" default = "First Name" 
+      onChange = {props.fieldInfo} readonly = {false}/>
+      <EntryBox id = "last_name" textType = "text" default = "Last Name" 
+      onChange = {props.fieldInfo} readonly = {false}/>
     </div>
   );
 }
 
 function AllRegisterFields(props) {
   return (
-    <div className="register_fields">
-      <NameFields fieldInfo={props.updateFields} />
-      <EntryBox
-        id="reg_email_entry"
-        textType="text"
-        default="Email Address"
-        onChange={props.updateFields}
-      />
-      <EntryBox
-        id="reg_password_entry"
-        textType="password"
-        default="Password"
-        onChange={props.updateFields}
-      />
-      <EntryBox
-        id="confirm_password_entry"
-        textType="password"
-        default="Confirm Password"
-        onChange={props.updateFields}
-      />
-      <button id="register" onClick={props.authenticate}>
-        Register
-      </button>
+    <div className = "register_fields">
+      <NameFields fieldInfo = {props.updateFields}/>
+      <EntryBox id = "reg_email_entry" textType = "text" default = "Email Address" 
+      onChange = {props.updateFields} readonly = {false}/>
+      <EntryBox id = "reg_password_entry" textType = "password" default = "Password" 
+      onChange = {props.updateFields} readonly = {false}/>
+      <EntryBox id = "confirm_password_entry" textType = "password" default = "Confirm Password" 
+      onChange = {props.updateFields} readonly = {false}/>
+      <button id = "register" onClick = {props.authenticate}>Register</button>
     </div>
   );
 }

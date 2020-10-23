@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./Overview_Page.css";
+import CreateCarousel from "./Overview_Page_Carousel";
 import {Link} from "react-router-dom";
 import Achievement_Image from "./Images/achievement_bg_image.png";
 import Sun_Image from "./Images/sun_bg_image.png";
@@ -18,7 +19,6 @@ function OverviewPage() {
   let userAuth = useSelector(state=>state.firebase.auth);
 
   let userId = userAuth.uid;
-  
   const [selected, setSelected] = useState("");
   const checkClicked = e => { setSelected(e.target.id); console.log(selected); }
 
@@ -34,17 +34,12 @@ function OverviewPage() {
       </div>
       <div className = "buttons">
         <img src={Home_Btn} id = "home_btn" alt="home"/>
-        <img src={About_Btn} id = "about_btn" alt="about"/>
+        <img src={About_Btn} id = "about_btn" alt="about"/>     
         <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
       </div>
      
-      
-      <div className = "page_headers">
-        <p>Welcome,</p>
-        <p id = "userName">{userProfile.firstName}</p>
-        <h1 id = "description">Here is a guide to get started</h1>
-      </div>
-
+      <CreateCarousel userProfile={userProfile}/>
+     
       <div className = "header_overview_btns">
         <button className = "overview_btns" id = "welcome" onClick = {checkClicked}>Welcome</button>
         <button className = "overview_btns" id = "profile" onClick = {checkClicked}>My Profile</button>

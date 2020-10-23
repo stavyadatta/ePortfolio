@@ -1,18 +1,13 @@
 p { 
     color: white; 
     font-size: 42px;
-    font-family: 'Lusitana', serif;
+    font-family: 'Merriweather', serif;
 }
-
-/* #userName {
-    position: relative;
-    left: 2.8%;
-} */
 
 .profile_overview_page {
     height: 100vh;
     width: 100vw;
-    background: #082F4E; 
+    background: #082F4E;
 }
 
 #profile_background {
@@ -34,44 +29,36 @@ p {
     font-family: "Karla";
 }
 
+/* #active_page {  } */
+
 .overview_btns:hover { text-decoration: underline; }
 
 #achievement_image {
-    width: 95%;
+    width: 100%;
     position: absolute;
     bottom: 0%;
 }
 
 #sun_image {
-    width: 25%;
+    width: 28%;
     position: absolute;
-    bottom: 17%;
-    right: 18%;
+    bottom: 23.8%;
+    right: 8.5%;
 }
 
 .buttons {
     position: absolute;
-    left: 93.5%;
-    bottom: 2%;
+    right: 0%;
+    bottom: 0%;
 }
 
 #home_btn, #about_btn, #signout_btn {
     transform: scale(0.45, 0.45);
 }
 
-#about_btn {
-    position: relative;
-    top: 24px;
-}
-
-#home_btn {
-    position: relative;
-    top: 49px;
-}
-
 #home_btn:hover, #about_btn:hover, #signout_btn:hover {
     border-radius: 50px;
-    box-shadow: 0px 0px 12px white;
+    box-shadow: 0px 0px 25px white;
 }
 
 .page_headers {

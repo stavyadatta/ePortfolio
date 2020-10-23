@@ -68,7 +68,7 @@ function LoginFields(props) {
     	<div className = "user_inputs">
     		<EntryBox id = "email_entry" textType = "text" 
     		default = "Enter Email Address"
-        	onChange = {props.updateField} />
+        	onChange = {props.updateField} readonly = {false}/>
     		<PasswordComponents authenticate = {props.authenticate} 
         	onChange = {props.updateField} loggedIn = {props.loggedIn}/>
       	</div>
