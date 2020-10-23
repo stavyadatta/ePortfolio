@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
 import firebase from "./Firebase";
 import { compose } from "redux";
@@ -110,8 +111,13 @@ function ProjectEditPage(props) {
     },
   });
 
+  const DoneEditButton = () => {
+      return(<Link id="doneEditProjectButton" to={"/project/"+props.match.params.id}><div id="doneEditProjectButton">Done</div></Link>)
+}
+
   return (
     <div className="projectLayout">
+      <DoneEditButton/>
       <div className="projectHeader" style={headerStyle}>
         <div className="detailImageWrap">
           <img className="detailImage" alt="" src={imageUrl} />

@@ -11,6 +11,32 @@
   width: 100%;
 }
 
+.projectLayout a#doneEditProjectButton{
+  position: fixed;
+  bottom: 5vh;
+  right: 5vw;
+  
+}
+
+.projectLayout div#doneEditProjectButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background: white;
+  border-radius: 100%;
+  border-color: black;
+  border: 3px solid;
+  min-width: 50px;
+  min-height: 50px;
+  font-size: 75%;
+  width: 10vh;
+  height: 10vh;
+  bottom: 50px;
+  right: 50px;
+  
+}
+
 .projectHeader{
   display: flex;
   justify-content: center;

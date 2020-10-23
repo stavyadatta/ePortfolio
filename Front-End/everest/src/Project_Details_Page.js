@@ -41,17 +41,17 @@ function ProjectDetailsPage(props) {
     let detailStyle0 = {background:palette.detail, color:palette.secondary}
     let detailStyle1 = {background:palette.secondary, color:palette.detail}
 
+    const MaybeEditButton = () => {
+        if(project.userId === auth.uid){
+          return(<Link id="editProjectButton" to={"/project/"+props.match.params.id+"/edit"}><div id="editProjectButton">Edit</div></Link>)
+        }else{
+          return(<div/>);
+        }
+    }
+
     return (
         <div className="projectLayout">
-          {()=>{
-            if(project.userId === auth.uid){
-              return (<Link to={"/project/"+props.match.params.id+"/edit"}>Edit</Link>)
-            }else{
-              return;
-            }
-          }}<br/>
-          
-
+          <MaybeEditButton/>
             <div className="projectHeader" style={headerStyle}>
                 <div className="detailImageWrap">
                     <img className="detailImage" alt="" src={imageUrl} />
