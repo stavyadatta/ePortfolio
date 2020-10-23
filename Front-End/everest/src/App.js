@@ -10,7 +10,8 @@ import "./App.css";
 import LoginPage from "./Login_Page";
 import OverviewPage from "./Overview_Page";
 import FormPage from "./Form_Page";
-import projectDetailsPage from "./Project_Details_Page";
+import ProjectDetailsPage from "./Project_Details_Page";
+import ProjectEditPage from "./Project_Edit_Page";
 import Navbar from "./Navbar";
 import projectList from "./ProjectList"
 import verifyPage from "./Verify_Page";
@@ -82,7 +83,8 @@ function NavbarRoutes() {
       <Navbar />
       <Switch>
         <Route path="/form" component={FormPage} />
-        <Route path="/project/:id" component={projectDetailsPage} />
+        <Route path="/project/:id/edit" component={ProjectEditPage} />
+        <Route path="/project/:id" component={ProjectDetailsPage} />
         <Route path="/projects/:userId" component={projectList} />
         <Redirect to="/profile" />
       </Switch>
@@ -103,7 +105,7 @@ function UnAuthRoutes() {
   return (
     <Switch>
       <Route path="/login" component={LoginPage} />
-      <Route path="/project/:id" component={projectDetailsPage} />
+      <Route path="/project/:id" component={ProjectDetailsPage} />
       <Route path="/projects/:userId" component={projectList} />
       <Redirect to="/login" />
     </Switch>
