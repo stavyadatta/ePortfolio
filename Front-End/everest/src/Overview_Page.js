@@ -8,33 +8,17 @@ import Home_Btn from "./Icons/home_btn.svg";
 import About_Btn from "./Icons/about_btn.svg";
 import Signout_Btn from "./Icons/signout_btn.svg";
 
+import { connect } from "react-redux";
+
 import { useSelector } from "react-redux"
 
 import firebase from "./Firebase"
 
 function OverviewPage() {
-  let userProfile = useSelector(state=>state.firebase.profile)
-  
-  const [onPage, setOnPage] = useState("welcome");
-  const changePageRender = e => {
-    console.log(e.target.id); 
-    switch(e.target.id) {
-      case "account":
-        setOnPage("account");
-        break;
-      case "about":
-        setOnPage("about");
-        break;
-      case "artifacts":
-        setOnPage("artifacts");
-        break;
-      case "welcome":
-        setOnPage("welcome");
-        break; 
-      default:
-        setOnPage("welcome");
-    };
-  }
+  let userProfile = useSelector(state=>state.firebase.profile);
+  let userAuth = useSelector(state=>state.firebase.auth);
+
+  let userId = userAuth.uid;
 
   const handleLogout = function(){ 
     firebase.auth().signOut()
@@ -51,17 +35,15 @@ function OverviewPage() {
         <img src={About_Btn} id = "about_btn" alt="about"/>     
         <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
       </div>
+     
       <CreateCarousel userProfile={userProfile}/>
-
+     
       <div className = "header_overview_btns">
-        <button className = "overview_btns" id = {onPage === "welcome" ? "active_page" : onPage} onClick = {changePageRender}>Welcome</button>
-        <Link to={"/myaccount"}>
-          <button className = "overview_btns" id = {onPage === "account" ? "active_page" : onPage} onClick = {changePageRender}>My Account</button>
-        </Link>
-        
-        <button className = "overview_btns" id = {onPage === "about" ? "active_page" : onPage} onClick = {changePageRender}>About Me</button>
-        <Link to = "/addproject">
-            <button className = "overview_btns" id = {onPage === "artifacts" ? "active_page" : onPage} onClick = {changePageRender}>Portfolio Artifacts</button>
+        <button className = "overview_btns" id = "welcome" onClick = {checkClicked}>Welcome</button>
+        <button className = "overview_btns" id = "profile" onClick = {checkClicked}>My Profile</button>
+        <button className = "overview_btns" id = "about_me" onClick = {checkClicked}>About Me</button>
+        <Link to = {"/projects/"+userId}>
+            <button className = "overview_btns" id = "artifacts" onClick = {checkClicked}>Portfolio Artifacts</button>
         </Link>
        
       </div>
@@ -70,8 +52,10 @@ function OverviewPage() {
   );
 }
 
-function SignOut() {
-  console.log("user has signed out");
-}
+const mapStateToProps = (state) => {
+  return {
+      auth:state.firebase.auth
+  };
+};
 
-export default OverviewPage;
+export default connect(mapStateToProps)(OverviewPage);

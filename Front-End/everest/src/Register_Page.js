@@ -2,59 +2,92 @@ import React, { useState } from "react";
 import "./Register_Page.css";
 import EntryBox from "./Generic_Components/Entry_Box";
 import animateComponents from "./Generic_Components/Page_Animations";
-import firebase from './Firebase';
+import firebase from "./Firebase";
 
 function RegisterPage() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [pwd, setPwd] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+  const updateFields = (e) => {
+    let fieldValue = e.target.value;
+    if (e.target.id === "first_name") {
+      setFirstName(fieldValue);
+    } else if (e.target.id === "last_name") {
+      setLastName(fieldValue);
+    } else if (e.target.id === "reg_email_entry") {
+      setEmail(fieldValue);
+    } else if (e.target.id === "reg_password_entry") {
+      setPwd(fieldValue);
+    } else {
+      setConfirmPassword(fieldValue);
+    }
+  };
 
-    const updateFields = e => {
-    	let fieldValue = e.target.value; 
-      if (e.target.id === "first_name") { setFirstName(fieldValue); }
-      else if (e.target.id === "last_name") { setLastName(fieldValue); }
-      else if (e.target.id === "reg_email_entry") { setEmail(fieldValue); }
-      else if (e.target.id === "reg_password_entry") { setPwd(fieldValue); }
-    	else { setConfirmPassword(fieldValue); }
+  const fieldAuthentications = () => {
+    let auth = firebase.auth();
+    //check fields are filled out
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      pwd === "" ||
+      confirmPassword === "" ||
+      email === ""
+    ) {
+      alert("Please fill all required fields");
+      return;
     }
 
-    const fieldAuthentications = () => {
-      console.log(firstName, lastName, email, pwd, confirmPassword);
-      let auth = firebase.auth();
-		  auth.createUserWithEmailAndPassword(email, pwd).then(()=>
-        firebase.functions().httpsCallable('user-add')(
-          {
-            "userId": firebase.auth().currentUser.uid,
-            "name": `${firstName} ${lastName}`,
-            "bio": "",
-            "email":email
-          }
-        )
-      ).catch(function(error) {
-			  var errorMessage = error.message;
-			  window.alert('Error : ' + errorMessage);
-		  });
+    //check if password confirmation matches
+    if (pwd !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
     }
 
-    return (
-      <div className = "register_page">
-        <div>
-          <div className = "switch_to_login_container">
-            <h2 id = "have_an_account">Have an Account ?</h2>
-            <button id = "login_btn" onClick = {(e) => animateComponents(e, "register_page", 
-						"login_page", 0.55, 0.18)}>Login</button>
-          </div>
-          <div className = "register_container">
-            <h2 id = "register_header">Register</h2>
-            <AllRegisterFields updateFields = {updateFields} authenticate = {fieldAuthentications}/>
-          </div>
+    //create user auth and sign user in
+    auth
+      .createUserWithEmailAndPassword(email, pwd)
+      .then((res) => {
+        firebase.functions().httpsCallable("user-add")({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          userId: res.user.uid,
+        });
+        return res.user;
+      })
+      .then((user) => {
+        user.sendEmailVerification();
+      })
+      .catch((e) => window.alert(e));
+  };
+
+  return (
+    <div className="register_page">
+      <div>
+        <div className="switch_to_login_container">
+          <h2 id="have_an_account">Have an Account ?</h2>
+          <button
+            id="login_btn"
+            onClick={(e) =>
+              animateComponents(e, "register_page", "login_page", 0.55, 0.18)
+            }
+          >
+            Login
+          </button>
+        </div>
+        <div className="register_container">
+          <h2 id="register_header">Register</h2>
+          <AllRegisterFields
+            updateFields={updateFields}
+            authenticate={fieldAuthentications}
+          />
         </div>
       </div>
-
-    );
+    </div>
+  );
 }
 
 function NameFields(props) {
@@ -81,8 +114,6 @@ function AllRegisterFields(props) {
       <button id = "register" onClick = {props.authenticate}>Register</button>
     </div>
   );
-
 }
-
 
 export default RegisterPage;

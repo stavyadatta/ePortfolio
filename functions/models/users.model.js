@@ -8,9 +8,9 @@ class User {
     
     constructor(user){
         this.dataObject = {
-            name: user.name,
+            firstName: user.firstName,
             email: user.email,
-            bio: user.bio
+            lastName: user.lastName
         }
         this.userId = user.userId
     }
