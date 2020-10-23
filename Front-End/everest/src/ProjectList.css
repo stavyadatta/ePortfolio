@@ -8,7 +8,7 @@
     background: #eee;
   }
 
-.page_container {
+/* .page_container { */
         /* background-image: url("/Images/mountains.jpg"); */
         /* background-repeat: no-repeat; */
         /* background-attachment: fixed;   */
@@ -19,7 +19,7 @@
         /* width: inherit; */
         /* background: #eee; */
         
-    }
+    /* } */
 
 /************************************************* HEADER SECTION **********************************************/
   
@@ -231,3 +231,11 @@
     position: relative;
     top: 30px;
   } */
+
+  .themeColour{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: 100px;
+  }
