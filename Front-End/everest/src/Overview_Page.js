@@ -7,12 +7,17 @@ import Home_Btn from "./Icons/home_btn.svg";
 import About_Btn from "./Icons/about_btn.svg";
 import Signout_Btn from "./Icons/signout_btn.svg";
 
+import { connect } from "react-redux";
+
 import { useSelector } from "react-redux"
 
 import firebase from "./Firebase"
 
 function OverviewPage() {
-  let userProfile = useSelector(state=>state.firebase.profile)
+  let userProfile = useSelector(state=>state.firebase.profile);
+  let userAuth = useSelector(state=>state.firebase.auth);
+
+  let userId = userAuth.uid;
   
   const [selected, setSelected] = useState("");
   const checkClicked = e => { setSelected(e.target.id); console.log(selected); }
@@ -44,7 +49,7 @@ function OverviewPage() {
         <button className = "overview_btns" id = "welcome" onClick = {checkClicked}>Welcome</button>
         <button className = "overview_btns" id = "profile" onClick = {checkClicked}>My Profile</button>
         <button className = "overview_btns" id = "about_me" onClick = {checkClicked}>About Me</button>
-        <Link to = "/addproject">
+        <Link to = {"/projects/"+userId}>
             <button className = "overview_btns" id = "artifacts" onClick = {checkClicked}>Portfolio Artifacts</button>
         </Link>
        
@@ -54,4 +59,10 @@ function OverviewPage() {
   );
 }
 
-export default OverviewPage;
+const mapStateToProps = (state) => {
+  return {
+      auth:state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(OverviewPage);
