@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register_Page.css";
 import EntryBox from "./Generic_Components/Entry_Box";
 import animateComponents from "./Generic_Components/Page_Animations";
-import BindKeyToComponent from "./Generic_Components/Bind_Key_To_Component";
+//import BindKeyToComponent from "./Generic_Components/Bind_Key_To_Component";
 import firebase from "./Firebase";
 
 function RegisterPage() {
