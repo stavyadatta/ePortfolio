@@ -153,6 +153,7 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     cursor: pointer;
     margin-left: 30px;
+    object-fit: cover;
 
     /* margin-top: 50px;
     margin-left: 60px;
