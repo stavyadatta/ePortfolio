@@ -56,19 +56,21 @@ function ProjectEditPage(props) {
       case "descriptionEntry":
         setProjectDescription(fieldValue);
         break;
+      default:
+        break;
     }
   };
 
   const handleHeaderSubmit = () => {
     let ref = firebase.firestore()
-    .collection('projectDetails')
+    .collection('projects')
     .doc(project.id);
     ref.update({projectName:projectTitle});
   }
 
   const handleDescSubmit = () => {
     let ref = firebase.firestore()
-    .collection('projectDetails')
+    .collection('projects')
     .doc(project.id);
     ref.update({projectDesc:projectDescription});
   }
@@ -151,7 +153,7 @@ function ProjectEditPage(props) {
           }}
           onChange={updateField}
         />
-        <SubmitButton submit={handleHeaderSubmit}/>
+        <SubmitButton submit={handleDescSubmit}/>
       </div>
       <ProjectDetailList
         details={details}
@@ -198,6 +200,8 @@ const ProjectDetailEdit = (props) => {
         break;
       case "detailBodyEntry":
         setDetailBody(fieldValue);
+        break;
+      default:
         break;
     }
   };

@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "./Images/project_image.jpg";
@@ -15,6 +16,7 @@ const defaultPalette = {
 function ProjectDetailsPage(props) {
     let project = props.project;
     let details = props.projectDetails;
+    let auth = useSelector(state=>state.firebase.auth)
     
 
     //check if data is loaded
@@ -41,6 +43,15 @@ function ProjectDetailsPage(props) {
 
     return (
         <div className="projectLayout">
+          {()=>{
+            if(project.userId === auth.uid){
+              return (<Link to={"/project/"+props.match.params.id+"/edit"}>Edit</Link>)
+            }else{
+              return;
+            }
+          }}<br/>
+          
+
             <div className="projectHeader" style={headerStyle}>
                 <div className="detailImageWrap">
                     <img className="detailImage" alt="" src={imageUrl} />
