@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register_Page.css";
 import EntryBox from "./Generic_Components/Entry_Box";
 import animateComponents from "./Generic_Components/Page_Animations";
+import BindKeyToComponent from "./Generic_Components/Bind_Key_To_Component";
 import firebase from "./Firebase";
 
 function RegisterPage() {
@@ -63,6 +64,8 @@ function RegisterPage() {
       })
       .catch((e) => window.alert(e));
   };
+  
+  BindKeyToComponent(["Enter", "NumpadEnter"], fieldAuthentications);
 
   return (
     <div className="register_page">
