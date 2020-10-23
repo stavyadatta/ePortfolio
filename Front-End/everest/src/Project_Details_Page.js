@@ -24,13 +24,8 @@ function ProjectDetailsPage(props) {
         return <div>Loading...</div>;
     }
 
-    let postDate = new Date(project.postDate.seconds * 1000);
-    let dateString =
-        postDate.getDay() +
-        "." +
-        postDate.getMonth() +
-        "." +
-        postDate.getFullYear();
+
+    let dateString = getPostDateString(project.postDate);
 
     let imageUrl = project.imgUrl ? project.imgUrl : defaultProjectImage;
     let palette = project.colourPalette?project.colourPalette:defaultPalette;
@@ -69,6 +64,23 @@ function ProjectDetailsPage(props) {
             <ProjectDetailList details={details} style0={detailStyle0} style1={detailStyle1}/>
         </div>
     );
+}
+
+const getPostDateString = (postDate) =>{
+  if(postDate){
+    let date = new Date(postDate * 1000);
+    let dateString =
+      date.getDay() +
+      "." +
+      date.getMonth() +
+      "." +
+      date.getFullYear();
+      return dateString;
+  }else{
+    return "";
+  }
+  
+
 }
 
 const ProjectDetailList = (props) => {

@@ -45,6 +45,9 @@ function ProjectEditPage(props) {
 
   const [projectTitle, setProjectTitle] = useState(props.projectName);
   const [projectDescription, setProjectDescription] = useState(props.projectDesc);
+  const [titleSubmitDisable, setTitleSubmitDisable] = useState(true);
+  const [descSubmitDisable, setDescSubmitDisable] = useState(true);
+
 
 
   const updateField = (e) => {
@@ -53,9 +56,11 @@ function ProjectEditPage(props) {
     switch (id) {
       case "titleEntry":
         setProjectTitle(fieldValue);
+        setTitleSubmitDisable(false);
         break;
       case "descriptionEntry":
         setProjectDescription(fieldValue);
+        setDescSubmitDisable(false);
         break;
       default:
         break;
@@ -65,14 +70,14 @@ function ProjectEditPage(props) {
   const handleHeaderSubmit = () => {
     let ref = firebase.firestore()
     .collection('projects')
-    .doc(project.id);
+    .doc(props.match.params.id);
     ref.update({projectName:projectTitle});
   }
 
   const handleDescSubmit = () => {
     let ref = firebase.firestore()
     .collection('projects')
-    .doc(project.id);
+    .doc(props.match.params.id);
     ref.update({projectDesc:projectDescription});
   }
 
@@ -83,13 +88,7 @@ function ProjectEditPage(props) {
     return <div>Loading...</div>;
   }
 
-  let postDate = new Date(project.postDate.seconds * 1000);
-  let dateString =
-    postDate.getDay() +
-    "." +
-    postDate.getMonth() +
-    "." +
-    postDate.getFullYear();
+  let dateString = getPostDateString(project.postDate);
 
   let imageUrl = project.imgUrl ? project.imgUrl : defaultProjectImage;
   let palette = project.colourPalette ? project.colourPalette : defaultPalette;
@@ -139,7 +138,7 @@ function ProjectEditPage(props) {
           <div className="projectDate" style={dateStyle}>
             {dateString}
           </div>
-          <SubmitButton submit={handleHeaderSubmit}/>
+          <SubmitButton submit={handleHeaderSubmit} disabled={titleSubmitDisable}/>
         </div>
         
       </div>
@@ -159,7 +158,7 @@ function ProjectEditPage(props) {
           }}
           onChange={updateField}
         />
-        <SubmitButton submit={handleDescSubmit}/>
+        <SubmitButton submit={handleDescSubmit} disabled={descSubmitDisable}/>
       </div>
       <ProjectDetailList
         details={details}
@@ -169,6 +168,21 @@ function ProjectEditPage(props) {
       />
     </div>
   );
+}
+
+const getPostDateString = (postDate) =>{
+  if(postDate){
+    let date = new Date(postDate * 1000);
+    let dateString =
+      date.getDay() +
+      "." +
+      date.getMonth() +
+      "." +
+      date.getFullYear();
+      return dateString;
+  }else{
+    return "";
+  }
 }
 
 const ProjectDetailList = (props) => {
@@ -334,7 +348,7 @@ const DefaultDetailEdit = (props) => {
 };
 
 const SubmitButton = (props) => (
-  <button className="projectEditSubmit" onClick={props.submit}>Save</button>
+  <button className="projectEditSubmit" onClick={props.submit} disabled={props.disabled}>Save</button>
 )
 
 const mapStateToProps = (state, ownProps) => {

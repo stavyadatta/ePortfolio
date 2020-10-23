@@ -28,6 +28,7 @@ function ProjectList(props) {
         return (
             <Project 
                 key={project.id}
+                id={project.id}
                 name={project.projectName}
                 description={project.projectDesc}
                 image={project.imgURL}
