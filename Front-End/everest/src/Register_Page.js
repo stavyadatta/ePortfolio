@@ -65,7 +65,7 @@ function RegisterPage() {
       .catch((e) => window.alert(e));
   };
   
-  BindKeyToComponent(["Enter", "NumpadEnter"], fieldAuthentications);
+  //BindKeyToComponent(["Enter", "NumpadEnter"], fieldAuthentications);
 
   return (
     <div className="register_page">
