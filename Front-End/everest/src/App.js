@@ -15,6 +15,7 @@ import ProjectEditPage from "./Project_Edit_Page";
 import Navbar from "./Navbar";
 import projectList from "./ProjectList"
 import verifyPage from "./Verify_Page";
+import MyAccountPage from "./My_Account_Page";
 
 import { useSelector } from "react-redux";
 
@@ -71,6 +72,7 @@ function AuthRoutes() {
   return (
     <Switch>
       <Route path="/profile" component={OverviewPage} />
+      <Route path="/myaccount" component={MyAccountPage} />
       <NavbarRoutes />
       <Redirect to="/profile" />
     </Switch>
