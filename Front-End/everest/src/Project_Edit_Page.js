@@ -90,7 +90,7 @@ function ProjectEditPage(props) {
 
   let dateString = getPostDateString(project.postDate);
 
-  let imageUrl = project.imgUrl ? project.imgUrl : defaultProjectImage;
+  let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
   let palette = project.colourPalette ? project.colourPalette : defaultPalette;
 
   let headerStyle = { background: palette.primary, color: palette.secondary };
