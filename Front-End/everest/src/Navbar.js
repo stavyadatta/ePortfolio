@@ -39,7 +39,7 @@ function LoggedInNavbar(props) {
     return (
         <div className="Navbar">
             <div className="navLogo">
-                <div className="navButton">logogohere</div>
+                <div className="navButton"></div>
             </div>
             <div className="NavbarButtons">
                 <Link to="/">
@@ -57,11 +57,11 @@ function LoggedInNavbar(props) {
             </div>
             <div className="navUser">
                 <div className="navButton">{props.profile.name}</div>
-                <img
+                {/*<img
                     className="navProfilePicture"
                     src={props.imgUrl}
                     alt=""
-                ></img>
+                ></img>*/}
             </div>
         </div>
     );

@@ -41,7 +41,7 @@ function OverviewPage() {
       
       <div className = "page_headers">
         <p>Welcome,</p>
-        <p id = "userName">{userProfile.name}</p>
+        <p id = "userName">{userProfile.firstName}</p>
         <h1 id = "description">Here is a guide to get started</h1>
       </div>
 
