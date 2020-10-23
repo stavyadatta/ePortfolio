@@ -9,10 +9,10 @@ import {
 import "./App.css";
 import LoginPage from "./Login_Page";
 import OverviewPage from "./Overview_Page";
-import Nav from "./Nav";
 import FormPage from "./Form_Page";
 import projectDetailsPage from "./Project_Details_Page";
 import Navbar from "./Navbar";
+import projectList from "./ProjectList"
 import verifyPage from "./Verify_Page";
 
 import { useSelector } from "react-redux";
@@ -81,9 +81,9 @@ function NavbarRoutes() {
     <div>
       <Navbar />
       <Switch>
-        <Route path="/projects/:uid" component={Nav} />
         <Route path="/form" component={FormPage} />
         <Route path="/project/:id" component={projectDetailsPage} />
+        <Route path="/projects/:userId" component={projectList} />
         <Redirect to="/profile" />
       </Switch>
     </div>
@@ -104,6 +104,7 @@ function UnAuthRoutes() {
     <Switch>
       <Route path="/login" component={LoginPage} />
       <Route path="/project/:id" component={projectDetailsPage} />
+      <Route path="/projects/:userId" component={projectList} />
       <Redirect to="/login" />
     </Switch>
   );
