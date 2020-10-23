@@ -19,6 +19,8 @@ function OverviewPage() {
   let userAuth = useSelector(state=>state.firebase.auth);
 
   let userId = userAuth.uid;
+  const [selected, setSelected] = useState("");
+  const checkClicked = e => { setSelected(e.target.id); console.log(selected); }
 
   const handleLogout = function(){ 
     firebase.auth().signOut()
