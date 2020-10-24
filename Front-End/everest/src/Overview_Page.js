@@ -29,7 +29,7 @@ function OverviewPage() {
   return(
     <div className = "profile_overview_page">
       <div className = "background_graphics">
-        <img src={Sun_Image} id = "sun_image" alt="sun"/>
+        <img src={Sun_Image} id = "overview_sun_image" alt="sun"/>
         <img src={Achievement_Image} id = "achievement_image" alt="mountain_achievement"/>
       </div>
       <div className = "buttons">
