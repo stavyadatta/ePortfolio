@@ -12,7 +12,7 @@ import OverviewPage from "./Overview_pages/Overview_Page";
 import FormPage from "./Projects/Form_Page";
 import ProjectDetailsPage from "./Projects/Project_Details_Page";
 import ProjectEditPage from "./Projects/Project_Edit_Page";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import projectList from "./Projects/ProjectList"
 import verifyPage from "./Accounts/Verify_Page";
 import MyAccountPage from "./Accounts/My_Account_Page";
