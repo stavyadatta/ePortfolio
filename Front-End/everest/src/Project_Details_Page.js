@@ -44,27 +44,38 @@ function ProjectDetailsPage(props) {
         }
     }
 
+    const ProjectHeader = () => (
+      <div className="projectHeader" style={headerStyle}>
+          <div className="detailImageWrap">
+              <img className="detailImage" alt="" src={imageUrl} />
+          </div>
+          <div className="projectTitle">
+              {project.projectName}
+              <div className="projectAuthor">{project.authorName}</div>
+              <div className="projectDate" style={dateStyle}>{dateString}</div>
+          </div>
+      </div>
+    )
+
+    const ProjectDescription = () => (
+      <div className="projectDescription" style={descriptionStyle}>
+        <div className="descriptionTitle" style={descriptionStyle}>Description</div>
+        <div className="descriptionBody" style={descriptionStyle}>{project.projectDesc}</div>
+      </div>
+    )
+
     return (
         <div className="projectLayout">
           <MaybeEditButton/>
-            <div className="projectHeader" style={headerStyle}>
-                <div className="detailImageWrap">
-                    <img className="detailImage" alt="" src={imageUrl} />
-                </div>
-                <div className="projectTitle">
-                    {project.projectName}
-                    <div className="projectAuthor">{project.authorName}</div>
-                    <div className="projectDate" style={dateStyle}>{dateString}</div>
-                </div>
-            </div>
-            <div className="projectDescription" style={descriptionStyle}>
-                <div className="descriptionTitle" style={descriptionStyle}>Description</div>
-                <div className="descriptionBody" style={descriptionStyle}>{project.projectDesc}</div>
-            </div>
-            <ProjectDetailList details={details} style0={detailStyle0} style1={detailStyle1}/>
+          <ProjectHeader/>
+          <ProjectDescription/>
+            
+          <ProjectDetailList details={details} style0={detailStyle0} style1={detailStyle1}/>
         </div>
     );
 }
+
+
 
 const getPostDateString = (postDate) =>{
   if(postDate){

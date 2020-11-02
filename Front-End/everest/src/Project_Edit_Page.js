@@ -83,20 +83,21 @@ function ProjectEditPage(props) {
   }
 
   const handleAddDetail = () => {
+    let nDetails = project.nDetails?project.nDetails:0;
     //Add detail document
     firebase.firestore()
     .collection("projectDetails")
     .add({
       projectId:props.match.params.id,
       type:"default",
-      position:project.nDetails
+      position:nDetails,
     })
 
     //update project
     firebase.firestore()
     .collection('projects')
     .doc(props.match.params.id)
-    .update({nDetails:project.nDetails+1})
+    .update({nDetails:nDetails+1})
   }
 
   let classes = useStyles();
@@ -122,40 +123,38 @@ function ProjectEditPage(props) {
 
   const DoneEditButton = () => {
       return(<Link id="editProjectButton" to={"/project/"+props.match.params.id}><div id="editProjectButton">Done</div></Link>)
-}
+  }
 
-  return (
-    <div className="projectLayout">
-      <DoneEditButton/>
-      <div className="projectHeader" style={headerStyle}>
+  const ProjectHeader = () => (
+    <div className="projectHeader" style={headerStyle}>
         <div className="detailImageWrap">
           <img className="detailImage" alt="" src={imageUrl} />
         </div>
         <div className="projectTitle">
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField
-              id="titleEntry"
-              label="Project Title"
-              defaultValue={project.projectName}
-              variant="filled"
-              multiline
-              onChange={updateField}
-              InputProps={{
-                classes: {
-                  input: classes.input,
-                },
-              }}
-            />
-          </form>
+          <TextField
+            id="titleEntry"
+            label="Project Title"
+            defaultValue={project.projectName}
+            variant="filled"
+            multiline
+            onChange={updateField}
+            InputProps={{
+              classes: {
+                input: classes.input,
+              },
+            }}
+          />
           <div className="projectAuthor">{project.authorName}</div>
           <div className="projectDate" style={dateStyle}>
             {dateString}
           </div>
           <SubmitButton submit={handleHeaderSubmit} disabled={titleSubmitDisable}/>
         </div>
-        
       </div>
-      <div className="projectDescription" style={descriptionStyle}>
+  )
+
+  const ProjectDescription = () => (
+    <div className="projectDescription" style={descriptionStyle}>
         <div className="descriptionTitle" style={descriptionStyle}>
           Description
         </div>
@@ -173,6 +172,13 @@ function ProjectEditPage(props) {
         />
         <SubmitButton submit={handleDescSubmit} disabled={descSubmitDisable}/>
       </div>
+  )
+
+  return (
+    <div className="projectLayout">
+      <DoneEditButton/>
+      <ProjectHeader/>
+      <ProjectDescription/>      
       <ProjectDetailList
         details={details}
         style0={detailStyle0}
@@ -276,7 +282,6 @@ const RightImgProjectDetailEdit = (props) => {
       <TextField
         id="detailTitleEntry"
         defaultValue={props.detail.title}
-        color="secondary"
         variant="filled"
         onChange={updateField}
       />
@@ -310,7 +315,6 @@ const LeftImgProjectDetailEdit = (props) => {
       <TextField
         id="detailTitleEntry"
         defaultValue={props.detail.title}
-        color="secondary"
         variant="filled"
         onChange={updateField}
       />
@@ -344,7 +348,6 @@ const DefaultDetailEdit = (props) => {
       <TextField
         id="detailTitleEntry"
         defaultValue={props.detail.title}
-        color="secondary"
         variant="filled"
         onChange={updateField}
       />
