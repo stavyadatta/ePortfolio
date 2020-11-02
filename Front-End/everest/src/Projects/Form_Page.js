@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
-import firebase from "./Firebase";
+import firebase from "../Firebase";
 import {useSelector} from "react-redux";
 
 

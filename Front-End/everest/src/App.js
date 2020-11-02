@@ -8,12 +8,12 @@ import {
 
 import "./App.css";
 import LoginPage from "./Login_Page";
-import OverviewPage from "./Overview_Page";
-import FormPage from "./Form_Page";
-import ProjectDetailsPage from "./Project_Details_Page";
-import ProjectEditPage from "./Project_Edit_Page";
+import OverviewPage from "./Overview_pages/Overview_Page";
+import FormPage from "./Projects/Form_Page";
+import ProjectDetailsPage from "./Projects/Project_Details_Page";
+import ProjectEditPage from "./Projects/Project_Edit_Page";
 import Navbar from "./Navbar";
-import projectList from "./ProjectList"
+import projectList from "./Projects/ProjectList"
 import verifyPage from "./Verify_Page";
 import MyAccountPage from "./My_Account_Page";
 
