@@ -6,12 +6,10 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import {
   makeStyles,
-  createMuiTheme,
-  ThemeProvider,
 } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-import "./Project_Edit_Page.css";
+import "./Project_Details_Page.css";
 import defaultProjectImage from "./Images/project_image.jpg";
 
 const defaultPalette = {
@@ -36,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
   },
   resize: {
     fontSize: "small",
+  },
+  input: {
+    color: "white",
   },
 }));
 
@@ -81,6 +82,23 @@ function ProjectEditPage(props) {
     ref.update({projectDesc:projectDescription});
   }
 
+  const handleAddDetail = () => {
+    //Add detail document
+    firebase.firestore()
+    .collection("projectDetails")
+    .add({
+      projectId:props.match.params.id,
+      type:"default",
+      position:project.nDetails
+    })
+
+    //update project
+    firebase.firestore()
+    .collection('projects')
+    .doc(props.match.params.id)
+    .update({nDetails:project.nDetails+1})
+  }
+
   let classes = useStyles();
 
   //check if data is loaded
@@ -102,16 +120,8 @@ function ProjectEditPage(props) {
   let detailStyle0 = { background: palette.detail, color: palette.secondary };
   let detailStyle1 = { background: palette.secondary, color: palette.detail };
 
-  const theme = createMuiTheme({
-    palette: {
-      primary: { main: palette.primary },
-      secondary: { main: palette.secondary },
-      accent: { main: palette.detail },
-    },
-  });
-
   const DoneEditButton = () => {
-      return(<Link id="doneEditProjectButton" to={"/project/"+props.match.params.id}><div id="doneEditProjectButton">Done</div></Link>)
+      return(<Link id="editProjectButton" to={"/project/"+props.match.params.id}><div id="editProjectButton">Done</div></Link>)
 }
 
   return (
@@ -123,16 +133,19 @@ function ProjectEditPage(props) {
         </div>
         <div className="projectTitle">
           <form className={classes.root} noValidate autoComplete="off">
-            <ThemeProvider theme={theme}>
-              <TextField
-                id="titleEntry"
-                label="Project Title"
-                defaultValue={project.projectName}
-                color="secondary"
-                variant="filled"
-                onChange={updateField}
-              />
-            </ThemeProvider>
+            <TextField
+              id="titleEntry"
+              label="Project Title"
+              defaultValue={project.projectName}
+              variant="filled"
+              multiline
+              onChange={updateField}
+              InputProps={{
+                classes: {
+                  input: classes.input,
+                },
+              }}
+            />
           </form>
           <div className="projectAuthor">{project.authorName}</div>
           <div className="projectDate" style={dateStyle}>
@@ -166,6 +179,7 @@ function ProjectEditPage(props) {
         style1={detailStyle1}
         classes={classes}
       />
+      <AddProjectDetailButton add={handleAddDetail}/>
     </div>
   );
 }
@@ -185,6 +199,10 @@ const getPostDateString = (postDate) =>{
   }
 }
 
+
+/*****************************************************************************
+Project Details
+*****************************************************************************/
 const ProjectDetailList = (props) => {
   let classes = props.classes;
   return props.details.map((detail) => {
@@ -208,8 +226,6 @@ const ProjectDetailEdit = (props) => {
 
   const [detailTitle, setDetailTitle] = useState(detail.title);
   const [detailBody, setDetailBody] = useState(detail.text);
-  console.log(detailTitle);
-  console.log(detailBody);
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -346,6 +362,10 @@ const DefaultDetailEdit = (props) => {
     </div>
   );
 };
+
+const AddProjectDetailButton = (props) => (
+  <button className="addProjectDetail" onClick={props.add}>Add Detail</button>
+)
 
 const SubmitButton = (props) => (
   <button className="projectEditSubmit" onClick={props.submit} disabled={props.disabled}>Save</button>
