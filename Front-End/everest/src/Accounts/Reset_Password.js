@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Reset_Password.css";
-import SmallBtn from "./Generic_Components/Small_Btn";
-import animateComponents from "./Generic_Components/Page_Animations";
-import EntryBox from "./Generic_Components/Entry_Box";
-import Login_Unhovered from "./Icons/login_btns/login_unhovered.png";
-import Login_Hovered from "./Icons/login_btns/login_hovered.png";
-import firebase from "./Firebase";
+import SmallBtn from "../Generic_Components/Small_Btn";
+import animateComponents from "../Generic_Components/Page_Animations";
+import EntryBox from "../Generic_Components/Entry_Box";
+import Login_Unhovered from "../Icons/login_btns/login_unhovered.png";
+import Login_Hovered from "../Icons/login_btns/login_hovered.png";
+import firebase from "../Firebase";
 
 function RetrievePassword() {
   const [email, setEmail] = useState("");

@@ -7,15 +7,15 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import LoginPage from "./Login_Page";
+import LoginPage from "./Accounts/Login_Page";
 import OverviewPage from "./Overview_pages/Overview_Page";
 import FormPage from "./Projects/Form_Page";
 import ProjectDetailsPage from "./Projects/Project_Details_Page";
 import ProjectEditPage from "./Projects/Project_Edit_Page";
 import Navbar from "./Navbar";
 import projectList from "./Projects/ProjectList"
-import verifyPage from "./Verify_Page";
-import MyAccountPage from "./My_Account_Page";
+import verifyPage from "./Accounts/Verify_Page";
+import MyAccountPage from "./Accounts/My_Account_Page";
 
 import { useSelector } from "react-redux";
 
