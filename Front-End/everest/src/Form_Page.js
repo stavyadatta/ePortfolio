@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
-import {Link} from "react-router-dom";
 import firebase from "./Firebase";
-import {connect, useSelector} from "react-redux";
-import projectList from "./ProjectList";
+import {useSelector} from "react-redux";
 
 
 // import { Link } from "react-router-dom";
@@ -25,7 +23,7 @@ function FormPage(props) {
   const [imageAsFile, setImageAsFile] = useState('');
   //const [imageAsUrl, setImageAsUrl] = useState(allInputs);
 
-  if (isLoading == true) {
+  if (isLoading === true) {
     return <div>Loading...</div>}
   else if (isLoading === 'submitted') {
     window.location = '/projects' + userId;
