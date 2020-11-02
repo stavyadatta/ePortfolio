@@ -45,7 +45,7 @@ function ProjectDetailsPage(props) {
     }
 
     const ProjectHeader = () => (
-      <div className="projectHeader" style={headerStyle}>
+      <div className="projectDetail" id="header" style={headerStyle}>
           <div className="detailImageWrap">
               <img className="detailImage" alt="" src={imageUrl} />
           </div>
@@ -58,10 +58,12 @@ function ProjectDetailsPage(props) {
     )
 
     const ProjectDescription = () => (
-      <div className="projectDescription" style={descriptionStyle}>
-        <div className="descriptionTitle" style={descriptionStyle}>Description</div>
-        <div className="descriptionBody" style={descriptionStyle}>{project.projectDesc}</div>
-      </div>
+      <div className="projectDetail" style={descriptionStyle}>
+        <div className="detailTitle">Description</div>
+        <div className="projectDetailContent" >
+            <div className="detailText">{project.projectDesc}</div>
+        </div>
+    </div>
     )
 
     return (

@@ -126,7 +126,7 @@ function ProjectEditPage(props) {
   }
 
   const ProjectHeader = () => (
-    <div className="projectHeader" style={headerStyle}>
+    <div className="projectDetail" id="header" style={headerStyle}>
         <div className="detailImageWrap">
           <img className="detailImage" alt="" src={imageUrl} />
         </div>
@@ -154,8 +154,8 @@ function ProjectEditPage(props) {
   )
 
   const ProjectDescription = () => (
-    <div className="projectDescription" style={descriptionStyle}>
-        <div className="descriptionTitle" style={descriptionStyle}>
+    <div className="projectDetail" style={descriptionStyle}>
+        <div className="detailTitle" style={descriptionStyle}>
           Description
         </div>
         <TextField
