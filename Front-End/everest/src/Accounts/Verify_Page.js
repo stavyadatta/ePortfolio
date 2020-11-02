@@ -1,7 +1,7 @@
 import React from "react";
 import "./Verify_Page.css"
-import Signout_Btn from "./Icons/signout_btn.svg";
-import firebase from "./Firebase"
+import Signout_Btn from "../Icons/signout_btn.svg";
+import firebase from "../Firebase"
 
 
 function verifyPage(props){
