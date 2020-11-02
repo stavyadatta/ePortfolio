@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
+import {Link} from "react-router-dom";
 import firebase from "./Firebase";
 import {connect, useSelector} from "react-redux";
+import projectList from "./ProjectList";
+
 
 // import { Link } from "react-router-dom";
 // import { withRouter } from "react-router-dom";
@@ -23,7 +26,9 @@ function FormPage(props) {
   //const [imageAsUrl, setImageAsUrl] = useState(allInputs);
 
   if (isLoading == true) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>}
+  else if (isLoading === 'submitted') {
+    window.location = '/projects' + userId;
   }
   const updateField = (e) => {
 
@@ -107,7 +112,7 @@ async function projectObjectDetails(firebaseURL) {
       console.log('snapshot');
       const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
       await projectObjectDetails(firebaseUrl)
-      setLoading(false);
+      setLoading('submitted');
       alert("PROJECT HAS BEEN ADDED");
     })
   }
