@@ -148,7 +148,7 @@ function ProjectEditPage(props) {
         </div>
         <TextField
           className={classes.bodyText}
-          id="projectDescriptionEdit"
+          id="descriptionEntry"
           multiline
           defaultValue={project.projectDesc}
           InputProps={{
