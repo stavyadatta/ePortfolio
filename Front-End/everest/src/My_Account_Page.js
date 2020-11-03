@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import "./My_Account_Page.css";
 import animateComponents from "./Generic_Components/Page_Animations";
 import HeaderEntry from "./Generic_Components/Entry_With_Header";
@@ -90,7 +91,9 @@ function MyAccountPage() {
 		<div className = "account_page">
 			<h1 id = "account_header">My Account</h1>
             <SetBackground />
-			<img src = {Back_Icon} id = "back_icon" alt = "Back"/>
+			<Link to = "/profile">
+				<img src = {Back_Icon} id = "back_icon" alt = "Back"/>
+			</Link>
 			<div className = "nav_btns">
 				<img src = {Home} id = "home_icon" alt = "home"/>
 				<img src = {About} id = "about_icon" alt = "about"/>
