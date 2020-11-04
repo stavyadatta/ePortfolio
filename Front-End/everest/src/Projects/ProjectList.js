@@ -6,6 +6,16 @@ import Project from "../Generic_Components/Project";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
+// import style1 from "./projectList.css";
+// import style2 from "./projectList2.css";
+
+
+// allStyles= []
+// allstules[0]= "style 1"
+
+// function changeStyle(){
+//     allstyles[0]= "style2"
+// }
 
 function ProjectList(props) {
 
@@ -58,7 +68,7 @@ function ProjectList(props) {
 
         return (
 
-            <div className="themeColour">
+            <div className="themeColour" /** className={allstyle[0].themeColour} */> 
                 <form>
                     Select Theme Colour:
                     <select id="colourPalette" style={{width:"200px"}}>
