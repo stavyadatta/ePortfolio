@@ -26,7 +26,7 @@ function FormPage(props) {
   if (isLoading === true) {
     return <div>Loading...</div>}
   else if (isLoading === 'submitted') {
-    window.location = '/projects' + userId;
+    window.location = '/projects/' + userId;
   }
   const updateField = (e) => {
 
