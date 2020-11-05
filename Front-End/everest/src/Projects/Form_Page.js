@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Form_Page.css";
 //import firebase from "../Firebase";
 import {useSelector} from "react-redux";
-import firebaseUpload from "../storageUpload"
+import firebaseUpload from "../storageFirebaseUpload"
 
 
 // import { Link } from "react-router-dom";
@@ -68,7 +68,7 @@ function FormPage(props) {
     };
 
     await firebaseUpload(imageAsFile, "project-add", projectObjects);
-    alert("Helloooo");
+    alert("Project has been submitted");
     setLoading("submitted");
   }
 
