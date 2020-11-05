@@ -59,7 +59,7 @@ function FormPage(props) {
   const handleFireBaseUpload = async e => {
     e.preventDefault();
     
-    const projectObjects = {
+    const projectObject = {
       userId: userId,
       projectName: pName,
       projectDesc: pDesc,
@@ -67,7 +67,7 @@ function FormPage(props) {
       projectBody: pBody
     };
 
-    await firebaseUpload(imageAsFile, "project-add", projectObjects);
+    await firebaseUpload(imageAsFile, "project-add", projectObject);
     alert("Project has been submitted");
     setLoading("submitted");
   }
