@@ -9,34 +9,17 @@ import firebase from "./Firebase"
 */
 async function firebaseUpload(imageAsFile, firebaseFunction, uploadObj) {
     console.log("hello")
-    var uploadTask = '';
     var storage = firebase.storage();
-    const re = /(?:\.([^.]+))?$/;
-    const ext = re.exec(imageAsFile.name)[1];
     
     if(imageAsFile === '' ) {
         await projectObjectDetails(undefined, firebaseFunction, uploadObj);
-        alert("PROJECT HAS BEEN ADDED")                                                                                                                 
         return;
     }
     console.log('hello1')
-    uploadTask = storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile);
-    // if(ext === 'jpg' || ext === 'png') {
-    //     uploadTask = storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile);
-    //     console.log('/pictures/${imageAsFile.name}')
-    // } else {
-    //     uploadTask = storage.ref(`/files/${imageAsFile.name}`).put(imageAsFile);
-    // }
+    await storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile);
     
-    return await uploadTask.on('state_changed', async snapshot => {
-        console.log(snapshot)
-    }, err => {
-        console.log(err)
-    }, async () => {
-        console.log('snapshot');
-        const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
-        await projectObjectDetails(firebaseUrl, firebaseFunction, uploadObj)
-    })
+    const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
+    await projectObjectDetails(firebaseUrl, firebaseFunction, uploadObj)
 }
 
 async function projectObjectDetails(firebaseURL,firebaseFunction, uploadObj) { 
