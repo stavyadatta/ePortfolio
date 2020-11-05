@@ -15,11 +15,19 @@ async function firebaseUpload(imageAsFile, firebaseFunction, uploadObj) {
         await projectObjectDetails(undefined, firebaseFunction, uploadObj);
         return;
     }
-    await storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile);
+    await storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile).catch(err => {
+        throw err;
+    });
     
     // getting the url and adding it to firebase using projectObjectDetails function
-    const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
+    const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL()
+        .catch(err => {
+            throw err;
+    });
     await projectObjectDetails(firebaseUrl, firebaseFunction, uploadObj)
+        .catch(err => {
+            throw err;
+        });
 }
 
 async function projectObjectDetails(firebaseURL,firebaseFunction, uploadObj) { 
