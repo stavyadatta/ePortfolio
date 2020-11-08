@@ -1,0 +1,89 @@
+* { font-family: "Karla"; }
+h2 { 
+    font-weight: bold;
+    font-size: 26px; 
+    color: white;
+}
+
+.register_page {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to left, #FFFFFF 50%, #082F4E 50%);
+    display: none;
+    opacity: 0;
+}
+
+#login_btn {
+    border-radius: 50px;
+    width: 213px;
+    height: 30px;
+    padding-bottom: 1px;
+    border: 3px solid white;
+    background-color: #082F4E;
+    color: white;
+    position: absolute;
+    left: 1px;
+    top: 57px;
+    outline: none;
+}
+
+#login_btn:hover {
+    background-color: white;
+    color: #082F4E;
+}
+
+.switch_to_login_container {
+    position: absolute;
+    left: 16%;
+    top: 47.5%;
+}
+
+#register_header {
+    font-size: 29px;
+    color: #082F4E;
+}
+
+#first_name, #last_name { width: 237px; }
+
+.name_fields {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 15px;
+}
+
+.register_fields {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    position: absolute;
+    top: 199.5%;
+    left: 2%;
+}
+
+#register {
+    border-radius: 50px;
+    width: 215px;
+    height: 26px;
+    padding-bottom: 1px;
+    border: 1px solid #082F4E;
+    background-color: white;
+    color: #082F4E;
+    position: absolute;
+    top: 122.8%;
+    outline: none;
+}
+  
+#register:hover {
+    background-color: #082F4E;
+    color: white;
+    border: 1px solid #082F4E;
+}
+
+.register_container {
+    position: absolute;
+    left: 56.6%;
+    top: 28.8%;
+}
+

@@ -5,7 +5,8 @@ class EntryBox extends Component {
 	render() {
 		return(
 			<input id = {this.props.id} type = {this.props.textType} 
-			placeholder = {this.props.default} onChange = {this.props.onChange} />
+			placeholder = {this.props.default} onChange = {this.props.onChange} 
+			readOnly = {this.props.readonly}/>
 		);
 	}
 }

@@ -17,8 +17,7 @@ const composeEnhancers = process.env.NODE_ENV === "development"
 const store = createStore(
     rootReducer, 
     composeEnhancers(
-        applyMiddleware(thunk.withExtraArgument(getFirebase, getFirestore))
-    )
+        applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore}))  )
 );
 
 const rrfconfig={
