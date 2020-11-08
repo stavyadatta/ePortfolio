@@ -25,7 +25,7 @@
   
     #project_list_header {
         background-color: #082f4e;
-        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
+        /* box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5); */
         display: flex;
         width: 100vw;
         /* height: 17vh; */
