@@ -133,7 +133,7 @@ p {
 	right: 52%;
 	padding: 35px;
 	border: 9px groove rgba(255, 255, 255, 0);
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.137), 0 6px 20px 0 rgba(0, 0, 0, 0.11);
+	box-shadow: 0 4px 8px 0 rgba(248, 241, 241, 0.137), 0 6px 20px 0 rgba(0, 0, 0, 0.11);
 	text-align: center;
 }
 
@@ -200,10 +200,20 @@ p {
 	right: -1%;
 }
 
-.container:hover .overlay {
+.get_started_icon:hover .overlay {
 	width: 15%;
 	position: absolute;
 	height: 15%;
 	top: 185%;
 	right: -1%;
+}
+
+.user_id {
+	position: absolute;
+	top: 220%;
+}
+
+.project_id {
+	position: absolute;
+	top: 225%;
 }

@@ -16,7 +16,7 @@ import Navbar from "./Navbar/Navbar";
 import projectList from "./Projects/ProjectList"
 import verifyPage from "./Accounts/Verify_Page";
 import MyAccountPage from "./Accounts/My_Account_Page";
-
+import HomePage from "./Home_Page";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -106,7 +106,7 @@ function UnVerifiedRoutes() {
 function UnAuthRoutes() {
   return (
     <Switch>
-      <Route path="/login" component={LoginPage} />
+      <Route path="/login" component={HomePage} />
       <Route path="/project/:id" component={ProjectDetailsPage} />
       <Route path="/projects/:userId" component={projectList} />
       <Redirect to="/login" />

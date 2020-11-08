@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {Component, useState} from "react";
 import "./Home_Page.css";
 import { Link } from "react-router-dom";
 import Homepage_Image from "./Images/homepage_background_img.png";
@@ -11,11 +11,27 @@ import Get_Started_Hovered_Icon from "./Icons/Get_Started_Icon_Hovered.svg";
 import { useSelector } from "react-redux";
 
 import firebase from "./Firebase"
+import EntryBox from "./Generic_Components/Entry_Box";
 
 function HomePage() {
-    const [selected, setSelected] = useState("");
-    const checkClicked = e => { setSelected(e.target.id); console.log(selected); }
+    const [projectId, setProjectId] = useState("");
+    const [userId, setUserId] = useState("");
 
+    //const checkClicked = e => { setSelected(e.target.id); console.log(selected); }
+    const UidFields = (e) => {
+        let fieldValue = e.target.value;
+        setUserId(fieldValue);
+        
+    };
+
+    const PidFields = (e) => {
+        let fieldValue = e.target.value;
+        setProjectId(fieldValue);
+
+    };
+
+
+    
     return (
         <div className="home_page">
             <div className="background_graphics">
@@ -36,10 +52,10 @@ function HomePage() {
             </div>
 
             <div className="header_overview_btns">
-                <button className="overview_btns" id="Home" onClick={checkClicked}>Home</button>
-                <button className="overview_btns" id="About" onClick={checkClicked}>About</button>
-                <button className="overview_btns" id="Explore" onClick={checkClicked}>Explore</button>
-                <button className="overview_btns" id="Login" onClick={checkClicked}>Login</button>
+                <button className="overview_btns" id="Home" >Home</button>
+                <button className="overview_btns" id="About">About</button>
+                <button className="overview_btns" id="Explore">Explore</button>
+                <button className="overview_btns" id="Login">Login</button>
 
             </div>
 
@@ -59,23 +75,39 @@ function HomePage() {
             </div>
 
            
-            <div class="container">
+            <div className="get_started_icon">
                 <img src={Get_Started_Unhovered_Icon} id="Get_Started_Unhovered_Icon" alt="Get_Started_Unhovered_Icon" />
-                    <img src={Get_Started_Hovered_Icon} id="Get_Started_Hovered_Icon" alt="Get_Started_Hovered_Icon"  class ="overlay"/>
-              
+                <img src={Get_Started_Hovered_Icon} id="Get_Started_Hovered_Icon" alt="Get_Started_Hovered_Icon" class="overlay" />
+
             </div>
 
            
+            <div className="user_id">
+                <EntryBox id="user_id" textType="text" default="Enter User Id"
+                    onChange={UidFields} readonly={false} />
+                <button id="submit" onClick={() => {
+                    window.location.href = '/projects/' + userId;
+                }}> Submit</button>
 
+            </div>
+
+            <div className="project_id">
+                <EntryBox id="project_id" textType="text" default="Enter Project Id"
+                    onChange={PidFields} readonly={false} />
+                <button id="submit" onClick={() => {
+                    window.location.href = '/project/' + projectId;
+                }}> Submit</button>
+
+            </div>
+           
         
         </div>
-
-     
-    );
-    
-
    
+    );
+     
 };
+
+
 
 
 export default HomePage;
