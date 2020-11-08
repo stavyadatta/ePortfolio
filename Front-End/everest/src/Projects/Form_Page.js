@@ -11,7 +11,7 @@ function FormPage(props) {
   const [pBody, setPBody] = useState("");
   const [pTags, setPTags] = useState("");      // COULD BE useState([])
   const [isLoading, setLoading] = useState("")
-  //   const [pImg, setPImg] = useState("");    // Should be set when chosen an image file to upload 
+  //   const [pImg, setPImg] = useState("");   
   const userAuth = useSelector(state => state.firebase.auth);
   const userId = userAuth.uid;
  // const allInputs = {imgUrl: ''};
@@ -69,7 +69,7 @@ async function projectObjectDetails(firebaseURL) {
     userId: userId,
     projectName: pName,
     projectDesc: pDesc,
-    imgURL: firebaseURL,    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
+    imgURL: firebaseURL,
     projectTags: pTags.split(","),
     projectBody: pBody
   };
@@ -101,8 +101,12 @@ async function projectObjectDetails(firebaseURL) {
     // async magic goes here...
     if(imageAsFile === '' ) {
       await projectObjectDetails(undefined);
+<<<<<<< Updated upstream
     //   alert("Project Has Been Added")
     //   props.history.push("/projects" + userId);
+=======
+      alert("Project Has Been Added")
+>>>>>>> Stashed changes
       return;
     }
 
@@ -126,8 +130,11 @@ async function projectObjectDetails(firebaseURL) {
       await projectObjectDetails(firebaseUrl)
       setLoading('submitted');
       alert("Project Has Been Added");
+<<<<<<< Updated upstream
       props.history.push("/projects" + userId);
       
+=======
+>>>>>>> Stashed changes
     })
   }
 
@@ -143,10 +150,17 @@ async function projectObjectDetails(firebaseURL) {
 
             <form onSubmit={e => handleSubmit(e)} >
                 <label htmlFor="name_entry">Project Name</label>
+<<<<<<< Updated upstream
                 <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName}  required/>
 
                 <label htmlFor="desc_entry">Project Description</label>
                 <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc}  required/>
+=======
+                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName} required/>
+
+                <label htmlFor="desc_entry">Project Description</label>
+                <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc} required/>
+>>>>>>> Stashed changes
 
                 <label htmlFor="body_entry">Project Body</label>
                 <textarea id="body_entry" name="projectBody" placeholder="Enter Detailed Body of Project" style={{height:"150px"}} onChange={updateField} value={pBody}></textarea>
