@@ -3,13 +3,13 @@ import React, {useState} from "react";
 import "./Login_Page.css";
 import RegisterPage from "./Register_Page";
 import RetrievePassword from "./Reset_Password";
-import animateComponents from "./Generic_Components/Page_Animations";
-import BindKeyToComponent from "./Generic_Components/Bind_Key_To_Component";
-import EntryBox from "./Generic_Components/Entry_Box";
-import SmallBtn from "./Generic_Components/Small_Btn";
-import Login_Unhovered from "./Icons/login_btns/login_unhovered.png";
-import Login_Hovered from "./Icons/login_btns/login_hovered.png";
-import firebase from './Firebase';
+import animateComponents from "../Generic_Components/Page_Animations";
+import BindKeyToComponent from "../Generic_Components/Bind_Key_To_Component";
+import EntryBox from "../Generic_Components/Entry_Box";
+import SmallBtn from "../Generic_Components/Small_Btn";
+import Login_Unhovered from "../Icons/login_btns/login_unhovered.png";
+import Login_Hovered from "../Icons/login_btns/login_hovered.png";
+import firebase from '../Firebase';
 
 
 function LoginPage() {

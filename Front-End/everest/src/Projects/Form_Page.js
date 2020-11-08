@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
-import firebase from "./Firebase";
-import {connect, useSelector} from "react-redux";
+import firebase from "../Firebase";
+import {useSelector} from "react-redux";
+
 
 // import { Link } from "react-router-dom";
 // import { withRouter } from "react-router-dom";
@@ -14,13 +15,19 @@ function FormPage(props) {
   const [pDesc, setPDesc] = useState("");
   const [pBody, setPBody] = useState("");
   const [pTags, setPTags] = useState("");      // COULD BE useState([])
-//   const [pImg, setPImg] = useState("");    // Should be set when chosen an image file to upload 
+  const [isLoading, setLoading] = useState("")
+  //   const [pImg, setPImg] = useState("");    // Should be set when chosen an image file to upload 
   const userAuth = useSelector(state => state.firebase.auth);
   const userId = userAuth.uid;
  // const allInputs = {imgUrl: ''};
   const [imageAsFile, setImageAsFile] = useState('');
   //const [imageAsUrl, setImageAsUrl] = useState(allInputs);
 
+  if (isLoading === true) {
+    return <div>Loading...</div>}
+  else if (isLoading === 'submitted') {
+    window.location = '/projects/' + userId;
+  }
   const updateField = (e) => {
 
     let fieldValue = e.target.value;
@@ -62,6 +69,7 @@ async function projectObjectDetails(firebaseURL) {
 
 
   async function handleSubmit (event) {
+    setLoading(true);
     event.preventDefault();
     await handleFireBaseUpload(event);
   }
@@ -92,6 +100,8 @@ async function projectObjectDetails(firebaseURL) {
       uploadTask = storage.ref(`/files/${imageAsFile.name}`).put(imageAsFile);
     }
 
+    
+
     return await uploadTask.on('state_changed', async snapshot => {
       console.log(snapshot)
     }, err => {
@@ -100,6 +110,7 @@ async function projectObjectDetails(firebaseURL) {
       console.log('snapshot');
       const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
       await projectObjectDetails(firebaseUrl)
+      setLoading('submitted');
       alert("PROJECT HAS BEEN ADDED");
     })
   }
@@ -145,9 +156,9 @@ async function projectObjectDetails(firebaseURL) {
 
 // export default withRouter(FormPage);      //MIGHT NEED LATER
 //export default FormPage;
-const mapStateToProps = (state) => {
-  return {
-      auth:state.firebase.auth
-  };
-};
-export default connect(mapStateToProps)(FormPage)
+// const mapStateToProps = (state) => {
+//   return {
+//       auth:state.firebase.auth
+//   };
+// };
+export default FormPage

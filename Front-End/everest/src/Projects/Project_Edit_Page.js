@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
-import firebase from "./Firebase";
+import firebase from "../Firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import {
@@ -12,7 +12,7 @@ import {
 import TextField from "@material-ui/core/TextField";
 
 import "./Project_Edit_Page.css";
-import defaultProjectImage from "./Images/project_image.jpg";
+import defaultProjectImage from "../Images/project_image.jpg";
 
 const defaultPalette = {
   primary: "#082F4E",

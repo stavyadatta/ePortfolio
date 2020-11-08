@@ -2,17 +2,17 @@ import React, {useState} from "react";
 import "./Overview_Page.css";
 import CreateCarousel from "./Overview_Page_Carousel";
 import {Link} from "react-router-dom";
-import Achievement_Image from "./Images/achievement_bg_image.png";
-import Sun_Image from "./Images/sun_bg_image.png";
-import Home_Btn from "./Icons/home_btn.svg";
-import About_Btn from "./Icons/about_btn.svg";
-import Signout_Btn from "./Icons/signout_btn.svg";
+import Achievement_Image from "../Images/achievement_bg_image.png";
+import Sun_Image from "../Images/sun_bg_image.png";
+import Home_Btn from "../Icons/home_btn.svg";
+import About_Btn from "../Icons/about_btn.svg";
+import Signout_Btn from "../Icons/signout_btn.svg";
 
 import { connect } from "react-redux";
 
 import { useSelector } from "react-redux"
 
-import firebase from "./Firebase"
+import firebase from "../Firebase"
 
 function OverviewPage() {
   let userProfile = useSelector(state=>state.firebase.profile);

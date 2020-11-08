@@ -5,7 +5,7 @@ import { compose } from "redux";
 import { connect, useSelector } from "react-redux";
 
 import "./Project_Details_Page.css";
-import defaultProjectImage from "./Images/project_image.jpg";
+import defaultProjectImage from "../Images/project_image.jpg";
 
 const defaultPalette = {
   primary:"#082F4E",
