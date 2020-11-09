@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-import "./Project_Edit_Page.css";
+import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
 
 const defaultPalette = {
