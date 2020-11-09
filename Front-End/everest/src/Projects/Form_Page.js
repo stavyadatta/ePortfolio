@@ -1,21 +1,15 @@
-  
 import React, { useState } from "react";
 import "./Form_Page.css";
 import firebase from "../Firebase";
 import {useSelector} from "react-redux";
-
-
-// import { Link } from "react-router-dom";
-// import { withRouter } from "react-router-dom";
-// import {Redirect} from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 
 
 function FormPage(props) {
   const [pName, setPName] = useState("");
   const [pDesc, setPDesc] = useState("");
   const [pBody, setPBody] = useState("");
-  const [pTags, setPTags] = useState("");      // COULD BE useState([])
+  const [pTags, setPTags] = useState("");      
   const [isLoading, setLoading] = useState("")
   //   const [pImg, setPImg] = useState("");    // Should be set when chosen an image file to upload 
   const userAuth = useSelector(state => state.firebase.auth);
@@ -24,10 +18,13 @@ function FormPage(props) {
   const [imageAsFile, setImageAsFile] = useState('');
   //const [imageAsUrl, setImageAsUrl] = useState(allInputs);
 
+  let history = useHistory(); // NEWLY ADDED
+
   if (isLoading === true) {
     return <div>Loading...</div>}
   else if (isLoading === 'submitted') {
-    window.location = '/projects/' + userId;
+    // window.location = '/projects/' + userId;
+    history.push('/projects/' + userId);        // NEWLY ADDED - REPLACES WINDOW.LOCATION
   }
   const updateField = (e) => {
 
@@ -58,7 +55,7 @@ async function projectObjectDetails(firebaseURL) {
     userId: userId,
     projectName: pName,
     projectDesc: pDesc,
-    imgURL: firebaseURL,    // NEED to GET THE LINK TO IMAGE FROM PC AND PASTE HERE
+    imgURL: firebaseURL,   
     projectTags: pTags.split(","),
     projectBody: pBody
   };
@@ -162,4 +159,5 @@ async function projectObjectDetails(firebaseURL) {
 //       auth:state.firebase.auth
 //   };
 // };
+
 export default FormPage;
