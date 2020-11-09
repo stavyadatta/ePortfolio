@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import firebase from "./Firebase";
+import firebase from "../Firebase";
 
 import "./Navbar.css";
 

@@ -1,14 +1,15 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import "./My_Account_Page.css";
-import animateComponents from "./Generic_Components/Page_Animations";
-import HeaderEntry from "./Generic_Components/Entry_With_Header";
-import Mountain from "./Images/account_mountain.png";
-import Sun_Image from "./Images/sun_bg_image.png";
-import Back_Icon from "./Icons/back_icon.svg";
-import Home from "./Icons/home_btn.svg";
-import About from "./Icons/about_btn.svg";
-import Signout from "./Icons/signout_btn.svg";
-import firebase from "./Firebase";
+import animateComponents from "../Generic_Components/Page_Animations";
+import HeaderEntry from "../Generic_Components/Entry_With_Header";
+import Mountain from "../Images/account_mountain.png";
+import Sun_Image from "../Images/sun_bg_image.png";
+import Back_Icon from "../Icons/back_icon.svg";
+import Home from "../Icons/home_btn.svg";
+import About from "../Icons/about_btn.svg";
+import Signout from "../Icons/signout_btn.svg";
+import firebase from "../Firebase";
 import { useSelector } from "react-redux"
 
 function MyAccountPage() {
@@ -90,7 +91,9 @@ function MyAccountPage() {
 		<div className = "account_page">
 			<h1 id = "account_header">My Account</h1>
             <SetBackground />
-			<img src = {Back_Icon} id = "back_icon" alt = "Back"/>
+			<Link to = "/profile">
+				<img src = {Back_Icon} id = "back_icon" alt = "Back"/>
+			</Link>
 			<div className = "nav_btns">
 				<img src = {Home} id = "home_icon" alt = "home"/>
 				<img src = {About} id = "about_icon" alt = "about"/>
