@@ -95,7 +95,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 80%;
+    height: 75%;
 }
 
 .halfDetailText{
@@ -116,8 +116,14 @@
     justify-content: center;
     width:50%;
     height:100%;
-    padding: 2rem;
-    padding-left:0em;
+}
+
+.detailImageWrap#right{
+  padding-left:2em;
+}
+
+.detailImageWrap#left{
+  padding-right:2em;
 }
 
 .detailImage{

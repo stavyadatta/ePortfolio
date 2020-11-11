@@ -44,7 +44,7 @@ const RightImgProjectDetail = (props) => {
   return (
     <div className="detailContent">
       <div className="halfDetailText">{props.detail.text}</div>
-      <div className="detailImageWrap">
+      <div className="detailImageWrap" id="right">
         <img
           className="detailImage"
           alt={props.detail.imgText}
@@ -57,7 +57,7 @@ const RightImgProjectDetail = (props) => {
 
 const LeftImgProjectDetail = (props) => (
   <div className="detailContent">
-    <div className="detailImageWrap">
+    <div className="detailImageWrap" id="left">
       <img
         className="detailImage"
         alt={props.detail.imgText}

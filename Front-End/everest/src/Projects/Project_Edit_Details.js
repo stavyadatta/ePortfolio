@@ -30,6 +30,7 @@ const ProjectDetailEdit = (props) => {
 
   const [detailTitle, setDetailTitle] = useState(detail.title);
   const [detailBody, setDetailBody] = useState(detail.text);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
   
   const updateField = (e) => {
@@ -45,9 +46,8 @@ const ProjectDetailEdit = (props) => {
       default:
         break;
     }
+    setSubmitDisabled(false);
   };
-
-  const [type, setType] = useState("default");
 
   const handleChange = (e) => {
     let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
@@ -56,7 +56,9 @@ const ProjectDetailEdit = (props) => {
 
   const handleSubmit = () => {
     let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
-    ref.update({ title: detailTitle, text: detailBody });
+    let title = detailTitle?detailTitle:"";
+    let text = detailBody?detailBody:"";
+    ref.update({ title: title, text: text });
   };
 
   let detailProps = {
@@ -103,7 +105,7 @@ const ProjectDetailEdit = (props) => {
       </div>
       
       {contentLayout}
-      <SubmitButton submit={props.submit} />
+      <SubmitButton submit={handleSubmit} disabled={submitDisabled}/>
     </div>
   );
 };
@@ -121,7 +123,7 @@ const RightImgProjectDetailEdit = (props) => {
         InputProps={{ classes: { input: classes.resize } }}
         onChange={updateField}
       />
-      <div className="detailImageWrap">
+      <div className="detailImageWrap" id="right">
         <img
           className="detailImage"
           alt={props.detail.imgText}
@@ -137,7 +139,7 @@ const LeftImgProjectDetailEdit = (props) => {
   let classes = props.classes;
   return (
     <div className="detailContent">
-      <div className="detailImageWrap">
+      <div className="detailImageWrap" id="left">
         <img
           className="detailImage"
           alt={props.detail.imgText}

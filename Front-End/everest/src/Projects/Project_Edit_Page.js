@@ -154,7 +154,7 @@ const ProjectHeader = (props) => {
 
   return(
     <div className="projectDetail" id="header" style={style}>
-      <div className="detailImageWrap">
+      <div className="detailImageWrap" id="left">
         <img className="detailImage" alt="" src={props.imageUrl} />
       </div>
       <div className="projectTitle">

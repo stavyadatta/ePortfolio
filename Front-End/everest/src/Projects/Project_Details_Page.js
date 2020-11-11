@@ -47,7 +47,7 @@ function ProjectDetailsPage(props) {
 
     const ProjectHeader = () => (
       <div className="projectDetail" id="header" style={headerStyle}>
-          <div className="detailImageWrap">
+          <div className="detailImageWrap" id="left">
               <img className="detailImage" alt="" src={imageUrl} />
           </div>
           <div className="projectTitle">
