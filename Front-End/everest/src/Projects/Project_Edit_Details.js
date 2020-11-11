@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { MenuItem, Select } from "@material-ui/core";
 import firebase from "../Firebase";
-import { SubmitButton } from "./Edit_Submit_Button";
+import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons";
 import defaultProjectImage from "../Images/project_image.jpg";
 
 export const ProjectDetailList = (props) => {
@@ -15,6 +15,7 @@ export const ProjectDetailList = (props) => {
         detail={detail}
         styles={style}
         classes={classes}
+        handleDelete={props.handleDelete}
       ></ProjectDetailEdit>
     );
   });
@@ -28,11 +29,15 @@ const ProjectDetailEdit = (props) => {
 
   let contentLayout = "";
 
+
+  const originalTitle = detail.title;
+  const originalBody = detail.text;
+
   const [detailTitle, setDetailTitle] = useState(detail.title);
   const [detailBody, setDetailBody] = useState(detail.text);
   const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [cancelDisabled, setCancelDisabled] = useState(true);
 
-  
   const updateField = (e) => {
     let fieldValue = e.target.value;
     let id = e.target.id;
@@ -47,9 +52,17 @@ const ProjectDetailEdit = (props) => {
         break;
     }
     setSubmitDisabled(false);
+    setCancelDisabled(false);
   };
 
-  const handleChange = (e) => {
+  const handleCancel = () => {
+    setDetailTitle(originalTitle);
+    setDetailBody(originalBody);
+    setSubmitDisabled(true);
+    setCancelDisabled(true);
+  }
+
+  const handleTypeChange = (e) => {
     let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
     ref.update({ type:e.target.value });
   }
@@ -59,10 +72,18 @@ const ProjectDetailEdit = (props) => {
     let title = detailTitle?detailTitle:"";
     let text = detailBody?detailBody:"";
     ref.update({ title: title, text: text });
+    setSubmitDisabled(true);
+    setCancelDisabled(true);
   };
+
+  const handleDelete = () => {
+    props.handleDelete(detail.id);
+  }
 
   let detailProps = {
     detail: detail,
+    title: detailTitle,
+    body: detailBody,
     styles: style,
     classes: classes,
     imgUrl: imgUrl,
@@ -87,7 +108,7 @@ const ProjectDetailEdit = (props) => {
         <div id="detailTitle">
           <TextField
             id="detailTitleEntry"
-            defaultValue={props.detail.title}
+            defaultValue={detailTitle}
             variant="filled"
             multiline
             fullWidth
@@ -98,17 +119,33 @@ const ProjectDetailEdit = (props) => {
           <SelectDetailType 
             id="detailTypeEntry" 
             type={detail.type} 
-            onChange={handleChange}
+            onChange={handleTypeChange}
           />
         </div>
         
       </div>
       
       {contentLayout}
-      <SubmitButton submit={handleSubmit} disabled={submitDisabled}/>
+      {EditButtons({
+        submit:handleSubmit,
+        cancel:handleCancel, 
+        delete:handleDelete,
+        submitDisabled:submitDisabled,
+        cancelDisabled:cancelDisabled,
+        })}
     </div>
   );
 };
+
+const EditButtons = (props) => {
+  return (
+    <div className="detailEditButtons">
+      {SubmitButton(props)}
+      {CancelButton(props)}
+      {DeleteButton(props)}
+    </div>  
+  )
+}
 
 const RightImgProjectDetailEdit = (props) => {
   let classes = props.classes;
@@ -119,7 +156,7 @@ const RightImgProjectDetailEdit = (props) => {
         className={classes.halfBodyText}
         id="detailBodyEntry"
         multiline
-        defaultValue={props.detail.text}
+        value={props.body}
         InputProps={{ classes: { input: classes.resize } }}
         onChange={updateField}
       />
@@ -150,7 +187,7 @@ const LeftImgProjectDetailEdit = (props) => {
         className={classes.halfBodyText}
         id="detailBodyEntry"
         multiline
-        defaultValue={props.detail.text}
+        value={props.body}
         InputProps={{ classes: { input: classes.resize } }}
         onChange={updateField}
       />
@@ -167,7 +204,7 @@ const DefaultDetailEdit = (props) => {
         className={classes.bodyText}
         id="detailBodyEntry"
         multiline
-        defaultValue={props.detail.text}
+        value={props.body}
         InputProps={{ classes: { input: classes.resize } }}
         onChange={updateField}
       />

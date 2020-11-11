@@ -1,0 +1,26 @@
+.editProjectButton {
+  width: 215px;
+  height: 26px;
+  padding-bottom: 1px;
+  border: 1px solid #082F4E;
+  background-color: white;
+  color: #082F4E;
+  outline: none;
+  margin:0.2em;
+}
+
+.editProjectButton:hover {
+  background-color: #082F4E;
+  color: white;
+  border: 1px solid #082F4E;
+}
+
+.editProjectButton:disabled {
+  background-color: #D4D5D6;
+  color: white;
+  border: 1px solid #D4D5D6;
+}
+
+.editProjectButton#delete{
+  justify-content: right;
+}

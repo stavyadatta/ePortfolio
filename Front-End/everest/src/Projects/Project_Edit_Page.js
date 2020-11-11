@@ -7,8 +7,8 @@ import { connect } from "react-redux";
 import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-import {ProjectDetailList} from "./Project_Edit_Details";
-import {SubmitButton} from "./Edit_Submit_Button";
+import { ProjectDetailList } from "./Project_Edit_Details";
+import { SubmitButton, AddDetailButton} from "./Project_Edit_Buttons";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
@@ -45,7 +45,7 @@ function ProjectEditPage(props) {
   let project = props.project;
   let details = props.projectDetails;
 
-  const handleAddDetail = (e) => {
+  const handleAddDetail = () => {
     let nDetails = project.nDetails?project.nDetails:0;
     //Add detail document
     firebase.firestore()
@@ -61,6 +61,31 @@ function ProjectEditPage(props) {
     .collection('projects')
     .doc(props.match.params.id)
     .update({nDetails:nDetails+1})
+  }
+
+  const handleDeleteDetail = (detailId) => {
+    let nDetails = project.nDetails;
+    let detColRef =firebase.firestore().collection("projectDetails")
+
+    //delete detail
+    detColRef.doc(detailId).delete();
+
+    //update project
+    firebase.firestore()
+    .collection('projects')
+    .doc(props.match.params.id)
+    .update({nDetails:nDetails-1})
+
+    //update other detail positions
+    let pos = 0;
+    details.forEach(detail => {
+      if(detail.id!==detailId){
+        detColRef.doc(detail.id).update({position:pos});
+        pos++;
+      }
+    });
+    
+
   }
 
   let classes = useStyles();
@@ -123,8 +148,9 @@ function ProjectEditPage(props) {
         style0={detailStyle0}
         style1={detailStyle1}
         classes={classes}
+        handleDelete={(id)=>(handleDeleteDetail(id))}
       />
-      <AddProjectDetail add={handleAddDetail}/>
+      <AddDetailButton add={handleAddDetail}/>
     </div>
   );
 }
@@ -175,7 +201,7 @@ const ProjectHeader = (props) => {
         <div className="projectDate" style={props.dateStyle}>
           {dateString}
         </div>
-        <SubmitButton submit={()=>{props.submit(projectTitle)}} disabled={titleSubmitDisable}/>
+        <SubmitButton submit={()=>{props.submit(projectTitle)}} submitDisabled={titleSubmitDisable}/>
       </div>
     </div>
   )
@@ -222,7 +248,7 @@ const ProjectDescription = (props) => {
             onChange={updateField}
           />
         </div>
-        <SubmitButton submit={()=>{props.submit(projectDescription)}} disabled={descSubmitDisable}/>
+        <SubmitButton submit={()=>{props.submit(projectDescription)}} submitDisabled={descSubmitDisable}/>
       </div>
 )
 }
@@ -240,23 +266,6 @@ const getPostDateString = (postDate) =>{
   }else{
     return "";
   }
-}
-
-
-const AddProjectDetail = (props) => {
-  
-  
-  return(
-    <div>
-      
-      <button 
-        className="addProjectDetail" 
-        onClick={props.add} 
-      >
-        Add Detail
-      </button>
-  </div>
-  )
 }
 
 const mapStateToProps = (state, ownProps) => {
