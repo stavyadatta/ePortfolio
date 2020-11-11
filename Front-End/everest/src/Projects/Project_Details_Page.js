@@ -6,6 +6,7 @@ import { connect, useSelector } from "react-redux";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
+import {ProjectDetailList} from "./Project_Details";
 
 const defaultPalette = {
   primary:"#082F4E",
@@ -77,8 +78,6 @@ function ProjectDetailsPage(props) {
     );
 }
 
-
-
 const getPostDateString = (postDate) =>{
   if(postDate){
     let date = new Date(postDate * 1000);
@@ -92,82 +91,7 @@ const getPostDateString = (postDate) =>{
   }else{
     return "";
   }
-  
-
 }
-
-const ProjectDetailList = (props) => {
-    return props.details.map((detail) => {
-        let style = detail.position % 2 === 0 ? props.style0 : props.style1;
-        return (
-            <ProjectDetail
-                key={detail.id}
-                detail={detail}
-                styles={style}
-            ></ProjectDetail>
-        );
-    });
-};
-
-const ProjectDetail = (props) => {
-    let detail = props.detail;
-    let style = props.styles;
-    let res = "";
-    switch (detail.type) {
-        case "right-image":
-            res = <RightImgProjectDetail detail={detail} styles={style} />;
-            break;
-        case "left-image":
-            res = <LeftImgProjectDetail detail={detail} styles={style} />;
-            break;
-        default:
-            res = <DefaultDetail detail={detail} styles={style} />;
-    }
-    return res;
-};
-
-const RightImgProjectDetail = (props) => {
-    return (
-        <div className="projectDetail" style={props.styles}>
-            <div className="detailTitle">{props.detail.title}</div>
-            <div className="projectDetailContent">
-                <div className="halfDetailText">{props.detail.text}</div>
-                <div className="detailImageWrap">
-                    <img
-                        className="detailImage"
-                        alt={props.detail.imgText}
-                        src={props.detail.imgUrl}
-                    />
-                </div>
-            </div>
-        </div>
-    );
-};
-
-const LeftImgProjectDetail = (props) => (
-    <div className="projectDetail" style={props.styles}>
-        <div className="detailTitle">{props.detail.title}</div>
-        <div className="projectDetailContent">
-            <div className="detailImageWrap">
-                <img
-                    className="detailImage"
-                    alt={props.detail.imgText}
-                    src={props.detail.imgUrl}
-                />
-            </div>
-            <div className="halfDetailText">{props.detail.text}</div>
-        </div>
-    </div>
-);
-
-const DefaultDetail = (props) => (
-    <div className="projectDetail" style={props.styles}>
-        <div className="detailTitle">{props.detail.title}</div>
-        <div className="projectDetailContent">
-            <div className="detailText">{props.detail.text}</div>
-        </div>
-    </div>
-);
 
 const mapStateToProps = (state, ownProps) => {
     const id = ownProps.match.params.id;

@@ -4,13 +4,15 @@ import { firestoreConnect } from "react-redux-firebase";
 import firebase from "../Firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import {
-  makeStyles,
-} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+
+import {ProjectDetailList} from "./Project_Edit_Details";
+import {SubmitButton} from "./Edit_Submit_Button";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
+import { MenuItem, Select } from "@material-ui/core";
 
 const defaultPalette = {
   primary: "#082F4E",
@@ -44,52 +46,14 @@ function ProjectEditPage(props) {
   let project = props.project;
   let details = props.projectDetails;
 
-  const [projectTitle, setProjectTitle] = useState(props.projectName);
-  const [projectDescription, setProjectDescription] = useState(props.projectDesc);
-  const [titleSubmitDisable, setTitleSubmitDisable] = useState(true);
-  const [descSubmitDisable, setDescSubmitDisable] = useState(true);
-
-
-
-  const updateField = (e) => {
-    let fieldValue = e.target.value;
-    let id = e.target.id;
-    switch (id) {
-      case "titleEntry":
-        setProjectTitle(fieldValue);
-        setTitleSubmitDisable(false);
-        break;
-      case "descriptionEntry":
-        setProjectDescription(fieldValue);
-        setDescSubmitDisable(false);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleHeaderSubmit = () => {
-    let ref = firebase.firestore()
-    .collection('projects')
-    .doc(props.match.params.id);
-    ref.update({projectName:projectTitle});
-  }
-
-  const handleDescSubmit = () => {
-    let ref = firebase.firestore()
-    .collection('projects')
-    .doc(props.match.params.id);
-    ref.update({projectDesc:projectDescription});
-  }
-
-  const handleAddDetail = () => {
+  const handleAddDetail = (e) => {
     let nDetails = project.nDetails?project.nDetails:0;
     //Add detail document
     firebase.firestore()
     .collection("projectDetails")
     .add({
       projectId:props.match.params.id,
-      type:"default",
+      type:e.target.value,
       position:nDetails,
     })
 
@@ -107,7 +71,6 @@ function ProjectEditPage(props) {
     return <div>Loading...</div>;
   }
 
-  let dateString = getPostDateString(project.postDate);
 
   let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
   let palette = project.colourPalette ? project.colourPalette : defaultPalette;
@@ -125,37 +88,125 @@ function ProjectEditPage(props) {
       return(<Link id="editProjectButton" to={"/project/"+props.match.params.id}><div id="editProjectButton">Done</div></Link>)
   }
 
-  const ProjectHeader = () => (
-    <div className="projectDetail" id="header" style={headerStyle}>
-        <div className="detailImageWrap">
-          <img className="detailImage" alt="" src={imageUrl} />
-        </div>
-        <div className="projectTitle">
-          <TextField
-            id="titleEntry"
-            label="Project Title"
-            defaultValue={project.projectName}
-            variant="filled"
-            multiline
-            onChange={updateField}
-            InputProps={{
-              classes: {
-                input: classes.input,
-              },
-            }}
-          />
-          <div className="projectAuthor">{project.authorName}</div>
-          <div className="projectDate" style={dateStyle}>
-            {dateString}
-          </div>
-          <SubmitButton submit={handleHeaderSubmit} disabled={titleSubmitDisable}/>
-        </div>
-      </div>
-  )
+  const handleHeaderSubmit = (projectTitle) => {
+    let ref = firebase.firestore()
+    .collection('projects')
+    .doc(props.match.params.id);
+    ref.update({projectName:projectTitle});
+  }
 
-  const ProjectDescription = () => (
-    <div className="projectDetail" style={descriptionStyle}>
-        <div className="detailTitle" style={descriptionStyle}>
+  const handleDescSubmit = (projectDescription) => {
+    let ref = firebase.firestore()
+    .collection('projects')
+    .doc(props.match.params.id);
+    ref.update({projectDesc:projectDescription});
+  }
+
+  return (
+    <div className="projectLayout">
+      <DoneEditButton/>
+      <ProjectHeader 
+        style={headerStyle} 
+        dateStyle={dateStyle}
+        project={project} 
+        submit={handleHeaderSubmit}
+        imageUrl={imageUrl} 
+        classes={classes}
+      />
+      <ProjectDescription 
+        style={descriptionStyle} 
+        project={project} 
+        submit={handleDescSubmit}
+        classes={classes}
+      />      
+      <ProjectDetailList
+        details={details}
+        style0={detailStyle0}
+        style1={detailStyle1}
+        classes={classes}
+      />
+      <AddProjectDetail add={handleAddDetail}/>
+    </div>
+  );
+}
+
+const ProjectHeader = (props) => {
+  let project = props.project;
+  let style = props.style;
+  let classes = props.classes;
+  let dateString = getPostDateString(project.postDate);
+
+  const [projectTitle, setProjectTitle] = useState(props.projectName);
+  const [titleSubmitDisable, setTitleSubmitDisable] = useState(true);
+
+  const updateField = (e) => {
+    let fieldValue = e.target.value;
+    let id = e.target.id;
+    switch (id) {
+      case "titleEntry":
+        setProjectTitle(fieldValue);
+        setTitleSubmitDisable(false);
+        break;
+      default:
+        break;
+    }
+  };
+
+
+  return(
+    <div className="projectDetail" id="header" style={style}>
+      <div className="detailImageWrap">
+        <img className="detailImage" alt="" src={props.imageUrl} />
+      </div>
+      <div className="projectTitle">
+        <TextField
+          id="titleEntry"
+          label="Project Title"
+          defaultValue={project.projectName}
+          variant="filled"
+          multiline
+          onChange={updateField}
+          InputProps={{
+            classes: {
+              input: classes.input,
+            },
+          }}
+        />
+        <div className="projectAuthor">{project.authorName}</div>
+        <div className="projectDate" style={props.dateStyle}>
+          {dateString}
+        </div>
+        <SubmitButton submit={()=>{props.submit(projectTitle)}} disabled={titleSubmitDisable}/>
+      </div>
+    </div>
+  )
+}
+
+const ProjectDescription = (props) => {
+  
+  let project = props.project;
+  let style = props.style;
+  let classes = props.classes;
+
+  const [projectDescription, setProjectDescription] = useState(project.projectDesc);
+  const [descSubmitDisable, setDescSubmitDisable] = useState(true);
+
+  const updateField = (e) => {
+    let fieldValue = e.target.value;
+    let id = e.target.id;
+    switch (id) {
+      case "descriptionEntry":
+        setProjectDescription(fieldValue);
+        setDescSubmitDisable(false);
+        break;
+      default:
+        break;
+    }
+  };
+
+  return(
+    <div className="projectDetail" style={style}>
+        <div className="detailTitle" style={style}>
           Description
         </div>
         <TextField
@@ -170,24 +221,9 @@ function ProjectEditPage(props) {
           }}
           onChange={updateField}
         />
-        <SubmitButton submit={handleDescSubmit} disabled={descSubmitDisable}/>
+        <SubmitButton submit={()=>{props.submit(projectDescription)}} disabled={descSubmitDisable}/>
       </div>
-  )
-
-  return (
-    <div className="projectLayout">
-      <DoneEditButton/>
-      <ProjectHeader/>
-      <ProjectDescription/>      
-      <ProjectDetailList
-        details={details}
-        style0={detailStyle0}
-        style1={detailStyle1}
-        classes={classes}
-      />
-      <AddProjectDetailButton add={handleAddDetail}/>
-    </div>
-  );
+)
 }
 
 const getPostDateString = (postDate) =>{
@@ -206,173 +242,34 @@ const getPostDateString = (postDate) =>{
 }
 
 
-/*****************************************************************************
-Project Details
-*****************************************************************************/
-const ProjectDetailList = (props) => {
-  let classes = props.classes;
-  return props.details.map((detail) => {
-    let style = detail.position % 2 === 0 ? props.style0 : props.style1;
-    return (
-      <ProjectDetailEdit
-        key={detail.id}
-        detail={detail}
-        styles={style}
-        classes={classes}
-      ></ProjectDetailEdit>
-    );
-  });
-};
+const AddProjectDetail = (props) => {
+  const [type, setType] = useState("default");
 
-const ProjectDetailEdit = (props) => {
-  let detail = props.detail;
-  let style = props.styles;
-  let classes = props.classes;
-  let res = "";
-
-  const [detailTitle, setDetailTitle] = useState(detail.title);
-  const [detailBody, setDetailBody] = useState(detail.text);
-
-  const updateField = (e) => {
-    let fieldValue = e.target.value;
-    let id = e.target.id;
-    switch (id) {
-      case "detailTitleEntry":
-        setDetailTitle(fieldValue);
-        break;
-      case "detailBodyEntry":
-        setDetailBody(fieldValue);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleSubmit = () => {
-    let ref = firebase.firestore().collection('projectDetails').doc(detail.id);
-    ref.update({title:detailTitle, text:detailBody});
+  const handleChange = (e) => {
+    setType(e.target.value);
   }
-
-  let detailProps = {
-    detail:detail,
-    styles:style,
-    classes:classes,
-    onChange:updateField,
-    submit:handleSubmit,
-  }
-
-  switch (detail.type) {
-    case "right-image":
-      res = RightImgProjectDetailEdit(detailProps);
-      break;
-    case "left-image":
-      res = LeftImgProjectDetailEdit(detailProps)
-      break;
-    default:
-      res = DefaultDetailEdit(detailProps)
-  }
-  return res;
-};
-
-const RightImgProjectDetailEdit = (props) => {
-  let classes = props.classes;
-  let updateField = props.onChange;
-  return (
-    <div className="projectDetail" style={props.styles}>
-      <TextField
-        id="detailTitleEntry"
-        defaultValue={props.detail.title}
-        variant="filled"
-        onChange={updateField}
-      />
-      <div className="projectDetailContent">
-        <TextField
-          className={classes.halfBodyText}
-          id="detailBodyEntry"
-          multiline
-          defaultValue={props.detail.text}
-          InputProps={{ classes: { input: classes.resize } }}
-          onChange={updateField}
-        />
-        <div className="detailImageWrap">
-          <img
-            className="detailImage"
-            alt={props.detail.imgText}
-            src={props.detail.imgUrl}
-          />
-        </div>
-      </div>
-      <SubmitButton submit={props.submit}/>
-    </div>
-  );
-};
-
-const LeftImgProjectDetailEdit = (props) => {
-  let updateField = props.onChange;
-  let classes = props.classes;
-  return (
-    <div className="projectDetail" style={props.styles}>
-      <TextField
-        id="detailTitleEntry"
-        defaultValue={props.detail.title}
-        variant="filled"
-        onChange={updateField}
-      />
-      <div className="projectDetailContent">
-        <div className="detailImageWrap">
-          <img
-            className="detailImage"
-            alt={props.detail.imgText}
-            src={props.detail.imgUrl}
-          />
-        </div>
-        <TextField
-          className={classes.halfBodyText}
-          id="detailBodyEntry"
-          multiline
-          defaultValue={props.detail.text}
-          InputProps={{ classes: { input: classes.resize } }}
-          onChange={updateField}
-        />
-      </div>
-      <SubmitButton submit={props.submit}/>
-    </div>
-  );
-};
-
-const DefaultDetailEdit = (props) => {
-  let updateField = props.onChange;
-  let classes = props.classes;
-  return (
-    <div className="projectDetail" style={props.styles}>
-      <TextField
-        id="detailTitleEntry"
-        defaultValue={props.detail.title}
-        variant="filled"
-        onChange={updateField}
-      />
-      <div className="projectDetailContent">
-        <TextField
-          className={classes.bodyText}
-          id="detailBodyEntry"
-          multiline
-          defaultValue={props.detail.text}
-          InputProps={{ classes: { input: classes.resize } }}
-          onChange={updateField}
-        />
-      </div>
-      <SubmitButton submit={props.submit}/>
-    </div>
-  );
-};
-
-const AddProjectDetailButton = (props) => (
-  <button className="addProjectDetail" onClick={props.add}>Add Detail</button>
-)
-
-const SubmitButton = (props) => (
-  <button className="projectEditSubmit" onClick={props.submit} disabled={props.disabled}>Save</button>
-)
+  
+  return(
+    <div>
+      <Select 
+        label="Type"
+        onChange={handleChange} 
+        value="default"
+      >
+        <MenuItem value="default">Text Only</MenuItem>
+        <MenuItem value="right-image">Right Image</MenuItem>
+        <MenuItem value="left-image">Left Image</MenuItem>
+      </Select>
+      <button 
+        className="addProjectDetail" 
+        onClick={props.add} 
+        value={type}
+      >
+        Add Detail
+      </button>
+  </div>
+  )
+}
 
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
