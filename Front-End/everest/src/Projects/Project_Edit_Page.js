@@ -12,7 +12,6 @@ import {SubmitButton} from "./Edit_Submit_Button";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
-import { MenuItem, Select } from "@material-ui/core";
 
 const defaultPalette = {
   primary: "#082F4E",
@@ -53,7 +52,7 @@ function ProjectEditPage(props) {
     .collection("projectDetails")
     .add({
       projectId:props.match.params.id,
-      type:e.target.value,
+      type:"default",
       position:nDetails,
     })
 
@@ -209,18 +208,20 @@ const ProjectDescription = (props) => {
         <div className="detailTitle" style={style}>
           Description
         </div>
-        <TextField
-          className={classes.bodyText}
-          id="descriptionEntry"
-          multiline
-          defaultValue={project.projectDesc}
-          InputProps={{
-            classes: {
-              input: classes.resize,
-            },
-          }}
-          onChange={updateField}
-        />
+        <div className="detailContent">
+          <TextField
+            className={classes.bodyText}
+            id="descriptionEntry"
+            multiline
+            defaultValue={project.projectDesc}
+            InputProps={{
+              classes: {
+                input: classes.resize,
+              },
+            }}
+            onChange={updateField}
+          />
+        </div>
         <SubmitButton submit={()=>{props.submit(projectDescription)}} disabled={descSubmitDisable}/>
       </div>
 )
@@ -243,27 +244,14 @@ const getPostDateString = (postDate) =>{
 
 
 const AddProjectDetail = (props) => {
-  const [type, setType] = useState("default");
-
-  const handleChange = (e) => {
-    setType(e.target.value);
-  }
+  
   
   return(
     <div>
-      <Select 
-        label="Type"
-        onChange={handleChange} 
-        value="default"
-      >
-        <MenuItem value="default">Text Only</MenuItem>
-        <MenuItem value="right-image">Right Image</MenuItem>
-        <MenuItem value="left-image">Left Image</MenuItem>
-      </Select>
+      
       <button 
         className="addProjectDetail" 
         onClick={props.add} 
-        value={type}
       >
         Add Detail
       </button>

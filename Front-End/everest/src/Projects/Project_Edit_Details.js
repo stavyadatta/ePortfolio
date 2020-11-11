@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
+import { MenuItem, Select } from "@material-ui/core";
 import firebase from "../Firebase";
 import { SubmitButton } from "./Edit_Submit_Button";
+import defaultProjectImage from "../Images/project_image.jpg";
 
 export const ProjectDetailList = (props) => {
   let classes = props.classes;
@@ -22,11 +24,14 @@ const ProjectDetailEdit = (props) => {
   let detail = props.detail;
   let style = props.styles;
   let classes = props.classes;
+  let imgUrl = detail.imgUrl ? detail.imgUrl : defaultProjectImage;
+
   let contentLayout = "";
 
   const [detailTitle, setDetailTitle] = useState(detail.title);
   const [detailBody, setDetailBody] = useState(detail.text);
 
+  
   const updateField = (e) => {
     let fieldValue = e.target.value;
     let id = e.target.id;
@@ -42,6 +47,13 @@ const ProjectDetailEdit = (props) => {
     }
   };
 
+  const [type, setType] = useState("default");
+
+  const handleChange = (e) => {
+    let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
+    ref.update({ type:e.target.value });
+  }
+
   const handleSubmit = () => {
     let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
     ref.update({ title: detailTitle, text: detailBody });
@@ -51,6 +63,7 @@ const ProjectDetailEdit = (props) => {
     detail: detail,
     styles: style,
     classes: classes,
+    imgUrl: imgUrl,
     onChange: updateField,
     submit: handleSubmit,
   };
@@ -68,12 +81,27 @@ const ProjectDetailEdit = (props) => {
 
   return (
     <div className="projectDetail" style={props.styles}>
-      <TextField
-        id="detailTitleEntry"
-        defaultValue={props.detail.title}
-        variant="filled"
-        onChange={updateField}
-      />
+      <div className="detailHead">
+        <div id="detailTitle">
+          <TextField
+            id="detailTitleEntry"
+            defaultValue={props.detail.title}
+            variant="filled"
+            multiline
+            fullWidth
+            onChange={updateField}
+          />
+        </div>
+        <div id="detailType">
+          <SelectDetailType 
+            id="detailTypeEntry" 
+            type={detail.type} 
+            onChange={handleChange}
+          />
+        </div>
+        
+      </div>
+      
       {contentLayout}
       <SubmitButton submit={props.submit} />
     </div>
@@ -84,7 +112,7 @@ const RightImgProjectDetailEdit = (props) => {
   let classes = props.classes;
   let updateField = props.onChange;
   return (
-    <div className="projectDetailContent">
+    <div className="detailContent">
       <TextField
         className={classes.halfBodyText}
         id="detailBodyEntry"
@@ -97,7 +125,7 @@ const RightImgProjectDetailEdit = (props) => {
         <img
           className="detailImage"
           alt={props.detail.imgText}
-          src={props.detail.imgUrl}
+          src={props.imgUrl}
         />
       </div>
     </div>
@@ -108,12 +136,12 @@ const LeftImgProjectDetailEdit = (props) => {
   let updateField = props.onChange;
   let classes = props.classes;
   return (
-    <div className="projectDetailContent">
+    <div className="detailContent">
       <div className="detailImageWrap">
         <img
           className="detailImage"
           alt={props.detail.imgText}
-          src={props.detail.imgUrl}
+          src={props.imgUrl}
         />
       </div>
       <TextField
@@ -132,7 +160,7 @@ const DefaultDetailEdit = (props) => {
   let updateField = props.onChange;
   let classes = props.classes;
   return (
-    <div className="projectDetailContent">
+    <div className="detailContent">
       <TextField
         className={classes.bodyText}
         id="detailBodyEntry"
@@ -144,3 +172,18 @@ const DefaultDetailEdit = (props) => {
     </div>
   );
 };
+
+const SelectDetailType = (props) => {
+  return (
+  <Select 
+      label="Type"
+      onChange={props.onChange} 
+      value={props.type}
+    >
+    <MenuItem value="default">Text Only</MenuItem>
+    <MenuItem value="right-image">Right Image</MenuItem>
+    <MenuItem value="left-image">Left Image</MenuItem>
+  </Select>
+  )
+  
+}

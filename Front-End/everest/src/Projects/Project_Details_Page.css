@@ -67,6 +67,23 @@
   width: 100%;
 }
 
+.detailHead{
+  display: flex;
+  flex-direction: row;
+}
+
+.detailHead #detailTitle{
+  width:70%;
+  justify-self: left;
+}
+
+.detailHead #detailType{
+  width:30%;
+  justify-content: right;
+  display: flex;
+
+}
+
 .detailTitle{
     width:100%;
     padding-bottom:1em;
@@ -74,10 +91,11 @@
     font-size: x-large;
 }
 
-.projectDetailContent{
+.detailContent{
     display: flex;
     flex-direction: row;
-    width: 100%
+    width: 100%;
+    height: 80%;
 }
 
 .halfDetailText{

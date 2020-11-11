@@ -61,7 +61,7 @@ function ProjectDetailsPage(props) {
     const ProjectDescription = () => (
       <div className="projectDetail" style={descriptionStyle}>
         <div className="detailTitle">Description</div>
-        <div className="projectDetailContent" >
+        <div className="detailContent" >
             <div className="detailText">{project.projectDesc}</div>
         </div>
     </div>

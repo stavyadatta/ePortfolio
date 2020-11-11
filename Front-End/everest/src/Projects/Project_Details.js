@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./Project_Details_Page.css";
+import defaultProjectImage from "../Images/project_image.jpg";
 
 export const ProjectDetailList = (props) => {
   return props.details.map((detail) => {
@@ -19,12 +20,14 @@ const ProjectDetail = (props) => {
   let detail = props.detail;
   let style = props.styles;
   let contentLayout = "";
+  let imgUrl = detail.imgUrl ? detail.imgUrl : defaultProjectImage;
+
   switch (detail.type) {
     case "right-image":
-      contentLayout = <RightImgProjectDetail detail={detail}/>;
+      contentLayout = <RightImgProjectDetail detail={detail} imgUrl={imgUrl}/>;
       break;
     case "left-image":
-      contentLayout = <LeftImgProjectDetail detail={detail}/>;
+      contentLayout = <LeftImgProjectDetail detail={detail} imgUrl={imgUrl}/>;
       break;
     default:
       contentLayout = <DefaultDetail detail={detail}/>;
@@ -39,13 +42,13 @@ const ProjectDetail = (props) => {
 
 const RightImgProjectDetail = (props) => {
   return (
-    <div className="projectDetailContent">
+    <div className="detailContent">
       <div className="halfDetailText">{props.detail.text}</div>
       <div className="detailImageWrap">
         <img
           className="detailImage"
           alt={props.detail.imgText}
-          src={props.detail.imgUrl}
+          src={props.imgUrl}
         />
       </div>
     </div>
@@ -53,12 +56,12 @@ const RightImgProjectDetail = (props) => {
 };
 
 const LeftImgProjectDetail = (props) => (
-  <div className="projectDetailContent">
+  <div className="detailContent">
     <div className="detailImageWrap">
       <img
         className="detailImage"
         alt={props.detail.imgText}
-        src={props.detail.imgUrl}
+        src={props.imgUrl}
       />
     </div>
     <div className="halfDetailText">{props.detail.text}</div>
@@ -66,7 +69,7 @@ const LeftImgProjectDetail = (props) => (
 );
 
 const DefaultDetail = (props) => (
-  <div className="projectDetailContent">
+  <div className="detailContent">
     <div className="detailText">{props.detail.text}</div>
   </div>
 );
