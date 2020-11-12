@@ -140,7 +140,7 @@ function UserInfo(props) {
 			onChange = {props.Update} entryID = {props.Editable ? "lname_active" : "lname"} 
 			default = {profile.lastName} readOnly = {true}/>
 
-			<HeaderEntry divClassName = "user_id" header = "User ID:"
+			<HeaderEntry divClassName = "user_id" header = "Search String (Read Only):"
 			entryID = "id" default = {uid} readOnly = {true}/>
 
 			<TemplateSelector Editable = {props.Editable} header = "Portfolio Template:" Update = {props.Update}/>
@@ -149,7 +149,7 @@ function UserInfo(props) {
 			entryID = {props.Editable ? "email_input_active" : "email_input"} default = {profile.email}
 			onChange = {props.Update} readOnly = {true}/>
 
-			<HeaderEntry divClassName = "url_link" header = "Link for Sharing:" 
+			<HeaderEntry divClassName = "url_link" header = "Link for Sharing (Read Only):" 
 			entryID = "url_input" default = {"https://impressive-hall-288310.web.app/projects/"+uid} readOnly = {true}/>
 
 		</div>
