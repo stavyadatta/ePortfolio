@@ -11,9 +11,13 @@
 
 .projectLayout a#editProjectButton{
   position: fixed;
+  color:black;
   bottom: 5vh;
   right: 5vw;
-  
+}
+
+.projectLayout a#editProjectButton:hover{
+  color: whea;
 }
 
 .projectLayout div#editProjectButton{
@@ -25,11 +29,9 @@
   border-radius: 100%;
   border-color: black;
   border: 3px solid;
-  min-width: 50px;
-  min-height: 50px;
-  font-size: 75%;
-  width: 10vh;
-  height: 10vh;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
   bottom: 50px;
   right: 50px;
   
@@ -55,7 +57,7 @@
     padding:1em;
     padding-left:12rem;
     padding-right: 12rem;
-    height: 500px;
+    height: 60vh;
     width: 100%
 }
 
@@ -64,8 +66,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
 }
 
 .detailHead{
@@ -118,7 +118,6 @@
     justify-content: center;
     width:50%;
     height:90%;
-    margin-top:1em;
 }
 
 .detailImageWrap#right{

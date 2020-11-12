@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 
 import { ProjectDetailList } from "./Project_Edit_Details";
 import { SubmitButton, AddDetailButton} from "./Project_Edit_Buttons";
+import { ImageUploadDisplay } from "./Image_Upload_Display";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   halfBodyText: {
-    margin: theme.spacing(1),
     width: "50%",
   },
   resize: {
@@ -181,7 +181,7 @@ const ProjectHeader = (props) => {
   return(
     <div className="projectDetail" id="header" style={style}>
       <div className="detailImageWrap" id="left">
-        <img className="detailImage" alt="" src={props.imageUrl} />
+        <ImageUploadDisplay imageUrl={props.imageUrl}/>        
       </div>
       <div className="projectTitle">
         <TextField

@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import { MenuItem, Select } from "@material-ui/core";
 import firebase from "../Firebase";
 import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons";
+import { ImageUploadDisplay } from "./Image_Upload_Display";
 import defaultProjectImage from "../Images/project_image.jpg";
 
 export const ProjectDetailList = (props) => {
@@ -161,11 +162,7 @@ const RightImgProjectDetailEdit = (props) => {
         onChange={updateField}
       />
       <div className="detailImageWrap" id="right">
-        <img
-          className="detailImage"
-          alt={props.detail.imgText}
-          src={props.imgUrl}
-        />
+        <ImageUploadDisplay imageUrl={props.imgUrl}/>
       </div>
     </div>
   );
@@ -177,11 +174,7 @@ const LeftImgProjectDetailEdit = (props) => {
   return (
     <div className="detailContent">
       <div className="detailImageWrap" id="left">
-        <img
-          className="detailImage"
-          alt={props.detail.imgText}
-          src={props.imgUrl}
-        />
+        <ImageUploadDisplay imageUrl={props.imgUrl}/>
       </div>
       <TextField
         className={classes.halfBodyText}
