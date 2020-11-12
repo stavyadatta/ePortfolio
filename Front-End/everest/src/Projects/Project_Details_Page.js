@@ -44,9 +44,16 @@ function ProjectDetailsPage(props) {
         }
     }
 
+    const MaybeDeleteButton = () => {
+        if (project.userId === auth.uid) {
+            return(<Link><div id="deleteProjectButton"><span id="textDelete">Delete</span></div></Link>)
+        }
+    }
+
     return (
         <div className="projectLayout">
           <MaybeEditButton/>
+          <MaybeDeleteButton/>
             <div className="projectHeader" style={headerStyle}>
                 <div className="detailImageWrap">
                     <img className="detailImage" alt="" src={imageUrl} />

@@ -35,6 +35,26 @@
   right: 50px;
   
 }
+.projectLayout div#deleteProjectButton{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background: white;
+  border-radius: 100%;
+  border-color: red;
+  border: 3px solid red;
+  min-width: 50px;
+  min-height: 50px;
+  font-size: 75%;
+  width: 10vh;
+  height: 10vh;
+  bottom: 50px;
+  right: 175px;
+}
+.projectLayout span#textDelete{
+    color: red;
+}
 
 .projectHeader{
     display: flex;
