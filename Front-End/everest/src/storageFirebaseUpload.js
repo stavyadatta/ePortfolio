@@ -8,6 +8,7 @@ import firebase from "./Firebase"
         you want to use for the purposefor example projects-add or user-add
     @params: uploadObj = The Obj you want to add, edit to the firestore to firestore database
 */
+
 async function firebaseUpload(imageAsFile, firebaseFunction, uploadObj) {
     var storage = firebase.storage();
     
@@ -36,4 +37,21 @@ async function projectObjectDetails(firebaseURL,firebaseFunction, uploadObj) {
     await editCreateFunction(uploadObj);
 }
 
-export default firebaseUpload
+/* 
+    Uploads the user image to the firebase storage and returns 
+    firebaseUrl for it
+*/
+async function firebaseUrl(imageAsFile) {
+    var storage = firebase.storage();
+    await storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile).catch(err => {
+        throw err;
+    });
+    return await storage.ref('pictures').child(imageAsFile.name).getDownloadURL()
+        .catch(err => {
+            throw err;
+    });
+
+
+}
+
+export default {firebaseUpload, firebaseUrl}
