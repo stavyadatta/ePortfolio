@@ -71,10 +71,10 @@ it('testing update project function', async () => {
     expect(message.data).toBe(`Project projectId: ${projectId} updated`)
 })
 
-// it('testing delete function', async() => {
-//     const message = await deleteProj({projectId: projectId})
-//     expect(message.data.message).toBe(`Project projectId: ${projectId} deleted`)
-// })
+it('testing delete function', async() => {
+    const message = await deleteProj({projectId: projectId})
+    expect(message.data.message).toBe(`Project projectId: ${projectId} deleted`)
+})
 
 
 

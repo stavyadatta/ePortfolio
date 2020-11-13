@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom"
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect, useSelector } from "react-redux";
+import firebase from '../Firebase';
+import { useHistory } from "react-router-dom";
+
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
@@ -18,11 +21,15 @@ function ProjectDetailsPage(props) {
     let details = props.projectDetails;
     let projectId = props.match.params.id;
     let auth = useSelector(state=>state.firebase.auth);
+    let [isLoading, setLoading] = useState('')
     
-
+    let history = useHistory();
     //check if data is loaded
     if (!project || !details) {
         return <div>Loading...</div>;
+    }
+    if(isLoading) {
+        return <div>Loading...</div>
     }
 
 
@@ -43,11 +50,17 @@ function ProjectDetailsPage(props) {
         }else{
           return(<div/>);
         }
-    }
+    };
 
-    async const deletionFunction = () => {
-        
-    }
+    async function deletionFunction(){
+        setLoading(true)
+        const deleteProject = firebase.functions().httpsCallable('project-delete')
+        await deleteProject({projectId: projectId});
+        alert("Project is deleted");
+        history.push('/projects/' + project.userId); 
+        setLoading(false);
+
+    };
 
     const MaybeDeleteButton = () => {
         if (project.userId === auth.uid) {
