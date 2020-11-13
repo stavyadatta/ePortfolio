@@ -5,6 +5,7 @@ import { compose } from "redux";
 import { connect, useSelector } from "react-redux";
 import firebase from '../Firebase';
 import { useHistory } from "react-router-dom";
+import ConfirmDialog from '../Generic_Components/Dialog_Confirmation_Box.js'
 
 
 import "./Project_Details_Page.css";
@@ -21,7 +22,8 @@ function ProjectDetailsPage(props) {
     let details = props.projectDetails;
     let projectId = props.match.params.id;
     let auth = useSelector(state=>state.firebase.auth);
-    let [isLoading, setLoading] = useState('')
+    let [isLoading, setLoading] = useState('');
+    let [confirmOpen, setConfirmOpen] = useState('')
     
     let history = useHistory();
     //check if data is loaded
@@ -64,11 +66,21 @@ function ProjectDetailsPage(props) {
 
     const MaybeDeleteButton = () => {
         if (project.userId === auth.uid) {
-            return(<button><div id="deleteProjectButton" onClick={() => {
-                if (window.confirm('Are you sure you want to delete this project')) {
-                    deletionFunction()
-                }
-            }}><span id="textDelete">Delete</span></div></button>)
+            return(<div><button><div id="deleteProjectButton" onClick={() => {
+                // if (window.confirm('Are you sure you want to delete this project')) {
+                //     deletionFunction()
+                // }
+                setConfirmOpen(true)
+            }}><span id="textDelete">Delete</span></div></button>
+                <ConfirmDialog
+                    title="Delete project" 
+                    open={confirmOpen}
+                    setOpen={setConfirmOpen}
+                    onConfirm={deletionFunction}>
+                        Are you sure you want to delete this project
+                    </ConfirmDialog> 
+            </div>
+            )
         }
     }
 
