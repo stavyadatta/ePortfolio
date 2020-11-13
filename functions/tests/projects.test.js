@@ -51,7 +51,6 @@ const userIdObj = {
 it('testing add project function', async () => {
     const message = await add(addData)
     projectId = message.data.projectId
-    console.log(projectId)
     expect(message.data.userId).toBe(addData.userId)
 })
 
