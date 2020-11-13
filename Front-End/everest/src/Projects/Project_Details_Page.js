@@ -64,7 +64,11 @@ function ProjectDetailsPage(props) {
 
     const MaybeDeleteButton = () => {
         if (project.userId === auth.uid) {
-            return(<button><div id="deleteProjectButton" onClick={deletionFunction}><span id="textDelete">Delete</span></div></button>)
+            return(<button><div id="deleteProjectButton" onClick={() => {
+                if (window.confirm('Are you sure you want to delete this project')) {
+                    deletionFunction()
+                }
+            }}><span id="textDelete">Delete</span></div></button>)
         }
     }
 
