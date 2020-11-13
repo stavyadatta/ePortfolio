@@ -54,6 +54,7 @@
 }
 .projectLayout span#textDelete{
     color: red;
+    font-size: 175%;
 }
 
 .projectHeader{
