@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./Form_Page.css";
+// import "./Form_Page.css";
+import "./Form_Page_Casual.css";
 import firebase from "../Firebase";
 import {useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";

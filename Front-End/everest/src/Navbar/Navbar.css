@@ -5,7 +5,8 @@
     height: 50px;
     width: 100%;
     color: white;
-    background-color: #082F4E;
+    background-color: #025E6D; /*Changed*/
+    opacity: 0.85;/*Changed*/
     top: 0;
 }
 
