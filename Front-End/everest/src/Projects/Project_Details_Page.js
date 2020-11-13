@@ -6,16 +6,12 @@ import { connect, useSelector } from "react-redux";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
-import {ProjectDetailList} from "./Project_Details";
-
-const defaultPalette = {
-  primary:"#082F4E",
-  secondary: "#FFFFFF",
-  detail:"#a5a5a5"
-}
+import { ProjectDetailList } from "./Project_Details";
+import palettes from "./Project_Palettes";
 
 function ProjectDetailsPage(props) {
     let project = props.project;
+    let profile = props.profile;
     let details = props.projectDetails;
     let auth = useSelector(state=>state.firebase.auth)
     
@@ -29,7 +25,7 @@ function ProjectDetailsPage(props) {
     let dateString = getPostDateString(project.postDate);
 
     let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
-    let palette = project.colourPalette?project.colourPalette:defaultPalette;
+    let palette = profile.template? palettes[profile.template]:palettes["professional"];
     
     let headerStyle = {background:palette.primary, color:palette.secondary}
     let dateStyle = {color:palette.detail}

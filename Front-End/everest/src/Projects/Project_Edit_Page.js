@@ -4,21 +4,16 @@ import { firestoreConnect } from "react-redux-firebase";
 import firebase from "../Firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-
-import { ProjectDetailList } from "./Project_Edit_Details";
-import { SubmitButton, AddDetailButton} from "./Project_Edit_Buttons";
-import { ImageUploadDisplay } from "./Image_Upload_Display";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
+import { ProjectDetailList } from "./Project_Edit_Details";
+import { SubmitButton, AddDetailButton} from "./Project_Edit_Buttons";
+import { ImageUploadDisplay } from "./Image_Upload_Display";
+import palettes from "./Project_Palettes";
 
-const defaultPalette = {
-  primary: "#082F4E",
-  secondary: "#FFFFFF",
-  detail: "#a5a5a5",
-};
 
 //Material Ui themeing
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProjectEditPage(props) {
   let project = props.project;
+  let profile = props.profile;
   let details = props.projectDetails;
 
   const handleAddDetail = () => {
@@ -97,7 +93,9 @@ function ProjectEditPage(props) {
 
 
   let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
-  let palette = project.colourPalette ? project.colourPalette : defaultPalette;
+  let palette = profile.template? palettes[profile.template]:palettes["professional"];
+
+  console.log(profile);
 
   let headerStyle = { background: palette.primary, color: palette.secondary };
   let dateStyle = { color: palette.detail };

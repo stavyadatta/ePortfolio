@@ -57,6 +57,7 @@
     padding:1em;
     padding-left:12rem;
     padding-right: 12rem;
+    min-height: 400px;
     height: 60vh;
     width: 100%
 }
