@@ -16,7 +16,8 @@ const defaultPalette = {
 function ProjectDetailsPage(props) {
     let project = props.project;
     let details = props.projectDetails;
-    let auth = useSelector(state=>state.firebase.auth)
+    let projectId = props.match.params.id;
+    let auth = useSelector(state=>state.firebase.auth);
     
 
     //check if data is loaded
@@ -44,9 +45,13 @@ function ProjectDetailsPage(props) {
         }
     }
 
+    async const deletionFunction = () => {
+        
+    }
+
     const MaybeDeleteButton = () => {
         if (project.userId === auth.uid) {
-            return(<Link><div id="deleteProjectButton"><span id="textDelete">Delete</span></div></Link>)
+            return(<button><div id="deleteProjectButton" onClick={deletionFunction}><span id="textDelete">Delete</span></div></button>)
         }
     }
 
