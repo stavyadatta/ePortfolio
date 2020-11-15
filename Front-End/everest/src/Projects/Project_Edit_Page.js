@@ -95,8 +95,6 @@ function ProjectEditPage(props) {
   let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
   let palette = profile.template? palettes[profile.template]:palettes["professional"];
 
-  console.log(profile);
-
   let headerStyle = { background: palette.primary, color: palette.secondary };
   let dateStyle = { color: palette.detail };
   let descriptionStyle = {
@@ -179,7 +177,7 @@ const ProjectHeader = (props) => {
   return(
     <div className="projectDetail" id="header" style={style}>
       <div className="detailImageWrap" id="left">
-        <ImageUploadDisplay imageUrl={props.imageUrl}/>        
+        <ImageUploadDisplay imageUrl={props.imageUrl} handleChange={()=>{}}/>        
       </div>
       <div className="projectTitle">
         <TextField

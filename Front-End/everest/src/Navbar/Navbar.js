@@ -13,7 +13,7 @@ function NavBar(props) {
     if (props.profile.imgUrl && !imageLoaded) {
         firebase
             .storage()
-            .ref("photos")
+            .ref("pictures")
             .child(props.profile.imgUrl)
             .getDownloadURL()
             .then((fireBaseUrl) => {

@@ -5,6 +5,8 @@ import firebase from "../Firebase";
 import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons";
 import { ImageUploadDisplay } from "./Image_Upload_Display";
 import defaultProjectImage from "../Images/project_image.jpg";
+import storageFunctions from "../storageFirebaseUpload";
+
 
 export const ProjectDetailList = (props) => {
   let classes = props.classes;
@@ -26,10 +28,8 @@ const ProjectDetailEdit = (props) => {
   let detail = props.detail;
   let style = props.styles;
   let classes = props.classes;
-  let imgUrl = detail.imgUrl ? detail.imgUrl : defaultProjectImage;
 
   let contentLayout = "";
-
 
   const originalTitle = detail.title;
   const originalBody = detail.text;
@@ -38,6 +38,8 @@ const ProjectDetailEdit = (props) => {
   const [detailBody, setDetailBody] = useState(detail.text);
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [cancelDisabled, setCancelDisabled] = useState(true);
+  const [image, setImage] = 
+    useState(detail.imgUrl ? detail.imgUrl : defaultProjectImage);
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -81,13 +83,28 @@ const ProjectDetailEdit = (props) => {
     props.handleDelete(detail.id);
   }
 
+  const uploadImage = (e) => {
+    console.log(e);
+    //console.log(URL.createObjectURL(e.target.files[0]));
+
+    
+
+    
+    // storageFunctions.firebaseUrl(e.target.files[0]).then(url=>{
+    //   console.log(url);
+    //   let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
+    //   ref.update({ imgUrl: url });
+    // })
+  }
+
   let detailProps = {
     detail: detail,
     title: detailTitle,
     body: detailBody,
     styles: style,
     classes: classes,
-    imgUrl: imgUrl,
+    imgUrl: image,
+    handleImageChange: uploadImage,
     onChange: updateField,
     submit: handleSubmit,
   };
@@ -162,7 +179,7 @@ const RightImgProjectDetailEdit = (props) => {
         onChange={updateField}
       />
       <div className="detailImageWrap" id="right">
-        <ImageUploadDisplay imageUrl={props.imgUrl}/>
+        <ImageUploadDisplay imgUrl={props.imgUrl} handleChange={props.handleImageChange}/>
       </div>
     </div>
   );
@@ -174,7 +191,7 @@ const LeftImgProjectDetailEdit = (props) => {
   return (
     <div className="detailContent">
       <div className="detailImageWrap" id="left">
-        <ImageUploadDisplay imageUrl={props.imgUrl}/>
+        <ImageUploadDisplay imgUrl={props.imgUrl} handleChange={props.handleImageChange}/>
       </div>
       <TextField
         className={classes.halfBodyText}
