@@ -5,9 +5,7 @@ import animateComponents from "../Generic_Components/Page_Animations";
 import HeaderEntry from "../Generic_Components/Entry_With_Header";
 import Mountain from "../Images/account_mountain.png";
 import Sun_Image from "../Images/sun_bg_image.png";
-import Home from "../Icons/home_btn.svg";
-import About from "../Icons/about_btn.svg";
-import Signout from "../Icons/signout_btn.svg";
+import NavIcons from "../Generic_Components/Nav_Icons";
 import firebase from "../Firebase";
 import { useSelector } from "react-redux";
 import BackBtn from "../Generic_Components/Back_Icon";
@@ -31,7 +29,8 @@ function MyAccountPage() {
 	}
 
 	const disableEdits = e => {
-		resetFields(userProfile);
+		resetFields();
+		document.getElementById("template_active").value = userProfile.template;
 		resetSetters();
         changeReadOnly(true, "_active");
 		setEditable(false);
@@ -41,10 +40,15 @@ function MyAccountPage() {
     const saveEdits = e => {
 		setPlaceholder("fname_active", fname);
 		setPlaceholder("lname_active", lname);
-		document.getElementById("template_active").value = template;
 		setPlaceholder("email_input_active", email);
+		if (template === "") { document.getElementById("template_active").value = userProfile.template; }
+		else { document.getElementById("template_active").value = template; }
 		updateDatabase();
-        disableEdits(e);
+		resetFields();
+        resetSetters();
+        changeReadOnly(true, "_active");
+		setEditable(false);
+		animateComponents(e, "editing_btns", "enable_edit", 0.5, 0.3);
 	}
 	
 	const resetSetters = () => {
@@ -64,11 +68,11 @@ function MyAccountPage() {
 
 	const updateDatabase = () => {
 
+		const updatedTemplate = (template === "") ? userProfile.template : template;
+
 		let fname = document.getElementById("fname_active").placeholder;
 		let lname = document.getElementById("lname_active").placeholder;
 		let email = document.getElementById("email_input_active").placeholder;
-		let template = document.getElementById("template_active").value;
-
 		let user = firebase.auth().currentUser
 
 		firebase.functions().httpsCallable("user-update")({
@@ -76,7 +80,7 @@ function MyAccountPage() {
 			firstName: fname,
 			lastName: lname,
 			email: email,
-			template: template
+			template: updatedTemplate
 		}).then(()=>{
 			user.updateEmail(email)
 		}).then(()=>{
@@ -92,11 +96,7 @@ function MyAccountPage() {
 			<Link to = "/profile">
 				<BackBtn />
 			</Link>
-			<div className = "nav_btns">
-				<img src = {Home} id = "home_icon" alt = "home"/>
-				<img src = {About} id = "about_icon" alt = "about"/>
-				<img src = {Signout} id = "signout_icon" alt = "signout"/>
-			</div>
+			<NavIcons />
 			<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>
 			<UserInfo Editable = {editable} Update = {updateField} userProfile={userProfile} uid={userAuth.uid}/>
 
@@ -110,10 +110,9 @@ function setPlaceholder(componentID, value) {
 	} 
 }
 
-function resetFields(userProfile) {
+function resetFields() {
     document.getElementById("fname_active").value = "";
 	document.getElementById("lname_active").value = "";
-	document.getElementById("template_active").value = userProfile.template;
     document.getElementById("email_input_active").value = "";
 }
 
@@ -129,6 +128,7 @@ function SetBackground() {
 function UserInfo(props) {
 	let profile = props.userProfile;
 	let uid = props.uid
+
 	return(
 		<div className = "user_info">
 			
@@ -143,7 +143,7 @@ function UserInfo(props) {
 			<HeaderEntry divClassName = "user_id" header = "Search String (Read Only):"
 			entryID = "id" default = {uid} readOnly = {true}/>
 
-			<TemplateSelector Editable = {props.Editable} header = "Portfolio Template:" Update = {props.Update}/>
+			<TemplateSelector chosenTemplate = {profile.template} Editable = {props.Editable} header = "Portfolio Template:" Update = {props.Update}/>
 
 			<HeaderEntry divClassName = "user_email" header = "Email Address:" 
 			entryID = {props.Editable ? "email_input_active" : "email_input"} default = {profile.email}
@@ -157,13 +157,14 @@ function UserInfo(props) {
 }
 
 function TemplateSelector(props) {
+	
 	return(
 		<div className = "chosen_template">
 			<label id = "entry_header">{props.header}</label>
 			<select name="template" id={props.Editable ? "template_active" : "template"} 
 			onChange = {e => props.Update(e)} disabled = {true}>
-				<option value="Professional">Professional</option>
-				<option value="Casual">Casual</option>
+				<option value="Professional" selected = {props.chosenTemplate === "Professional" ? "selected" : ""}>Professional</option>
+				<option value="Casual" selected = {props.chosenTemplate === "Casual" ? "selected" : ""}>Casual</option>
 			</select>
 		</div>
 	);
