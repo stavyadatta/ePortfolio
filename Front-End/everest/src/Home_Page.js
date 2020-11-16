@@ -1,7 +1,7 @@
 import React, {Component, useState} from "react";
 import "./Home_Page.css";
 import { Link } from "react-router-dom";
-import Homepage_Image from "./Images/homepage_background_img.png";
+import Homepage_Image from "./Images/homepage_background_img.svg";
 import Responsive_Ftr_Image from "./Images/responsive.png";
 import No_Coding_Required_Ftr_Image from "./Images/no_coding_required.png";
 import Secure_Ftr_Image from "./Images/secure.png";
@@ -51,13 +51,14 @@ function HomePage() {
                 <p id="feature">Share your accomplishments and experience personal growth</p>
             </div>
 
-            <div className="header_overview_btns">
-                <button className="overview_btns" id="Home" >Home</button>
-                <button className="overview_btns" id="About">About</button>
-                <button className="overview_btns" id="Explore">Explore</button>
-                <button className="overview_btns" id="Login">Login</button>
 
-            </div>
+           
+
+            <button className = "header_btns" id="Features">Features</button>
+            <button className = "header_btns" id="About">About</button>
+            <button className = "header_btns" id="Search">Search</button>
+            <button className = "header_btns" id="Login">Login</button>
+         
 
             <img src={No_Coding_Required_Ftr_Image} id="No_Coding_Required_Ftr" alt="No_Coding_Required_Ftr" />
             <div class ="text"> No Coding Required</div>
@@ -69,10 +70,10 @@ function HomePage() {
             <div class="text3"> Secure</div>
 
 
-            <div className="bottom_portfolio_btns">
-                <button className="bottom_btns" id="Create Your Portfolio">Create Your Portfolio</button>
-                <button className="bottom_btns" id="Explore Existing Portfolios">Explore Existing Portfolios</button>
-            </div>
+            
+                <button className="bottom_btns" id="create_your_portfolio">Create Your Portfolio</button>
+                <button className="bottom_btns" id="explore_existing_portfolios">Explore Existing Portfolios</button>
+            
 
            
             <div className="get_started_icon">

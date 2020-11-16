@@ -1,8 +1,7 @@
 p {
 	color: white;
-	font-size: 48px;
-	font-family: 'Lusitana', serif;
-	word-spacing: 8px;
+	font-size: 50px;
+	font-family: "Commissioner", serif;
 }
 
 .home_page {
@@ -12,11 +11,52 @@ p {
 }
 
 #homepage_image {
-	width: 18%;
+	width: 90%;
 	position: absolute;
-	height: 75%;
-	top: -2%;
+	height: 100%;
+	top: -10%;
+	left: -20%;
 }
+
+#Features {
+	position: absolute;
+	top: 11%;
+	right: 36%;
+}
+
+#Search {
+	position: absolute;
+	top: 11%;
+	right: 26%;
+}
+
+#About {
+	position: absolute;
+	top: 11%;
+	right: 16%;
+}
+
+#Login {
+	position: absolute;
+	top: 11%;
+	right: 6%;
+}
+
+.header_btns {
+	background-color: #082f4e;
+	color: white;
+	border: none;
+	outline: none;
+	font-size: 14px;
+}
+
+#Features:hover, #About:hover, #Search:hover, #Login:hover {
+	transform: scale(1.1,1.1);
+	-webkit-transform:scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
+}
+
+
 
 .page_headers {
 	position: absolute;
@@ -32,7 +72,7 @@ p {
 	left: 5%;
 	word-spacing: 2px;
 }
-
+/* 
 #heading {
 	font-size: 33px;
 	font-family: 'Lusitana', serif;
@@ -43,7 +83,7 @@ p {
 	right: 30%;
 	left: 42.4%;
 	word-spacing: 6px;
-}
+} */
 
 #feature {
 	font-size: 18.5px;
@@ -56,7 +96,7 @@ p {
 	word-spacing: 1px;
 }
 
-.header_overview_btns {
+/* .header_overview_btns {
 	display: flex;
 	flex-direction: row;
 	column-gap: 75px;
@@ -65,9 +105,12 @@ p {
 	left: 62%;
 	top: 5%;
 	justify-content: center;
-}
+	font-size: 10px;
+} */
 
-.overview_btns {
+
+
+/* .overview_btns {
 	background-color: #082f4e;
 	outline: none;
 	border: none;
@@ -77,7 +120,7 @@ p {
 	font-size: 20px;
 	color: white;
 	font-family: "Karla";
-}
+} */
 
 .bottom_portfolio_btns {
 	display: inline-flex;
@@ -92,15 +135,35 @@ p {
 .bottom_btns {
 	background-color: #082f4e;
 	outline: none;
-	border-color: rgb(248, 248, 248);
+	border: solid 1.5px rgb(248, 248, 248);
 	border-radius: 30px;
-	padding-bottom: 5px;
-	padding-right: 20px;
-	padding-left: 20px;
-	font-size: 18.5px;
+	padding-bottom: 4px;
+	padding-top: 3px;
+	padding-right: 16px;
+	padding-left: 18px;
+	font-size: 14px;
 	color: white;
-
 	font-family: "Karla";
+}
+
+.bottom_btns:hover {
+	color: #082f4e;
+	background-color: white;
+	outline: none;
+}
+
+#create_your_portfolio {
+	position: absolute;
+	right: 6%;
+	top: 83%;
+	padding-left: 36px;
+	padding-right: 34px;
+}
+
+#explore_existing_portfolios {
+	position: absolute;
+	right: 6%;
+	top: 88%;
 }
 
 #No_Coding_Required_Ftr {
