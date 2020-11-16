@@ -162,9 +162,9 @@ function TemplateSelector(props) {
 		<div className = "chosen_template">
 			<label id = "entry_header">{props.header}</label>
 			<select name="template" id={props.Editable ? "template_active" : "template"} 
-			onChange = {e => props.Update(e)} disabled = {true}>
-				<option value="Professional" selected = {props.chosenTemplate === "Professional" ? "selected" : ""}>Professional</option>
-				<option value="Casual" selected = {props.chosenTemplate === "Casual" ? "selected" : ""}>Casual</option>
+			onChange = {e => props.Update(e)} disabled = {true} defaultValue = {props.chosenTemplate}>
+				<option value="Professional">Professional</option>
+				<option value="Casual">Casual</option>
 			</select>
 		</div>
 	);
