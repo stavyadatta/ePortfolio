@@ -107,8 +107,14 @@ function UnAuthRoutes() {
   return (
     <Switch>
       <Route path="/login" component={LoginPage} />
-      <Route path="/project/:id" component={ProjectDetailsPage} />
-      <Route path="/projects/:userId" component={projectList} />
+      <div>
+        <Navbar />
+        <Switch>
+          <Route path="/project/:id" component={ProjectDetailsPage} />
+          <Route path="/projects/:userId" component={projectList} />
+          <Redirect to="/login" />
+        </Switch>
+      </div>
       <Redirect to="/login" />
     </Switch>
   );
