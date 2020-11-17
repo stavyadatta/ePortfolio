@@ -13,7 +13,7 @@ function Project(props) {
 
         <div className="projectNameAndDesc">
 
-            <Link to = {`/projects/${props.uid}/project/${props.pid}`} >
+            <Link to = {`/project/${props.pid}`} >
                 <h2 className="projectName" >{props.name}</h2>
             </Link>
 

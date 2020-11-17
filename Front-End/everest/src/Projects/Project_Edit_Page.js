@@ -111,7 +111,7 @@ function ProjectEditPage(props) {
   });
 
   const DoneEditButton = () => {
-      return(<Link id="doneEditProjectButton" to={`/projects/${props.match.params.userId}/project/${props.match.params.id}`}><div id="doneEditProjectButton">Done</div></Link>)
+      return(<Link id="doneEditProjectButton" to={`/project/${props.match.params.id}`}><div id="doneEditProjectButton">Done</div></Link>)
 }
 
   return (
