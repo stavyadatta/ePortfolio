@@ -28,7 +28,8 @@ function ProjectList(props) {
         return (
             <Project 
                 key={project.id}
-                id={project.id}
+                pid={project.id}
+                uid={project.userId}
                 name={project.projectName}
                 description={project.projectDesc}
                 image={project.imgURL}

@@ -7,13 +7,13 @@ function Project(props) {
     return (
       <div className="project">
 
-        <Link to = {"/project/"+props.id} >
+        <Link to = {`/projects/${props.uid}/project/${props.pid}`} >
             <img className="projectImage" src={props.image} alt="projectImage" />
         </Link>
 
         <div className="projectNameAndDesc">
 
-            <Link to = {"/project/"+props.id} >
+            <Link to = {`/projects/${props.uid}/project/${props.pid}`} >
                 <h2 className="projectName" >{props.name}</h2>
             </Link>
 

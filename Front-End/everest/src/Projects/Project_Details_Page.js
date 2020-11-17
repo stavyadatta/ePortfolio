@@ -38,7 +38,7 @@ function ProjectDetailsPage(props) {
 
     const MaybeEditButton = () => {
         if(project.userId === auth.uid){
-          return(<Link id="editProjectButton" to={"/project/"+props.match.params.id+"/edit"}><div id="editProjectButton">Edit</div></Link>)
+          return(<Link id="editProjectButton" to={`/projects/${props.match.params.userId}/project/${props.match.params.id}/edit`}><div id="editProjectButton">Edit</div></Link>)
         }else{
           return(<div/>);
         }
