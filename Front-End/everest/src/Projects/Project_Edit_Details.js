@@ -24,6 +24,7 @@ export const ProjectDetailList = (props) => {
 const ProjectDetailEdit = (props) => {
   let detail = props.detail;
   let style = props.styles;
+  const maxTitleLength = 320;
 
   let contentLayout = "";
 
@@ -70,9 +71,15 @@ const ProjectDetailEdit = (props) => {
     let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
     let title = detailTitle?detailTitle:"";
     let text = detailBody?detailBody:"";
-    ref.update({ title: title, text: text });
-    setSubmitDisabled(true);
-    setCancelDisabled(true);
+
+    if(title.length > maxTitleLength){
+      window.alert(`Title is too long, must be less than ${maxTitleLength} characters`)
+      return;
+    } else {
+      ref.update({ title: title, text: text });
+      setSubmitDisabled(true);
+      setCancelDisabled(true);
+    }
   };
 
   const handleDelete = () => {
