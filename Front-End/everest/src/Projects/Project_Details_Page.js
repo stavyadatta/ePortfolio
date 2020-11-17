@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"
-import { firestoreConnect } from "react-redux-firebase";
+import { firestoreConnect, populate } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect, useSelector } from "react-redux";
 
@@ -11,7 +11,6 @@ import palettes from "./Project_Palettes";
 
 function ProjectDetailsPage(props) {
     let project = props.project;
-    let profile = props.profile;
     let details = props.projectDetails;
     let auth = useSelector(state=>state.firebase.auth)
     
@@ -20,6 +19,8 @@ function ProjectDetailsPage(props) {
     if (!project || !details) {
         return <div>Loading...</div>;
     }
+
+    let profile = props.project.userId;
 
 
     let dateString = getPostDateString(project.postDate);
@@ -34,7 +35,7 @@ function ProjectDetailsPage(props) {
     let detailStyle1 = {background:palette.secondary, color:palette.detail}
 
     const MaybeEditButton = () => {
-        if(project.userId === auth.uid){
+        if(project.userId.id === auth.uid){
           return(<Link id="editProjectButton" to={"/project/"+props.match.params.id+"/edit"}><div id="editProjectButton">Edit</div></Link>)
         }else{
           return(<div/>);
@@ -89,27 +90,28 @@ const getPostDateString = (postDate) =>{
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const id = ownProps.match.params.id;
-    return {
-        profile: state.firebase.profile,
-        project:
-            state.firestore.data.projects && state.firestore.data.projects[id],
-        projectDetails: state.firestore.ordered.projectDetails,
-    };
+const populates = [{child:'userId', root:'users'}];
+
+const mapStateToProps = ({firebase, firestore}, ownProps) => {
+  const id = ownProps.match.params.id;
+  return {
+      project: populate(firestore, `projects/${id}`, populates),
+      projectDetails: firestore.ordered.projectDetails,
+  };
 };
 
 export default compose(
-    connect(mapStateToProps),
-    firestoreConnect((props) => {
-        let pid = props.match.params.id;
-        return [
-            {
-                collection: "projectDetails",
-                orderBy: "position",
-                where: [["projectId", "==", pid]],
-            },
-            { collection: "projects", doc: pid },
-        ];
-    })
+  connect(mapStateToProps),
+  firestoreConnect((props) => {
+      let pid = props.match.params.id;
+      return [
+          {
+              collection: "projectDetails",
+              orderBy: "position",
+              where: [["projectId", "==", pid]],
+          },
+          { collection: "projects", populates, doc: pid },
+      ];
+  })
 )(ProjectDetailsPage);
+

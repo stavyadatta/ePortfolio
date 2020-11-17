@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { firestoreConnect } from "react-redux-firebase";
+import { firestoreConnect, populate } from "react-redux-firebase";
 import firebase from "../Firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -17,10 +17,16 @@ import palettes from "./Project_Palettes";
 
 function ProjectEditPage(props) {
   let project = props.project;
-  let profile = props.profile;
   let details = props.projectDetails;
 
-  let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
+  //check if data is loaded
+  if (!project || !details) {
+    return <div>Loading...</div>;
+  }
+
+  let profile = project.userId;
+
+  let imageUrl = props.project.imgURL ? props.project.imgURL : defaultProjectImage;
   let palette = profile.template? palettes[profile.template]:palettes["Professional"];
 
   let headerStyle = { background: palette.primary, color: palette.secondary };
@@ -73,12 +79,6 @@ function ProjectEditPage(props) {
         pos++;
       }
     });
-  }
-
-
-  //check if data is loaded
-  if (!project || !details) {
-    return <div>Loading...</div>;
   }
 
   const DoneEditButton = () => {
@@ -229,26 +229,28 @@ const getPostDateString = (postDate) =>{
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const populates = [{child:'userId', root:'users'}];
+
+const mapStateToProps = ({firebase, firestore}, ownProps) => {
   const id = ownProps.match.params.id;
   return {
-    profile: state.firebase.profile,
-    project: state.firestore.data.projects && state.firestore.data.projects[id],
-    projectDetails: state.firestore.ordered.projectDetails,
+      project: populate(firestore, `projects/${id}`, populates),
+      projectDetails: firestore.ordered.projectDetails,
   };
 };
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect((props) => {
-    let pid = props.match.params.id;
-    return [
-      {
-        collection: "projectDetails",
-        orderBy: "position",
-        where: [["projectId", "==", pid]],
-      },
-      { collection: "projects", doc: pid },
-    ];
+      let pid = props.match.params.id;
+      return [
+          {
+              collection: "projectDetails",
+              orderBy: "position",
+              where: [["projectId", "==", pid]],
+          },
+          { collection: "projects", populates, doc: pid },
+      ];
   })
 )(ProjectEditPage);
+
