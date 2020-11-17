@@ -54,4 +54,4 @@ async function firebaseUrl(imageAsFile) {
 
 }
 
-export default {firebaseUpload, firebaseUrl}
+export {firebaseUpload, firebaseUrl}
