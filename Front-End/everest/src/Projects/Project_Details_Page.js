@@ -81,6 +81,8 @@ function ProjectDetailsPage(props) {
                     </ConfirmDialog> 
             </div>
             )
+        } else {
+            return (<div/>);
         }
     }
 
