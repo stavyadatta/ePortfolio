@@ -73,8 +73,6 @@ function ProjectEditPage(props) {
         pos++;
       }
     });
-    
-
   }
 
 

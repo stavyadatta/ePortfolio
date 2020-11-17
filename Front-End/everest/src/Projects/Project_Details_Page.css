@@ -80,6 +80,7 @@
 .detailHead{
   display: flex;
   flex-direction: row;
+  padding-bottom:1em;
 }
 
 .detailHead #detailType{
@@ -91,7 +92,6 @@
 
 .detailTitle{
     width:100%;
-    padding-bottom:1em;
     text-align: left;
     font-size: x-large;
     font-family: 'Baskervville', serif;

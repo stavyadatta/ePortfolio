@@ -34,7 +34,9 @@ const ProjectDetail = (props) => {
   }
   return (
     <div className="projectDetail" style={style}>
-      <div className="detailTitle">{detail.title}</div>
+      <div className="detailHead">
+        <div className="detailTitle">{detail.title}</div>
+      </div>
       {contentLayout}
     </div>
   );
