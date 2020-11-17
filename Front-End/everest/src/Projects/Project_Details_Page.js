@@ -26,7 +26,7 @@ function ProjectDetailsPage(props) {
     let dateString = getPostDateString(project.postDate);
 
     let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
-    let palette = profile.template? palettes[profile.template]:palettes["professional"];
+    let palette = profile.template? palettes[profile.template]:palettes["Professional"];
     
     let headerStyle = {background:palette.primary, color:palette.secondary}
     let dateStyle = {color:palette.detail}

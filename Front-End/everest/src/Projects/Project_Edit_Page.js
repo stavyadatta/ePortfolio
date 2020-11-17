@@ -156,7 +156,7 @@ const ProjectHeader = (props) => {
   return(
     <div className="projectDetail" id="header" style={style}>
       <div className="detailImageWrap" id="left">
-        <ImageUploadDisplay imageUrl={props.imageUrl} handleChange={()=>{}}/>        
+        <img src={props.imageUrl} alt=""/>        
       </div>
       <div className="projectTitle">
         <input

@@ -30,13 +30,16 @@ const ProjectDetailEdit = (props) => {
 
   const originalTitle = detail.title;
   const originalBody = detail.text;
+  const originalImg = detail.imgUrl ? detail.imgUrl : "";
 
   const [detailTitle, setDetailTitle] = useState(detail.title);
   const [detailBody, setDetailBody] = useState(detail.text);
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [cancelDisabled, setCancelDisabled] = useState(true);
-  const [image, setImage] = 
+  const [detailImage, setDetailImage] = 
     useState(detail.imgUrl ? detail.imgUrl : defaultProjectImage);
+  const [imageAsFile, setImageAsFile] = useState();
+  const [isNewImage, setIsNewImage] = useState(false);
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -48,6 +51,11 @@ const ProjectDetailEdit = (props) => {
       case "detailBodyEntry":
         setDetailBody(fieldValue);
         break;
+      case "imageUpload":
+        uploadImage(e.target.files[0]).then(url=>setDetailImage(url));
+        setIsNewImage(true);
+
+        break;
       default:
         break;
     }
@@ -58,6 +66,8 @@ const ProjectDetailEdit = (props) => {
   const handleCancel = () => {
     setDetailTitle(originalTitle);
     setDetailBody(originalBody);
+    setDetailImage(originalImg);
+    setIsNewImage(false);
     setSubmitDisabled(true);
     setCancelDisabled(true);
   }
@@ -67,7 +77,7 @@ const ProjectDetailEdit = (props) => {
     ref.update({ type:e.target.value });
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
     let title = detailTitle?detailTitle:"";
     let text = detailBody?detailBody:"";
@@ -76,7 +86,12 @@ const ProjectDetailEdit = (props) => {
       window.alert(`Title is too long, must be less than ${maxTitleLength} characters`)
       return;
     } else {
+      if(isNewImage){
+        ref.update({imgUrl: detailImage})
+      }
+
       ref.update({ title: title, text: text });
+      
       setSubmitDisabled(true);
       setCancelDisabled(true);
     }
@@ -86,18 +101,9 @@ const ProjectDetailEdit = (props) => {
     props.handleDelete(detail.id);
   }
 
-  const uploadImage = (e) => {
-    console.log(e);
-    //console.log(URL.createObjectURL(e.target.files[0]));
-
-    
-
-    
-    // storageFunctions.firebaseUrl(e.target.files[0]).then(url=>{
-    //   console.log(url);
-    //   let ref = firebase.firestore().collection("projectDetails").doc(detail.id);
-    //   ref.update({ imgUrl: url });
-    // })
+  const uploadImage = async (imageAsFile) => {
+    let url = await storageFunctions.firebaseUrl(imageAsFile);
+    return url;
   }
 
   let detailProps = {
@@ -105,8 +111,7 @@ const ProjectDetailEdit = (props) => {
     title: detailTitle,
     body: detailBody,
     styles: style,
-    imgUrl: image,
-    handleImageChange: uploadImage,
+    imgUrl: detailImage,
     onChange: updateField,
     submit: handleSubmit,
   };
@@ -176,7 +181,7 @@ const RightImgProjectDetailEdit = (props) => {
         onChange={updateField}
       />
       <div className="detailImageWrap" id="right">
-        <ImageUploadDisplay imgUrl={props.imgUrl} handleChange={props.handleImageChange}/>
+        <ImageUploadDisplay imageUrl={props.imgUrl} handleChange={updateField}/>
       </div>
     </div>
   );
@@ -187,7 +192,7 @@ const LeftImgProjectDetailEdit = (props) => {
   return (
     <div className="detailContent">
       <div className="detailImageWrap" id="left">
-        <ImageUploadDisplay imgUrl={props.imgUrl} handleChange={props.handleImageChange}/>
+        <ImageUploadDisplay imageUrl={props.imgUrl} handleChange={updateField}/>
       </div>
       <textarea
         className="halfDetailText"
