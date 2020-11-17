@@ -20,6 +20,20 @@ function ProjectEditPage(props) {
   let profile = props.profile;
   let details = props.projectDetails;
 
+  let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
+  let palette = profile.template? palettes[profile.template]:palettes["Professional"];
+
+  let headerStyle = { background: palette.primary, color: palette.secondary };
+  let dateStyle = { color: palette.detail };
+  let descriptionStyle = {
+    background: palette.secondary,
+    color: palette.detail,
+  };
+  let detailStyle0 = { background: palette.detail, color: palette.secondary };
+  let detailStyle1 = { background: palette.secondary, color: palette.detail };
+
+  const maxTitleLength = 320;
+
   const handleAddDetail = () => {
     let nDetails = project.nDetails?project.nDetails:0;
     //Add detail document
@@ -69,28 +83,21 @@ function ProjectEditPage(props) {
     return <div>Loading...</div>;
   }
 
-
-  let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
-  let palette = profile.template? palettes[profile.template]:palettes["professional"];
-
-  let headerStyle = { background: palette.primary, color: palette.secondary };
-  let dateStyle = { color: palette.detail };
-  let descriptionStyle = {
-    background: palette.secondary,
-    color: palette.detail,
-  };
-  let detailStyle0 = { background: palette.detail, color: palette.secondary };
-  let detailStyle1 = { background: palette.secondary, color: palette.detail };
-
   const DoneEditButton = () => {
       return(<Link id="editProjectButton" to={"/project/"+props.match.params.id}><div id="editProjectButton">Done</div></Link>)
   }
 
   const handleHeaderSubmit = (projectTitle) => {
-    let ref = firebase.firestore()
-    .collection('projects')
-    .doc(props.match.params.id);
-    ref.update({projectName:projectTitle});
+    if(projectTitle.length > maxTitleLength){
+      window.alert(`Title is too long, must be less than ${maxTitleLength} characters`)
+      return;
+    } else {
+      firebase.firestore()
+      .collection('projects')
+      .doc(props.match.params.id)
+      .update({projectName:projectTitle});
+    }
+    
   }
 
   const handleDescSubmit = (projectDescription) => {
