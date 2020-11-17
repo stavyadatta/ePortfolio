@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./Form_Page.css";
 //import firebase from "../Firebase";
 import {useSelector} from "react-redux";
-import firebaseUpload from "../storageFirebaseUpload"
+import {firebaseUpload}from "../storageFirebaseUpload";
+import { useHistory } from "react-router-dom";
 
 
 // import { Link } from "react-router-dom";
@@ -21,10 +22,11 @@ function FormPage(props) {
   const userId = userAuth.uid;
   const [imageAsFile, setImageAsFile] = useState('');
 
+  let history = useHistory(); // NEWLY ADDED
   if (isLoading === true) {
     return <div>Loading...</div>}
   else if (isLoading === 'submitted') {
-    window.location = '/projects/' + userId;
+    history.push('/projects/' + userId); 
   }
   const updateField = (e) => {
 

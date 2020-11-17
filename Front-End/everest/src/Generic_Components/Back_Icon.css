@@ -1,0 +1,10 @@
+#back_icon {
+    width: 1.3%;
+    position: absolute;
+    top: 5%;
+    left: 2%;
+}
+    
+#back_icon:hover {
+    width: 18.5px;
+}
