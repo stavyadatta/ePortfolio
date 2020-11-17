@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
 import { MenuItem, Select } from "@material-ui/core";
 import firebase from "../Firebase";
 import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons";
@@ -9,7 +8,6 @@ import storageFunctions from "../storageFirebaseUpload";
 
 
 export const ProjectDetailList = (props) => {
-  let classes = props.classes;
   return props.details.map((detail) => {
     let style = detail.position % 2 === 0 ? props.style0 : props.style1;
     return (
@@ -17,7 +15,6 @@ export const ProjectDetailList = (props) => {
         key={detail.id}
         detail={detail}
         styles={style}
-        classes={classes}
         handleDelete={props.handleDelete}
       ></ProjectDetailEdit>
     );
@@ -27,7 +24,6 @@ export const ProjectDetailList = (props) => {
 const ProjectDetailEdit = (props) => {
   let detail = props.detail;
   let style = props.styles;
-  let classes = props.classes;
 
   let contentLayout = "";
 
@@ -102,7 +98,6 @@ const ProjectDetailEdit = (props) => {
     title: detailTitle,
     body: detailBody,
     styles: style,
-    classes: classes,
     imgUrl: image,
     handleImageChange: uploadImage,
     onChange: updateField,
@@ -123,13 +118,11 @@ const ProjectDetailEdit = (props) => {
   return (
     <div className="projectDetail" style={props.styles}>
       <div className="detailHead">
-        <div id="detailTitle">
-          <TextField
+        <div className="detailTitle">
+          <input
+            type="text"
             id="detailTitleEntry"
             defaultValue={detailTitle}
-            variant="filled"
-            multiline
-            fullWidth
             onChange={updateField}
           />
         </div>
@@ -166,16 +159,13 @@ const EditButtons = (props) => {
 }
 
 const RightImgProjectDetailEdit = (props) => {
-  let classes = props.classes;
   let updateField = props.onChange;
   return (
     <div className="detailContent">
-      <TextField
-        className={classes.halfBodyText}
+      <textarea
+        className="halfDetailText"
         id="detailBodyEntry"
-        multiline
         value={props.body}
-        InputProps={{ classes: { input: classes.resize } }}
         onChange={updateField}
       />
       <div className="detailImageWrap" id="right">
@@ -187,18 +177,15 @@ const RightImgProjectDetailEdit = (props) => {
 
 const LeftImgProjectDetailEdit = (props) => {
   let updateField = props.onChange;
-  let classes = props.classes;
   return (
     <div className="detailContent">
       <div className="detailImageWrap" id="left">
         <ImageUploadDisplay imgUrl={props.imgUrl} handleChange={props.handleImageChange}/>
       </div>
-      <TextField
-        className={classes.halfBodyText}
+      <textarea
+        className="halfDetailText"
         id="detailBodyEntry"
-        multiline
         value={props.body}
-        InputProps={{ classes: { input: classes.resize } }}
         onChange={updateField}
       />
     </div>
@@ -207,15 +194,12 @@ const LeftImgProjectDetailEdit = (props) => {
 
 const DefaultDetailEdit = (props) => {
   let updateField = props.onChange;
-  let classes = props.classes;
   return (
     <div className="detailContent">
-      <TextField
-        className={classes.bodyText}
+      <textarea
+        className="detailText"
         id="detailBodyEntry"
-        multiline
         value={props.body}
-        InputProps={{ classes: { input: classes.resize } }}
         onChange={updateField}
       />
     </div>

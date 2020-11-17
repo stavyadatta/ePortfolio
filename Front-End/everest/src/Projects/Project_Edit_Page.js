@@ -4,8 +4,6 @@ import { firestoreConnect } from "react-redux-firebase";
 import firebase from "../Firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
@@ -15,26 +13,7 @@ import { ImageUploadDisplay } from "./Image_Upload_Display";
 import palettes from "./Project_Palettes";
 
 
-//Material Ui themeing
-const useStyles = makeStyles((theme) => ({
-  title: {
-    margin: theme.spacing(1),
-    width: "10ch",
-  },
-  bodyText: {
-    margin: theme.spacing(1),
-    width: "100%",
-  },
-  halfBodyText: {
-    width: "50%",
-  },
-  resize: {
-    fontSize: "small",
-  },
-  input: {
-    color: "white",
-  },
-}));
+
 
 function ProjectEditPage(props) {
   let project = props.project;
@@ -84,7 +63,6 @@ function ProjectEditPage(props) {
 
   }
 
-  let classes = useStyles();
 
   //check if data is loaded
   if (!project || !details) {
@@ -131,19 +109,16 @@ function ProjectEditPage(props) {
         project={project} 
         submit={handleHeaderSubmit}
         imageUrl={imageUrl} 
-        classes={classes}
       />
       <ProjectDescription 
         style={descriptionStyle} 
         project={project} 
         submit={handleDescSubmit}
-        classes={classes}
       />      
       <ProjectDetailList
         details={details}
         style0={detailStyle0}
         style1={detailStyle1}
-        classes={classes}
         handleDelete={(id)=>(handleDeleteDetail(id))}
       />
       <AddDetailButton add={handleAddDetail}/>
@@ -154,7 +129,6 @@ function ProjectEditPage(props) {
 const ProjectHeader = (props) => {
   let project = props.project;
   let style = props.style;
-  let classes = props.classes;
   let dateString = getPostDateString(project.postDate);
 
   const [projectTitle, setProjectTitle] = useState(props.projectName);
@@ -180,18 +154,11 @@ const ProjectHeader = (props) => {
         <ImageUploadDisplay imageUrl={props.imageUrl} handleChange={()=>{}}/>        
       </div>
       <div className="projectTitle">
-        <TextField
+        <input
+          type="text"
           id="titleEntry"
-          label="Project Title"
           defaultValue={project.projectName}
-          variant="filled"
-          multiline
           onChange={updateField}
-          InputProps={{
-            classes: {
-              input: classes.input,
-            },
-          }}
         />
         <div className="projectAuthor">{project.authorName}</div>
         <div className="projectDate" style={props.dateStyle}>
@@ -207,7 +174,6 @@ const ProjectDescription = (props) => {
   
   let project = props.project;
   let style = props.style;
-  let classes = props.classes;
 
   const [projectDescription, setProjectDescription] = useState(project.projectDesc);
   const [descSubmitDisable, setDescSubmitDisable] = useState(true);
@@ -231,16 +197,10 @@ const ProjectDescription = (props) => {
           Description
         </div>
         <div className="detailContent">
-          <TextField
-            className={classes.bodyText}
+          <textarea
+            className="detailText"
             id="descriptionEntry"
-            multiline
             defaultValue={project.projectDesc}
-            InputProps={{
-              classes: {
-                input: classes.resize,
-              },
-            }}
             onChange={updateField}
           />
         </div>

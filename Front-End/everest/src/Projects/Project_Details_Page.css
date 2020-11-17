@@ -43,6 +43,14 @@
     font-family: 'Baskervville', serif;
 }
 
+.projectTitle #titleEntry{
+  width: 300px;
+  height: 60px;
+  font-size: 1em;
+  font-family: inherit;
+  margin-left: 2.2px;
+}
+
 .projectAuthor{
     font-size: x-large;
 }
@@ -74,11 +82,6 @@
   flex-direction: row;
 }
 
-.detailHead #detailTitle{
-  width:70%;
-  justify-self: left;
-}
-
 .detailHead #detailType{
   width:30%;
   justify-content: right;
@@ -94,6 +97,17 @@
     font-family: 'Baskervville', serif;
 }
 
+.detailTitle #detailTitleEntry{
+  width: 100%;
+  height: 60px;
+  font-size: inherit;
+  font-family: inherit;
+  margin-left: 2.2px;
+}
+
+
+
+
 .detailContent{
     display: flex;
     flex-direction: row;
@@ -102,14 +116,20 @@
 }
 
 .halfDetailText{
-    text-align: left;
-    font-size: small;
-    width: 50%;
+  text-align: left;
+  font-size: small;
+  color:inherit;
+  background: inherit;
+  height: 90%;
+  width: 50%;
 }
 
 .detailText{
     text-align: left;
     font-size: small;
+    color:inherit;
+    background: inherit;
+    height: 90%;
     width: 100%;
 }
 
