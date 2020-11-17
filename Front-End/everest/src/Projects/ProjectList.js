@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./ProjectList.css";
 import {ReactComponent as Plus}  from "../Icons/add_circle_outline-24px.svg";
@@ -8,8 +8,6 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 
 function ProjectList(props) {
-
-    const [colour, setColour] = useState("");
     
     const projects = props.projects;
 
@@ -39,40 +37,10 @@ function ProjectList(props) {
 
     /*******************************************************  COMPONENTS OF THIS PAGE DEFINED BELOW  *****************************************************/
 
-
-    function getSelectedColour() {
-
-        setColour(document.getElementById("colourPalette").value);
-
-    }
-
-    function ThemeColour() {
-
-        return (
-
-            <div className="themeColour">
-                <form>
-                    Select Theme Colour:
-                    <select id="colourPalette" style={{width:"200px"}}>
-                        {/* <option value="0">Select Theme Colour:</option> */}
-                        <option value="default">Default</option>
-                        <option value="greyBlue">Grey-blue</option>
-                        <option value="lightBlue">Light-blue</option>
-                        <option value="greenishBlue">Greenish-blue</option>
-                    </select>
-                </form>
-
-                <button type="button" onClick={getSelectedColour}>Apply Colour</button>
-            </div>
-   
-        );
-    }
-
-
     function Header(props) {
 
         return (
-            <div id = "project_list_header" style={{ backgroundColor: colour==="greyBlue" ? "#426077" : colour==="lightBlue" ? "#51adcf" : colour==="greenishBlue" ? "#16697a" : "" }}>
+            <div id = "project_list_header">
     
                 <h2 id = "project_list_header_title">{props.name}</h2>       
                          
@@ -134,8 +102,6 @@ function ProjectList(props) {
             <AddProjectsButton />
 
             <GoBackButton />
-
-            {/* <ThemeColour /> */}
             
             {/* </div> */}
 
