@@ -7,7 +7,7 @@ function Project(props) {
     return (
       <div className="project">
 
-        <Link to = {`/projects/${props.uid}/project/${props.pid}`} >
+        <Link to = {`/project/${props.pid}`} >
             <img className="projectImage" src={props.image} alt="projectImage" />
         </Link>
 
