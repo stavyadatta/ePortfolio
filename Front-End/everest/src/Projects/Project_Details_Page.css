@@ -197,13 +197,14 @@
   width: 52.5%;
   height: 150%;
   position: relative;
-  left: 15vw;
+  left: 20vw;
   top: 10vh;
 }
 .detailFileChoose{
   position: relative;
-  right: -25vw;
-
+  right: 5vw;
+  top: 40vh;
+  height: 50px;  
 }
 
 .detailEditButtons{

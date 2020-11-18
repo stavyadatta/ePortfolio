@@ -271,9 +271,9 @@ const UploadProjectDetailEdit = (props) => {
           />
           <div className="detailFileName">
             <a href={props.fileUrl} download>  {props.filename}</a> 
-          </div>
-          <input className="detailFileChoose" type='file' id="fileUpload" name="mainFile" onChange={updateField} />
+          </div> 
       </div>
+      <input className="detailFileChoose" type='file' id="fileUpload" name="mainFile" onChange={updateField} />
     </div>
   )
 }
