@@ -1,34 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import firebase from "../Firebase";
-
 import "./Navbar.css";
-import logo from "../Images/Everest_Logo.png";
+import defaultProfile from "../Icons/Default_Profile_Pic.png";
+import logo from "../Icons/Everest_Logo.svg";
 
 function NavBar(props) {
-  const [imageAsUrl, setImageAsUrl] = useState({ imgUrl: "" });
-  const [imageLoaded, setImageLoadState] = useState(false);
-
-  if (props.profile.imgUrl && !imageLoaded) {
-    firebase
-      .storage()
-      .ref("pictures")
-      .child(props.profile.imgUrl)
-      .getDownloadURL()
-      .then((fireBaseUrl) => {
-        setImageAsUrl({ imgUrl: fireBaseUrl });
-      });
-    setImageLoadState(true);
-  }
+  const imageUrl = props.profile.imgURL?props.profile.imgURL:defaultProfile;
 
   if (!props.profile.isEmpty && !props.auth.isEmpty) {
     return (
       <LoggedInNavbar
         auth={props.auth}
         profile={props.profile}
-        imgUrl={imageAsUrl.imgUrl}
+        imgUrl={imageUrl}
       />
     );
   } else {
@@ -51,10 +37,10 @@ function LoggedInNavbar(props) {
           <Link to="/myaccount">
             <div className="navButton">My Account</div>
           </Link>
-          <Link to="/profile">
+          <Link to={`/mypage/${props.auth.uid}`}>
             <div className="navButton">My Page</div>
           </Link>
-          <Link to={"/projects/" + props.auth.uid}>
+          <Link to={`/projects/${props.auth.uid}`}>
             <div className="navButton"> My Projects</div>
           </Link>
         </div>
