@@ -89,6 +89,7 @@ p {
 	border: none;
 	outline: none;
 	font-size: 14px;
+	cursor: pointer;
 }
 
 #Features:hover, #About:hover, #Search:hover, #Login:hover {
@@ -126,7 +127,7 @@ p {
 #features_subheading {
 	position: absolute;
 	top: 15.4%;
-	left: 35.7%;
+	left: 35.3%;
 	color: #5D5757;
 	opacity: 0.5;
 	font-size: 15px;
@@ -189,6 +190,7 @@ p {
 	position: absolute;
 	right: 6%;
 	top: 80.8%;
+	cursor: pointer;
 }
 
 
@@ -243,6 +245,7 @@ p {
 	font-size: 13px;
 	color: white;
 	font-family: "Karla";
+	cursor: pointer;
 }
 
 .bottom_btns:hover {
@@ -311,7 +314,7 @@ p {
 	font-size: 12px;
 	position: absolute;
 	top: 40%;
-	right: 3%;
+	right: 2%;
 }
 
 #footer_logo {

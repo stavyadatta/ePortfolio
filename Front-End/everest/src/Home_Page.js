@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {useState} from "react";
 import "./Home_Page.css";
 import { Link } from "react-router-dom";
 import Homepage_Image from "./Images/homepage_background_img.svg";
@@ -8,15 +8,16 @@ import Secure_Ftr_Image from "./Icons/secure.png";
 import Templates_Provided_Ftr_Image from "./Icons/templates_provided.png";
 import Get_Started_Unhovered_Icon from "./Icons/Get_Started_Icon_Unhovered.svg";
 import Get_Started_Hovered_Icon from "./Icons/Get_Started_Icon_Hovered.svg";
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 
-import firebase from "./Firebase"
+//import firebase from "./Firebase"
 import EntryBox from "./Generic_Components/Entry_Box";
 import Logo from "./Images/Everest_Logo.svg";
 import CardLabel from "./Generic_Components/Card_Label";
 import GuyPointing from "./Images/Guy_Pointing.svg";
 import Mountain from "./Images/mountain_filler.svg";
 import Sun from "./Images/sun_bg_image.png";
+import { Link as ScrollLink} from "react-scroll";
 
 function HomePage() {
     return (
@@ -47,15 +48,16 @@ function FirstSegment() {
 
 function SecondSegment() {
     return(
-        <div className = "homepage_second_segment">
+        <div className = "homepage_second_segment" id ="showcasing_features">
             <p id = "features_heading">Portfolio Features</p>
             <p id="features_subheading">Share your accomplishments and experience personal growth</p>
 
             <FeatureCards />
-
-            <img src = {Get_Started_Unhovered_Icon} alt = "get_started" id = "get_started_icon" 
-            onMouseOver={e => (e.currentTarget.src = Get_Started_Hovered_Icon)}
-            onMouseLeave = {e => (e.currentTarget.src = Get_Started_Unhovered_Icon)}/>
+            <Link to ="/register">
+                <img src = {Get_Started_Unhovered_Icon} alt = "get_started" id = "get_started_icon" 
+                onMouseOver={e => (e.currentTarget.src = Get_Started_Hovered_Icon)}
+                onMouseLeave = {e => (e.currentTarget.src = Get_Started_Unhovered_Icon)}/>
+            </Link>
 
          </div>
     );
@@ -63,7 +65,7 @@ function SecondSegment() {
 
 function ThirdSegment() {
     return(
-        <div className = "homepage_third_segment">
+        <div className = "homepage_third_segment" id = "search_functionality">
             <div id = "third_segment_headings">
                 <p id = "home_explore">Explore Existing Portfolios</p>
                 <p id = "home_explore_subheading">Search for portfolios made by existing users</p>
@@ -92,15 +94,52 @@ function Footer() {
 function FirstSegmentBtns() {
     return(
         <div>
-            <button className = "header_btns" id="Features">Features</button>
+            <ScrollLink
+                activeClass="active"
+                className = "header_btns"
+                id = "Features"
+                to="showcasing_features"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={500}
+            >Features</ScrollLink>
+            {/* <button className = "header_btns" id="Features">Features</button> */}
+          
             <button className = "header_btns" id="About">About</button>
-            <button className = "header_btns" id="Search">Search</button>
-            <button className = "header_btns" id="Login">Login</button>
-            <button className="bottom_btns" id="create_your_portfolio">Create Your Portfolio</button>
-            <button className="bottom_btns" id="explore_existing_portfolios">Explore Existing Portfolios</button>
+            <ScrollLink
+                activeClass="active"
+                className = "header_btns"
+                id = "Search"
+                to="search_functionality"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={1000}
+            >Search</ScrollLink>
+            
+            <Link to = "/login">
+                <button className = "header_btns" id="Login">Login</button>
+            </Link>
+            <Link to = "/register">
+                <button className="bottom_btns" id="create_your_portfolio">Create Your Portfolio</button>
+            </Link>
+            <ScrollLink
+                activeClass="active"
+                className = "bottom_btns"
+                id = "explore_existing_portfolios"
+                to="search_functionality"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={1000}
+            >Explore Existing Portfolios</ScrollLink>
+            {/* <button className="bottom_btns" id="explore_existing_portfolios">Explore Existing Portfolios</button> */}
         </div>
     );
 }
+
+
 
 function FeatureCards() {
     return(
