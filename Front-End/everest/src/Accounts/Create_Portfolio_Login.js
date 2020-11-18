@@ -18,7 +18,7 @@ function CreateLoginPortfolioPage() {
   
     const updateField = e => {
     	let fieldValue = e.target.value; 
-    	if (e.target.id === "email_entry") { 
+    	if (e.target.id === "create_email_entry") { 
 			setEmail(fieldValue); 
 		}
     	else { setPassword(fieldValue); }
