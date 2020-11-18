@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./Overview_Page.css";
+import "./Professional_Overview_Page.css";
 import CreateCarousel from "./Overview_Page_Carousel";
 import {Link} from "react-router-dom";
 import Achievement_Image from "../Images/achievement_bg_image.png";

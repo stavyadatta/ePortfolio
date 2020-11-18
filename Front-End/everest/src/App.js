@@ -9,16 +9,16 @@ import {
 import "./App.css";
 import LoginPage from "./Accounts/Login_Page";
 import CreatePortfolio from "./Accounts/Create_Portfolio";
-import OverviewPage from "./Overview_pages/Overview_Page";
+import OverviewPage from "./Overview_page/index";
 import FormPage from "./Projects/Form_Page";
 import ProjectDetailsPage from "./Projects/Project_Details_Page";
 import ProjectEditPage from "./Projects/Project_Edit_Page";
 import Navbar from "./Navbar/Navbar";
 import projectList from "./Projects/ProjectList"
 import verifyPage from "./Accounts/Verify_Page";
-import MyAccountPage from "./Accounts/My_Account_Page";
+import MyAccountPage from "./Accounts/My_Account/index";
 import HomePage from "./Home_Page";
-import MyPage from "./Accounts/My_Page";
+import MyPage from "./Accounts/My_Page/index";
 import { useSelector } from "react-redux";
 
 function App() {

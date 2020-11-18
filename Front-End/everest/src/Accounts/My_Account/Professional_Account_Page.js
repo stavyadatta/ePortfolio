@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import "./My_Account_Page.css";
-import animateComponents from "../Generic_Components/Page_Animations";
-import HeaderEntry from "../Generic_Components/Entry_With_Header";
-import Mountain from "../Images/account_mountain.png";
-import Sun_Image from "../Images/sun_bg_image.png";
-import NavIcons from "../Generic_Components/Nav_Icons";
-import firebase from "../Firebase";
+import "./Professional_Account_Page.css";
+import animateComponents from "../../Generic_Components/Page_Animations";
+import HeaderEntry from "../../Generic_Components/Entry_With_Header";
+import Mountain from "../../Images/account_mountain.png";
+import Sun_Image from "../../Images/sun_bg_image.png";
+import NavIcons from "../../Generic_Components/Nav_Icons";
+import firebase from "../../Firebase";
 import { useSelector } from "react-redux";
-import BackBtn from "../Generic_Components/Back_Icon";
-import EnableEditBtns from "../Generic_Components/Edit_Btns";
+import BackBtn from "../../Generic_Components/Back_Icon";
+import EnableEditBtns from "../../Generic_Components/Edit_Btns";
 
 function MyAccountPage() {
 

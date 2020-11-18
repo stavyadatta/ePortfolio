@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import { useSelector } from "react-redux";
 import "./Casual_My_Page.css";
-import SignOut from "../Icons/signout_btn.svg";
-import Navbar from "../Navbar/Navbar";
-import firebase from "../Firebase";
-import Casual_My_Page_Image from "../Images/casual_account_bg.png";
-import BackBtn from "../Generic_Components/Back_Icon";
-import animateComponents from "../Generic_Components/Page_Animations";
+import SignOut from "../../Icons/signout_btn.svg";
+import Navbar from "../../Navbar/Navbar";
+import firebase from "../../Firebase";
+import Casual_My_Page_Image from "../../Images/casual_account_bg.png";
+import BackBtn from "../../Generic_Components/Back_Icon";
+import animateComponents from "../../Generic_Components/Page_Animations";
 
 function CasualMyPage() {
 
