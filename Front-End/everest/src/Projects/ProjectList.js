@@ -1,155 +1,28 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./ProjectList.css";
-import { ReactComponent as Plus } from "../Icons/add_circle_outline-24px.svg";
-import Project from "../Generic_Components/Project";
-import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import defaultProjectImage from "../Images/project_image.jpg";
+import React from "react";
+import { Route } from "react-router-dom"
+import { connect } from "react-redux"
+import Casual from "./ProjectList_Casual";
+import Professional from "./ProjectList_Professional";
 
-function ProjectList(props) {
-  const [colour, setColour] = useState("");
-
-  const projects = props.projects;
-
-  //placeholder
-  if (!projects) {
-    console.log("loading");
-    return <div>Loading...</div>;
+const ProjectList = (props) => {
+  if(!props.profile){
+    return(<div>Loading...</div>)
   }
 
-  function createProject(project) {
-    if (!project.imgURL) {
-      project.imgURL = defaultProjectImage;
-    }
-    return (
-      <Project
-        key={project.id}
-        id={project.id}
-        name={project.projectName}
-        description={project.projectDesc}
-        image={project.imgURL}
-      />
-    );
+  switch(props.profile.template){
+    case "Casual":
+      return <Route path="/projects/:userId"  component={Casual} />;
+    case "Professional":
+      return <Route path="/projects/:userId" component={Professional} />;
+    default:
+      return <Route path="/projects/:userId" component={Professional} />;
   }
-
-  /*******************************************************  COMPONENTS OF THIS PAGE DEFINED BELOW  *****************************************************/
-
-  // const colourPalette = {
-  //     default:{backgroundColor: ""},
-  //     greyblue:{backgroundColor: "#426077"},
-  //     lightblue:{backgroundColor: "#51adcf"},
-  //     greenblue:{backgroundColor: "#16697a"}
-  // }
-
-  function getSelectedColour() {
-    setColour(document.getElementById("colourPalette").value);
-  }
-
-  function ThemeColour() {
-    return (
-      <div className="themeColour">
-        <form>
-          Select Theme Colour:
-          <select id="colourPalette" style={{ width: "200px" }}>
-            {/* <option value="0">Select Theme Colour:</option> */}
-            <option value="default">Default</option>
-            <option value="greyBlue">Grey-blue</option>
-            <option value="lightBlue">Light-blue</option>
-            <option value="greenishBlue">Greenish-blue</option>
-          </select>
-        </form>
-
-        <button type="button" onClick={getSelectedColour}>
-          Apply Colour
-        </button>
-      </div>
-    );
-  }
-
-  function Header(props) {
-    return (
-      <div
-        id="project_list_header"
-        style={{
-          backgroundColor:
-            colour === "greyBlue"
-              ? "#426077"
-              : colour === "lightBlue"
-              ? "#51adcf"
-              : colour === "greenishBlue"
-              ? "#16697a"
-              : "",
-        }}
-      >
-        <h2 id="project_list_header_title">{props.name}</h2>
-      </div>
-    );
-  }
-
-  function AddProjectsButton() {
-    return (
-      <div className="addProject">
-        <Link to="/form">
-          <Plus className="addProject-icon" />
-          <button className="addProjectText"> Add Project </button>
-        </Link>
-      </div>
-    );
-  }
-
-  function GoBackButton() {
-    return (
-      <Link to="/profile">
-        <div className="goBack">
-          <i className="far fa-arrow-alt-circle-left" />
-
-          <button className="goBackText"> Go Back </button>
-        </div>
-      </Link>
-    );
-  }
-
-  /***********************************************************************************************************************************************************/
-
-  return (
-    <div className="page_container">
-      <Header name={"Projects"} />
-
-      {/* <div className="projectListButtons"> */}
-
-      <AddProjectsButton />
-
-      <GoBackButton />
-
-      <ThemeColour />
-
-      {/* </div> */}
-
-      <div className="projects">
-        {projects.map(createProject)} {/* PROJECTS GETTING RENDERED HERE */}
-      </div>
-    </div>
-  );
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    projects: state.firestore.ordered.projects,
+      profile:state.firebase.profile
   };
 };
 
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect((props) => {
-    let userId = props.match.params.userId;
-    return [
-      {
-        collection: "projects",
-        where: [["userId", "==", userId]],
-      },
-    ];
-  })
-)(ProjectList);
-//export default ProjectList;
+export default connect(mapStateToProps)(ProjectList);

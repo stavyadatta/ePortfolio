@@ -8,6 +8,7 @@ import {
 
 import "./App.css";
 import LoginPage from "./Accounts/Login_Page";
+import CreatePortfolio from "./Accounts/Create_Portfolio";
 import OverviewPage from "./Overview_pages/Overview_Page";
 import FormPage from "./Projects/Form_Page";
 import ProjectDetailsPage from "./Projects/Project_Details_Page";
@@ -16,7 +17,7 @@ import Navbar from "./Navbar/Navbar";
 import projectList from "./Projects/ProjectList"
 import verifyPage from "./Accounts/Verify_Page";
 import MyAccountPage from "./Accounts/My_Account_Page";
-
+import HomePage from "./Home_Page";
 import { useSelector } from "react-redux";
 
 function App() {

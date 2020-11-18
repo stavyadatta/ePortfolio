@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Register_Page.css";
 import EntryBox from "../Generic_Components/Entry_Box";
 import animateComponents from "../Generic_Components/Page_Animations";
-//import BindKeyToComponent from "./Generic_Components/Bind_Key_To_Component";
 import firebase from "../Firebase";
+import HomeWhiteIcon from "../Icons/Home_White.svg";
 
 function RegisterPage() {
   const [firstName, setFirstName] = useState("");
@@ -87,6 +88,9 @@ function RegisterPage() {
             updateFields={updateFields}
             authenticate={fieldAuthentications}
           />
+          <Link to= "/">
+          <img src = {HomeWhiteIcon} alt = "Home" id = "register_white_home"/>
+          </Link>
         </div>
       </div>
     </div>
