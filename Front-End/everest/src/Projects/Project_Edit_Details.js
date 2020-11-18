@@ -46,20 +46,30 @@ const ProjectDetailEdit = (props) => {
     switch (id) {
       case "detailTitleEntry":
         setDetailTitle(fieldValue);
+        setSubmitDisabled(false);;
+        setCancelDisabled(false);
         break;
       case "detailBodyEntry":
         setDetailBody(fieldValue);
+        setSubmitDisabled(false);;
+        setCancelDisabled(false);
         break;
-      case "imageUpload":
-        uploadImage(e.target.files[0]).then(url=>setDetailImage(url));
-        setIsNewImage(true);
-
+      case `imageUpload ${detail.id}`:
+        if(e.target.files[0].size < 1000000){
+          uploadImage(e.target.files[0]).then(url=>setDetailImage(url));
+          setIsNewImage(true);
+          setSubmitDisabled(false);
+          setCancelDisabled(false);
+        }else{
+          window.alert("Images must be less than 1 MB large")
+          return;
+        }
+        
         break;
       default:
         break;
     }
-    setSubmitDisabled(false);
-    setCancelDisabled(false);
+    
   };
 
   const handleCancel = () => {
@@ -180,7 +190,7 @@ const RightImgProjectDetailEdit = (props) => {
         onChange={updateField}
       />
       <div className="detailImageWrap" id="right">
-        <ImageUploadDisplay imageUrl={props.imgUrl} handleChange={updateField}/>
+        <ImageUploadDisplay detailId={props.detail.id} imageUrl={props.imgUrl} handleChange={updateField}/>
       </div>
     </div>
   );
@@ -191,7 +201,7 @@ const LeftImgProjectDetailEdit = (props) => {
   return (
     <div className="detailContent">
       <div className="detailImageWrap" id="left">
-        <ImageUploadDisplay imageUrl={props.imgUrl} handleChange={updateField}/>
+        <ImageUploadDisplay detailId={props.detail.id} imageUrl={props.imgUrl} handleChange={updateField}/>
       </div>
       <textarea
         className="halfDetailText"

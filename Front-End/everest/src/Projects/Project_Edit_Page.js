@@ -12,6 +12,7 @@ import approve from "../Icons/check-mark-circle-line.svg"
 import { ProjectDetailList } from "./Project_Edit_Details";
 import { SubmitButton, AddDetailButton} from "./Project_Edit_Buttons";
 import palettes from "./Project_Palettes";
+import { ImageUploadDisplay } from "./Image_Upload_Display";
 
 
 function ProjectEditPage(props) {
@@ -85,7 +86,6 @@ function ProjectEditPage(props) {
   }
 
   const handleHeaderSubmit = ({ projectTitle, projectImage }) => {
-    console.log({ t:projectTitle, i:projectImage })
     if(projectTitle && projectTitle.length > maxTitleLength){
       window.alert(`Title is too long, must be less than ${maxTitleLength} characters`)
       return;
@@ -140,7 +140,8 @@ const ProjectHeader = (props) => {
 
   const [projectTitle, setProjectTitle] = useState(project.projectName);
   const [titleSubmitDisable, setTitleSubmitDisable] = useState(true);
-  const [projectImage, setProjectImage] = useState(project.imgURL);
+  const [projectImage, setProjectImage] = 
+    useState(project.imgURL?project.imgURL:defaultProjectImage);
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -150,27 +151,28 @@ const ProjectHeader = (props) => {
         setProjectTitle(fieldValue);
         setTitleSubmitDisable(false);
         break;
-      case "imageUpload":
-        firebaseUrl(e.target.files[0]).then(url=>{
-          setProjectImage(url)
-          setTitleSubmitDisable(false)
-        });
+      case "imageUpload main":
+        if(e.target.files[0].size < 1000000){
+          firebaseUrl(e.target.files[0]).then(url=>{
+            setProjectImage(url);
+            setTitleSubmitDisable(false);
+          });
+        }else{
+          window.alert("Images must be less than 1 MB large")
+          return;
+        }
         break;
       default:
         break;
     }
+    
   };
 
 
   return(
     <div className="projectDetail" id="header" style={style}>
       <div className="detailImageWrap" id="left">
-        <div style={{height:"100%", width:"100%", objectFit: "cover"}}>
-        <label htmlFor="headerImageUpload">
-          <img className="detailImage" alt="" src={projectImage}/>
-        </label>
-        <input id="headerImageUpload" type="file" style={{display:"none"}} onChange={updateField}/>
-      </div>      
+        <ImageUploadDisplay detailId="main" handleChange={updateField} imageUrl={projectImage}/>
       </div>
       <div className="projectTitle">
         <input
