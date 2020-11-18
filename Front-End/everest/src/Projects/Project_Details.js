@@ -2,6 +2,7 @@ import React from "react";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
+import defaultFileImage from "../Images/File-icon.png";
 
 export const ProjectDetailList = (props) => {
   return props.details.map((detail) => {
@@ -33,6 +34,7 @@ const ProjectDetail = (props) => {
       break;
     case "file-upload":
       contentLayout = <UploadFileDetail detail={detail} fileUrl={fileUrl} filename={filename}/>
+      break;
     default:
       contentLayout = <DefaultDetail detail={detail}/>;
   }
@@ -75,7 +77,7 @@ const LeftImgProjectDetail = (props) => (
 );
 
 const UploadFileDetail = (props) => {
-  <div className="detailContent">
+  return ( <div className="detailContent">
       <div className="halfDetailText">{props.detail.text}</div>
       <div clasName="detailFileContent">
       <a href={props.fileUrl} download> 
@@ -87,7 +89,7 @@ const UploadFileDetail = (props) => {
           />
           {props.filename}</a> 
       </div>
-    </div>
+    </div>)
 }
 
 const DefaultDetail = (props) => (

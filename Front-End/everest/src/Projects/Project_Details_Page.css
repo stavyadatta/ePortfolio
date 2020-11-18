@@ -130,9 +130,10 @@
   margin-left: 2.2px;
 }
 
-
-
-
+.detailFileContent{
+  display: flex;
+  flex-direction: column;
+}
 .detailContent{
     display: flex;
     flex-direction: row;
@@ -179,6 +180,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.detailFileImage{
+  width: 50%;
+  height: 50%;
 }
 
 .detailEditButtons{
