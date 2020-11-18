@@ -93,17 +93,17 @@ function ProjectList(props) {
     function AddProjectsButton() {
         return (
 
-            <Link to="/form">
+            
 
                 <div className="addProject">
-
-                    <Plus className="addProject-icon"/>
-
-                    <button className="addProjectText"> Add Project </button> 
+                <Link to="/form">
+                  <Plus className="addProject-icon"/>
+                  <button className="addProjectText"> Add Project </button> 
+                </Link>
+                    
 
                 </div>
 
-            </Link>       
         );
                 
             
