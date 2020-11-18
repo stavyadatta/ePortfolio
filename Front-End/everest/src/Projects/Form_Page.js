@@ -91,7 +91,7 @@ function FormPage(props) {
 
         <div className = "container">
 
-            <h2 id="form_header">Project Details</h2>
+            <h2 id="form_header" style={{color:color}}>Project Details</h2>
 
             <form onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="name_entry">Project Name</label>
@@ -101,7 +101,7 @@ function FormPage(props) {
                 <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc} style={entryStyle} required/>
 
                 <label htmlFor="body_entry">Project Body</label>
-                <textarea id="body_entry" name="projectBody" placeholder="Enter Detailed Body of Project" style={{height:"150px", entryStyle}} onChange={updateField} value={pBody}></textarea>
+                <textarea id="body_entry" name="projectBody" placeholder="Enter Detailed Body of Project" style={{height:"150px", borderRadius:radius}} onChange={updateField} value={pBody}></textarea>
 
                 <label htmlFor="tags_entry">Project Tags</label>
                 <input type="text" id="tags_entry" name="projectTags" placeholder="Enter Project Tags separated by comma" onChange={updateField} value={pTags} style={entryStyle}/>
