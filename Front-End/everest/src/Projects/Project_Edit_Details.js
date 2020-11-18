@@ -61,7 +61,7 @@ const ProjectDetailEdit = (props) => {
         setCancelDisabled(false);
         break;
       case `imageUpload ${detail.id}`:
-        if(e.target.files[0].size < 1000000){
+        if(e.target.files[0].size < 1000000){ //1MB
           uploadImage(e.target.files[0]).then(url=>setDetailImage(url));
           setIsNewImage(true);
           setSubmitDisabled(false);
@@ -131,12 +131,16 @@ const ProjectDetailEdit = (props) => {
   }
   const handleFile = async (e) => {
     const targetFile = e.target.files[0];
-    console.log("Helloo");
     // let firebaseFileUrl = await firebaseUrl(targetFile, 'files');
-    setFile(targetFile);
-    setIsFile(true);
-    //setFileUrl(firebaseFileUrl);
-    setFileName(targetFile.name);
+    if(targetFile.size > 10000000){//10Mb
+      window.alert("File must be less than 10MB")
+      return;
+    } else {
+      setFile(targetFile);
+      setIsFile(true);
+      //setFileUrl(firebaseFileUrl);
+      setFileName(targetFile.name);
+    }
   }
 
   let detailProps = {
