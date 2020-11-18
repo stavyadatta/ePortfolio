@@ -5,36 +5,41 @@
     flex-wrap: wrap;
     flex-direction: row;
     font-size: 150%;
-    min-height: 300px;
-    height: 60vh;
+    height: 400px;
     width: 100%;
 }
 
-.projectLayout a#editProjectButton{
+.projectLayout img#editProjectButton{
   position: fixed;
-  bottom: 5vh;
-  right: 5vw;
-  
-}
-
-.projectLayout div#editProjectButton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  background: white;
-  border-radius: 100%;
-  border-color: black;
-  border: 3px solid;
-  min-width: 50px;
-  min-height: 50px;
-  font-size: 75%;
-  width: 10vh;
-  height: 10vh;
+  width: 50px;
+  height: 50px;
   bottom: 50px;
   right: 50px;
-  
+  border-radius: 50%;
+  color:white;
 }
+
+.projectLayout img#editProjectButton:hover{
+  border-radius: 50%;
+  box-shadow: 0px 0px 25px white;
+}
+
+.projectLayout img#deleteProjectButton{
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 50px;
+  right: 125px;
+  border-radius: 50%;
+  color:white;
+}
+
+.projectLayout img#deleteProjectButton:hover{
+  border-radius: 50%;
+  box-shadow: 0px 0px 25px white;
+  cursor: pointer;
+}
+
 .projectLayout div#deleteProjectButton{
     display: flex;
   align-items: center;
@@ -57,18 +62,18 @@
     font-size: 175%;
 }
 
-.projectHeader{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 6rem;
-    height: 100%;
-    width: 100%;
-}
-
 .projectTitle{
     width: 50%;
     font-size: larger;
+    font-family: 'Baskervville', serif;
+}
+
+.projectTitle #titleEntry{
+  width: 300px;
+  height: 60px;
+  font-size: 1em;
+  font-family: inherit;
+  margin-left: 5px;
 }
 
 .projectAuthor{
@@ -79,57 +84,77 @@
     font-size: large;
 }
 
-.projectDescription{
-    display: inline-block;
-    padding: 1em;
-    padding-left:8rem;
-    padding-right:8rem;
-    width: 100%
-}
-
-.descriptionTitle{
-    display: inline-block;
-    text-align: left;
-    font-size: large;
-    width: 100%;
-}  
-
-.descriptionBody{
-    text-align: left;
-    font-size: small;
-    width: 100%;
-}
-
 .projectDetail{
     display: flex;
     flex-direction: column;
     padding:1em;
-    padding-left:8rem;
-    padding-right:8rem;
+    padding-left:12rem;
+    padding-right: 12rem;
+    min-height: 500px;
+    height: 60vh;
     width: 100%
+}
+
+.projectDetail#header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailHead{
+  display: flex;
+  flex-direction: row;
+  padding-bottom:1em;
+}
+
+.detailHead #detailType{
+  width:30%;
+  justify-content: right;
+  display: flex;
+
 }
 
 .detailTitle{
     width:100%;
     text-align: left;
-    font-size: large;
+    font-size: x-large;
+    font-family: 'Baskervville', serif;
 }
 
-.projectDetailContent{
+.detailTitle #detailTitleEntry{
+  width: 100%;
+  height: 60px;
+  font-size: inherit;
+  font-family: inherit;
+  margin-left: 2.2px;
+}
+
+
+
+
+.detailContent{
     display: flex;
     flex-direction: row;
-    width: 100%
+    width: 100%;
+    height: 75%;
 }
 
 .halfDetailText{
-    text-align: left;
-    font-size: small;
-    width: 50%;
+  text-align: left;
+  font-size: small;
+  color:inherit;
+  background: inherit;
+  height: 90%;
+  width: 50%;
 }
 
 .detailText{
     text-align: left;
     font-size: small;
+    color:inherit;
+    background: inherit;
+    height: 90%;
     width: 100%;
 }
 
@@ -138,13 +163,26 @@
     align-items: center;
     justify-content: center;
     width:50%;
-    height:100%;
-    padding: 2rem;
+    height:90%;
+}
+
+.detailImageWrap#right{
+  margin-left:2em;
+}
+
+.detailImageWrap#left{
+  margin-right:2em;
 }
 
 .detailImage{
     border-radius: 0.5em;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
+.detailEditButtons{
+  display: flex;
+  flex-direction: row;
+  height: 10%;
+}
