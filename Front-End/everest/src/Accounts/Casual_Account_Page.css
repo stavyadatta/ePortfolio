@@ -1,0 +1,225 @@
+.casual_account_page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #025E6D;
+}
+
+.partition_account_page {
+    width: 80vw;
+    height: 75vh;
+    position: absolute;
+    top: 16.2%;
+    left: 9.8%;
+    background-color: white;
+}
+
+#casual_account_image {
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+ 
+    
+#casual_fname, #casual_lname, #casual_id, #casual_template, #casual_fname:focus, #casual_lname:focus, 
+#casual_id:focus, #casual_template:focus {
+    width: 15vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    color: #928686;
+    opacity: 0.62;
+    position: absolute;
+    top: 160%;
+}
+    
+#casual_url_input, #casual_email_input, #casual_url_input:focus, #casual_email_input:focus {
+    width: 30.8vw;
+    font-size: 19;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    color: #928686;
+    opacity: 0.62;
+    position: absolute;
+    top: 160%;
+}
+    
+.casual_user_first_name {
+    position: absolute;
+    top: 17.5vh;
+    left: 50%;
+}
+    
+.casual_user_last_name {
+    position: absolute;
+    top: 17.5vh;
+    left: 69.8%;
+}
+    
+.casual_user_id {
+    position: absolute;
+    top: 29vh;
+    left: 50%;
+}
+
+#casual_entry_header {
+    font-size: 15px;
+    color:  #025E6D;
+}
+    
+.casual_chosen_template {
+    position: absolute;
+    top: 29vh;
+    left: 69.8%;
+}
+    
+.casual_user_email {
+    position: absolute;
+    top: 40.5vh;
+    left: 50%; 
+}
+    
+.casual_url_link {
+    position: absolute;
+    top: 52vh;
+    left: 50%;
+}
+
+#casual_edit_btns {
+    position: absolute;
+    left: 50%;
+    bottom: 12%;
+}
+    
+#casual_account_header {
+    color:  #025E6D; 
+    font-family: 'Baskervville', serif;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    font-size: 26px;
+}
+    
+#casual_template {
+    position: absolute;
+    left: 0%;
+    top: 140%;
+    padding-top: 7.4px;
+    padding-bottom: 7.8px;
+    padding-left: 5px;
+}
+    
+#casual_template_active {
+    outline: none;
+    width: 15vw;
+    position: absolute;
+    left: 0%;
+    top: 138%;
+    padding-top: 7.4px;
+    padding-bottom: 7.4px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    opacity: 1;
+    color: #928686;
+}
+    
+#casual_template_active:focus { color: #082F4E; }
+    
+#casual_fname_active, #casual_lname_active {
+    width: 15vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    opacity: 1;
+    color: #082F4E;
+    position: absolute;
+    top: 160%;
+}
+    
+#casual_fname_active::placeholder, #casual_lname_active::placeholder, 
+#casual_template_active::placeholder { color: #928686; }
+    
+#casual_email_input_active {
+    width: 30.8vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    opacity: 1;
+    color: #082F4E;
+    position: absolute;
+    top: 160%;
+}
+    
+#casual_email_input_active::placeholder { color: #928686; }
+
+.casual_editing_btns {
+    opacity: 0;
+    display: none;
+}
+
+.casual_account_btns {
+    color: #025E6D;
+    width: 100px;
+    height: 20px;
+    padding-bottom: 0.9px;
+    background-color: white;
+    outline: none;
+    border: 1px solid #025E6D;
+    border-radius: 50px;
+    font-size: 10px;
+}
+    
+.casual_account_btns:hover {
+    color: white;
+    background-color: #025E6D;
+    border: none;
+    padding-bottom: 0.9px;
+}
+
+#casual_edit_account_info {
+    position: absolute;
+    left: 50%;
+    top: 88%;
+}
+      
+#casual_save_info {
+    position: absolute;
+    top: 88%;
+    left: 58.5%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+      
+#casual_discard_changes {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#casual_account_signout {
+    width: 2.5%;
+    position: absolute;
+    right: 1.5%;
+    bottom: 2.5%;
+}
+
+#casual_account_signout:hover {
+    border-radius: 50px;
+    box-shadow: 0px 0px 25px white;
+}
