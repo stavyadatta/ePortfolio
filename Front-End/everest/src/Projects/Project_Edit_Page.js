@@ -12,6 +12,7 @@ import approve from "../Icons/check-mark-circle-line.svg"
 import { ProjectDetailList } from "./Project_Edit_Details";
 import { SubmitButton, CancelButton, AddDetailButton} from "./Project_Edit_Buttons";
 import palettes from "./Project_Palettes";
+import NavbarPad from "../Generic_Components/NavbarPad"
 import { ImageUploadDisplay } from "./Image_Upload_Display";
 
 
@@ -108,6 +109,7 @@ function ProjectEditPage(props) {
   return (
     <div className="projectLayout">
       <DoneEditButton/>
+      <NavbarPad color={palette.primary}/>
       <ProjectHeader 
         style={headerStyle} 
         dateStyle={dateStyle}
