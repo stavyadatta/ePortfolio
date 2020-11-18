@@ -19,8 +19,17 @@ function FormPage(props) {
   const [pTags, setPTags] = useState("");      
   const [isLoading, setLoading] = useState("")
   const userAuth = useSelector(state => state.firebase.auth);
+  const userProfile = useSelector(state=>state.firebase.profile);
   const userId = userAuth.uid;
   const [imageAsFile, setImageAsFile] = useState('');
+
+  //casual/professional styles
+
+  let radius = userProfile.template==="Casual"?30:4;
+  let color = userProfile.template==="Casual"?"#025E6D":"#082f4e";
+
+  let buttonStyle = {borderRadius:radius, backgroundColor:color};
+  let entryStyle = {borderRadius:radius};
 
   let history = useHistory(); // NEWLY ADDED
   if (isLoading === true) {
@@ -86,21 +95,21 @@ function FormPage(props) {
 
             <form onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="name_entry">Project Name</label>
-                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName} required/>
+                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName} required style={entryStyle}/>
 
                 <label htmlFor="desc_entry">Project Description</label>
-                <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc} required/>
+                <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc} style={entryStyle} required/>
 
                 <label htmlFor="body_entry">Project Body</label>
-                <textarea id="body_entry" name="projectBody" placeholder="Enter Detailed Body of Project" style={{height:"150px"}} onChange={updateField} value={pBody}></textarea>
+                <textarea id="body_entry" name="projectBody" placeholder="Enter Detailed Body of Project" style={{height:"150px", entryStyle}} onChange={updateField} value={pBody}></textarea>
 
                 <label htmlFor="tags_entry">Project Tags</label>
-                <input type="text" id="tags_entry" name="projectTags" placeholder="Enter Project Tags separated by comma" onChange={updateField} value={pTags}/>
+                <input type="text" id="tags_entry" name="projectTags" placeholder="Enter Project Tags separated by comma" onChange={updateField} value={pTags} style={entryStyle}/>
 
                 <label htmlFor="main_image_upload">Main Project Image Upload</label>
-                <input type="file" id="main_image_upload" name="mainImage" accept="image/*" onChange={handleImageAsFile} />  {/* MIGHT NEED TO USE VALUE PROPERTY LATER INSIDE THIS INPUT TAG*/}
+                <input type="file" id="main_image_upload" name="mainImage" accept="image/*" onChange={handleImageAsFile} style={entryStyle}/>  {/* MIGHT NEED TO USE VALUE PROPERTY LATER INSIDE THIS INPUT TAG*/}
 
-                <input type="submit" id="submitButton" value="Save Project"/>
+                <input type="submit" id="submitButton" value="Save Project" style={buttonStyle}/>
             </form>
         
         </div>
