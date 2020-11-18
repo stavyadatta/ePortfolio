@@ -79,15 +79,16 @@ const LeftImgProjectDetail = (props) => (
 const UploadFileDetail = (props) => {
   return ( <div className="detailContent">
       <div className="halfDetailText">{props.detail.text}</div>
-      <div clasName="detailFileContent">
-      <a href={props.fileUrl} download> 
+      <div className="detailFileContent">
         <img
           className="detailFileImage"
           alt={props.detail.imgText}
           src={defaultFileImage}
           href={props.fileUrl}
           />
-          {props.filename}</a> 
+        <div className="detailFileName">
+          <a href={props.fileUrl} download>  {props.filename}</a> 
+        </div>
       </div>
     </div>)
 }

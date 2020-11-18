@@ -5,6 +5,8 @@ import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons
 import { ImageUploadDisplay } from "./Image_Upload_Display";
 import defaultProjectImage from "../Images/project_image.jpg";
 import { firebaseUrl } from "../storageFirebaseUpload";
+import defaultFileImage from "../Icons/templates_provided.png";
+
 
 
 export const ProjectDetailList = (props) => {
@@ -243,15 +245,35 @@ const LeftImgProjectDetailEdit = (props) => {
 const UploadProjectDetailEdit = (props) => {
   let updateField = props.onChange;
   return (
+    // <div className="detailContent">
+    //   <a href={props.fileUrl} download>{props.filename}</a>
+    //   <input type='file' id="fileUpload" name="mainFile" onChange={updateField} />
+    //   <textarea
+    //     className="detailText"
+    //     id="detailBodyEntry"
+    //     value={props.body}
+    //     onChange={updateField}
+    //   />
+    // </div>
     <div className="detailContent">
-      <a href={props.fileUrl} download>{props.filename}</a>
-      <input type='file' id="fileUpload" name="mainFile" onChange={updateField} />
       <textarea
         className="detailText"
         id="detailBodyEntry"
         value={props.body}
         onChange={updateField}
       />
+      <div className="detailFileContent">
+        <img
+          className="detailFileImage"
+          alt={props.detail.imgText}
+          src={defaultFileImage}
+          href={props.fileUrl}
+          />
+          <div className="detailFileName">
+            <a href={props.fileUrl} download>  {props.filename}</a> 
+          </div>
+          <input className="detailFileChoose" type='file' id="fileUpload" name="mainFile" onChange={updateField} />
+      </div>
     </div>
   )
 }
