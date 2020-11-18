@@ -4,15 +4,13 @@ import { firestoreConnect, populate } from "react-redux-firebase";
 import firebase from "../Firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import { firebaseUrl } from "../storageFirebaseUpload"
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
 import { ProjectDetailList } from "./Project_Edit_Details";
 import { SubmitButton, AddDetailButton} from "./Project_Edit_Buttons";
-import { ImageUploadDisplay } from "./Image_Upload_Display";
 import palettes from "./Project_Palettes";
-
-
 
 
 function ProjectEditPage(props) {
@@ -85,15 +83,16 @@ function ProjectEditPage(props) {
       return(<Link id="editProjectButton" to={"/project/"+props.match.params.id}><div id="editProjectButton">Done</div></Link>)
   }
 
-  const handleHeaderSubmit = (projectTitle) => {
-    if(projectTitle.length > maxTitleLength){
+  const handleHeaderSubmit = ({ projectTitle, projectImage }) => {
+    console.log({ t:projectTitle, i:projectImage })
+    if(projectTitle && projectTitle.length > maxTitleLength){
       window.alert(`Title is too long, must be less than ${maxTitleLength} characters`)
       return;
     } else {
       firebase.firestore()
       .collection('projects')
       .doc(props.match.params.id)
-      .update({projectName:projectTitle});
+      .update({projectName:projectTitle, imgURL: projectImage});
     }
     
   }
@@ -136,8 +135,9 @@ const ProjectHeader = (props) => {
   let style = props.style;
   let dateString = getPostDateString(project.postDate);
 
-  const [projectTitle, setProjectTitle] = useState(props.projectName);
+  const [projectTitle, setProjectTitle] = useState(project.projectName);
   const [titleSubmitDisable, setTitleSubmitDisable] = useState(true);
+  const [projectImage, setProjectImage] = useState(project.imgURL);
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -146,6 +146,12 @@ const ProjectHeader = (props) => {
       case "titleEntry":
         setProjectTitle(fieldValue);
         setTitleSubmitDisable(false);
+        break;
+      case "imageUpload":
+        firebaseUrl(e.target.files[0]).then(url=>{
+          setProjectImage(url)
+          setTitleSubmitDisable(false)
+        });
         break;
       default:
         break;
@@ -156,7 +162,12 @@ const ProjectHeader = (props) => {
   return(
     <div className="projectDetail" id="header" style={style}>
       <div className="detailImageWrap" id="left">
-        <img src={props.imageUrl} alt=""/>        
+        <div style={{height:"100%", width:"100%", objectFit: "cover"}}>
+        <label htmlFor="imageUpload">
+          <img className="detailImage" alt="" src={projectImage}/>
+        </label>
+        <input id="imageUpload" type="file" style={{display:"none"}} onChange={updateField}/>
+      </div>      
       </div>
       <div className="projectTitle">
         <input
@@ -169,7 +180,10 @@ const ProjectHeader = (props) => {
         <div className="projectDate" style={props.dateStyle}>
           {dateString}
         </div>
-        <SubmitButton submit={()=>{props.submit(projectTitle)}} submitDisabled={titleSubmitDisable}/>
+        <SubmitButton submit={()=>{
+          props.submit({projectTitle, projectImage})
+          setTitleSubmitDisable(true);
+          }} submitDisabled={titleSubmitDisable}/>
       </div>
     </div>
   )

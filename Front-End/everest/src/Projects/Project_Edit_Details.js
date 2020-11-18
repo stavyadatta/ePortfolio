@@ -4,7 +4,7 @@ import firebase from "../Firebase";
 import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons";
 import { ImageUploadDisplay } from "./Image_Upload_Display";
 import defaultProjectImage from "../Images/project_image.jpg";
-import storageFunctions from "../storageFirebaseUpload";
+import { firebaseUrl } from "../storageFirebaseUpload";
 
 
 export const ProjectDetailList = (props) => {
@@ -38,7 +38,6 @@ const ProjectDetailEdit = (props) => {
   const [cancelDisabled, setCancelDisabled] = useState(true);
   const [detailImage, setDetailImage] = 
     useState(detail.imgUrl ? detail.imgUrl : defaultProjectImage);
-  const [imageAsFile, setImageAsFile] = useState();
   const [isNewImage, setIsNewImage] = useState(false);
 
   const updateField = (e) => {
@@ -102,7 +101,7 @@ const ProjectDetailEdit = (props) => {
   }
 
   const uploadImage = async (imageAsFile) => {
-    let url = await storageFunctions.firebaseUrl(imageAsFile);
+    let url = await firebaseUrl(imageAsFile);
     return url;
   }
 
