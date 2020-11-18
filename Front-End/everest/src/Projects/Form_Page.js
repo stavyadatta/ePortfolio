@@ -16,7 +16,7 @@ function FormPage(props) {
   const [pName, setPName] = useState("");
   const [pDesc, setPDesc] = useState("");
   const [pBody, setPBody] = useState("");
-  const [pTags, setPTags] = useState("");      // COULD BE useState([])
+  const [pTags, setPTags] = useState("");      
   const [isLoading, setLoading] = useState("")
   const userAuth = useSelector(state => state.firebase.auth);
   const userId = userAuth.uid;
@@ -86,10 +86,10 @@ function FormPage(props) {
 
             <form onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="name_entry">Project Name</label>
-                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName}/>
+                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName} required/>
 
                 <label htmlFor="desc_entry">Project Description</label>
-                <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc}/>
+                <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc} required/>
 
                 <label htmlFor="body_entry">Project Body</label>
                 <textarea id="body_entry" name="projectBody" placeholder="Enter Detailed Body of Project" style={{height:"150px"}} onChange={updateField} value={pBody}></textarea>
@@ -120,4 +120,5 @@ function FormPage(props) {
 //       auth:state.firebase.auth
 //   };
 // };
-export default FormPage
+
+export default FormPage;
