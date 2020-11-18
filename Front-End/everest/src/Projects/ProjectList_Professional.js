@@ -5,9 +5,11 @@ import { ReactComponent as Plus } from "../Icons/add_circle_outline-24px.svg";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import NavbarPad from "../Navbar/NavbarPad"
 
 function ProjectList_Professional(props) {
   const projects = props.projects;
+  const color = "#082f4e";
 
   //placeholder
   if (!projects) {
@@ -23,7 +25,7 @@ function ProjectList_Professional(props) {
 
         <div className="projectNameAndDesc">
           <Link to={"/project/" + props.id}>
-            <h2 className="projectName" style={{color:"#082f4e", fontFamily:"Baskerville, serif"}}>{props.name}</h2>
+            <h2 className="projectName" style={{color:color, fontFamily:"Baskerville, serif"}}>{props.name}</h2>
           </Link>
 
           <p className="projectDesc">{props.description}</p>
@@ -48,7 +50,7 @@ function ProjectList_Professional(props) {
         name={project.projectName}
         description={project.projectDesc}
         image={project.imgURL}
-        style={{ border: "1px solid #082f4e" }}
+        style={{ border: `1px solid ${color}` }}
       />
     );
   }
@@ -57,7 +59,7 @@ function ProjectList_Professional(props) {
 
   function Header(props) {
     return (
-      <div id="project_list_header" style={{ backgroundColor: "#082f4e" }}>
+      <div id="project_list_header" style={{ backgroundColor: color }}>
         <div
           id="project_list_header_title"
           style={{ fontFamily: "Baskerville, serif" }}
@@ -83,7 +85,7 @@ function ProjectList_Professional(props) {
           <Plus className="addProject-icon" />
           </Link>
           <Link to="/form">
-            <button className="addProjectText" style={{ color: "#082f4e" }}>
+            <button className="addProjectText" style={{ color: color }}>
               Add Project
             </button>
           </Link>
@@ -97,7 +99,7 @@ function ProjectList_Professional(props) {
           <Link to="/profile">
             <i
               className="far fa-arrow-alt-circle-left"
-              style={{ color: "#082f4e" }}
+              style={{ color: color }}
             />
 
             <button className="goBackText"> Go Back </button>
@@ -111,6 +113,7 @@ function ProjectList_Professional(props) {
 
   return (
     <div className="page_container">
+      <NavbarPad color={color} />
       <Header name={"Projects"} />
 
       {/* <div className="projectListButtons"> */}

@@ -4,6 +4,7 @@ import "./Form_Page.css";
 import {useSelector} from "react-redux";
 import {firebaseUpload}from "../storageFirebaseUpload";
 import { useHistory } from "react-router-dom";
+import NavbarPad from "../Navbar/NavbarPad";
 
 
 // import { Link } from "react-router-dom";
@@ -90,6 +91,8 @@ function FormPage(props) {
         {/************************************************************************/}
 
         <div className = "container">
+
+            <NavbarPad/>
 
             <h2 id="form_header" style={{color:color}}>Project Details</h2>
 

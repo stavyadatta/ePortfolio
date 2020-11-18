@@ -56,7 +56,7 @@ const ProjectDetailEdit = (props) => {
         break;
       case `imageUpload ${detail.id}`:
         if(e.target.files[0].size < 1000000){
-          uploadImage(e.target.files[0]).then(url=>setDetailImage(url));
+          firebaseUrl(e.target.files[0]).then(url=>setDetailImage(url));
           setIsNewImage(true);
           setSubmitDisabled(false);
           setCancelDisabled(false);
@@ -108,11 +108,6 @@ const ProjectDetailEdit = (props) => {
 
   const handleDelete = () => {
     props.handleDelete(detail.id);
-  }
-
-  const uploadImage = async (imageAsFile) => {
-    let url = await firebaseUrl(imageAsFile);
-    return url;
   }
 
   let detailProps = {
