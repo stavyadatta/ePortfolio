@@ -12,7 +12,6 @@ import Login_Hovered from "../Icons/login_btns/login_hovered.png";
 import firebase from '../Firebase';
 import HomeWhiteIcon from "../Icons/Home_White.svg";
 
-
 function LoginPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
