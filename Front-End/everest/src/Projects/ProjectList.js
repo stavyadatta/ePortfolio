@@ -6,6 +6,7 @@ import Project from "../Generic_Components/Project";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import defaultProjectImage from "../Images/project_image.jpg"
 
 function ProjectList(props) {
 
@@ -23,7 +24,7 @@ function ProjectList(props) {
 
    function createProject(project) {
         if (!project.imgURL) {
-            project.imgURL = "https://www.virvelle.com/wp-content/uploads/2018/12/project-management.jpg";
+            project.imgURL = defaultProjectImage;
         }
         return (
             <Project 
