@@ -29,11 +29,7 @@ p {
 	font-family: "Karla";
 }
 
-/* #active_page {  } */
-
-.overview_btns:hover {
-	text-decoration: underline;
-}
+.overview_btns:hover { text-decoration: underline; }
 
 #achievement_image {
 	width: 100%;
@@ -60,11 +56,9 @@ p {
 	transform: scale(0.45, 0.45);
 }
 
-#home_btn:hover,
-#about_btn:hover,
-#signout_btn:hover {
-	border-radius: 50px;
-	box-shadow: 0px 0px 25px white;
+#home_btn:hover, #about_btn:hover, #signout_btn:hover {
+    border-radius: 50px;
+    box-shadow: 0px 0px 75px white;
 }
 
 .page_headers {
@@ -81,12 +75,12 @@ p {
 }
 
 .header_overview_btns {
-	display: flex;
-	flex-direction: row;
-	column-gap: 120px;
-	flex-wrap: wrap;
-	position: absolute;
-	left: 8%;
-	top: 14%;
-	justify-content: center;
+    display: flex;
+    flex-direction: row;
+    column-gap: 120px;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 8.1%;
+    top: 14%;
+    justify-content: center;
 }

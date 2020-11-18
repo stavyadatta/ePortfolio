@@ -1,0 +1,26 @@
+#home_icon {
+    width: 2.3%;
+    position: absolute;
+    left: 45.7vw;
+    bottom: 18%;
+}
+
+#about_icon {
+    width: 2.3%;
+    position: absolute;
+    left: 45.7vw;
+    bottom: 10.5%;
+}
+
+#signout_icon {
+    width: 2.3%;
+    position: absolute;
+    left: 45.7vw;
+    bottom: 3%;
+}
+
+
+#home_icon:hover, #about_icon:hover, #signout_icon:hover {
+border-radius: 50px;
+box-shadow: 0px 0px 25px white;
+}
