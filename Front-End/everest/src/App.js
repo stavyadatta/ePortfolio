@@ -74,6 +74,7 @@ function AuthRoutes() {
     <Switch>
       <Route path="/profile" component={OverviewPage} />
       <Route path="/myaccount" component={MyAccountPage} />
+      <Route path="/" exact component={HomePage} />
       <NavbarRoutes />
       <Redirect to="/profile" />
     </Switch>
@@ -107,16 +108,18 @@ function UnVerifiedRoutes() {
 function UnAuthRoutes() {
   return (
     <Switch>
-      <Route path="/login" component={LoginPage} />
+      <Route path="/login" component = {LoginPage} />
+      <Route path="/register" component = {CreatePortfolio} />
+      <Route path="/" exact component={HomePage} />
       <div>
-        <Navbar />
+        <Navbar/>
         <Switch>
           <Route path="/project/:id" component={ProjectDetailsPage} />
           <Route path="/projects/:userId" component={projectList} />
-          <Redirect to="/login" />
+          <Redirect to="/" />
         </Switch>
       </div>
-      <Redirect to="/login" />
+      <Redirect to="/" />
     </Switch>
   );
 }
