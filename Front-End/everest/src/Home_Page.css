@@ -1,7 +1,7 @@
 p {
 	color: white;
 	font-size: 50px;
-	font-family: "Commissioner", serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 .home_page { 
@@ -319,4 +319,8 @@ p {
 
 #footer_logo {
 	display: none;
+}
+
+#home_user_id, #home_search_project_id {
+	width: 400px;
 }

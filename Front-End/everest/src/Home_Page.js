@@ -176,7 +176,7 @@ function UserSearch() {
     return(
         <div className="home_search_user_id">
             <p className = "search_heading">Search for a User :</p>
-            <EntryBox id="user_id" textType="text" default="Enter User Search String"
+            <EntryBox id="home_user_id" textType="text" default="Enter User Search String"
             onChange={UidFields} readonly={false} />
             <button className="home_search_submit" id = "user_search_submit" onClick={handleSubmit}> Submit</button>
         </div>

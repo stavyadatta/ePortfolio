@@ -1,0 +1,50 @@
+.editing_btns {
+    opacity: 0;
+    display: none;
+}
+
+    
+.account_btns {
+    color: #082F4E;
+    width: 100px;
+    height: 20px;
+    padding-bottom: 0.9px;
+    background-color: white;
+    outline: none;
+    border: 1px solid #082F4E;
+    border-radius: 50px;
+    font-size: 10px;
+}
+    
+.account_btns:hover {
+    color: white;
+    background-color: #082F4E;
+    border: none;
+    padding-bottom: 0.9px;
+}
+
+#edit_account_info {
+    position: absolute;
+    left: 58.5%;
+    top: 75.9%;
+}
+      
+#save_info {
+    position: absolute;
+    top: 75.9%;
+    left: 65.5%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+      
+#discard_changes {
+    position: absolute;
+    top: 75.9%;
+    left: 58.5%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
