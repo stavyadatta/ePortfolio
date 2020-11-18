@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import { Link } from "react-router-dom";
 import "./Create_Portfolio_Login.css";
 import CreateRetrievePassword from "./Create_Forgot_Pwd";
 import animateComponents from "../Generic_Components/Page_Animations";
@@ -9,6 +9,7 @@ import SmallBtn from "../Generic_Components/Small_Btn";
 import Login_Unhovered from "../Icons/login_btns/login_unhovered.png";
 import Login_Hovered from "../Icons/login_btns/login_hovered.png";
 import firebase from '../Firebase';
+import HomeWhiteIcon from "../Icons/Home_White.svg";
 
 
 function CreateLoginPortfolioPage() {
@@ -54,6 +55,9 @@ function CreateLoginPortfolioPage() {
 						<h2 id = "create_login_header">Login</h2>
 						<LoginFields authenticate = {fieldAuthentications} updateField = {updateField}/>
 					</div>
+					<Link to = "/">
+						<img src = {HomeWhiteIcon} alt= "Home" id = "create_login_white_icon"/>
+					</Link>
 				</div>	
 			</div>
 		</div>

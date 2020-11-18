@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import { Link } from "react-router-dom";
 import "./Login_Page.css";
 import RegisterPage from "./Register_Page";
 import RetrievePassword from "./Reset_Password";
@@ -10,6 +10,7 @@ import SmallBtn from "../Generic_Components/Small_Btn";
 import Login_Unhovered from "../Icons/login_btns/login_unhovered.png";
 import Login_Hovered from "../Icons/login_btns/login_hovered.png";
 import firebase from '../Firebase';
+import HomeWhiteIcon from "../Icons/Home_White.svg";
 
 
 function LoginPage() {
@@ -55,6 +56,9 @@ function LoginPage() {
 						<h2 id = "login_header">Login</h2>
 						<LoginFields authenticate = {fieldAuthentications} updateField = {updateField}/>
 					</div>
+					<Link to = "/">
+							<img src = {HomeWhiteIcon} alt= "Home" id = "login_white_icon"/>
+					</Link>
 				</div>	
 			</div>
 			<RegisterPage />

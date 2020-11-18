@@ -17,7 +17,7 @@ import CardLabel from "./Generic_Components/Card_Label";
 import GuyPointing from "./Images/Guy_Pointing.svg";
 import Mountain from "./Images/mountain_filler.svg";
 import Sun from "./Images/sun_bg_image.png";
-import { Link as ScrollLink} from "react-scroll";
+import {Link as ScrollLink} from "react-scroll";
 
 function HomePage() {
     return (
@@ -104,8 +104,6 @@ function FirstSegmentBtns() {
                 offset={0}
                 duration={500}
             >Features</ScrollLink>
-            {/* <button className = "header_btns" id="Features">Features</button> */}
-          
             <button className = "header_btns" id="About">About</button>
             <ScrollLink
                 activeClass="active"
@@ -134,7 +132,6 @@ function FirstSegmentBtns() {
                 offset={0}
                 duration={1000}
             >Explore Existing Portfolios</ScrollLink>
-            {/* <button className="bottom_btns" id="explore_existing_portfolios">Explore Existing Portfolios</button> */}
         </div>
     );
 }

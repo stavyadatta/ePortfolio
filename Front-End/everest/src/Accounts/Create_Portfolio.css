@@ -85,3 +85,13 @@ h2 {
     top: 28.8%;
 }
 
+#create_register_white_home {
+    width: 21%;
+    position: absolute;
+    top: 64.8vh;
+    left: -10.6vw;
+}
+
+#create_register_white_home:hover {
+    width: 22%;
+}

@@ -81,3 +81,14 @@ h2 { font-weight: bold; }
   position: relative;
   top: 37.45%;
 }
+
+#create_login_white_icon {
+  width: 1.7%;
+  position: absolute;
+  top: 56vh;
+  left: 96.5vw;
+}
+
+#create_login_white_icon:hover {
+ width: 1.77%;
+}

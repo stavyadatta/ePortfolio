@@ -4,6 +4,8 @@ import CreateLoginPortfolioPage from "./Create_Portfolio_Login";
 import EntryBox from "../Generic_Components/Entry_Box";
 import animateComponents from "../Generic_Components/Page_Animations";
 import firebase from "../Firebase";
+import HomeWhiteIcon from "../Icons/Home_White.svg";
+import { Link } from "react-router-dom";
 
 function CreatePortfolioPage() {
   const [firstName, setFirstName] = useState("");
@@ -89,6 +91,9 @@ function CreatePortfolioPage() {
                 updateFields={updateFields}
                 authenticate={fieldAuthentications}
             />
+            <Link to= "/">
+              <img src = {HomeWhiteIcon} alt = "Home" id = "create_register_white_home"/>
+            </Link>
             </div>
         </div>
         </div>
