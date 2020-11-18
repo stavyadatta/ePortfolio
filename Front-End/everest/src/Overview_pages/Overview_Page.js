@@ -33,7 +33,9 @@ function OverviewPage() {
         <img src={Achievement_Image} id = "achievement_image" alt="mountain_achievement"/>
       </div>
       <div className = "buttons">
+        <Link to = "/" >
         <img src={Home_Btn} id = "home_btn" alt="home"/>
+        </Link>
         <img src={About_Btn} id = "about_btn" alt="about"/>     
         <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
       </div>
@@ -45,7 +47,9 @@ function OverviewPage() {
         <Link to = "/myaccount">
           <button className = "overview_btns" id = "profile" onClick = {checkClicked}>My Account</button>
         </Link>
+        <Link to = "/mypage" >
         <button className = "overview_btns" id = "about_me" onClick = {checkClicked}>My Page</button>
+        </Link>
         <Link to = {"/projects/"+userId}>
             <button className = "overview_btns" id = "artifacts" onClick = {checkClicked}>Portfolio Artifacts</button>
         </Link>
