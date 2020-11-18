@@ -31,7 +31,7 @@ function LoggedInNavbar(props) {
           <img src={logo} alt="" />
         </div>
         <div className="NavbarButtons">
-          <Link to="/">
+          <Link to="/profile">
             <div className="navButton">Home</div>
           </Link>
           <Link to="/myaccount">
