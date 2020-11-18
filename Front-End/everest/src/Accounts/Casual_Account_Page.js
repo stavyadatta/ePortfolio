@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import BackBtn from "../Generic_Components/Back_Icon";
 import animateComponents from "../Generic_Components/Page_Animations";
 import HeaderEntry from "../Generic_Components/Entry_With_Header";
-import {Link} from "react-router-dom";
 import SignOut from "../Icons/signout_btn.svg";
 
 function CasualAccountPage() {
@@ -91,17 +90,15 @@ function CasualAccountPage() {
     const handleLogout = function(){ 
         firebase.auth().signOut()
     }
-    
+
     return(
         <div className = "casual_account_page">
             <div className = "partition_account_page">
                 <img src = {Casual_Account_Image} id = "casual_account_image" alt = "" />
                 <div className = "account_info_partition">
                     <h1 id = "casual_account_header">My Account</h1>
-                    <Link to = "/profile">
-				        <BackBtn />
-			        </Link>
-                    <EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits} btnID = "casual_edit_btns"/>
+				    <BackBtn />
+                    <EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits} />
 			        <UserInfo Editable = {editable} Update = {updateField} userProfile={userProfile} uid={userAuth.uid}/>
                 </div>
             </div>

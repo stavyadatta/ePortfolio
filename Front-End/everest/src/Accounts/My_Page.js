@@ -47,6 +47,7 @@ function MyPage() {
         setEditable(false);
         animateComponents(e, "editing_btns", "enable_edit", 0.5, 0.3);
         setBio("");
+        alert("Confirmation: Your Changes have been Saved");
     }
     
     const updateFields = e => {

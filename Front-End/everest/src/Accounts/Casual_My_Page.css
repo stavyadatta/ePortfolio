@@ -1,0 +1,134 @@
+.casual_my_page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #025E6D; 
+}
+
+#casual_my_page_signout {
+    width: 2.5%;
+    position: absolute;
+    right: 1.5%;
+    bottom: 2.5%;
+}
+
+#casual_my_page_signout:hover {
+    border-radius: 50px;
+    box-shadow: 0px 0px 25px white;
+}
+
+.partition_my_page {
+    width: 80vw;
+    height: 75vh;
+    position: absolute;
+    top: 16.2%;
+    left: 9.8%;
+    background-color: white;
+}
+
+#casual_my_page_image {
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+#casual_my_page_header{
+    color:  #025E6D; 
+    font-family: 'Baskervville', serif;
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    font-size: 26px;
+}
+
+#casual_user_bio_entry {
+    position: absolute;
+    left: 50%;
+    bottom: 20%;
+    color: #5D5757;
+    opacity: 0.62;
+  }
+  
+  textarea {
+    resize: none;
+    outline: none;
+    width: 490px;
+    height: 55%;
+    font-size: 19;
+    padding-top: 10px;
+    padding-bottom: 11px;
+    padding-left: 11px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    border: none;
+  } 
+  
+  #casual_user_bio_entry:focus::placeholder { color: #5D5757; }
+  
+  #casual_active_user_bio_entry {
+      position: absolute;
+      left: 50%;
+      bottom: 20%;
+      background-color: white;
+  }
+  
+  #casual_active_user_bio_entry:focus {
+      color: #025E6D;
+      opacity: 1.0;
+      box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.10);
+  }
+  
+  .casual_my_page_editing_btns {
+    opacity: 0;
+    display: none;
+}
+
+.casual_my_page_btns {
+    color: #025E6D;
+    width: 100px;
+    height: 20px;
+    padding-bottom: 0.9px;
+    background-color: white;
+    outline: none;
+    border: 1px solid #025E6D;
+    border-radius: 50px;
+    font-size: 10px;
+}
+    
+.casual_my_page_btns:hover {
+    color: white;
+    background-color: #025E6D;
+    border: none;
+    padding-bottom: 0.9px;
+}
+
+#casual_my_page_edit_info {
+    position: absolute;
+    left: 50%;
+    top: 88%;
+}
+      
+#casual_my_page_save_info {
+    position: absolute;
+    top: 88%;
+    left: 58.5%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+      
+#casual_my_page_discard_changes {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#casual_my_page_edit_btns {
+    position: absolute;
+    left: 50%;
+    bottom: 12%;
+}
