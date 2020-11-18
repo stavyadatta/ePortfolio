@@ -16,13 +16,13 @@ function CreatePortfolioPage() {
 
   const updateFields = (e) => {
     let fieldValue = e.target.value;
-    if (e.target.id === "first_name") {
+    if (e.target.id === "create_first_name") {
       setFirstName(fieldValue);
-    } else if (e.target.id === "last_name") {
+    } else if (e.target.id === "create_last_name") {
       setLastName(fieldValue);
-    } else if (e.target.id === "reg_email_entry") {
+    } else if (e.target.id === "create_reg_email_entry") {
       setEmail(fieldValue);
-    } else if (e.target.id === "reg_password_entry") {
+    } else if (e.target.id === "create_reg_password_entry") {
       setPwd(fieldValue);
     } else {
       setConfirmPassword(fieldValue);
