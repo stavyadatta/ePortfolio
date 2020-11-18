@@ -13,6 +13,7 @@ import defaultProjectImage from "../Images/project_image.jpg";
 import editButton from "../Icons/edit-round-line.svg";
 import deleteButton from "../Icons/close-round-line.svg";
 import { ProjectDetailList } from "./Project_Details";
+import NavbarPad from "../Navbar/NavbarPad"
 import palettes from "./Project_Palettes";
 
 function ProjectDetailsPage(props) {
@@ -109,6 +110,7 @@ function ProjectDetailsPage(props) {
         <div className="projectLayout">
           <MaybeDeleteButton/>
           <MaybeEditButton/>
+          <NavbarPad color={palette.primary}/>
           <ProjectHeader/>
           <ProjectDescription/>
             

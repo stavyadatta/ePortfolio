@@ -5,9 +5,11 @@ import { ReactComponent as Plus } from "../Icons/add_circle_outline-24px.svg";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import NavbarPad from "../Navbar/NavbarPad"
 
 function ProjectList_Casual(props) {
   const projects = props.projects;
+  const color = "#025E6D";
 
   //placeholder
   if (!projects) {
@@ -48,7 +50,7 @@ function ProjectList_Casual(props) {
         name={project.projectName}
         description={project.projectDesc}
         image={project.imgURL}
-        style={{ border: "1px solid #025E6D" }}
+        style={{ border: `1px solid ${color}` }}
       />
     );
   }
@@ -57,7 +59,7 @@ function ProjectList_Casual(props) {
 
   function Header(props) {
     return (
-      <div id="project_list_header" style={{ backgroundColor: "#025E6D" }}>
+      <div id="project_list_header" style={{ backgroundColor: color }}>
         <h2 id="project_list_header_title">{props.name}</h2>
       </div>
     );
@@ -78,7 +80,7 @@ function ProjectList_Casual(props) {
           <Plus className="addProject-icon" />
           </Link>
           <Link to="/form">
-            <button className="addProjectText" style={{ color: "#082f4e" }}>
+            <button className="addProjectText" style={{ color: color }}>
               Add Project
             </button>
           </Link>
@@ -92,7 +94,7 @@ function ProjectList_Casual(props) {
           <Link to="/profile">
             <i
               className="far fa-arrow-alt-circle-left"
-              style={{ color: "#025E6D" }}
+              style={{ color: color }}
             />
 
             <button className="goBackText"> Go Back </button>
@@ -106,6 +108,7 @@ function ProjectList_Casual(props) {
 
   return (
     <div className="page_container">
+      <NavbarPad color={color} />
       <Header name={"Projects"} />
 
       {/* <div className="projectListButtons"> */}

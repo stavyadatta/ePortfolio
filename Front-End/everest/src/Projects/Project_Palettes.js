@@ -5,7 +5,7 @@ const palettes = {
     detail: "#a4a5a6",
   },
   "Casual": {
-    primary: "#da6d42",
+    primary: "#025e6d",
     secondary: "#FFFFFF",
     detail: "#a4a5a6",
   }

@@ -10,7 +10,7 @@ import Get_Started_Unhovered_Icon from "./Icons/Get_Started_Icon_Unhovered.svg";
 import Get_Started_Hovered_Icon from "./Icons/Get_Started_Icon_Hovered.svg";
 //import { useSelector } from "react-redux";
 
-//import firebase from "./Firebase"
+import firebase from "./Firebase"
 import EntryBox from "./Generic_Components/Entry_Box";
 import Logo from "./Images/Everest_Logo.svg";
 import CardLabel from "./Generic_Components/Card_Label";
@@ -163,14 +163,22 @@ function UserSearch() {
         setUserId(fieldValue);
     };
 
+    const handleSubmit = () => {
+      firebase.firestore().collection('users').doc(userId).get().then(docRef=>{
+        if(docRef.exists){
+          window.location.href = '/projects/' + userId;
+        } else {
+          window.alert("User does not exist.")
+        }
+      })
+    }
+
     return(
         <div className="home_search_user_id">
             <p className = "search_heading">Search for a User :</p>
             <EntryBox id="user_id" textType="text" default="Enter User Search String"
             onChange={UidFields} readonly={false} />
-            <button className="home_search_submit" id = "user_search_submit" onClick={() => {
-                window.location.href = '/projects/' + userId;
-            }}> Submit</button>
+            <button className="home_search_submit" id = "user_search_submit" onClick={handleSubmit}> Submit</button>
         </div>
     );
 }
@@ -185,14 +193,22 @@ function ProjectSearch() {
 
     };
 
+    const handleSubmit = () => {
+      firebase.firestore().collection('projects').doc(projectId).get().then(docRef=>{
+        if(docRef.exists){
+          window.location.href = '/project/' + projectId;
+        } else {
+          window.alert("Project does not exist.")
+        }
+      })
+    }
+
     return(
         <div className="home_search_project_id">
             <p className = "search_heading">Search for a Project :</p>
             <EntryBox id="home_search_project_id" textType="text" default="Enter Project ID"
             onChange={PidFields} readonly={false} />
-            <button className="home_search_submit" id = "project_search_submit" onClick={() => {
-                window.location.href = '/project/' + projectId;
-            }}> Submit</button>
+            <button className="home_search_submit" id = "project_search_submit" onClick={handleSubmit}> Submit</button>
         </div>
     );
 }
