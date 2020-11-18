@@ -134,8 +134,8 @@
   }
   
   .projectImage {
-    width: 50vh;
-    height: 50vh;
+    /* width: 50vh; */
+    /* height: 50vh; */
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     cursor: pointer;
     margin-left: 30px;

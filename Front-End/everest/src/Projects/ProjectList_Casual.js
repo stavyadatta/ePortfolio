@@ -18,7 +18,7 @@ function ProjectList_Casual(props) {
     return (
       <div className="project">
         <Link to={"/project/" + props.id}>
-            <img className="projectImage" src={props.image} alt="projectImage" style={{borderRadius: "50%"}}/>
+            <img className="projectImage" src={props.image} alt="projectImage" style={{borderRadius: "50%", width:"50vh", height: "50vh" }}/>
         </Link>
 
         <div className="projectNameAndDesc">

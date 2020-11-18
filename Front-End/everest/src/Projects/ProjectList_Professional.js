@@ -18,7 +18,7 @@ function ProjectList_Professional(props) {
     return (
       <div className="project">
         <Link to={"/project/" + props.id}>
-          <img className="projectImage" src={props.image} alt="projectImage" style={{borderRadius:"12px"}}/>
+          <img className="projectImage" src={props.image} alt="projectImage" style={{borderRadius:"12px", width:"35vw", height:"50vh"}}/>
         </Link>
 
         <div className="projectNameAndDesc">
