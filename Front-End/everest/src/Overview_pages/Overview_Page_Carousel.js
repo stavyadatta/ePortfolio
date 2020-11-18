@@ -34,7 +34,7 @@ function CreateCarousel(props) {
             <div className = "slide_content">
                 <h3>Write Your</h3>
                 <h3>Personal Bio</h3>
-                <h5  id = "guide_message">Let your employers know who you are</h5>
+                <h5  id = "guide_message">Let your employers know who you are in My Page</h5>
             </div>
 
             <div className = "slide_content">
