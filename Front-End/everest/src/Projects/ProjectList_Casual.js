@@ -63,6 +63,14 @@ function ProjectList_Casual(props) {
     );
   }
 
+  function MaybeAddProjectsButton(){
+    if(props.match.params.userId === props.auth.uid){
+      return(AddProjectsButton())
+    } else {
+      return (<div className="addProjectButton"/>)
+    }
+  }
+
   function AddProjectsButton() {
     return (
       <div className="addProjectButton">
@@ -103,7 +111,7 @@ function ProjectList_Casual(props) {
       {/* <div className="projectListButtons"> */}
 
       <div className="projectListButtons">
-        <AddProjectsButton />
+        <MaybeAddProjectsButton />
         <GoBackButton />
       </div>
 
@@ -121,6 +129,7 @@ function ProjectList_Casual(props) {
 const mapStateToProps = (state, ownProps) => {
   return {
     projects: state.firestore.ordered.projects,
+    auth: state.firebase.auth,
   };
 };
 
