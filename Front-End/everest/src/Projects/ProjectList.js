@@ -9,8 +9,6 @@ const ProjectList = (props) => {
     return(<div>Loading...</div>)
   }
 
-  console.log({Casual});
-
   switch(props.profile.template){
     case "Casual":
       return <Route path="/projects/:userId"  component={Casual} />;
@@ -21,7 +19,7 @@ const ProjectList = (props) => {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
       profile:state.firebase.profile
   };
