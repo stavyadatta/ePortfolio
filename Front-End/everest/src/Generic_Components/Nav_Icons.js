@@ -5,16 +5,19 @@ import About from "../Icons/about_btn.svg";
 import Signout from "../Icons/signout_btn.svg";
 import ConfirmDialog from "../Generic_Components/Dialog_Confirmation_Box";
 import firebase from "../Firebase";
+import { Link } from "react-router-dom";
 
 
 function NavIcons() {
     const [confirmation, setConfirmation] = useState(false);
     const handleLogout = function(){ 
         firebase.auth().signOut()
-      }
+    }
     return(
         <div className = "nav_btns">
-            <img src = {Home} id = "home_icon" alt = "home"/>
+            <Link to="/profile">
+                <img src = {Home} id = "home_icon" alt = "home"/>
+            </Link>
             <img src = {About} id = "about_icon" alt = "about"/>
             <img src = {Signout} id = "signout_icon" alt = "signout" onClick={() => setConfirmation(true)}/>
             <ConfirmDialog
