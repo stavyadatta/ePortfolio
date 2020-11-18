@@ -21,6 +21,8 @@ const ProjectDetail = (props) => {
   let style = props.styles;
   let contentLayout = "";
   let imgUrl = detail.imgUrl ? detail.imgUrl : defaultProjectImage;
+  let fileUrl = detail.fileUrl ? detail.fileUrl: false;
+  let filename = detail.filename ? detail.filename : false;
 
   switch (detail.type) {
     case "right-image":
@@ -29,6 +31,8 @@ const ProjectDetail = (props) => {
     case "left-image":
       contentLayout = <LeftImgProjectDetail detail={detail} imgUrl={imgUrl}/>;
       break;
+    case "file-upload":
+      contentLayout = <UploadFileDetail detail={detail} fileUrl={fileUrl} filename={filename}/>
     default:
       contentLayout = <DefaultDetail detail={detail}/>;
   }
@@ -69,6 +73,22 @@ const LeftImgProjectDetail = (props) => (
     <div className="halfDetailText">{props.detail.text}</div>
   </div>
 );
+
+const UploadFileDetail = (props) => {
+  <div className="detailContent">
+      <div className="halfDetailText">{props.detail.text}</div>
+      <div clasName="detailFileContent">
+      <a href={props.fileUrl} download> 
+        <img
+          className="detailFileImage"
+          alt={props.detail.imgText}
+          src={defaultFileImage}
+          href={props.fileUrl}
+          />
+          {props.filename}</a> 
+      </div>
+    </div>
+}
 
 const DefaultDetail = (props) => (
   <div className="detailContent">
