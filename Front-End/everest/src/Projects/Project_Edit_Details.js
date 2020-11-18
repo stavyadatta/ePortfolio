@@ -41,6 +41,8 @@ const ProjectDetailEdit = (props) => {
   const [isNewImage, setIsNewImage] = useState(false);
   const [filename, setFileName] = useState(detail.filename ? detail.filename : false);
   const [fileUrl, setFileUrl] = useState(detail.fileUrl ? detail.fileUrl : false);
+  const [file, setFile] = useState('');
+  const [isFile, setIsFile] = useState(false);
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -103,6 +105,11 @@ const ProjectDetailEdit = (props) => {
     } else {
       if(isNewImage){
         ref.update({imgUrl: detailImage})
+      } else if(isFile){
+        let firebaseFileUrl = await firebaseUrl(file, 'files');
+        setFileUrl(firebaseFileUrl);  
+        ref.update({filename: filename, fileUrl: firebaseFileUrl});
+        setIsFile(false);
       }
 
       ref.update({ title: title, text: text });
@@ -123,8 +130,10 @@ const ProjectDetailEdit = (props) => {
   const handleFile = async (e) => {
     const targetFile = e.target.files[0];
     console.log("Helloo");
-    let firebaseFileUrl = await firebaseUrl(targetFile, 'files');
-    setFileUrl(firebaseFileUrl);
+    // let firebaseFileUrl = await firebaseUrl(targetFile, 'files');
+    setFile(targetFile);
+    setIsFile(true);
+    //setFileUrl(firebaseFileUrl);
     setFileName(targetFile.name);
   }
 
