@@ -164,7 +164,7 @@ function UserSearch() {
     };
 
     const handleSubmit = () => {
-      firebase.firestore().collection('projects').doc(userId).get().then(docRef=>{
+      firebase.firestore().collection('users').doc(userId).get().then(docRef=>{
         if(docRef.exists){
           window.location.href = '/projects/' + userId;
         } else {
