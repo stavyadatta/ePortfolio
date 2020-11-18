@@ -10,7 +10,7 @@ import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
 import approve from "../Icons/check-mark-circle-line.svg"
 import { ProjectDetailList } from "./Project_Edit_Details";
-import { SubmitButton, AddDetailButton} from "./Project_Edit_Buttons";
+import { SubmitButton, CancelButton, AddDetailButton} from "./Project_Edit_Buttons";
 import palettes from "./Project_Palettes";
 import { ImageUploadDisplay } from "./Image_Upload_Display";
 
@@ -137,6 +137,8 @@ const ProjectHeader = (props) => {
   let project = props.project;
   let style = props.style;
   let dateString = getPostDateString(project.postDate);
+  let originalTitle = project.projectName;
+  let originalImage = project.imgURL;
 
   const [projectTitle, setProjectTitle] = useState(project.projectName);
   const [titleSubmitDisable, setTitleSubmitDisable] = useState(true);
@@ -168,6 +170,17 @@ const ProjectHeader = (props) => {
     
   };
 
+  const handleSubmit = () => {
+      props.submit({projectTitle, projectImage});
+      setTitleSubmitDisable(true);
+  }
+
+  const handleCancel = () => {
+    setProjectTitle(originalTitle);
+    setProjectImage(originalImage);
+    setTitleSubmitDisable(true);
+  }
+
 
   return(
     <div className="projectDetail" id="header" style={style}>
@@ -178,17 +191,25 @@ const ProjectHeader = (props) => {
         <input
           type="text"
           id="titleEntry"
-          defaultValue={project.projectName}
+          value={projectTitle}
           onChange={updateField}
         />
         <div className="projectAuthor">{project.authorName}</div>
         <div className="projectDate" style={props.dateStyle}>
           {dateString}
         </div>
-        <SubmitButton submit={()=>{
-          props.submit({projectTitle, projectImage})
-          setTitleSubmitDisable(true);
-          }} submitDisabled={titleSubmitDisable}/>
+        <div className="detailEditButtons">
+          <SubmitButton 
+            submit={handleSubmit}
+              submitDisabled={titleSubmitDisable}
+          />
+          <CancelButton 
+            cancel={handleCancel}
+            cancelDisabled={titleSubmitDisable}
+          />
+
+        </div>
+        
       </div>
     </div>
   )
@@ -199,8 +220,11 @@ const ProjectDescription = (props) => {
   let project = props.project;
   let style = props.style;
 
+  let originalDesc = project.projectDesc;
+
   const [projectDescription, setProjectDescription] = useState(project.projectDesc);
   const [descSubmitDisable, setDescSubmitDisable] = useState(true);
+
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -215,6 +239,16 @@ const ProjectDescription = (props) => {
     }
   };
 
+  const handleSubmit = () => {
+    props.submit(projectDescription)
+    setDescSubmitDisable(true);
+  }
+
+  const handleCancel = () => {
+    setProjectDescription(originalDesc);
+    setDescSubmitDisable(true);
+  }
+
   return(
     <div className="projectDetail" style={style}>
         <div className="detailTitle" style={style}>
@@ -224,11 +258,21 @@ const ProjectDescription = (props) => {
           <textarea
             className="detailText"
             id="descriptionEntry"
-            defaultValue={project.projectDesc}
+            value={projectDescription}
             onChange={updateField}
           />
         </div>
-        <SubmitButton submit={()=>{props.submit(projectDescription)}} submitDisabled={descSubmitDisable}/>
+        <div className="detailEditButtons">
+        <SubmitButton 
+          submit={handleSubmit} 
+          submitDisabled={descSubmitDisable}
+        />
+        <CancelButton 
+          cancel={handleCancel}
+          cancelDisabled={descSubmitDisable}
+        />
+        </div>
+        
       </div>
 )
 }
