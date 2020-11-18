@@ -13,7 +13,7 @@ function CreateRetrievePassword() {
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
-    if (e.target.id === "confirm_email_pwd") {
+    if (e.target.id === "create_confirm_email_pwd") {
       setEmailConf(fieldValue);
     } else {
       setEmail(fieldValue);
