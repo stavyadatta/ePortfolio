@@ -1,0 +1,24 @@
+.card {
+    border: none;
+    color: white;
+    width: 230px;
+    height: 280px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.16);
+}
+
+.label {
+    color: #0F446E;
+    opacity: 0.8;
+    font-family: "Karla";
+    font-size: 16px;
+    position: absolute;
+    bottom: 15%;
+    left: 30%;
+}
+
+.card_image {
+    width: 78%;
+    position: absolute;
+    left: 8%;
+    top: 15%;
+}

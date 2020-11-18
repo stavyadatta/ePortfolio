@@ -23,6 +23,17 @@ h2 { font-weight: bold; }
   top: 11px;
 }
 
+#login_white_icon {
+  width: 1.7%;
+  position: absolute;
+  top: 56vh;
+  left: 96.5vw;
+}
+
+#login_white_icon:hover {
+  width: 1.77%;
+}
+
 #login_icon_unhovered {
   position: absolute;
   left: 460px;
