@@ -130,21 +130,6 @@
   margin-left: 2.2px;
 }
 
-.detailFileContent{
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: -20vh;
-  right: -10vw;
-  height: 100%;
-}
-
-.detailFileName{
-  position: relative;
-  top:  -5vh;
-  right: -25vw;
-  height: 100%;
-}
 .detailContent{
     display: flex;
     flex-direction: row;
@@ -193,22 +178,46 @@
     object-fit: cover;
 }
 
-.detailFileImage{
-  width: 40%;
-  height: 150%;
-  position: relative;
-  left: 20vw;
-  top: 10vh;
-}
-.detailFileChoose{
-  position: relative;
-  right: 5vw;
-  top: 40vh;
-  height: 50px;  
-}
-
 .detailEditButtons{
   display: flex;
   flex-direction: row;
   height: 10%;
+}
+
+.detailFileContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width:50%;
+  height: 100%;
+}
+
+.detailFileName{
+  position: relative;
+}
+
+.detailFileImage{
+  height: 100px;
+  width: 100px;
+  position: relative;
+}
+
+.detailFileName a{
+  text-decoration: none;
+}
+
+.detailFileName a:visited{
+  color: inherit;
+  text-decoration: none;
+}
+
+.detailFileChoose{
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+  position: relative;
+  justify-content: flex-end;
+  padding: 5px;
 }
