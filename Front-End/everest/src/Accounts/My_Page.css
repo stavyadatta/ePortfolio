@@ -1,0 +1,104 @@
+* { font-family: "Karla"; }
+h2 { font-weight: bold; }
+
+.my_page {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to right, #082F4E 50%, #FFFFFF 50%);
+}
+
+#sun_background_my_page {
+  width: 22%;
+  position: absolute;
+  left: 14.55vw;
+  top: 22vh;
+}
+
+#mountain {
+  width: 50vw;
+  position: absolute;
+  bottom: 0%;
+}
+
+#my_page_person {
+  width: 23vw;
+  position: absolute;
+  bottom: 5%;
+  left: 13%;
+}
+
+#my_page_header {
+  color: #12466d; 
+  font-family: 'Baskervville', serif;
+  position: absolute;
+  left: 58.45%;
+  top: 17%;
+  font-size: 26px;
+}
+
+#user_bio_entry {
+  position: absolute;
+  left: 58.55%;
+  bottom: 30%;
+  color: #5D5757;
+  opacity: 0.62;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+  width: 490px;
+  height: 43.1%;
+  font-size: 19;
+  padding-top: 10px;
+  padding-bottom: 11px;
+  padding-left: 11px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+  border: none;
+} 
+
+#user_bio_entry:focus::placeholder { color: #5D5757; }
+
+#active_user_bio_entry {
+    position: absolute;
+    left: 58.55%;
+    bottom: 30%;
+    background-color: white;
+}
+
+#active_user_bio_entry:focus {
+    color: #0F446E;
+    opacity: 1.0;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.10);
+}
+
+#user_profile_pic {
+    width: 6.8%;
+    position: absolute;
+    left: 58.55%;
+    top: 27.9%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.10);
+}
+
+#my_page_edit_pic {
+    position: absolute;
+    left: 58.45%;
+    top: 46.5%;
+}
+
+#page_filler {
+    width: 6.8%;
+    height: 19%;
+    position: absolute;
+    left: 58.55%;
+    top: 52.1%;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.10);
+}
+
+#my_page_filler {
+    width: 80%;
+    position: absolute;
+    left: 10%;
+    bottom: 10%;
+}

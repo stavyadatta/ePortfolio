@@ -9,9 +9,9 @@ import NavIcons from "../Generic_Components/Nav_Icons";
 import firebase from "../Firebase";
 import { useSelector } from "react-redux";
 import BackBtn from "../Generic_Components/Back_Icon";
+import EnableEditBtns from "../Generic_Components/Edit_Btns";
 
 function MyAccountPage() {
-
 
 	const [editable, setEditable] = useState(false);
 	const [fname, setFName] = useState("");
@@ -49,6 +49,7 @@ function MyAccountPage() {
         changeReadOnly(true, "_active");
 		setEditable(false);
 		animateComponents(e, "editing_btns", "enable_edit", 0.5, 0.3);
+		alert("Confirmation: Your Changes have been Saved");
 	}
 	
 	const resetSetters = () => {
@@ -169,21 +170,6 @@ function TemplateSelector(props) {
 		</div>
 	);
 }
-
-function EnableEditBtns(props) {
-	return(
-		<div>
-			<div className = "enable_edit">
-				<button className = "account_btns" id = "edit_account_info" onClick = {(e) => props.EnableEdits(e)}>Edit</button>
-			</div>
-			<div className = "editing_btns">
-				<button className = "account_btns" id = "save_info" onClick = {(e) => props.SaveEdits(e)}>Save</button>
-				<button className = "account_btns" id = "discard_changes" onClick = {(e) => props.DisableEdits(e)}>Cancel</button>
-			</div>
-		</div>
-	);
-}
-
 
 function changeReadOnly(readonly_status, active_string) {
 	document.getElementById("fname" + active_string).readOnly = readonly_status;
