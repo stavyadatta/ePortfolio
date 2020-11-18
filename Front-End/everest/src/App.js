@@ -76,7 +76,7 @@ function AuthRoutes() {
       <Route path="/" exact component={HomePage} />
       <Route path="/profile" component={OverviewPage} />
       <Route path="/myaccount" component={MyAccountPage} />
-      <Route path="/mypage" component={MyPage}/>
+      <Route path="/mypage/:userId" component={MyPage}/>
       <NavbarRoutes />
       <Redirect to="/profile"/>
     </Switch>
@@ -113,6 +113,7 @@ function UnAuthRoutes() {
       <Route path="/" exact component={HomePage} />
       <Route path="/login" component = {LoginPage} />
       <Route path="/register" component = {CreatePortfolio} />
+      <Route path="/mypage/:userId" component={MyPage}/>
       <div>
         <Navbar/>
         <Switch>
