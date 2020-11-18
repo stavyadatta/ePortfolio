@@ -1,0 +1,151 @@
+.account_page {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to right,#082F4E 50%,  #FFFFFF 50%);
+    }
+    
+    #mountain_image {
+    width: 49.9vw;
+    height: 34.4vh;
+    position: absolute;
+    bottom: 0vh;
+    left: 0vw;
+    }
+    
+    #sun_image {
+    width: 23%;
+    position: absolute;
+    left: 14.2vw;
+    top: 41vh;
+    }    
+    
+    #fname, #lname, #id, #template, #fname:focus, #lname:focus, 
+    #id:focus, #template:focus {
+    width: 15vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    color: #928686;
+    opacity: 0.62;
+    position: absolute;
+    top: 160%;
+    }
+    
+    #url_input, #email_input, #url_input:focus, #email_input:focus {
+    width: 30.8vw;
+    font-size: 19;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    color: #928686;
+    opacity: 0.62;
+    position: absolute;
+    top: 160%;
+    }
+    
+    .user_first_name {
+    position: absolute;
+    top: 28.5vh;
+    left: 58.5%;
+    }
+    
+    .user_last_name {
+    position: absolute;
+    top: 28.5vh;
+    left: 74.3%;
+    }
+    
+    .user_id {
+    position: absolute;
+    top: 39vh;
+    left: 58.5%;
+    }
+    
+    .chosen_template {
+    position: absolute;
+    top: 39vh;
+    left: 74.3%;
+    }
+    
+    .user_email {
+    position: absolute;
+    top: 49.6vh;
+    left: 58.5%; 
+    }
+    
+    .url_link {
+    position: absolute;
+    top: 60.2vh;
+    left: 58.5%;
+    }
+    
+    #account_header {
+    color: #12466d; 
+    font-family: 'Baskervville', serif;
+    position: absolute;
+    left: 58.45%;
+    top: 17%;
+    font-size: 26px;
+    }
+    
+    #template {
+        position: absolute;
+        left: 0%;
+        top: 140%;
+        padding-top: 7.4px;
+        padding-bottom: 7.8px;
+        padding-left: 5px;
+    }
+    
+    #template_active {
+        outline: none;
+        width: 15vw;
+        position: absolute;
+        left: 0%;
+        top: 138%;
+        padding-top: 7.4px;
+        padding-bottom: 7.4px;
+        padding-left: 5px;
+        border: none;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+        opacity: 1;
+        color: #928686;
+    }
+    
+    #template_active:focus { color: #082F4E; }
+    
+    #fname_active, #lname_active {
+    width: 15vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    opacity: 1;
+    color: #082F4E;
+    position: absolute;
+    top: 160%;
+    }
+    
+    #fname_active::placeholder, #lname_active::placeholder, 
+    #template_active::placeholder { color: #928686; }
+    
+    #email_input_active {
+    width: 30.8vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+    opacity: 1;
+    color: #082F4E;
+    position: absolute;
+    top: 160%;
+    }
+    
+    #email_input_active::placeholder { color: #928686; }
+        

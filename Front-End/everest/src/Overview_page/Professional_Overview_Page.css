@@ -1,0 +1,86 @@
+.profile_overview_page p { 
+    color: white; 
+    font-size: 42px;
+    font-family: 'Merriweather', serif;
+}
+
+.profile_overview_page {
+	height: 100vh;
+	width: 100vw;
+	background: #082f4e;
+}
+
+#profile_background {
+	position: absolute;
+	bottom: 11%;
+	right: 14%;
+	width: 60%;
+	height: 60%;
+}
+
+.overview_btns {
+	background-color: #082f4e;
+	outline: none;
+	border: none;
+	padding-bottom: 4px;
+	padding-right: 1.5px;
+	font-size: 16px;
+	color: white;
+	font-family: "Karla";
+}
+
+.overview_btns:hover { text-decoration: underline; }
+
+#achievement_image {
+	width: 100%;
+	position: absolute;
+	bottom: 0%;
+}
+
+#overview_sun_image {
+	width: 28%;
+	position: absolute;
+	bottom: 23.8%;
+	right: 8.5%;
+}
+
+.buttons {
+	position: absolute;
+	right: 0%;
+	bottom: 0%;
+}
+
+#home_btn,
+#about_btn,
+#signout_btn {
+	transform: scale(0.45, 0.45);
+}
+
+#home_btn:hover, #about_btn:hover, #signout_btn:hover {
+    border-radius: 50px;
+    box-shadow: 0px 0px 75px white;
+}
+
+.page_headers {
+	position: absolute;
+	top: 28%;
+	left: 8%;
+}
+
+#description {
+	font-size: 20px;
+	color: #ffffff;
+	position: absolute;
+	top: 130%;
+}
+
+.header_overview_btns {
+    display: flex;
+    flex-direction: row;
+    column-gap: 120px;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 8.1%;
+    top: 14%;
+    justify-content: center;
+}
