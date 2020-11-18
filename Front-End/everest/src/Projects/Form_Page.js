@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
-import firebase from "../Firebase";
+//import firebase from "../Firebase";
 import {useSelector} from "react-redux";
+import {firebaseUpload}from "../storageFirebaseUpload";
 import { useHistory } from "react-router-dom";
+
+
+// import { Link } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
+// import {Redirect} from "react-router-dom";
+
 
 
 function FormPage(props) {
@@ -11,20 +18,15 @@ function FormPage(props) {
   const [pBody, setPBody] = useState("");
   const [pTags, setPTags] = useState("");      
   const [isLoading, setLoading] = useState("")
-  //   const [pImg, setPImg] = useState("");    // Should be set when chosen an image file to upload 
   const userAuth = useSelector(state => state.firebase.auth);
   const userId = userAuth.uid;
- // const allInputs = {imgUrl: ''};
   const [imageAsFile, setImageAsFile] = useState('');
-  //const [imageAsUrl, setImageAsUrl] = useState(allInputs);
 
   let history = useHistory(); // NEWLY ADDED
-
   if (isLoading === true) {
     return <div>Loading...</div>}
   else if (isLoading === 'submitted') {
-    // window.location = '/projects/' + userId;
-    history.push('/projects/' + userId);        // NEWLY ADDED - REPLACES WINDOW.LOCATION
+    history.push('/projects/' + userId); 
   }
   const updateField = (e) => {
 
@@ -42,30 +44,8 @@ function FormPage(props) {
     if (e.target.id === "tags_entry") {
           setPTags(fieldValue);
     }
-
-//     if (e.target.id === "main_image_upload") {
-//         setPImg(Link to the image);
-//   }
-
 };
-
-// formats the objects to be sent with certain URL
-async function projectObjectDetails(firebaseURL) {
-  const projectObjects = {
-    userId: userId,
-    projectName: pName,
-    projectDesc: pDesc,
-    imgURL: firebaseURL,   
-    projectTags: pTags.split(","),
-    projectBody: pBody
-  };
-  const add = firebase.functions().httpsCallable('project-add')
-  await add(projectObjects)
-
-}
-
-
-
+  
   async function handleSubmit (event) {
     setLoading(true);
     event.preventDefault();
@@ -80,37 +60,18 @@ async function projectObjectDetails(firebaseURL) {
 
   const handleFireBaseUpload = async e => {
     e.preventDefault();
-
-    let storage = firebase.storage();
-    // async magic goes here...
-    if(imageAsFile === '' ) {
-      await projectObjectDetails(undefined);
-      alert("Project Has Been Added")
-      return;
-    }
-
-    const re = /(?:\.([^.]+))?$/;
-    var uploadTask = '';
-    const ext = re.exec(imageAsFile.name)[1];
-    if(ext === 'jpg' || ext === 'png') {
-      uploadTask = storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile);
-    } else {
-      uploadTask = storage.ref(`/files/${imageAsFile.name}`).put(imageAsFile);
-    }
-
     
+    const projectObject = {
+      userId: userId,
+      projectName: pName,
+      projectDesc: pDesc,
+      projectTags: pTags.split(","),
+      projectBody: pBody
+    };
 
-    return await uploadTask.on('state_changed', async snapshot => {
-      console.log(snapshot)
-    }, err => {
-      console.log(err)
-    }, async () => {
-      console.log('snapshot');
-      const firebaseUrl = await storage.ref('pictures').child(imageAsFile.name).getDownloadURL();
-      await projectObjectDetails(firebaseUrl)
-      setLoading('submitted');
-      alert("Project Has Been Added");
-    })
+    await firebaseUpload(imageAsFile, "project-add", projectObject);
+    alert("Project has been submitted");
+    setLoading("submitted");
   }
 
   return (
