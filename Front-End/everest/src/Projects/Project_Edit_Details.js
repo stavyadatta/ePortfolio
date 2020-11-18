@@ -5,6 +5,8 @@ import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons
 import { ImageUploadDisplay } from "./Image_Upload_Display";
 import defaultProjectImage from "../Images/project_image.jpg";
 import { firebaseUrl } from "../storageFirebaseUpload";
+import defaultFileImage from "../Icons/templates_provided.png";
+
 
 
 export const ProjectDetailList = (props) => {
@@ -39,6 +41,10 @@ const ProjectDetailEdit = (props) => {
   const [detailImage, setDetailImage] = 
     useState(detail.imgUrl ? detail.imgUrl : defaultProjectImage);
   const [isNewImage, setIsNewImage] = useState(false);
+  const [filename, setFileName] = useState(detail.filename ? detail.filename : false);
+  const [fileUrl, setFileUrl] = useState(detail.fileUrl ? detail.fileUrl : false);
+  const [file, setFile] = useState('');
+  const [isFile, setIsFile] = useState(false);
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -64,7 +70,11 @@ const ProjectDetailEdit = (props) => {
           window.alert("Images must be less than 1 MB large")
           return;
         }
-        
+        break;
+      case "fileUpload":
+        handleFile(e);
+        setSubmitDisabled(false);
+        setCancelDisabled(false);
         break;
       default:
         break;
@@ -97,6 +107,11 @@ const ProjectDetailEdit = (props) => {
     } else {
       if(isNewImage){
         ref.update({imgUrl: detailImage})
+      } else if(isFile){
+        let firebaseFileUrl = await firebaseUrl(file, 'files');
+        setFileUrl(firebaseFileUrl);  
+        ref.update({filename: filename, fileUrl: firebaseFileUrl});
+        setIsFile(false);
       }
 
       ref.update({ title: title, text: text });
@@ -110,12 +125,28 @@ const ProjectDetailEdit = (props) => {
     props.handleDelete(detail.id);
   }
 
+  const handleFile = async (e) => {
+    const targetFile = e.target.files[0];
+    // let firebaseFileUrl = await firebaseUrl(targetFile, 'files');
+    if(targetFile.size > 10000000){//10Mb
+      window.alert("File must be less than 10MB")
+      return;
+    } else {
+      setFile(targetFile);
+      setIsFile(true);
+      //setFileUrl(firebaseFileUrl);
+      setFileName(targetFile.name);
+    }
+  }
+
   let detailProps = {
     detail: detail,
     title: detailTitle,
     body: detailBody,
     styles: style,
     imgUrl: detailImage,
+    filename: filename,
+    fileUrl: fileUrl,
     onChange: updateField,
     submit: handleSubmit,
   };
@@ -126,6 +157,9 @@ const ProjectDetailEdit = (props) => {
       break;
     case "left-image":
       contentLayout = LeftImgProjectDetailEdit(detailProps);
+      break;
+    case "file-upload":
+      contentLayout = UploadProjectDetailEdit(detailProps);
       break;
     default:
       contentLayout = DefaultDetailEdit(detailProps);
@@ -208,6 +242,45 @@ const LeftImgProjectDetailEdit = (props) => {
   );
 };
 
+const UploadProjectDetailEdit = (props) => {
+  let updateField = props.onChange;
+  return (
+    // <div className="detailContent">
+    //   <a href={props.fileUrl} download>{props.filename}</a>
+    //   <input type='file' id="fileUpload" name="mainFile" onChange={updateField} />
+    //   <textarea
+    //     className="detailText"
+    //     id="detailBodyEntry"
+    //     value={props.body}
+    //     onChange={updateField}
+    //   />
+    // </div>
+    <div className="detailContent">
+      <textarea
+        className="detailText"
+        id="detailBodyEntry"
+        value={props.body}
+        onChange={updateField}
+      />
+      <div className="detailFileContent">
+        <img
+          className="detailFileImage"
+          alt={props.detail.imgText}
+          src={defaultFileImage}
+          href={props.fileUrl}
+          />
+          <div className="detailFileName">
+            <a href={props.fileUrl} download>  {props.filename}</a> 
+          </div>
+          <div className="detailFileChoose">
+            <input type='file' className="detailFileInput" id="fileUpload" name="mainFile" onChange={updateField} />
+          </div>
+      </div>
+      
+    </div>
+  )
+}
+
 const DefaultDetailEdit = (props) => {
   let updateField = props.onChange;
   return (
@@ -232,6 +305,7 @@ const SelectDetailType = (props) => {
     <MenuItem value="default">Text Only</MenuItem>
     <MenuItem value="right-image">Right Image</MenuItem>
     <MenuItem value="left-image">Left Image</MenuItem>
+    <MenuItem value="file-upload">Upload File</MenuItem>
   </Select>
   )
   

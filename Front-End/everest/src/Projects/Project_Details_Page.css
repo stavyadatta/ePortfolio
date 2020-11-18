@@ -130,9 +130,6 @@
   margin-left: 2.2px;
 }
 
-
-
-
 .detailContent{
     display: flex;
     flex-direction: row;
@@ -185,4 +182,42 @@
   display: flex;
   flex-direction: row;
   height: 10%;
+}
+
+.detailFileContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width:50%;
+  height: 100%;
+}
+
+.detailFileName{
+  position: relative;
+}
+
+.detailFileImage{
+  height: 100px;
+  width: 100px;
+  position: relative;
+}
+
+.detailFileName a{
+  text-decoration: none;
+}
+
+.detailFileName a:visited{
+  color: inherit;
+  text-decoration: none;
+}
+
+.detailFileChoose{
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+  position: relative;
+  justify-content: flex-end;
+  padding: 5px;
 }

@@ -2,6 +2,7 @@ import React from "react";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
+import defaultFileImage from "../Icons/templates_provided.png";
 
 export const ProjectDetailList = (props) => {
   return props.details.map((detail) => {
@@ -21,6 +22,8 @@ const ProjectDetail = (props) => {
   let style = props.styles;
   let contentLayout = "";
   let imgUrl = detail.imgUrl ? detail.imgUrl : defaultProjectImage;
+  let fileUrl = detail.fileUrl ? detail.fileUrl: false;
+  let filename = detail.filename ? detail.filename : false;
 
   switch (detail.type) {
     case "right-image":
@@ -28,6 +31,9 @@ const ProjectDetail = (props) => {
       break;
     case "left-image":
       contentLayout = <LeftImgProjectDetail detail={detail} imgUrl={imgUrl}/>;
+      break;
+    case "file-upload":
+      contentLayout = <UploadFileDetail detail={detail} fileUrl={fileUrl} filename={filename}/>
       break;
     default:
       contentLayout = <DefaultDetail detail={detail}/>;
@@ -69,6 +75,23 @@ const LeftImgProjectDetail = (props) => (
     <div className="halfDetailText">{props.detail.text}</div>
   </div>
 );
+
+const UploadFileDetail = (props) => {
+  return ( <div className="detailContent">
+      <div className="halfDetailText">{props.detail.text}</div>
+      <div className="detailFileContent">
+        <img
+          className="detailFileImage"
+          alt={props.detail.imgText}
+          src={defaultFileImage}
+          href={props.fileUrl}
+          />
+        <div className="detailFileName">
+          <a href={props.fileUrl} download>  {props.filename}</a> 
+        </div>
+      </div>
+    </div>)
+}
 
 const DefaultDetail = (props) => (
   <div className="detailContent">
