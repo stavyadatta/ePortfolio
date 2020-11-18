@@ -8,6 +8,7 @@ import { firebaseUrl } from "../storageFirebaseUpload"
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
+import approve from "../Icons/check-mark-circle-line.svg"
 import { ProjectDetailList } from "./Project_Edit_Details";
 import { SubmitButton, AddDetailButton} from "./Project_Edit_Buttons";
 import palettes from "./Project_Palettes";
@@ -80,7 +81,7 @@ function ProjectEditPage(props) {
   }
 
   const DoneEditButton = () => {
-      return(<Link id="editProjectButton" to={"/project/"+props.match.params.id}><div id="editProjectButton">Done</div></Link>)
+      return(<Link id="editProjectButton" to={"/project/"+props.match.params.id}><img src={approve} id="editProjectButton" alt=""/></Link>)
   }
 
   const handleHeaderSubmit = ({ projectTitle, projectImage }) => {
@@ -125,7 +126,9 @@ function ProjectEditPage(props) {
         style1={detailStyle1}
         handleDelete={(id)=>(handleDeleteDetail(id))}
       />
-      <AddDetailButton add={handleAddDetail}/>
+      <div className="addDetail">
+        <AddDetailButton add={handleAddDetail}/>
+      </div>
     </div>
   );
 }
@@ -163,10 +166,10 @@ const ProjectHeader = (props) => {
     <div className="projectDetail" id="header" style={style}>
       <div className="detailImageWrap" id="left">
         <div style={{height:"100%", width:"100%", objectFit: "cover"}}>
-        <label htmlFor="imageUpload">
+        <label htmlFor="headerImageUpload">
           <img className="detailImage" alt="" src={projectImage}/>
         </label>
-        <input id="imageUpload" type="file" style={{display:"none"}} onChange={updateField}/>
+        <input id="headerImageUpload" type="file" style={{display:"none"}} onChange={updateField}/>
       </div>      
       </div>
       <div className="projectTitle">

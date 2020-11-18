@@ -6,7 +6,7 @@
   background-color: white;
   color: #082F4E;
   outline: none;
-  margin:0.2em;
+  margin:5px;
 }
 
 .editProjectButton:hover {
@@ -23,4 +23,11 @@
 
 .editProjectButton#delete{
   justify-content: right;
+}
+
+.addDetail{
+  display:flex;
+  justify-content: center;
+  height: 50px;
+  width:100%;
 }

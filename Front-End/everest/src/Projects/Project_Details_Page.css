@@ -9,33 +9,37 @@
     width: 100%;
 }
 
-.projectLayout a#editProjectButton{
+.projectLayout img#editProjectButton{
   position: fixed;
-  color:black;
-  bottom: 5vh;
-  right: 5vw;
-}
-
-.projectLayout a#editProjectButton:hover{
-  color: whea;
-}
-
-.projectLayout div#editProjectButton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  background: white;
-  border-radius: 100%;
-  border-color: black;
-  border: 3px solid;
   width: 50px;
   height: 50px;
-  font-size: 20px;
   bottom: 50px;
   right: 50px;
-  
+  border-radius: 50%;
+  color:white;
 }
+
+.projectLayout img#editProjectButton:hover{
+  border-radius: 50%;
+  box-shadow: 0px 0px 25px white;
+}
+
+.projectLayout img#deleteProjectButton{
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 50px;
+  right: 125px;
+  border-radius: 50%;
+  color:white;
+}
+
+.projectLayout img#deleteProjectButton:hover{
+  border-radius: 50%;
+  box-shadow: 0px 0px 25px white;
+  cursor: pointer;
+}
+
 .projectLayout div#deleteProjectButton{
     display: flex;
   align-items: center;
@@ -86,7 +90,7 @@
     padding:1em;
     padding-left:12rem;
     padding-right: 12rem;
-    min-height: 400px;
+    min-height: 500px;
     height: 60vh;
     width: 100%
 }
@@ -133,7 +137,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 80%;
+    height: 75%;
 }
 
 .halfDetailText{
@@ -180,4 +184,5 @@
 .detailEditButtons{
   display: flex;
   flex-direction: row;
+  height: 10%;
 }
