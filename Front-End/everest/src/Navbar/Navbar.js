@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import "./Navbar.css";
 import defaultProfile from "../Icons/Default_Profile_Pic.png";
-import logo from "../Icons/Everest_Logo.svg";
+import logo from "../Icons/Everest_logo.png";
 
 function NavBar(props) {
   const imageUrl = props.profile.imgURL?props.profile.imgURL:defaultProfile;
