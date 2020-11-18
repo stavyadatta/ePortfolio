@@ -26,17 +26,20 @@ function CreateCarousel(props) {
             </div>
 
             <div className = "slide_content">
-                <h3>Update your Account Settings</h3>
+                <h3>Update your</h3>
+                <h3>Account Settings</h3>
                 <h5  id = "guide_message">Confirm your user information in My Account</h5>
             </div>
 
             <div className = "slide_content">
-                <h3>Write or Upload your Personal Bio</h3>
+                <h3>Write Your</h3>
+                <h3>Personal Bio</h3>
                 <h5  id = "guide_message">Let your employers know who you are</h5>
             </div>
 
             <div className = "slide_content">
-                <h3>Add Artifacts to your Portfolio</h3>
+                <h3>Add Artifacts to</h3>
+                <h3>Your Portfolio</h3>
                 <h5  id = "guide_message">Upload and describe your achievements</h5>
             </div>
 
@@ -46,7 +49,8 @@ function CreateCarousel(props) {
             </div>
 
             <div className = "slide_content">
-                <h3>Share your Portfolio with Employers</h3>
+                <h3>Share your Portfolio</h3>
+                <h3>with Employers</h3>
                 <h5  id = "guide_message">Access a unique url for your portfolio in My Account</h5>
             </div>
         </Carousel>

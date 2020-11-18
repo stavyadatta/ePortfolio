@@ -17,7 +17,7 @@ function Project(props) {
                 <h2 className="projectName" >{props.name}</h2>
             </Link>
 
-            <p className="projectDesc">{props.description}</p>
+            <p className="projectDesc">{props.description.length<580?props.description:`${props.description.substring(0,580)}...`}</p>
 
         </div>
 
