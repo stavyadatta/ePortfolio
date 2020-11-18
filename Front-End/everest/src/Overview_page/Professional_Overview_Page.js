@@ -13,11 +13,12 @@ import { connect } from "react-redux";
 import { useSelector } from "react-redux"
 
 import firebase from "../Firebase"
+import ConfirmDialog from "../Generic_Components/Dialog_Confirmation_Box";
 
 function OverviewPage() {
   let userProfile = useSelector(state=>state.firebase.profile);
   let userAuth = useSelector(state=>state.firebase.auth);
-
+  let [confirmation, setConfirmation] = useState(false);
   let userId = userAuth.uid;
   const [selected, setSelected] = useState("");
   const checkClicked = e => { setSelected(e.target.id); console.log(selected); }
@@ -37,7 +38,14 @@ function OverviewPage() {
         <img src={Home_Btn} id = "home_btn" alt="home"/>
         </Link>
         <img src={About_Btn} id = "about_btn" alt="about"/>     
-        <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
+        <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={() => {setConfirmation(true)}}/>
+        <ConfirmDialog
+          title="Log Out"
+          open={confirmation}
+          setOpen={setConfirmation}
+          onConfirm={handleLogout}>
+            Are you sure you want to Log Out?
+          </ConfirmDialog>
       </div>
      
       <CreateCarousel userProfile={userProfile}/>

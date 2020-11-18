@@ -5,7 +5,7 @@ import { compose } from "redux";
 import { connect, useSelector } from "react-redux";
 import firebase from '../Firebase';
 import { useHistory } from "react-router-dom";
-import ConfirmDialog from '../Generic_Components/Dialog_Confirmation_Box.js'
+import ConfirmDialog from '../Generic_Components/Dialog_Confirmation_Box.js';
 
 
 import "./Project_Details_Page.css";
