@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Project_Details_Page.css";
 import defaultProjectImage from "../Images/project_image.jpg";
-import defaultFileImage from "../Images/File-icon.png";
+import defaultFileImage from "../Icons/templates_provided.png";
 
 export const ProjectDetailList = (props) => {
   return props.details.map((detail) => {
