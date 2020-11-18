@@ -3,7 +3,7 @@ import "./Edit_Btns.css";
 
 function EnableEditBtns(props) {
 	return(
-		<div>
+		<div id = {props.btnID}>
 			<div className = "enable_edit">
 				<button className = "account_btns" id = "edit_account_info" onClick = {(e) => props.EnableEdits(e)}>Edit</button>
 			</div>

@@ -9,8 +9,9 @@ import animateComponents from "../Generic_Components/Page_Animations";
 import "./My_Page.css";
 import firebase from "../Firebase";
 import { useSelector } from "react-redux";
-import Profile_Pic from "../Images/Square_Default_Profile_Pic.svg";
-import SmallBtn from "../Generic_Components/Small_Btn";
+// import Profile_Pic from "../Images/Square_Default_Profile_Pic.svg";
+// import SmallBtn from "../Generic_Components/Small_Btn";
+// import MyPageFiller from "../Images/My_Page_Filler.png";
 
 function MyPage() {
 
@@ -65,10 +66,15 @@ function MyPage() {
             <textarea id = {editable ? "active_user_bio_entry" : "user_bio_entry"} 
             placeholder = {userInfo.bio === "" ? "Write your personal bio here!" : userInfo.bio} 
             defaultValue = {userInfo.bio === "" ? "" : userInfo.bio} readOnly = {true} onChange = {e => updateFields(e)}/>
-            <div className = "profile_pic_user">
+            
+            {/* <div className = "profile_pic_user">
                 <img src = {Profile_Pic} alt = "" id = "user_profile_pic"/>
                 <SmallBtn id = "my_page_edit_pic" text = "Edit Profile Picture"/>
-            </div>
+            </div> */}
+
+            {/* <div id = "page_filler">
+                <img src = {MyPageFiller} alt = "" id = "my_page_filler" />
+            </div> */}
             
         </div>
     );

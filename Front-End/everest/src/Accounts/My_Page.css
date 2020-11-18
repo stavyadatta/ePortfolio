@@ -38,8 +38,8 @@ h2 { font-weight: bold; }
 
 #user_bio_entry {
   position: absolute;
-  left: 66.5%;
-  bottom: 29%;
+  left: 58.55%;
+  bottom: 30%;
   color: #5D5757;
   opacity: 0.62;
 }
@@ -47,8 +47,8 @@ h2 { font-weight: bold; }
 textarea {
   resize: none;
   outline: none;
-  width: 380px;
-  height: 283px;
+  width: 490px;
+  height: 43.1%;
   font-size: 19;
   padding-top: 10px;
   padding-bottom: 11px;
@@ -61,8 +61,8 @@ textarea {
 
 #active_user_bio_entry {
     position: absolute;
-    left: 66.5%;
-    bottom: 29%;
+    left: 58.55%;
+    bottom: 30%;
     background-color: white;
 }
 
@@ -83,5 +83,22 @@ textarea {
 #my_page_edit_pic {
     position: absolute;
     left: 58.45%;
-    top: 46.2%;
+    top: 46.5%;
+}
+
+#page_filler {
+    width: 6.8%;
+    height: 19%;
+    position: absolute;
+    left: 58.55%;
+    top: 52.1%;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.10);
+}
+
+#my_page_filler {
+    width: 80%;
+    position: absolute;
+    left: 10%;
+    bottom: 10%;
 }
