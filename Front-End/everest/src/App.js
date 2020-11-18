@@ -8,6 +8,7 @@ import {
 
 import "./App.css";
 import LoginPage from "./Accounts/Login_Page";
+import CreatePortfolio from "./Accounts/Create_Portfolio";
 import OverviewPage from "./Overview_pages/Overview_Page";
 import FormPage from "./Projects/Form_Page";
 import ProjectDetailsPage from "./Projects/Project_Details_Page";
@@ -16,7 +17,7 @@ import Navbar from "./Navbar/Navbar";
 import projectList from "./Projects/ProjectList"
 import verifyPage from "./Accounts/Verify_Page";
 import MyAccountPage from "./Accounts/My_Account_Page";
-
+import HomePage from "./Home_Page";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -73,6 +74,7 @@ function AuthRoutes() {
     <Switch>
       <Route path="/profile" component={OverviewPage} />
       <Route path="/myaccount" component={MyAccountPage} />
+      <Route path="/" exact component={HomePage} />
       <NavbarRoutes />
       <Redirect to="/profile" />
     </Switch>
@@ -106,10 +108,18 @@ function UnVerifiedRoutes() {
 function UnAuthRoutes() {
   return (
     <Switch>
-      <Route path="/login" component={LoginPage} />
-      <Route path="/project/:id" component={ProjectDetailsPage} />
-      <Route path="/projects/:userId" component={projectList} />
-      <Redirect to="/login" />
+      <Route path="/login" component = {LoginPage} />
+      <Route path="/register" component = {CreatePortfolio} />
+      <Route path="/" exact component={HomePage} />
+      <div>
+        <Navbar/>
+        <Switch>
+          <Route path="/project/:id" component={ProjectDetailsPage} />
+          <Route path="/projects/:userId" component={projectList} />
+          <Redirect to="/" />
+        </Switch>
+      </div>
+      <Redirect to="/" />
     </Switch>
   );
 }
