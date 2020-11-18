@@ -43,6 +43,17 @@ h2 {
     color: #082F4E;
 }
 
+#register_white_home {
+    width: 21%;
+    position: absolute;
+    top: 64.8vh;
+    left: -10.6vw;
+}
+
+#register_white_home:hover {
+    width: 22%;
+}
+
 #first_name, #last_name { width: 237px; }
 
 .name_fields {

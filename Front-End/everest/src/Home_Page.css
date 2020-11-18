@@ -1,0 +1,322 @@
+p {
+	color: white;
+	font-size: 50px;
+	font-family: "Commissioner", serif;
+}
+
+.home_page { 
+	max-height: 300vh;
+	max-width: 100vw; 
+}
+
+.homepage_first_segment {
+	background: #082f4e;
+	height: 100vh;
+}
+
+.homepage_second_segment {
+	background: white;
+	position: relative;
+	top: 0vh;
+	height: 100vh;
+}
+
+.homepage_third_segment {
+	position: relative;
+	top: 0vh;
+	height: 100vh;
+	background: #082f4e;
+}
+
+.footer {
+	position: relative;
+	top: 90vh;
+	height: 10vh;
+	background: black;
+}
+
+#homepage_image {
+	width: 100%;
+	position: absolute;
+	height: 110%;
+	top: -10%;
+	left: -22%;
+}
+
+#cover_up {
+	width: 40px;
+	height: 100vh;
+	background-color: #082f4e;
+	position: absolute;
+	top: 0vh;
+	left: 26%;
+}
+
+#homepage_logo {
+	width: 5%;
+	position: absolute;
+	top: 0%;
+	left: 1%;
+}
+
+#Features {
+	position: absolute;
+	top: 11%;
+	right: 36%;
+}
+
+#Search {
+	position: absolute;
+	top: 11%;
+	right: 26%;
+}
+
+#About {
+	position: absolute;
+	top: 11%;
+	right: 16%;
+}
+
+#Login {
+	position: absolute;
+	top: 11%;
+	right: 6%;
+}
+
+.header_btns {
+	background-color: #082f4e;
+	color: white;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+#Features:hover, #About:hover, #Search:hover, #Login:hover {
+	transform: scale(1.1,1.1);
+	-webkit-transform:scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
+}
+
+.page_headers {
+	position: absolute;
+	top: 44%;
+	left: 34.8%;
+}
+
+#homepage_description {
+	font-size: 20px;
+	color: white;
+	opacity: 0.62;
+	position: absolute;
+	top: 111%;
+	left: 7%;
+	word-spacing: 2px;
+}
+
+#features_heading {
+	font-size: 25px;
+	color: #0F446E;
+	position: absolute;
+	top: 9%;
+	left: 42.9%;
+	font-weight: bold;
+
+}
+
+#features_subheading {
+	position: absolute;
+	top: 15.4%;
+	left: 35.3%;
+	color: #5D5757;
+	opacity: 0.5;
+	font-size: 15px;
+	font-family: "Karla";
+}
+
+#card_1 {
+	position: absolute;
+	top: 29%;
+	right: 77.2%;
+}
+
+#card_2 {
+	position: absolute;
+	top: 29%;
+	right: 53.53%;
+}
+
+#card_3 {
+	position: absolute;
+	top: 29%;
+	right: 29.87%;
+}
+
+#card_4 {
+	position: absolute;
+	top: 29%;
+	right: 6%;
+}
+
+#no_coding_req {
+	position: absolute;
+	top: 15%;
+	left: 13%;
+}
+
+#secure {
+	position: absolute;
+	top: 15%;
+	left: 12.5%;
+}
+
+#template_label {
+	position: absolute;
+	left: 20%;
+}
+
+#no_coding_label {
+	position: absolute;
+	left: 20.1%;
+}
+
+#secure_label {
+	position: absolute;
+	left: 41%;
+}
+
+#get_started_icon {
+	width: 6%;
+	position: absolute;
+	right: 6%;
+	top: 80.8%;
+	cursor: pointer;
+}
+
+
+#home_explore {
+	color: white;
+	font-size: 25px;
+	position: absolute;
+	left: 5.9%;
+	top: 9%;
+	font-weight: bold;
+}
+
+#home_explore_subheading {
+	color: white;
+	opacity: 0.62;
+	position: absolute;
+	left: 5.9%;
+	top: 15.4%;
+	font-size: 15px;
+	font-family: "Karla";
+}
+
+#third_segment_image {
+	width: 33.5vh;
+	position: absolute;
+	top: 38vh;
+	left: 58vw;
+}
+
+#third_segment_mountain {
+	width: 120vh;
+	position: absolute;
+	top: 45vh;
+}
+
+#homepage_sun {
+	width: 30%;
+	position: absolute;
+	top: 10vh;
+	left: 58vw;
+}
+
+.bottom_btns {
+	background-color: #082f4e;
+	outline: none;
+	border: solid 1.5px rgb(248, 248, 248);
+	border-radius: 30px;
+	padding-bottom: 4px;
+	padding-top: 3px;
+	padding-right: 16px;
+	padding-left: 18px;
+	font-size: 13px;
+	color: white;
+	font-family: "Karla";
+	cursor: pointer;
+}
+
+.bottom_btns:hover {
+	color: #082f4e;
+	background-color: white;
+	outline: none;
+}
+
+#create_your_portfolio {
+	position: absolute;
+	right: 6%;
+	top: 83.8%;
+	padding-top: 2.5px;
+	padding-bottom: 2px;
+	padding-left: 36px;
+	padding-right: 34px;
+}
+
+#explore_existing_portfolios {
+	position: absolute;
+	right: 6%;
+	top: 88%;
+}
+
+.home_search_user_id {
+	position: absolute;
+	top: 31vh;
+	left: 5.9%;
+}
+
+.search_heading {
+	color: white;
+	font-family: "Karla";
+	font-size: 16px;
+	position: absolute;
+	top: -72%;
+}
+
+.home_search_project_id {
+	position: absolute;
+	top: 44vh;
+	left: 5.9%;
+}
+
+.home_search_submit {
+	height: 36.5px;
+	width: 100px;
+	border: none;
+	outline: none;
+}
+
+#project_search_submit, #user_search_submit {
+	position: absolute;
+	top: 0%;
+	color: #082f4e;
+	background-color: white;
+}
+
+#user_search_submit { height: 37px; }
+
+#project_search_submit:hover, #user_search_submit:hover {
+	box-shadow: 0px 0px 10px white;
+}
+
+#copyright_statement {
+	font-size: 12px;
+	position: absolute;
+	top: 40%;
+	right: 2%;
+}
+
+#footer_logo {
+	display: none;
+}
