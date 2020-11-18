@@ -8,7 +8,6 @@
     left: 6%;
     font-size: 1.625rem;
     margin-bottom: 2rem;
-    color: #082f4e;
     text-shadow: none;
   }
 
@@ -16,7 +15,6 @@
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
@@ -26,11 +24,9 @@
 #submitButton {
   width: 12%;
   font-size: medium;
-  background-color:#082f4e;
   color: white;
   padding: 12px 20px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
   box-shadow: none; /* NEW */
   opacity: 1;       /* NEW */
