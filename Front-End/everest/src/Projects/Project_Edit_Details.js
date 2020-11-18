@@ -39,6 +39,8 @@ const ProjectDetailEdit = (props) => {
   const [detailImage, setDetailImage] = 
     useState(detail.imgUrl ? detail.imgUrl : defaultProjectImage);
   const [isNewImage, setIsNewImage] = useState(false);
+  const [filename, setFileName] = useState(detail.filename ? detail.filename : false);
+  const [fileUrl, setFileUrl] = useState(detail.fileUrl ? detail.fileUrl : false);
 
   const updateField = (e) => {
     let fieldValue = e.target.value;
@@ -64,7 +66,11 @@ const ProjectDetailEdit = (props) => {
           window.alert("Images must be less than 1 MB large")
           return;
         }
-        
+        break;
+      case "fileUpload":
+        handleFile(e);
+        setSubmitDisabled(false);
+        setCancelDisabled(false);
         break;
       default:
         break;
@@ -114,6 +120,13 @@ const ProjectDetailEdit = (props) => {
     let url = await firebaseUrl(imageAsFile);
     return url;
   }
+  const handleFile = async (e) => {
+    const targetFile = e.target.files[0];
+    console.log("Helloo");
+    let firebaseFileUrl = await firebaseUrl(targetFile, 'files');
+    setFileUrl(firebaseFileUrl);
+    setFileName(targetFile.name);
+  }
 
   let detailProps = {
     detail: detail,
@@ -121,6 +134,8 @@ const ProjectDetailEdit = (props) => {
     body: detailBody,
     styles: style,
     imgUrl: detailImage,
+    filename: filename,
+    fileUrl: fileUrl,
     onChange: updateField,
     submit: handleSubmit,
   };
@@ -131,6 +146,9 @@ const ProjectDetailEdit = (props) => {
       break;
     case "left-image":
       contentLayout = LeftImgProjectDetailEdit(detailProps);
+      break;
+    case "file-upload":
+      contentLayout = UploadProjectDetailEdit(detailProps);
       break;
     default:
       contentLayout = DefaultDetailEdit(detailProps);
@@ -213,6 +231,22 @@ const LeftImgProjectDetailEdit = (props) => {
   );
 };
 
+const UploadProjectDetailEdit = (props) => {
+  let updateField = props.onChange;
+  return (
+    <div className="detailContent">
+      <a href={props.fileUrl} download>{props.filename}</a>
+      <input type='file' id="fileUpload" name="mainFile" onChange={updateField} />
+      <textarea
+        className="detailText"
+        id="detailBodyEntry"
+        value={props.body}
+        onChange={updateField}
+      />
+    </div>
+  )
+}
+
 const DefaultDetailEdit = (props) => {
   let updateField = props.onChange;
   return (
@@ -237,6 +271,7 @@ const SelectDetailType = (props) => {
     <MenuItem value="default">Text Only</MenuItem>
     <MenuItem value="right-image">Right Image</MenuItem>
     <MenuItem value="left-image">Left Image</MenuItem>
+    <MenuItem value="file-upload">Upload File</MenuItem>
   </Select>
   )
   
