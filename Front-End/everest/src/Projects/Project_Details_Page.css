@@ -146,6 +146,7 @@
   background: inherit;
   height: 90%;
   width: 50%;
+  white-space: pre-wrap;
 }
 
 .detailText{
@@ -155,6 +156,7 @@
     background: inherit;
     height: 90%;
     width: 100%;
+    white-space: pre-wrap;
 }
 
 .detailImageWrap{
