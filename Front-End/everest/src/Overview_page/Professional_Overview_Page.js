@@ -7,12 +7,11 @@ import Sun_Image from "../Images/sun_bg_image.png";
 import Home_Btn from "../Icons/home_btn.svg";
 import About_Btn from "../Icons/about_btn.svg";
 import Signout_Btn from "../Icons/signout_btn.svg";
-
 import { connect } from "react-redux";
-
-import { useSelector } from "react-redux"
-
-import firebase from "../Firebase"
+import { useSelector } from "react-redux";
+import firebase from "../Firebase";
+import EntryBox from "../Generic_Components/Entry_Box";
+import animateComponents from "../Generic_Components/Page_Animations";
 import ConfirmDialog from "../Generic_Components/Dialog_Confirmation_Box";
 
 function OverviewPage() {
@@ -51,7 +50,11 @@ function OverviewPage() {
       <CreateCarousel userProfile={userProfile}/>
      
       <div className = "header_overview_btns">
-        <button className = "overview_btns" id = "search" onClick = {checkClicked}>Search</button>
+        <Search />
+        <div className = "box_filler"></div>
+        <button className = "overview_btns" id = "search" onClick = {(e) => animateComponents(e, "box_filler", 
+						"overview_search_fields", 0.55, 0.18)}>Search</button>
+        
         <Link to = "/myaccount">
           <button className = "overview_btns" id = "profile" onClick = {checkClicked}>My Account</button>
         </Link>
@@ -67,6 +70,79 @@ function OverviewPage() {
     </div>
   );
 }
+
+function Search() {
+  return(
+    <div className = "overview_search_fields">
+        <SearchUsers />
+        <SearchProjects />
+    </div>
+  );
+}
+
+function SearchUsers() {
+
+   const [userId, setUserId] = useState("");
+
+    const UidFields = (e) => {
+        let fieldValue = e.target.value;
+        setUserId(fieldValue);
+    };
+
+    const handleSubmit = () => {
+      if (userId === "") {alert("Please fill in the field"); }
+      else{
+      firebase.firestore().collection('users').doc(userId).get().then(docRef=>{
+        if(docRef.exists && userId !== ""){
+          window.location.href = '/projects/' + userId;
+        } else {
+          window.alert("User does not exist.")
+        }
+      })
+      }
+    }
+
+  return(
+    <div className="overview_search_user_id">
+          <EntryBox id="overview_user_id" textType="text" default="Enter User Search String"
+          onChange={UidFields} readonly={false} />
+          <button className="overview_search_submit" id = "overview_user_search_submit" onClick={handleSubmit}>Submit</button>
+    </div>
+  );
+}
+
+function SearchProjects() {
+
+  const [projectId, setProjectId] = useState("");
+
+  const PidFields = (e) => {
+      let fieldValue = e.target.value;
+      setProjectId(fieldValue);
+
+  };
+
+  const handleSubmit = () => {
+    if (projectId === "") {alert("Please fill in the field"); }
+    else{
+    firebase.firestore().collection('projects').doc(projectId).get().then(docRef=>{
+      if(docRef.exists){
+        window.location.href = '/project/' + projectId;
+      } else {
+        window.alert("Project does not exist.")
+      }
+    })
+    }
+  }
+
+  return(
+    <div className="overview_search_projects_id">
+          <EntryBox id="overview_project_id" textType="text" default="Enter Project ID"
+          onChange={PidFields} readonly={false} />
+          <button className="overview_search_submit" id = "overview_projects_search_submit" onClick={handleSubmit}>Submit</button>
+    </div>
+  );
+}
+
 
 const mapStateToProps = (state) => {
   return {
