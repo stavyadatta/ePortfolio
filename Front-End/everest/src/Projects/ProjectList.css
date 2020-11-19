@@ -28,6 +28,9 @@
     font-size: xx-large;
     margin: 1.25rem 0.625rem 0.625rem 2rem;
     width: 100vw;
+    margin-left: 60px; /* NEW */
+    margin-bottom: 30px; /* NEW */
+    margin-top: 25px; /* NEW */
   }
   
   
@@ -50,6 +53,7 @@
     /* background-color:yellow; */
     width: 50%;
     height: 100%;
+    margin: 30px 0 0 60px;  /* NEW */
     align-items: center;
     text-align: center;
     justify-content: left;
@@ -67,6 +71,8 @@
     background-color: inherit;
     cursor: pointer;
     display: inline-block;
+    margin: 0 0 5px 5px; /* NEW */
+    font-weight: 600; /* NEW */
   }
   .addProjectText:hover {color: #51adcf;}
 
@@ -91,6 +97,8 @@
     width:50%;
     height: 100%;
     color: #082f4e;
+    margin: 5px 10px 0 0; /* NEW */
+    
   }
 
 
@@ -104,6 +112,7 @@
     background-color: inherit;
     cursor: pointer;
     display: inline-block;
+    font-weight: 600; /* NEW */
   }
   /* .goBackText:hover {color: rgb(255, 154, 59)} */
   .goBackText:hover {color: #51adcf;}
@@ -131,6 +140,7 @@
       flex-direction: column;
       align-items: center;
       max-height: 400px;
+      line-height: 2;          /* NEW */
   }
   
   .projectImage {

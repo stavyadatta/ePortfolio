@@ -98,7 +98,7 @@ function FormPage(props) {
 
             <form onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="name_entry">Project Name</label>
-                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName} required style={entryStyle}/>
+                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName} required style={entryStyle} maxLength="320"/>
 
                 <label htmlFor="desc_entry">Project Description</label>
                 <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc} style={entryStyle} required/>
