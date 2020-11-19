@@ -83,7 +83,11 @@ Several files within the app will need to be updated with the new project's info
 * Front-End/everest/src/Firebase.js
 * .firebaserc
 
-Following this, deployment can be made to firebase using ``` firebase deploy``` on a machine.
+Next, ensure firebase-tools are installed and configured using ``` npm install firebase-tools -g ``` and ``` firebase login```
+
+Following this, deployment can be made to firebase by running ``` firebase deploy``` in the root directory.
+
+[This](https://firebase.google.com/docs/cli) is the documention for how to made a deployment this way using the Firebase CLI.
 
 
 ## Local Testing
