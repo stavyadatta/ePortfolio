@@ -107,6 +107,7 @@
 	height: 10px;
 	opacity: 0.5;
 	border-radius: 10px;
+    box-shadow: 0px 0px 5px white;
 }
 
 .overview_search_user_id {
@@ -129,7 +130,7 @@
 .overview_search_projects_id {
 	position: absolute;
 	left: 147%;
-	top: 25px;
+	top: 30px;
 }
 
 #overview_project_id {
@@ -140,6 +141,7 @@
 	height: 10px;
 	opacity: 0.5;
 	border-radius: 10px;
+	box-shadow: 0px 0px 5px white;
 }
 
 #overview_projects_search_submit {
