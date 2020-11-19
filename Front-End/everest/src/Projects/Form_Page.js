@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import {firebaseUpload}from "../storageFirebaseUpload";
 import { useHistory } from "react-router-dom";
 import NavbarPad from "../Navbar/NavbarPad";
+import firebase from "../Firebase";
 
 
 // import { Link } from "react-router-dom";
@@ -70,13 +71,16 @@ function FormPage(props) {
 
   const handleFireBaseUpload = async e => {
     e.preventDefault();
+    let name = `${userProfile.firstName} ${userProfile.lastName}`;
     
     const projectObject = {
       userId: userId,
       projectName: pName,
       projectDesc: pDesc,
       projectTags: pTags.split(","),
-      projectBody: pBody
+      projectBody: pBody,
+      authorName: name,
+      postDate: firebase.firestore.Timestamp.now
     };
 
     await firebaseUpload(imageAsFile, "project-add", projectObject);
