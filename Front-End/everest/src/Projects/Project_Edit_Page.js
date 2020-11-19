@@ -90,6 +90,9 @@ function ProjectEditPage(props) {
     if(projectTitle && projectTitle.length > maxTitleLength){
       window.alert(`Title is too long, must be less than ${maxTitleLength} characters`)
       return;
+    } else if(!projectTitle || projectTitle.length <= 0){
+      window.alert("Project must have a title");
+      return;
     } else {
       firebase.firestore()
       .collection('projects')
