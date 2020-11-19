@@ -66,7 +66,14 @@ function FormPage(props) {
 
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
-    setImageAsFile(imageFile => (image));
+
+    if (image.size < 1000000) {
+      setImageAsFile(imageFile => (image));
+    }
+    else {
+      window.alert("Image files must be less than 1 MB.")
+    }
+    
   }
 
   const handleFireBaseUpload = async e => {
