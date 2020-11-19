@@ -11,6 +11,7 @@
 .Navbar a{
     padding-right: 5%;
     padding-left: 5%;
+    text-decoration: none;
 }
 
 .navBlock{
@@ -56,6 +57,10 @@
 .navButton {
     color: white;
 
+}
+
+.navButton:hover{
+  color:#D6D5D4
 }
 
 .navButton #login{
