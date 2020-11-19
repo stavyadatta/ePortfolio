@@ -12,9 +12,6 @@ class Project{
     async create() {
         try{
             const result = await projects.add(this.dataObject);
-            if(this.dataObject.projectBody){
-              
-            }
             return {projectId: result.id, userId: this.dataObject.userId};
         }catch(error){
             throw error;
