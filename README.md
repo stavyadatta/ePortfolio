@@ -8,6 +8,9 @@
 * [Changelog](*Changelog)
 
 # Project Overview
+Everest is an ePortfolio system aimed at students and professionals looking for a platform to show off their achievements.
+It's an app built using React, Redux and Firebase that supports user sign-in, file upload, template switching and profile sharing. 
+
 # Demo
 Link to the deployed product can be found [here](https://impressive-hall-288310.web.app/)
 
@@ -80,6 +83,7 @@ Several files within the app will need to be updated with the new project's info
 * Front-End/everest/src/Firebase.js
 * .firebaserc
 
+Following this, deployment can be made to firebase using ``` firebase deploy``` on a machine.
 
 
 ## Local Testing
@@ -89,7 +93,7 @@ Running ``` npm install``` in the root directory will install all dependancies f
 
 Running ``` npm start``` in the root directory will install all dependancies and start a local emulator for testing purposes.
 
-
+Running ``` firebase emulators:exec --project <PROJECT_NAME_HERE> --only firestore,functions 'npm test' ``` will run a suite of tests on the back-end firesotre functions.
 
 # Changelog
 ## Sprint 1
