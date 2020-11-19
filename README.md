@@ -60,7 +60,7 @@ So I can store my projects.
 # Documentation
 An **architecture diagram** can be found [here](Documentation/EverestArchitecture.png)
 
-**Back-end functions** documentation can be found [here](Documentation/FunctionsDocumentation.pdf)
+**Back-end functions** documentation can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/Deployment-Architecturef)
 
 **Data model** documentation used in the in app can be found [here](Documentation/DataModel.pdf)
 
