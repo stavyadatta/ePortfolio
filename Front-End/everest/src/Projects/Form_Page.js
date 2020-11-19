@@ -80,7 +80,7 @@ function FormPage(props) {
       projectTags: pTags.split(","),
       projectBody: pBody,
       authorName: name,
-      postDate: firebase.firestore.Timestamp.now
+      postDate: firebase.firestore.Timestamp.now()
     };
 
     await firebaseUpload(imageAsFile, "project-add", projectObject);
