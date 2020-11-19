@@ -56,18 +56,19 @@ So I can store my projects.
 
 # Documentation
 ## Architecture
-![](Documentation/DeploymentArchitecture.pdf)
+An architecture diagram can be found [here](Documentation/EverestArchitecture.pdf)
 
 ## Back End
+Documentation of deployed back-end functions can be found [here](Documentation/FunctionsDocumentation.pdf)
 
-### Data Model
+## Data Model
+The data model used in the in app can be found [here](Documentation/DataModel.pdf)
 
-### Deployment
+## Deployment
+A deployment architecture diagragram can be found [here](Documentation/DeploymentArchitecture.pdf)
 
-## Front End
-
-### Style Guide
-
+## Style Guide
+A style guide for the current templates can be found [here](Documentation/StyleGuide.pdf)
 
 
 # System Requirements
