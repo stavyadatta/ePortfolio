@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 import { useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
+
 import "./Casual_My_Page.css";
 import SignOut from "../../Icons/signout_btn.svg";
 import Navbar from "../../Navbar/Navbar";
@@ -8,11 +12,16 @@ import Casual_My_Page_Image from "../../Images/casual_account_bg.png";
 import BackBtn from "../../Generic_Components/Back_Icon";
 import animateComponents from "../../Generic_Components/Page_Animations";
 
-function CasualMyPage() {
+
+function CasualMyPage(props) {
 
     const [editable, setEditable] = useState(false);
     const [bio, setBio] = useState("");
-    let userInfo = useSelector(state=>(state.firebase.profile));
+    const userInfo = props.userInfo;
+
+    if(!userInfo){
+      return (<div>Loading...</div>);
+    }
     
     const handleLogout = function(){ 
         firebase.auth().signOut()
@@ -65,7 +74,7 @@ function CasualMyPage() {
                     <textarea id = {editable ? "casual_active_user_bio_entry" : "casual_user_bio_entry"} 
                     placeholder = {userInfo.bio === "" ? "Write your personal bio here!" : userInfo.bio} 
                     defaultValue = {userInfo.bio === "" ? "" : userInfo.bio} readOnly = {true} onChange = {e => updateFields(e)}/>
-                     <EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>
+                     {!props.auth.isEmpty && props.auth.uid === props.match.params.userId?<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>:<div/>}
                      <BackBtn />
                 </div>
                 
@@ -91,4 +100,20 @@ function EnableEditBtns(props) {
 	);
 }
 
-export default CasualMyPage;
+const mapStateToProps = (state, props) => {
+  let uid = props.match.params.userId;
+  return {
+    auth: state.firebase.auth,
+    userInfo: state.firestore.data.users && state.firestore.data.users[uid]
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect((props) => {
+      let uid = props.match.params.userId;
+      return [
+          { collection: "users", doc: uid },
+      ];
+  })
+)(CasualMyPage);
