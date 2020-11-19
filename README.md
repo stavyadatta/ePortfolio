@@ -3,8 +3,8 @@
 * [Demo](#demo)
 * [Features](#features)
 * [Documentation](#documentation) 
-* [System Requirements](#requirements)
-* [Installation Guide](#instalation-guide)
+* [System Requirements](#system-requirements)
+* [Installation Guide](#installation-guide)
 * [Changelog](*Changelog)
 
 # Project Overview
@@ -55,24 +55,42 @@ I want to create a profile that is secure,
 So I can store my projects.
 
 # Documentation
-## Architecture
-An architecture diagram can be found [here](Documentation/EverestArchitecture.pdf)
+An **architecture diagram** can be found [here](Documentation/EverestArchitecture.png)
 
-## Back End
-Documentation of deployed back-end functions can be found [here](Documentation/FunctionsDocumentation.pdf)
+**Back-end functions** documentation can be found [here](Documentation/FunctionsDocumentation.pdf)
 
-## Data Model
-The data model used in the in app can be found [here](Documentation/DataModel.pdf)
+**Data model** documentation used in the in app can be found [here](Documentation/DataModel.pdf)
 
-## Deployment
-A deployment architecture diagragram can be found [here](Documentation/DeploymentArchitecture.pdf)
+A **deployment architecture** diagram can be found [here](Documentation/DeploymentArchitecture.png)
 
-## Style Guide
-A style guide for the current templates can be found [here](Documentation/StyleGuide.pdf)
-
+A **style guide** for the current templates can be found [here](Documentation/StyleGuide.pdf)
 
 # System Requirements
+The app uses Node 10+, Firebase, React and Redux as it's main dependancies, these must be installed on the machine before the app can be run.
+
+
+
 # Installation Guide
+## Deployment
+As indicated in the [deployment architecture diagram](Documentation/DeploymentArchitecture.png) the application is authomatically deployed through Travis CI to a firebase project used for the development of the [demo](#demo), 
+
+In order to deploy the project to a custom firebase project, a new firebase project must be set up with the app added in the firebase console. 
+
+Several files within the app will need to be updated with the new project's information, namely:
+* Front-End/everest/src/Firebase.js
+* .firebaserc
+
+
+
+## Local Testing
+Installing dependancies requires npm to be installed on the local machine. 
+
+Running ``` npm install``` in the root directory will install all dependancies for the backend and front end application for local testing.
+
+Running ``` npm start``` in the root directory will install all dependancies and start a local emulator for testing purposes.
+
+
+
 # Changelog
 ## Sprint 1
 ## Sprint 2
