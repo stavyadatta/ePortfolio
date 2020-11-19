@@ -97,7 +97,7 @@ Running ``` npm install``` in the root directory will install all dependancies f
 
 Running ``` npm start``` in the root directory will install all dependancies and start a local emulator for testing purposes.
 
-Running ``` firebase emulators:exec --project <PROJECT_NAME_HERE> --only firestore,functions 'npm test' ``` will run a suite of tests on the back-end firesotre functions.
+Running ``` cd functions&&firebase emulators:exec --project <PROJECT_NAME_HERE> --only firestore,functions 'npm test' ``` will run a suite of tests on the back-end firestore functions.
 
 # Changelog
 ## Sprint 1
