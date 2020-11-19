@@ -31,7 +31,7 @@ function LoggedInNavbar(props) {
           <img src={logo} alt="" />
         </div>
         <div className="NavbarButtons">
-          <Link to="/">
+          <Link to="/profile">
             <div className="navButton">Home</div>
           </Link>
           <Link to="/myaccount">
@@ -60,24 +60,26 @@ function LoggedInNavbar(props) {
 function LoggedOutNavbar() {
   return (
     <div className="Navbar">
-      <div className="navLogo">
-        <Link to="/">
-          <div className="navButton">logogohere</div>
-        </Link>
+      <div className="navBlock"></div>
+      <div className="navContent">
+        <div className="navLogo">
+          <img src={logo} alt="" />
+        </div>
+        <div className="NavbarButtons"></div>
+        <div className="navUser">
+          <Link to="/register">
+            <div className="navButton" id="sign-up">
+              Sign-up
+            </div>
+          </Link>
+          <Link to="/login">
+            <div className="navButton" id="login">
+              Login
+            </div>
+          </Link>
+        </div>
       </div>
-      <div className="NavbarButtons"></div>
-      <div className="navUser">
-        <Link to="/login">
-          <div className="navButton" id="sign-up">
-            Sign-up
-          </div>
-        </Link>
-        <Link to="/login">
-          <div className="navButton" id="login">
-            Login
-          </div>
-        </Link>
-      </div>
+      
     </div>
   );
 }

@@ -106,6 +106,15 @@ function ProjectDetailsPage(props) {
     </div>
     )
 
+    const ProjectReflection = () => (
+      <div className="projectDetail" style={descriptionStyle}>
+        <div className="detailTitle">Reflection</div>
+        <div className="detailContent" >
+            <div className="detailText">{project.reflection}</div>
+        </div>
+    </div>
+    )
+
     return (
         <div className="projectLayout">
           <MaybeDeleteButton/>
@@ -115,6 +124,8 @@ function ProjectDetailsPage(props) {
           <ProjectDescription/>
             
           <ProjectDetailList details={details} style0={detailStyle0} style1={detailStyle1}/>
+
+          <ProjectReflection/>
         </div>
     );
 }
@@ -122,11 +133,14 @@ function ProjectDetailsPage(props) {
 
 const getPostDateString = (postDate) =>{
   if(postDate){
-    let date = new Date(postDate * 1000);
+    let timestamp = new firebase.firestore.Timestamp(postDate.seconds, postDate.nanoseconds);
+    console.log({timestamp})
+    let date =  timestamp.toDate();
+    console.log({date})
     let dateString =
-      date.getDay() +
+      date.getDate() +
       "." +
-      date.getMonth() +
+      (date.getMonth() + 1) +
       "." +
       date.getFullYear();
       return dateString;

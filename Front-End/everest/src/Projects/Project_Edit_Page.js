@@ -96,7 +96,6 @@ function ProjectEditPage(props) {
       .doc(props.match.params.id)
       .update({projectName:projectTitle, imgURL: projectImage});
     }
-    
   }
 
   const handleDescSubmit = (projectDescription) => {
@@ -104,6 +103,13 @@ function ProjectEditPage(props) {
     .collection('projects')
     .doc(props.match.params.id);
     ref.update({projectDesc:projectDescription});
+  }
+
+  const handleReflSubmit = (reflection) => {
+    let ref = firebase.firestore()
+    .collection('projects')
+    .doc(props.match.params.id);
+    ref.update({reflection:reflection});
   }
 
   return (
@@ -127,6 +133,11 @@ function ProjectEditPage(props) {
         style0={detailStyle0}
         style1={detailStyle1}
         handleDelete={(id)=>(handleDeleteDetail(id))}
+      />
+      <ProjectReflection
+        style={descriptionStyle} 
+        project={project} 
+        submit={handleReflSubmit} 
       />
       <div className="addDetail">
         <AddDetailButton add={handleAddDetail}/>
@@ -276,7 +287,68 @@ const ProjectDescription = (props) => {
         </div>
         
       </div>
-)
+  )
+}
+
+const ProjectReflection = (props) => {
+  
+  let project = props.project;
+  let style = props.style;
+
+  let originalReflection = project.reflection;
+
+  const [reflection, setReflection] = useState(project.reflection);
+  const [submitDisable, setSubmitDisable] = useState(true);
+
+
+  const updateField = (e) => {
+    let fieldValue = e.target.value;
+    let id = e.target.id;
+    switch (id) {
+      case "reflectionEntry":
+        setReflection(fieldValue);
+        setSubmitDisable(false);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleSubmit = () => {
+    props.submit(reflection)
+    setSubmitDisable(true);
+  }
+
+  const handleCancel = () => {
+    setReflection(originalReflection);
+    setSubmitDisable(true);
+  }
+
+  return(
+    <div className="projectDetail" style={style}>
+        <div className="detailTitle" style={style}>
+          Reflection
+        </div>
+        <div className="detailContent">
+          <textarea
+            className="detailText"
+            id="reflectionEntry"
+            value={reflection}
+            onChange={updateField}
+          />
+        </div>
+        <div className="detailEditButtons">
+        <SubmitButton 
+          submit={handleSubmit} 
+          submitDisabled={submitDisable}
+        />
+        <CancelButton 
+          cancel={handleCancel}
+          cancelDisabled={submitDisable}
+        />
+        </div>
+      </div>
+  )
 }
 
 const getPostDateString = (postDate) =>{
