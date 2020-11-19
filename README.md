@@ -56,6 +56,7 @@ So I can store my projects.
 
 # Documentation
 ## Architecture
+![](Documentation/DeploymentArchitecture.pdf)
 
 ## Back End
 
