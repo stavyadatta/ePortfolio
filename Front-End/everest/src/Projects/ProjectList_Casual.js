@@ -10,6 +10,7 @@ import NavbarPad from "../Navbar/NavbarPad"
 function ProjectList_Casual(props) {
   const projects = props.projects;
   const color = "#025E6D";
+  const maxDescLength = 580;
 
   //placeholder
   if (!projects) {
@@ -28,7 +29,7 @@ function ProjectList_Casual(props) {
             <h2 className="projectName" style={{color:"#DA6D42"}}>{props.name}</h2>
           </Link>
 
-          <p className="projectDesc">{props.description}</p>
+          <p className="projectDesc">{props.description.length > maxDescLength?`${props.description.substring(0, maxDescLength)}...`: props.description}</p>
         </div>
 
         <p className="projectBody">{props.body}</p>
