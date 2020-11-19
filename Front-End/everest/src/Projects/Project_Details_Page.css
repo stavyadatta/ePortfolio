@@ -69,7 +69,7 @@
 }
 
 .projectTitle #titleEntry{
-  width: 300px;
+  width: 500px;
   height: 60px;
   font-size: 1em;
   font-family: inherit;
@@ -117,6 +117,7 @@
 
 .detailTitle{
     width:100%;
+    height: 60px;
     text-align: left;
     font-size: x-large;
     font-family: 'Baskervville', serif;
@@ -133,6 +134,7 @@
 .detailContent{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     width: 100%;
     height: 75%;
 }
@@ -157,24 +159,28 @@
 
 .detailImageWrap{
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width:50%;
+    align-self: center;
+    
     height:90%;
 }
 
 .detailImageWrap#right{
   margin-left:2em;
+  width:50%;
 }
 
 .detailImageWrap#left{
   margin-right:2em;
+  width:50%;
 }
 
 .detailImage{
     border-radius: 0.5em;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
 }
 

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { firebaseUrl } from "../storageFirebaseUpload"
 
 import "./Project_Details_Page.css";
-import defaultProjectImage from "../Images/project_image.jpg";
+import defaultProjectImage from "../Images/mountain_filler.svg";
 import approve from "../Icons/check-mark-circle-line.svg"
 import { ProjectDetailList } from "./Project_Edit_Details";
 import { SubmitButton, CancelButton, AddDetailButton} from "./Project_Edit_Buttons";
@@ -89,6 +89,9 @@ function ProjectEditPage(props) {
   const handleHeaderSubmit = ({ projectTitle, projectImage }) => {
     if(projectTitle && projectTitle.length > maxTitleLength){
       window.alert(`Title is too long, must be less than ${maxTitleLength} characters`)
+      return;
+    } else if(!projectTitle || projectTitle.length <= 0){
+      window.alert("Project must have a title");
       return;
     } else {
       firebase.firestore()

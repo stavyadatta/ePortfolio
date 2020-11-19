@@ -9,7 +9,7 @@ import ConfirmDialog from '../Generic_Components/Dialog_Confirmation_Box.js';
 
 
 import "./Project_Details_Page.css";
-import defaultProjectImage from "../Images/project_image.jpg";
+import defaultProjectImage from "../Images/mountain_filler.svg";
 import editButton from "../Icons/edit-round-line.svg";
 import deleteButton from "../Icons/close-round-line.svg";
 import { ProjectDetailList } from "./Project_Details";
