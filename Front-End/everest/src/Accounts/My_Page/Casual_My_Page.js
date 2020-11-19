@@ -91,9 +91,7 @@ function CasualMyPage(props) {
         <div className = "casual_my_page">
             <div className = "partition_my_page">
                 <img src = {Casual_My_Page_Image} id = "casual_my_page_image" alt = "" />
-                <div className = "my_page_info_partition">
-                    {/* <h1 id = "casual_my_page_header">My Page</h1> */}
-                    
+                <div className = "my_page_info_partition">                    
                     <UserHeading/>
                     <textarea id = {editable ? "casual_active_user_bio_entry" : "casual_user_bio_entry"} 
                     placeholder = {userInfo.bio === "" ? "Write your personal bio here!" : userInfo.bio} 
