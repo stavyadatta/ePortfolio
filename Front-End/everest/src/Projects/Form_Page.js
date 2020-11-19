@@ -78,14 +78,26 @@ function FormPage(props) {
       projectName: pName,
       projectDesc: pDesc,
       projectTags: pTags.split(","),
-      projectBody: pBody,
+      nDetails: 1,
       authorName: name,
       postDate: firebase.firestore.Timestamp.now()
     };
 
-    await firebaseUpload(imageAsFile, "project-add", projectObject);
+    let res = await firebaseUpload(imageAsFile, "project-add", projectObject);
+    console.log(res);
+    firebase.firestore().collection('projectDetails').add({
+      text: pBody?pBody:"",
+      type: "default",
+      title: "Body",
+      position: 0,
+      projectId: res.data.projectId
+    })
     alert("Project has been submitted");
+
+
     setLoading("submitted");
+
+
   }
 
   return (
@@ -102,7 +114,7 @@ function FormPage(props) {
 
             <form onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="name_entry">Project Name</label>
-                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName} required style={entryStyle}/>
+                <input type="text" id="name_entry" name="projectName" placeholder="Enter Project Name" onChange={updateField} value={pName} required style={entryStyle} maxLength="320"/>
 
                 <label htmlFor="desc_entry">Project Description</label>
                 <input type="text" id="desc_entry" name="projectDescription" placeholder="Enter Short Description of Project" onChange={updateField} value={pDesc} style={entryStyle} required/>
