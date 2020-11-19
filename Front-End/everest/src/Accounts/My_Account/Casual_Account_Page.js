@@ -100,9 +100,9 @@ function CasualAccountPage() {
                 <img src = {Casual_Account_Image} id = "casual_account_image" alt = "" />
                 <div className = "account_info_partition">
                     <h1 id = "casual_account_header">My Account</h1>
-				    <BackBtn />
-                    <EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits} />
-			        <UserInfo Editable = {editable} Update = {updateField} userProfile={userProfile} uid={userAuth.uid}/>
+						<BackBtn />
+							<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits} />
+						<UserInfo Editable = {editable} Update = {updateField} userProfile={userProfile} uid={userAuth.uid}/>
                 </div>
             </div>
             
