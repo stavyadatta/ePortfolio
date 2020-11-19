@@ -35,6 +35,9 @@ const ProjectDetail = (props) => {
     case "file-upload":
       contentLayout = <UploadFileDetail detail={detail} fileUrl={fileUrl} filename={filename}/>
       break;
+    case "image":
+      contentLayout = <ImgProjectDetail detail={detail} imgUrl={imgUrl}/>
+      break;
     default:
       contentLayout = <DefaultDetail detail={detail}/>;
   }
@@ -92,6 +95,18 @@ const UploadFileDetail = (props) => {
       </div>
     </div>)
 }
+
+const ImgProjectDetail = (props) => (
+  <div className="detailContent">
+    <div className="detailImageWrap">
+      <img
+        className="detailImage"
+        alt={props.detail.imgText}
+        src={props.imgUrl}
+      />
+    </div>
+  </div>
+);
 
 const DefaultDetail = (props) => (
   <div className="detailContent">

@@ -161,6 +161,9 @@ const ProjectDetailEdit = (props) => {
     case "file-upload":
       contentLayout = UploadProjectDetailEdit(detailProps);
       break;
+    case "image":
+      contentLayout = ImgProjectDetailEdit(detailProps);
+      break;
     default:
       contentLayout = DefaultDetailEdit(detailProps);
   }
@@ -281,6 +284,14 @@ const UploadProjectDetailEdit = (props) => {
   )
 }
 
+const ImgProjectDetailEdit = (props) => (
+  <div className="detailContent">
+    <div className="detailImageWrap">
+      <ImageUploadDisplay detailId={props.detail.id} imageUrl={props.imgUrl} handleChange={props.onChange}/>
+    </div>
+  </div>
+);
+
 const DefaultDetailEdit = (props) => {
   let updateField = props.onChange;
   return (
@@ -303,6 +314,7 @@ const SelectDetailType = (props) => {
       value={props.type}
     >
     <MenuItem value="default">Text Only</MenuItem>
+    <MenuItem value="image">Image Only</MenuItem>
     <MenuItem value="right-image">Right Image</MenuItem>
     <MenuItem value="left-image">Left Image</MenuItem>
     <MenuItem value="file-upload">Upload File</MenuItem>

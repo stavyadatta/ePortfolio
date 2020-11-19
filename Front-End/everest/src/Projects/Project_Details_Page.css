@@ -133,6 +133,7 @@
 .detailContent{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     width: 100%;
     height: 75%;
 }
@@ -160,16 +161,19 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width:50%;
+    align-self: center;
+    
     height:90%;
 }
 
 .detailImageWrap#right{
   margin-left:2em;
+  width:50%;
 }
 
 .detailImageWrap#left{
   margin-right:2em;
+  width:50%;
 }
 
 .detailImage{
