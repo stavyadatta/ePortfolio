@@ -356,11 +356,14 @@ const ProjectReflection = (props) => {
 
 const getPostDateString = (postDate) =>{
   if(postDate){
-    let date = new Date(postDate * 1000);
+    let timestamp = new firebase.firestore.Timestamp(postDate.seconds, postDate.nanoseconds);
+    console.log({timestamp})
+    let date =  timestamp.toDate();
+    console.log({date})
     let dateString =
-      date.getDay() +
+      date.getDate() +
       "." +
-      date.getMonth() +
+      (date.getMonth() + 1) +
       "." +
       date.getFullYear();
       return dateString;

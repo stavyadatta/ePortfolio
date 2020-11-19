@@ -1,6 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom"
 import { connect } from "react-redux"
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase"
 import Casual from "./ProjectList_Casual";
 import Professional from "./ProjectList_Professional";
 
@@ -19,10 +21,19 @@ const ProjectList = (props) => {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  let uid = props.match.params.userId;
   return {
-      profile:state.firebase.profile
+    profile: state.firestore.data.users && state.firestore.data.users[uid]
   };
 };
 
-export default connect(mapStateToProps)(ProjectList);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect((props) => {
+      let uid = props.match.params.userId;
+      return [
+          { collection: "users", doc: uid },
+      ];
+  })
+)(ProjectList);
