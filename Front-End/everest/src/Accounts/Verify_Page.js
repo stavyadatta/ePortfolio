@@ -1,7 +1,9 @@
 import React from "react";
 import "./Verify_Page.css"
 import Signout_Btn from "../Icons/signout_btn.svg";
+import SmallBtn from "../Generic_Components/Small_Btn"
 import firebase from "../Firebase"
+import { emphasize } from "@material-ui/core";
 
 
 function verifyPage(props){
@@ -17,6 +19,7 @@ function verifyPage(props){
               <div className="verifyPageTextBody">
                 An email has been sent to your account for verification, please follow the attached link to verify your account.
               </div>
+              <button onClick={()=>{firebase.auth().currentUser.sendEmailVerification();window.alert("Email Sent")}}>Resend Email</button>
             </div>
           </div>
           <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
