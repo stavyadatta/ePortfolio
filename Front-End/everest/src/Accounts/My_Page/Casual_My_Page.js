@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 
@@ -14,16 +15,37 @@ import ConfirmDialog from "../../Generic_Components/Dialog_Confirmation_Box";
 
 
 
+
 function CasualMyPage(props) {
 
     const [editable, setEditable] = useState(false);
     const [bio, setBio] = useState("");
     const userInfo = props.userInfo;
     let [confirmation, setConfirmation] = useState(false);
+    let userUID = props.uid;
 
+    const userHeading = () => {
+
+    }
 
     if(!userInfo){
-      return (<div>Loading...</div>);
+        return (<div>Loading...</div>);
+    }
+    
+    const UserHeading = (props) => {
+        let auth = useSelector(state=>state.firebase.auth);
+        if (userUID  === auth.uid) {
+            return (
+                <div>
+                    <h1 id = "casual_my_page_header">My Page</h1>
+                </div>
+            )
+        } else {
+            return ( 
+                <div>
+                    <h1 id = "casual_my_page_header">{userInfo.firstName} {userInfo.lastName}'s Bio</h1>
+                </div>)
+        }
     }
     
     const handleLogout = function(){ 
@@ -73,12 +95,14 @@ function CasualMyPage(props) {
             <div className = "partition_my_page">
                 <img src = {Casual_My_Page_Image} id = "casual_my_page_image" alt = "" />
                 <div className = "my_page_info_partition">
-                    <h1 id = "casual_my_page_header">My Page</h1>
+                    {/* <h1 id = "casual_my_page_header">My Page</h1> */}
+                    
+                    <UserHeading/>
                     <textarea id = {editable ? "casual_active_user_bio_entry" : "casual_user_bio_entry"} 
                     placeholder = {userInfo.bio === "" ? "Write your personal bio here!" : userInfo.bio} 
                     defaultValue = {userInfo.bio === "" ? "" : userInfo.bio} readOnly = {true} onChange = {e => updateFields(e)}/>
-                     {!props.auth.isEmpty && props.auth.uid === props.match.params.userId?<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>:<div/>}
-                     <BackBtn />
+                    {!props.auth.isEmpty && props.auth.uid === props.match.params.userId?<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>:<div/>}
+                    <BackBtn />
                 </div>
                 
             </div>
@@ -114,9 +138,27 @@ const mapStateToProps = (state, props) => {
   let uid = props.match.params.userId;
   return {
     auth: state.firebase.auth,
-    userInfo: state.firestore.data.users && state.firestore.data.users[uid]
+    userInfo: state.firestore.data.users && state.firestore.data.users[uid],
+    uid: uid
   };
 };
+
+const UserHeading = (props) => {
+    let userProfile = useSelector(state=>state.firebase.profile);
+    console.log(userProfile)
+    if (userProfile === props.auth.uid) {
+        return (
+            <div>
+                <h1 id = "casual_my_page_header">My Page</h1>
+            </div>
+        )
+    } else {
+        return ( 
+            <div>
+                <h1 id = "casual_my_page_header">{userProfile.firstName} {userProfile.lastName}</h1>
+            </div>)
+    }
+}
 
 export default compose(
   connect(mapStateToProps),
