@@ -3,7 +3,7 @@ import { MenuItem, Select } from "@material-ui/core";
 import firebase from "../Firebase";
 import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons";
 import { ImageUploadDisplay } from "./Image_Upload_Display";
-import defaultProjectImage from "../Images/project_image.jpg";
+import defaultProjectImage from "../Images/mountain_filler.svg";
 import { firebaseUrl } from "../storageFirebaseUpload";
 import defaultFileImage from "../Icons/templates_provided.png";
 
@@ -161,6 +161,9 @@ const ProjectDetailEdit = (props) => {
     case "file-upload":
       contentLayout = UploadProjectDetailEdit(detailProps);
       break;
+    case "image":
+      contentLayout = ImgProjectDetailEdit(detailProps);
+      break;
     default:
       contentLayout = DefaultDetailEdit(detailProps);
   }
@@ -172,7 +175,7 @@ const ProjectDetailEdit = (props) => {
           <input
             type="text"
             id="detailTitleEntry"
-            defaultValue={detailTitle}
+            value={detailTitle}
             onChange={updateField}
           />
         </div>
@@ -281,6 +284,14 @@ const UploadProjectDetailEdit = (props) => {
   )
 }
 
+const ImgProjectDetailEdit = (props) => (
+  <div className="detailContent">
+    <div className="detailImageWrap">
+      <ImageUploadDisplay detailId={props.detail.id} imageUrl={props.imgUrl} handleChange={props.onChange}/>
+    </div>
+  </div>
+);
+
 const DefaultDetailEdit = (props) => {
   let updateField = props.onChange;
   return (
@@ -303,6 +314,7 @@ const SelectDetailType = (props) => {
       value={props.type}
     >
     <MenuItem value="default">Text Only</MenuItem>
+    <MenuItem value="image">Image Only</MenuItem>
     <MenuItem value="right-image">Right Image</MenuItem>
     <MenuItem value="left-image">Left Image</MenuItem>
     <MenuItem value="file-upload">Upload File</MenuItem>

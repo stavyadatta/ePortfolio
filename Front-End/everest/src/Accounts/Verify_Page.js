@@ -17,6 +17,7 @@ function verifyPage(props){
               <div className="verifyPageTextBody">
                 An email has been sent to your account for verification, please follow the attached link to verify your account.
               </div>
+              <button onClick={()=>{firebase.auth().currentUser.sendEmailVerification();window.alert("Email Sent")}}>Resend Email</button>
             </div>
           </div>
           <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={handleLogout}/>
