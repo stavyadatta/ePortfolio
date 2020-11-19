@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import {firebaseUpload}from "../storageFirebaseUpload";
 import { useHistory } from "react-router-dom";
 import NavbarPad from "../Navbar/NavbarPad";
+import firebase from "../Firebase"
 
 
 // import { Link } from "react-router-dom";
@@ -76,12 +77,24 @@ function FormPage(props) {
       projectName: pName,
       projectDesc: pDesc,
       projectTags: pTags.split(","),
-      projectBody: pBody
+      nDetails: 1,
     };
 
-    await firebaseUpload(imageAsFile, "project-add", projectObject);
+    let res = await firebaseUpload(imageAsFile, "project-add", projectObject);
+    console.log(res);
+    firebase.firestore().collection('projectDetails').add({
+      text: pBody?pBody:"",
+      type: "default",
+      title: "Body",
+      position: 0,
+      projectId: res.data.projectId
+    })
     alert("Project has been submitted");
+
+
     setLoading("submitted");
+
+
   }
 
   return (

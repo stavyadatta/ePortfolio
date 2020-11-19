@@ -13,8 +13,7 @@ async function firebaseUpload(imageAsFile, firebaseFunction, uploadObj) {
     var storage = firebase.storage();
     
     if(imageAsFile === '' ) {
-        await projectObjectDetails(undefined, firebaseFunction, uploadObj);
-        return;
+      return await projectObjectDetails(undefined, firebaseFunction, uploadObj);
     }
     await storage.ref(`/pictures/${imageAsFile.name}`).put(imageAsFile).catch(err => {
         throw err;
@@ -25,7 +24,7 @@ async function firebaseUpload(imageAsFile, firebaseFunction, uploadObj) {
         .catch(err => {
             throw err;
     });
-    await projectObjectDetails(firebaseUrl, firebaseFunction, uploadObj)
+    return await projectObjectDetails(firebaseUrl, firebaseFunction, uploadObj)
         .catch(err => {
             throw err;
         });
@@ -34,7 +33,7 @@ async function firebaseUpload(imageAsFile, firebaseFunction, uploadObj) {
 async function projectObjectDetails(firebaseURL,firebaseFunction, uploadObj) { 
     uploadObj.imgURL = firebaseURL; 
     const editCreateFunction = firebase.functions().httpsCallable(firebaseFunction);
-    await editCreateFunction(uploadObj);
+    return await editCreateFunction(uploadObj);
 }
 
 /* 
