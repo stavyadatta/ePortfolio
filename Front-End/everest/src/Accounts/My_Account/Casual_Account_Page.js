@@ -8,6 +8,7 @@ import BackBtn from "../../Generic_Components/Back_Icon";
 import animateComponents from "../../Generic_Components/Page_Animations";
 import HeaderEntry from "../../Generic_Components/Entry_With_Header";
 import SignOut from "../../Icons/signout_btn.svg";
+import ConfirmDialog from "../../Generic_Components/Dialog_Confirmation_Box";
 
 function CasualAccountPage() {
 
@@ -15,7 +16,9 @@ function CasualAccountPage() {
 	const [fname, setFName] = useState("");
 	const [lname, setLName] = useState("");
 	const [template, setTemplate] = useState("");
-    const [email, setEmail] = useState("");
+	const [email, setEmail] = useState("");
+	let [confirmation, setConfirmation] = useState(false);
+
 
     let userProfile = useSelector(state=>(state.firebase.profile));
 	let userAuth = useSelector(state=>(state.firebase.auth));
@@ -104,7 +107,14 @@ function CasualAccountPage() {
             </div>
             
             <Navbar />
-            <img src = {SignOut} id = "casual_account_signout" alt = "" onClick = {handleLogout}/>
+            <img src = {SignOut} id = "casual_account_signout" alt = "" onClick = {() => {setConfirmation(true)}}/>
+			<ConfirmDialog
+                title="Log Out"
+                open={confirmation}
+                setOpen={setConfirmation}
+                onConfirm={handleLogout}>
+                    Are you sure you want to Log Out?
+            </ConfirmDialog>
         </div>
     );
 }

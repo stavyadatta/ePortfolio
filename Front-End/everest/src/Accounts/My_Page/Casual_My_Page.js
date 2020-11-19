@@ -10,6 +10,8 @@ import firebase from "../../Firebase";
 import Casual_My_Page_Image from "../../Images/casual_account_bg.png";
 import BackBtn from "../../Generic_Components/Back_Icon";
 import animateComponents from "../../Generic_Components/Page_Animations";
+import ConfirmDialog from "../../Generic_Components/Dialog_Confirmation_Box";
+
 
 
 function CasualMyPage(props) {
@@ -17,6 +19,8 @@ function CasualMyPage(props) {
     const [editable, setEditable] = useState(false);
     const [bio, setBio] = useState("");
     const userInfo = props.userInfo;
+    let [confirmation, setConfirmation] = useState(false);
+
 
     if(!userInfo){
       return (<div>Loading...</div>);
@@ -80,7 +84,14 @@ function CasualMyPage(props) {
             </div>
             <Navbar />
             
-            <img src = {SignOut} id = "casual_my_page_signout" alt = "" onClick = {handleLogout}/>
+            <img src = {SignOut} id = "casual_my_page_signout" alt = "" onClick = {() => {setConfirmation(true)}}/>
+            <ConfirmDialog
+                title="Log Out"
+                open={confirmation}
+                setOpen={setConfirmation}
+                onConfirm={handleLogout}>
+                    Are you sure you want to Log Out?
+            </ConfirmDialog>
         </div>
     );
 }
