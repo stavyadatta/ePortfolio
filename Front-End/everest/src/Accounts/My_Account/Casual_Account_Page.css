@@ -52,19 +52,19 @@
 .casual_user_first_name {
     position: absolute;
     top: 17.5vh;
-    left: 50%;
+    left: 52%;
 }
     
 .casual_user_last_name {
     position: absolute;
     top: 17.5vh;
-    left: 69.8%;
+    left: 71.8%;
 }
     
 .casual_user_id {
     position: absolute;
     top: 29vh;
-    left: 50%;
+    left: 52%;
 }
 
 #casual_entry_header {
@@ -75,24 +75,24 @@
 .casual_chosen_template {
     position: absolute;
     top: 29vh;
-    left: 69.8%;
+    left: 71.8%;
 }
     
 .casual_user_email {
     position: absolute;
     top: 40.5vh;
-    left: 50%; 
+    left: 52%; 
 }
     
 .casual_url_link {
     position: absolute;
     top: 52vh;
-    left: 50%;
+    left: 52%;
 }
 
 #casual_edit_btns {
     position: absolute;
-    left: 50%;
+    left: 52%;
     bottom: 12%;
 }
     
@@ -100,7 +100,7 @@
     color:  #025E6D; 
     font-family: 'Baskervville', serif;
     position: absolute;
-    left: 50%;
+    left: 52%;
     top: 10%;
     font-size: 26px;
 }
@@ -188,14 +188,14 @@
 
 #casual_edit_account_info {
     position: absolute;
-    left: 50%;
+    left: 52%;
     top: 88%;
 }
       
 #casual_save_info {
     position: absolute;
     top: 88%;
-    left: 58.5%;
+    left: 60.5%;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 50px;
@@ -205,7 +205,7 @@
 #casual_discard_changes {
     position: absolute;
     top: 88%;
-    left: 50%;
+    left: 52%;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     border-top-right-radius: 0px;
