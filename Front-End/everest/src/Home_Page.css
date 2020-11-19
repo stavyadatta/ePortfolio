@@ -23,7 +23,6 @@ p {
 
 .homepage_third_segment {
 	position: relative;
-	top: 0vh;
 	height: 100vh;
 	background: #082f4e;
 }
@@ -114,75 +113,68 @@ p {
 	word-spacing: 2px;
 }
 
+
+.port_features {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	row-gap: 13px;
+	position: relative;
+	top: 55px;
+	text-align: center;
+	justify-content: space-evenly;
+}
+
 #features_heading {
 	font-size: 25px;
 	color: #0F446E;
-	position: absolute;
-	top: 9%;
-	left: 42.9%;
 	font-weight: bold;
-
 }
 
 #features_subheading {
-	position: absolute;
-	top: 15.4%;
-	left: 35.3%;
 	color: #5D5757;
 	opacity: 0.5;
 	font-size: 15px;
 	font-family: "Karla";
 }
 
-#card_1 {
-	position: absolute;
-	top: 29%;
-	right: 77.2%;
-}
-
-#card_2 {
-	position: absolute;
-	top: 29%;
-	right: 53.53%;
-}
-
-#card_3 {
-	position: absolute;
-	top: 29%;
-	right: 29.87%;
-}
-
-#card_4 {
-	position: absolute;
-	top: 29%;
-	right: 6%;
-}
 
 #no_coding_req {
-	position: absolute;
-	top: 15%;
-	left: 13%;
+	position: relative;
+	left: 12%;
 }
 
 #secure {
-	position: absolute;
-	top: 15%;
-	left: 12.5%;
+	position: relative;
+	left: 12%;
 }
 
 #template_label {
-	position: absolute;
-	left: 20%;
+	position: relative;
+	left: 18.5%;
 }
 
 #no_coding_label {
-	position: absolute;
-	left: 20.1%;
+	position: relative;
+	left: 18.6%;
 }
 
 #secure_label {
-	position: absolute;
-	left: 41%;
+	position: relative;
+	left: 39%;
+} 
+
+.feature_cards {
+	display: flex;
+	position: relative;
+	max-width: 100vw;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	column-gap: 105px;
+	row-gap: 50px;
+	top: 123px;
 }
 
 #get_started_icon {
@@ -254,10 +246,18 @@ p {
 	outline: none;
 }
 
-#create_your_portfolio {
+.call_to_action {
 	position: absolute;
 	right: 6%;
 	top: 83.8%;
+	width: 200px;
+	height: 70px;
+}
+
+#create_your_portfolio {
+	position: absolute;
+	right: 0%;
+	top: 0%;
 	padding-top: 2.5px;
 	padding-bottom: 2px;
 	padding-left: 36px;
@@ -266,8 +266,8 @@ p {
 
 #explore_existing_portfolios {
 	position: absolute;
-	right: 6%;
-	top: 88%;
+	right: 0%;
+	top: 28px;
 }
 
 .home_search_user_id {

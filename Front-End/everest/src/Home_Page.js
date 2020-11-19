@@ -49,8 +49,10 @@ function FirstSegment() {
 function SecondSegment() {
     return(
         <div className = "homepage_second_segment" id ="showcasing_features">
-            <p id = "features_heading">Portfolio Features</p>
-            <p id="features_subheading">Share your accomplishments and experience personal growth</p>
+            <div className = "port_features">
+                <p id = "features_heading">Portfolio Features</p>
+                <p id="features_subheading">Share your accomplishments and experience personal growth</p>
+            </div>
 
             <FeatureCards />
             <Link to ="/register">
@@ -104,7 +106,9 @@ function FirstSegmentBtns() {
                 offset={0}
                 duration={500}
             >Features</ScrollLink>
-            <button className = "header_btns" id="About">About</button>
+            <Link to = "/about">
+                <button className = "header_btns" id="About">About</button>
+            </Link>
             <ScrollLink
                 activeClass="active"
                 className = "header_btns"
@@ -119,6 +123,8 @@ function FirstSegmentBtns() {
             <Link to = "/login">
                 <button className = "header_btns" id="Login">Login</button>
             </Link>
+
+            <div className = "call_to_action">
             <Link to = "/register">
                 <button className="bottom_btns" id="create_your_portfolio">Create Your Portfolio</button>
             </Link>
@@ -132,6 +138,7 @@ function FirstSegmentBtns() {
                 offset={0}
                 duration={1000}
             >Explore Existing Portfolios</ScrollLink>
+            </div>
         </div>
     );
 }

@@ -18,7 +18,9 @@ function NavIcons() {
             <Link to="/profile">
                 <img src = {Home} id = "home_icon" alt = "home"/>
             </Link>
-            <img src = {About} id = "about_icon" alt = "about"/>
+            <Link to = "/about">
+                <img src = {About} id = "about_icon" alt = "about"/>
+            </Link>
             <img src = {Signout} id = "signout_icon" alt = "signout" onClick={() => setConfirmation(true)}/>
             <ConfirmDialog
                 title="Log Out"

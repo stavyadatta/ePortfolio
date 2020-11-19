@@ -20,6 +20,7 @@ import MyAccountPage from "./Accounts/My_Account/index";
 import HomePage from "./Home_Page";
 import MyPage from "./Accounts/My_Page/index";
 import { useSelector } from "react-redux";
+import AboutPage from "./About_Page";
 
 function App() {
   //true if auth is loaded and not empty
@@ -76,6 +77,7 @@ function AuthRoutes() {
       <Route path="/" exact component={HomePage} />
       <Route path="/profile" component={OverviewPage} />
       <Route path="/myaccount" component={MyAccountPage} />
+      <Route path = "/about" component = {AboutPage} />
       <Route path="/mypage/:userId" component={MyPage}/>
       <NavbarRoutes />
       <Redirect to="/profile"/>
@@ -113,6 +115,7 @@ function UnAuthRoutes() {
       <Route path="/" exact component={HomePage} />
       <Route path="/login" component = {LoginPage} />
       <Route path="/register" component = {CreatePortfolio} />
+      <Route path = "/about" component = {AboutPage} />
       <Route path="/mypage/:userId" component={MyPage}/>
       <div>
         <Navbar/>

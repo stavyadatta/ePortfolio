@@ -44,7 +44,9 @@ function OverviewPage() {
         <Link to = "/" >
         <img src={Home_Btn} id = "home_btn" alt="home"/>
         </Link>
-        <img src={About_Btn} id = "about_btn" alt="about"/>     
+        <Link to ="/about">
+          <img src={About_Btn} id = "about_btn" alt="about"/>   
+        </Link>  
         <img src={Signout_Btn} id = "signout_btn" alt="signout" onClick={() => {setConfirmation(true)}}/>
         <ConfirmDialog
           title="Log Out"
