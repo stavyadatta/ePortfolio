@@ -3,7 +3,7 @@ import { MenuItem, Select } from "@material-ui/core";
 import firebase from "../Firebase";
 import { CancelButton, DeleteButton, SubmitButton } from "./Project_Edit_Buttons";
 import { ImageUploadDisplay } from "./Image_Upload_Display";
-import defaultProjectImage from "../Images/project_image.jpg";
+import defaultProjectImage from "../Images/mountain_filler.svg";
 import { firebaseUrl } from "../storageFirebaseUpload";
 import defaultFileImage from "../Icons/templates_provided.png";
 

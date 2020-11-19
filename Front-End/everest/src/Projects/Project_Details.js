@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./Project_Details_Page.css";
-import defaultProjectImage from "../Images/project_image.jpg";
+import defaultProjectImage from "../Images/mountain_filler.svg";
 import defaultFileImage from "../Icons/templates_provided.png";
 
 export const ProjectDetailList = (props) => {

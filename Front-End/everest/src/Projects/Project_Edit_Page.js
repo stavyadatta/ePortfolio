@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { firebaseUrl } from "../storageFirebaseUpload"
 
 import "./Project_Details_Page.css";
-import defaultProjectImage from "../Images/project_image.jpg";
+import defaultProjectImage from "../Images/mountain_filler.svg";
 import approve from "../Icons/check-mark-circle-line.svg"
 import { ProjectDetailList } from "./Project_Edit_Details";
 import { SubmitButton, CancelButton, AddDetailButton} from "./Project_Edit_Buttons";

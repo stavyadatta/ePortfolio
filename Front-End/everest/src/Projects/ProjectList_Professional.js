@@ -6,6 +6,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import NavbarPad from "../Navbar/NavbarPad"
+import defaultProjectImage from "../Images/mountain_filler.svg";
 
 function ProjectList_Professional(props) {
   const projects = props.projects;
@@ -39,17 +40,15 @@ function ProjectList_Professional(props) {
   }
 
   function createProject(project) {
-    if (!project.imgURL) {
-      project.imgURL =
-        "https://www.virvelle.com/wp-content/uploads/2018/12/project-management.jpg";
-    }
+    let imageUrl = project.imgURL ? project.imgURL : defaultProjectImage;
+
     return (
       <Project
         key={project.id}
         id={project.id}
         name={project.projectName}
         description={project.projectDesc}
-        image={project.imgURL}
+        image={imageUrl}
         style={{ border: `1px solid ${color}` }}
       />
     );
