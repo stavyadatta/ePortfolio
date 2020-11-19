@@ -64,7 +64,7 @@ An **architecture diagram** can be found [here](Documentation/EverestArchitectur
 
 **Data model** documentation used in the in app can be found [here](Documentation/DataModel.pdf)
 
-A **deployment architecture** diagram can be found [here](Documentation/DeploymentArchitecture.png)
+A **deployment architecture** diagram can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/Deployment-Architecture)
 
 A **style guide** for the current templates can be found [here](Documentation/StyleGuide.pdf)
 
