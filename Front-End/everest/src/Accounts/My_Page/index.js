@@ -1,6 +1,8 @@
 import React from "react";
-import { Route } from "react-router-dom"
-import { connect } from "react-redux"
+import { Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 import Casual from "./Casual_My_Page";
 import Professional from "./Professional_My_Page";
 
@@ -11,18 +13,27 @@ const MyPage = (props) => {
 
   switch(props.profile.template){
     case "Casual":
-      return <Route path="/mypage"  component={Casual} />;
+      return <Route path="/mypage/:userId"  component={Casual} />;
     case "Professional":
-      return <Route path="/mypage" component={Professional} />;
+      return <Route path="/mypage/:userId" component={Professional} />;
     default:
-      return <Route path="/mypage" component={Professional} />;
+      return <Route path="/mypage/:userId" component={Professional} />;
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  let uid = props.match.params.userId;
   return {
-      profile:state.firebase.profile
+      profile: state.firestore.data.users && state.firestore.data.users[uid]
   };
 };
 
-export default connect(mapStateToProps)(MyPage);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect((props) => {
+      let uid = props.match.params.userId;
+      return [
+          { collection: "users", doc: uid },
+      ];
+  })
+)(MyPage);

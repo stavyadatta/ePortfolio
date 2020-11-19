@@ -8,16 +8,22 @@ import EnableEditBtns from "../../Generic_Components/Edit_Btns";
 import animateComponents from "../../Generic_Components/Page_Animations";
 import "./Professional_My_Page.css";
 import firebase from "../../Firebase";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 // import Profile_Pic from "../Images/Square_Default_Profile_Pic.svg";
 // import SmallBtn from "../Generic_Components/Small_Btn";
 // import MyPageFiller from "../Images/My_Page_Filler.png";
 
-function MyPage() {
+function MyPage(props) {
 
     const [editable, setEditable] = useState(false);
     const [bio, setBio] = useState("");
-	let userInfo = useSelector(state=>(state.firebase.profile));
+    const userInfo = props.userInfo;
+
+    if(!userInfo){
+      return (<div>Loading...</div>);
+    }
     
     const enableEdits = e => {
 		document.getElementById("user_bio_entry").readOnly = false;
@@ -62,7 +68,7 @@ function MyPage() {
 			<h1 id = "my_page_header">My Page</h1>
             <MyPageBackground />
 			<NavIcons />
-			<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>
+			{!props.auth.isEmpty && props.auth.uid === props.match.params.userId?<EnableEditBtns EnableEdits = {enableEdits} DisableEdits = {disableEdits} SaveEdits = {saveEdits}/>:<div/>}
             
             <textarea id = {editable ? "active_user_bio_entry" : "user_bio_entry"} 
             placeholder = {userInfo.bio === "" ? "Write your personal bio here!" : userInfo.bio} 
@@ -93,4 +99,20 @@ function MyPageBackground() {
     );
 }
 
-export default MyPage;
+const mapStateToProps = (state, props) => {
+  let uid = props.match.params.userId;
+  return {
+    auth: state.firebase.auth,
+    userInfo: state.firestore.data.users && state.firestore.data.users[uid]
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect((props) => {
+      let uid = props.match.params.userId;
+      return [
+          { collection: "users", doc: uid },
+      ];
+  })
+)(MyPage);
