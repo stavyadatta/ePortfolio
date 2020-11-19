@@ -175,7 +175,7 @@ const ProjectDetailEdit = (props) => {
           <input
             type="text"
             id="detailTitleEntry"
-            defaultValue={detailTitle}
+            value={detailTitle}
             onChange={updateField}
           />
         </div>
