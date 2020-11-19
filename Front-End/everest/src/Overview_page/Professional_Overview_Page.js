@@ -13,6 +13,7 @@ import firebase from "../Firebase";
 import EntryBox from "../Generic_Components/Entry_Box";
 import animateComponents from "../Generic_Components/Page_Animations";
 import ConfirmDialog from "../Generic_Components/Dialog_Confirmation_Box";
+import Cross from "../Icons/Cross.png";
 
 function OverviewPage() {
   let userProfile = useSelector(state=>state.firebase.profile);
@@ -74,6 +75,8 @@ function OverviewPage() {
 function Search() {
   return(
     <div className = "overview_search_fields">
+        <img src = {Cross} alt = "" id = "cancel_search" onClick = {(e) => animateComponents(e, "overview_search_fields", 
+						"box_filler", 0.55, 0.18)}/>
         <SearchUsers />
         <SearchProjects />
     </div>

@@ -153,7 +153,7 @@
 .overview_search_fields {
 	position: absolute;
 	left: 147%;
-	top: -308%;
+	top: -290%;
 	display: none;
 	opacity: 0;
 }
@@ -165,5 +165,17 @@
 	top: 0%;
 	right: 0%;
 	display: block;
+	opacity: 1;
+}
+
+#cancel_search {
+	width: 8px;
+	position: absolute;
+	left: -20px;
+	top: -8px;
+	opacity: 0.5;
+}
+
+#cancel_search:hover {
 	opacity: 1;
 }
