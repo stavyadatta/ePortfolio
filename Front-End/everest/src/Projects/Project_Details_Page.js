@@ -60,9 +60,8 @@ function ProjectDetailsPage(props) {
         const deleteProject = firebase.functions().httpsCallable('project-delete')
         await deleteProject({projectId: projectId});
         alert("Project is deleted");
-        history.push('/projects/' + project.userId); 
         setLoading(false);
-
+        window.location.href = '/projects/' + auth.uid;
     };
 
     const MaybeDeleteButton = () => {
