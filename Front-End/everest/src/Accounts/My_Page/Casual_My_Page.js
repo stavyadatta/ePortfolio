@@ -23,18 +23,15 @@ function CasualMyPage(props) {
     const userInfo = props.userInfo;
     let [confirmation, setConfirmation] = useState(false);
     let userUID = props.uid;
-
-    const userHeading = () => {
-
-    }
+    let auth = useSelector(state=>state.firebase.auth);
+        auth = props.auth.uid;
 
     if(!userInfo){
         return (<div>Loading...</div>);
     }
     
     const UserHeading = (props) => {
-        let auth = useSelector(state=>state.firebase.auth);
-        if (userUID  === auth.uid) {
+        if (userUID  === auth) {
             return (
                 <div>
                     <h1 id = "casual_my_page_header">My Page</h1>
@@ -134,6 +131,8 @@ function EnableEditBtns(props) {
 	);
 }
 
+
+
 const mapStateToProps = (state, props) => {
   let uid = props.match.params.userId;
   return {
@@ -143,22 +142,7 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const UserHeading = (props) => {
-    let userProfile = useSelector(state=>state.firebase.profile);
-    console.log(userProfile)
-    if (userProfile === props.auth.uid) {
-        return (
-            <div>
-                <h1 id = "casual_my_page_header">My Page</h1>
-            </div>
-        )
-    } else {
-        return ( 
-            <div>
-                <h1 id = "casual_my_page_header">{userProfile.firstName} {userProfile.lastName}</h1>
-            </div>)
-    }
-}
+
 
 export default compose(
   connect(mapStateToProps),
