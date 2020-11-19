@@ -4,7 +4,6 @@ import { firestoreConnect, populate } from "react-redux-firebase";
 import { compose } from "redux";
 import { connect, useSelector } from "react-redux";
 import firebase from '../Firebase';
-import { useHistory } from "react-router-dom";
 import ConfirmDialog from '../Generic_Components/Dialog_Confirmation_Box.js';
 
 
@@ -24,7 +23,6 @@ function ProjectDetailsPage(props) {
     let [isLoading, setLoading] = useState('');
     let [confirmOpen, setConfirmOpen] = useState('')
     
-    let history = useHistory();
     //check if data is loaded
     if (!project || !details) {
         return <div>Loading...</div>;
