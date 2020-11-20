@@ -49,6 +49,19 @@ function CreatePortfolioPage() {
       return;
     }
 
+    if (document.getElementById("create_first_name").value.length > 80) {
+			alert("First name field must not be longer than 80 characters");
+			return;
+		}
+		if (document.getElementById("create_last_name").value.length > 80) {
+			alert("Last name field must not be longer than 80 characters");
+			return;
+		}
+		if (document.getElementById("create_reg_email_entry").value.length > 320) {
+			alert("Email field must not be longer than 320 characters");
+			return;
+		}
+
     //create user auth and sign user in
     auth
       .createUserWithEmailAndPassword(email, pwd)

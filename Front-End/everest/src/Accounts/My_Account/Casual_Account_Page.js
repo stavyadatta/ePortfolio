@@ -39,18 +39,20 @@ function CasualAccountPage() {
     }
 	
     const saveEdits = e => {
-		setPlaceholder("casual_fname_active", fname);
-		setPlaceholder("casual_lname_active", lname);
-		setPlaceholder("casual_email_input_active", email);
-		if (template === "") { document.getElementById("casual_template_active").value = userProfile.template; }
-		else { document.getElementById("casual_template_active").value = template; }
-		updateDatabase();
-		resetFields();
-        resetSetters();
-        changeReadOnly(true, "_active");
-		setEditable(false);
-		animateComponents(e, "casual_editing_btns", "casual_enable_edit", 0.5, 0.3);
-		alert("Confirmation: Your Changes have been Saved");
+		if (submitChecker()) {
+			setPlaceholder("casual_fname_active", fname);
+			setPlaceholder("casual_lname_active", lname);
+			setPlaceholder("casual_email_input_active", email);
+			if (template === "") { document.getElementById("casual_template_active").value = userProfile.template; }
+			else { document.getElementById("casual_template_active").value = template; }
+			updateDatabase();
+			resetFields();
+			resetSetters();
+			changeReadOnly(true, "_active");
+			setEditable(false);
+			animateComponents(e, "casual_editing_btns", "casual_enable_edit", 0.5, 0.3);
+			alert("Confirmation: Your Changes have been Saved");
+		}
     }
 
     const resetSetters = () => {
@@ -66,6 +68,22 @@ function CasualAccountPage() {
 		else if (e.target.id === "casual_lname_active") { setLName(fieldValue); }
 		else if (e.target.id === "casual_email_input_active") { setEmail(fieldValue); }
     	else { setTemplate(fieldValue); }
+	}
+
+	const submitChecker = () => {
+		if (document.getElementById("casual_fname_active").value.length > 80) {
+			alert("First name field must not be longer than 80 characters");
+			return false;
+		}
+		if (document.getElementById("casual_lname_active").value.length > 80) {
+			alert("Last name field must not be longer than 80 characters");
+			return false;
+		}
+		if (document.getElementById("casual_email_input_active").value.length > 320) {
+			alert("Email field must not be longer than 320 characters");
+			return false;
+		}
+		return true;
 	}
 
 	const updateDatabase = () => {

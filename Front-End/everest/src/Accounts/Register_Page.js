@@ -48,6 +48,19 @@ function RegisterPage() {
       return;
     }
 
+    if (document.getElementById("first_name").value.length > 80) {
+			alert("First name field must not be longer than 80 characters");
+			return;
+		}
+		if (document.getElementById("last_name").value.length > 80) {
+			alert("Last name field must not be longer than 80 characters");
+			return;
+		}
+		if (document.getElementById("reg_email_entry").value.length > 320) {
+			alert("Email field must not be longer than 320 characters");
+			return;
+		}
+
     //create user auth and sign user in
     auth
       .createUserWithEmailAndPassword(email, pwd)
