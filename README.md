@@ -14,7 +14,9 @@ Please take a look at the [wiki](https://github.com/stavyadatta/ePortfolio/wiki)
 * [Changelog](*Changelog)
 
 # Demo
-Link to the deployed product can be found [here](https://impressive-hall-288310.web.app/)
+Link to the deployed product can be found [here](https://impressive-hall-288310.web.app/).
+
+Link to an example project created using Everest can be found [here](https://impressive-hall-288310.web.app/project/u8hRP9wxIWDAudXmAYXe).
 
 # Documentation
 An **architecture diagram** can be found [here](Documentation/EverestArchitecture.png)
