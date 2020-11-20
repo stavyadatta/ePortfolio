@@ -56,7 +56,7 @@ Running ``` npm install``` in the root directory will install all dependancies f
 
 Running ``` npm start``` in the root directory will install all dependancies and start a local emulator for testing purposes.
 
-Running ``` cd functions&&firebase emulators:exec --project <PROJECT_NAME_HERE> --only firestore,functions 'npm test' ``` will run a suite of tests on the back-end firestore functions.
+Running ``` npm test``` will run a suite of tests on the back-end firestore functions using firebase emulators, a valid google cloud (Firebase) service account key will need to be present in the ```/functions``` directory under the title ``` serviceAccountKey.json``` for the tests to run successfully.
 
 # Further Project Details
 Please take a look at the [wiki](https://github.com/stavyadatta/ePortfolio/wiki) for more details about architecture, deployment, features and requirements.
