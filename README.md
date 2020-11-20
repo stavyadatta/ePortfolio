@@ -19,7 +19,7 @@ Link to an example project created using Everest can be found [here](https://imp
 # Documentation
 An **architecture diagram** can be found [here](Documentation/EverestArchitecture.png)
 
-**Back-end functions** documentation can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/FunctionsDocumentation.pdf)
+**Back-end functions** documentation can be found [here](Documentation/FunctionsDocumentation.pdf)
 
 **Data model** documentation used in the in app can be found [here](Documentation/DataModels.pdf)
 
