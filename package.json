@@ -1,5 +1,7 @@
 {
-    "scripts":{
-        "start":"(cd Front-End/everest;npm run build) && firebase emulators:start"
-    }
+  "scripts":{
+      "install":"(cd Front-End/everest;npm install) && (cd functions;npm install)",
+      "start":"(cd Front-End/everest;npm run build) && firebase emulators:start",
+      "test":"(cd functions&&firebase emulators:exec --only firestore,functions 'npm test')"
+  }
 }
