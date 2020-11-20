@@ -7,7 +7,6 @@ Please take a look at the [wiki](https://github.com/stavyadatta/ePortfolio/wiki)
 ## Table of contents
 * [Project Overview](#project-overview)
 * [Demo](#demo)
-* [Features](#features)
 * [Documentation](#documentation) 
 * [System Requirements](#system-requirements)
 * [Installation Guide](#installation-guide)
