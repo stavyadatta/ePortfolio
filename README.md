@@ -8,7 +8,6 @@ It's an app built using React, Redux and Firebase that supports user sign-in, fi
 * [Documentation](#documentation) 
 * [System Requirements](#system-requirements)
 * [Installation Guide](#installation-guide)
-* [Changelog](*Changelog)
 * [Further Project Details](#further-project-details)
 
 # Demo
@@ -23,7 +22,7 @@ An **architecture diagram** can be found [here](Documentation/EverestArchitectur
 
 **Data model** documentation used in the in app can be found [here](Documentation/DataModels.pdf)
 
-A **deployment architecture** diagram can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/DeploymentArchitecture.png)
+A **deployment architecture** diagram can be found [here](Documentation/DeploymentArchitecture.png)
 
 A **style guide** for the current templates can be found [here](Documentation/StyleGuide.pdf)
 
@@ -34,7 +33,7 @@ The app uses Node 10+, Firebase, React and Redux as it's main dependancies, thes
 
 # Installation Guide
 ## Deployment
-As indicated in the [deployment architecture diagram](Documentation/DeploymentArchitecture.png) the application is authomatically deployed through Travis CI to a firebase project used for the development of the [demo](#demo).
+As indicated in the [deployment architecture diagram](Documentation/DeploymentArchitecture.png) the application is automatically deployed through Travis CI to a firebase project used for the development of the [demo](#demo).
 
 In order to deploy the project to a custom firebase project, a new firebase project must be set up with the app added in the firebase console. 
 
