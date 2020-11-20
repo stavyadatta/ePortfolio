@@ -38,18 +38,36 @@ function MyAccountPage() {
     }
 	
     const saveEdits = e => {
-		setPlaceholder("fname_active", fname);
-		setPlaceholder("lname_active", lname);
-		setPlaceholder("email_input_active", email);
-		if (template === "") { document.getElementById("template_active").value = userProfile.template; }
-		else { document.getElementById("template_active").value = template; }
-		updateDatabase();
-		resetFields();
-        resetSetters();
-        changeReadOnly(true, "_active");
-		setEditable(false);
-		animateComponents(e, "editing_btns", "enable_edit", 0.5, 0.3);
-		alert("Confirmation: Your Changes have been Saved");
+		if (submitChecker()) {
+			setPlaceholder("fname_active", fname);
+			setPlaceholder("lname_active", lname);
+			setPlaceholder("email_input_active", email);
+			if (template === "") { document.getElementById("template_active").value = userProfile.template; }
+			else { document.getElementById("template_active").value = template; }
+			updateDatabase();
+			resetFields();
+			resetSetters();
+			changeReadOnly(true, "_active");
+			setEditable(false);
+			animateComponents(e, "editing_btns", "enable_edit", 0.5, 0.3);
+			alert("Confirmation: Your Changes have been Saved");
+		}
+	}
+
+	const submitChecker = () => {
+		if (document.getElementById("fname_active").value.length > 80) {
+			alert("First name field must not be longer than 80 characters");
+			return false;
+		}
+		if (document.getElementById("lname_active").value.length > 80) {
+			alert("Last name field must not be longer than 80 characters");
+			return false;
+		}
+		if (document.getElementById("email_input_active").value.length > 320) {
+			alert("Email field must not be longer than 320 characters");
+			return false;
+		}
+		return true;
 	}
 	
 	const resetSetters = () => {
