@@ -302,12 +302,12 @@ p {
 	top: 0%;
 	color: #082f4e;
 	background-color: white;
+	height: 37px;
 }
-
-#user_search_submit { height: 37px; }
 
 #project_search_submit:hover, #user_search_submit:hover {
 	box-shadow: 0px 0px 10px white;
+	height: 37px;
 }
 
 #copyright_statement {
@@ -323,4 +323,5 @@ p {
 
 #home_user_id, #home_search_project_id {
 	width: 400px;
+	height: 37px;
 }
