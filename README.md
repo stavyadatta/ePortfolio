@@ -2,7 +2,7 @@
 Everest is an ePortfolio system aimed at students and professionals looking for a platform to show off and reflect on their achievements.
 It's an app built using React, Redux and Firebase that supports user sign-in, file upload, template switching and profile sharing. 
 
-Please take a look at the [wiki](https://github.com/stavyadatta/ePortfolio/wiki) for more details about architecture, deployment, features and requirements. 
+**Please take a look at the** [wiki](https://github.com/stavyadatta/ePortfolio/wiki) **for more details about architecture, deployment, features and requirements. **
 
 ## Table of contents
 * [Project Overview](#project-overview)
@@ -20,11 +20,11 @@ Link to an example project created using Everest can be found [here](https://imp
 # Documentation
 An **architecture diagram** can be found [here](Documentation/EverestArchitecture.png)
 
-**Back-end functions** documentation can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/Deployment-Architecturef)
+**Back-end functions** documentation can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/FunctionsDocumentation.pdf)
 
-**Data model** documentation used in the in app can be found [here](Documentation/DataModel.pdf)
+**Data model** documentation used in the in app can be found [here](Documentation/DataModels.pdf)
 
-A **deployment architecture** diagram can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/Deployment-Architecture)
+A **deployment architecture** diagram can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/DeploymentArchitecture.png)
 
 A **style guide** for the current templates can be found [here](Documentation/StyleGuide.pdf)
 
