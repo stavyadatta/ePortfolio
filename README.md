@@ -1,3 +1,9 @@
+# Project Overview
+Everest is an ePortfolio system aimed at students and professionals looking for a platform to show off and reflect on their achievements.
+It's an app built using React, Redux and Firebase that supports user sign-in, file upload, template switching and profile sharing. 
+
+Please take a look at the [wiki](https://github.com/stavyadatta/ePortfolio/wiki) for more details about architecture, deployment, features and requirements. 
+
 ## Table of contents
 * [Project Overview](#project-overview)
 * [Demo](#demo)
@@ -7,64 +13,19 @@
 * [Installation Guide](#installation-guide)
 * [Changelog](*Changelog)
 
-# Project Overview
-Everest is an ePortfolio system aimed at students and professionals looking for a platform to show off their achievements.
-It's an app built using React, Redux and Firebase that supports user sign-in, file upload, template switching and profile sharing. 
-
 # Demo
-Link to the deployed product can be found [here](https://impressive-hall-288310.web.app/)
+Link to the deployed product can be found [here](https://impressive-hall-288310.web.app/).
 
-# Features
-
-## User Stories
-As a student,
-I want to be able to Create Projects (Name projects, upload documents, add text, images, reflections, and tag project) I have done,
-So I can provide evidence to potential employers.
-
-As a student,
-I want to provide evidence for work (Add Text to Projects) I have done,
-So I can show potential employers.
-
-As a student, 
-I want to provide evidence for work (Add Pictures to Projects) I have done, 
-So I can show potential employers.
-
-As a student, 
-I want to reflect on work I have done,
-So I can improve myself and my work.
-
-As an employer,
-I want to be able to find a potential employee,
-So I can see examples of their work.
-
-As a user with projects,
-I want to be able to find specific projects easily,
-So I can edit them.
-
-As a user,
-I want to structure my projects in an intuitive way,
-So I can organise my portfolio easier.
-
-As a user,
-I want to upload files to a project,
-So I can demonstrate the work I have done.
-
-As a user,
-I want to personalise my profile,
-So I can express my individuality.
-
-As a user,
-I want to create a profile that is secure,
-So I can store my projects.
+Link to an example project created using Everest can be found [here](https://impressive-hall-288310.web.app/project/u8hRP9wxIWDAudXmAYXe).
 
 # Documentation
 An **architecture diagram** can be found [here](Documentation/EverestArchitecture.png)
 
-**Back-end functions** documentation can be found [here](Documentation/FunctionsDocumentation.pdf)
+**Back-end functions** documentation can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/Deployment-Architecturef)
 
 **Data model** documentation used in the in app can be found [here](Documentation/DataModel.pdf)
 
-A **deployment architecture** diagram can be found [here](Documentation/DeploymentArchitecture.png)
+A **deployment architecture** diagram can be found [here](https://github.com/stavyadatta/ePortfolio/wiki/Deployment-Architecture)
 
 A **style guide** for the current templates can be found [here](Documentation/StyleGuide.pdf)
 
@@ -98,8 +59,3 @@ Running ``` npm install``` in the root directory will install all dependancies f
 Running ``` npm start``` in the root directory will install all dependancies and start a local emulator for testing purposes.
 
 Running ``` cd functions&&firebase emulators:exec --project <PROJECT_NAME_HERE> --only firestore,functions 'npm test' ``` will run a suite of tests on the back-end firestore functions.
-
-# Changelog
-## Sprint 1
-## Sprint 2
-## Sprint 3
