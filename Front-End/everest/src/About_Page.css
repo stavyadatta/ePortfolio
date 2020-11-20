@@ -1,0 +1,147 @@
+.about_header_text {
+    color: white;
+	font-size: 3em;
+	font-family: 'Roboto', sans-serif;
+}
+
+.about_page {
+    max-width: 100vw;
+    height: 100vh;
+    background: #082f4e;
+}
+
+.about_cover_up {
+    width: 20px;
+    height: 100vh;
+    background: #082f4e;
+    border: none;
+    position: absolute;
+    top: 0%;
+    left: 23%;
+}
+
+#about_bg_image {
+    width: 80%;
+    position: absolute;
+    top: 0%;
+    left: -16%;
+}
+
+#meet_heading {
+    position: absolute;
+    bottom: 197px;
+    left: 140px;
+    font-weight: lighter;
+    font-size: 30px;
+}
+
+#about_heading {
+    font-weight: lighter;
+    position: absolute;
+    font-size: 30px;
+    left: 28%;
+    top: 14%;
+}
+
+#about_intro {
+    position: absolute;
+    left: 28%;
+    top: 23%;
+    width: 470px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.about_text {
+    color: white;
+    font-family: "Karla";
+    font-size: 12px;
+}
+
+#about_the_app {
+    position: absolute;
+    left: 28%;
+    top: 33%;
+    width: 470px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#about_logo {
+    width: 5%;
+    position: absolute;
+    top: 3%;
+    right: 2%;
+}
+
+#niphan_pic, #joshua_pic, #ujjwal_pic {
+    width: 12%;
+}
+
+#farhan_pic {width: 18%;}
+#stavya_pic {width: 41.2%;}
+#ujjwal_pic {width: 20.8%;}
+#joshua_pic {width: 42.1%;}
+#niphan_pic {width: 36.8%;}
+
+
+#farhan_label_div, #stavya_label_div, #ujjwal_label_div, #joshua_label_div, #niphan_label_div {
+    position: absolute;
+}
+ 
+
+#farhan_label_div {
+    left: 140px;
+    bottom: 7%;
+}
+
+#farhan_label {
+    position: relative;
+    left: 3.2%;
+}
+
+#stavya_label_div {
+    left: 279px;
+    bottom: 6.8%;
+}
+
+#stavya_label {
+    position: relative;
+    left: 8%;
+}
+
+#ujjwal_label_div {
+    left: 414px;
+    bottom: 7%;
+}
+
+#ujjwal_label {
+    position: relative;
+    left: 2%;
+}
+
+#joshua_label_div {
+    left: 523px;
+    bottom: 7%;
+}
+
+#joshua_label {
+    position: relative;
+    left: 0.8%;
+}
+
+#niphan_label_div {
+    left: 630px;
+    bottom: 7%;
+}
+
+#niphan_label {
+    position: relative;
+    left: 5%;
+}
+
+.creator_pics {
+    position: relative;
+    left: 18%;
+    top: 90%;
+}
