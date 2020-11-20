@@ -111,16 +111,10 @@ function ProjectList_Casual(props) {
       <NavbarPad color={color} />
       <Header name={"Projects"} />
 
-      {/* <div className="projectListButtons"> */}
-
       <div className="projectListButtons">
         <MaybeAddProjectsButton />
         <GoBackButton />
       </div>
-
-      {/* <ThemeColour /> */}
-
-      {/* </div> */}
 
       <div className="projects">
         {projects.map(createProject)} {/* PROJECTS GETTING RENDERED HERE */}

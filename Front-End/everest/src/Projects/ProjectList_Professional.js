@@ -114,8 +114,6 @@ function ProjectList_Professional(props) {
       <NavbarPad color={color} />
       <Header name={"Projects"} />
 
-      {/* <div className="projectListButtons"> */}
-
       <div className="projectListButtons">
         <MaybeAddProjectsButton />
         <GoBackButton />
