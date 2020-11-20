@@ -35,7 +35,7 @@ The app uses Node 10+, Firebase, React and Redux as it's main dependancies, thes
 
 # Installation Guide
 ## Deployment
-As indicated in the [deployment architecture diagram](Documentation/DeploymentArchitecture.png) the application is authomatically deployed through Travis CI to a firebase project used for the development of the [demo](#demo), 
+As indicated in the [deployment architecture diagram](Documentation/DeploymentArchitecture.png) the application is authomatically deployed through Travis CI to a firebase project used for the development of the [demo](#demo).
 
 In order to deploy the project to a custom firebase project, a new firebase project must be set up with the app added in the firebase console. 
 
