@@ -1,17 +1,4 @@
 
-/* .page_container { */
-        /* background-image: url("/Images/mountains.jpg"); */
-        /* background-repeat: no-repeat; */
-        /* background-attachment: fixed;   */
-        /* background-size: cover; */
-        /* background: #eee; */
-        
-        /* height: inherit;        INHERITING FROM BODY */
-        /* width: inherit; */
-        /* background: #eee; */
-        
-    /* } */
-
 .page_container a{
   text-decoration: none;
 }
@@ -28,15 +15,10 @@
     font-size: xx-large;
     margin: 1.25rem 0.625rem 0.625rem 2rem;
     width: 100vw;
-    margin-left: 60px; /* NEW */
-    margin-bottom: 30px; /* NEW */
-    margin-top: 25px; /* NEW */
+    margin-left: 60px; 
+    margin-bottom: 30px; 
+    margin-top: 25px; 
   }
-  
-  
-  
-  /************************************************* TOP BUTTONS DIV **********************************************/
-
   
   /************************************************* ADD PROJECT BUTTONS **********************************************/
 
@@ -50,14 +32,12 @@
   }
 
   .addProjectButton {
-    /* background-color:yellow; */
     width: 50%;
     height: 100%;
-    margin: 30px 0 0 60px;  /* NEW */
+    margin: 30px 0 0 60px;
     align-items: center;
     text-align: center;
     justify-content: left;
-    /* flex: 5; */
     display: flex;
     flex-direction: row;
   }
@@ -66,24 +46,20 @@
     font-size: x-large;
     text-decoration: none; 
     align-self: center;
-    /*** NEWLY ADDED ***/
     border: none;
     background-color: inherit;
     cursor: pointer;
     display: inline-block;
-    margin: 0 0 5px 5px; /* NEW */
-    font-weight: 600; /* NEW */
+    margin: 0 0 5px 5px;
+    font-weight: 600; 
   }
   .addProjectText:hover {color: #51adcf;}
-
-
   
   .addProject-icon {
     color: #082f4e;
     width: 2.5rem;
     height: 2.5rem;
   }
-  /* .addProject-icon:hover {color: rgb(45, 231, 255);}  ADD PROJECT ICON DOES NOT LIGHT UP WHEN HOVERED ON  */
   .addProject-icon:hover {color: #51adcf;}
   
   
@@ -97,7 +73,7 @@
     width:50%;
     height: 100%;
     color: #082f4e;
-    margin: 5px 10px 0 0; /* NEW */
+    margin: 5px 10px 0 0;
     
   }
 
@@ -106,15 +82,13 @@
     position: relative;
     left: 5px;
     bottom: 3px;
-    text-decoration: none; 
-    /*** NEWLY ADDED ***/
+    text-decoration: none;
     border: none;
     background-color: inherit;
     cursor: pointer;
     display: inline-block;
-    font-weight: 600; /* NEW */
+    font-weight: 600;
   }
-  /* .goBackText:hover {color: rgb(255, 154, 59)} */
   .goBackText:hover {color: #51adcf;}
 
   
@@ -124,7 +98,7 @@
     top: 2px;
   }
   .far.fa-arrow-alt-circle-left:hover {color: #51adcf;}
-  /* .far.fa-arrow-alt-circle-left:hover {color: rgb(255, 154, 59)} */
+  
   
   /*********************************  MAIN STARTS  ************************************************/
   
@@ -140,26 +114,14 @@
       flex-direction: column;
       align-items: center;
       max-height: 400px;
-      line-height: 2;          /* NEW */
+      line-height: 2;          
   }
   
   .projectImage {
-    /* width: 50vh; */
-    /* height: 50vh; */
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     cursor: pointer;
     margin-left: 30px;
     object-fit: cover;
-
-    /* margin-top: 50px;
-    margin-left: 60px;
-    margin-right: 150px;
-    width: 35vw;
-    height: 50vh;
-    border-radius: 12px;
-    border: 1px solid #082f4e;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    cursor: pointer; */
   }
   .projectImage:hover { border: 5px solid #51adcf; }
   
@@ -168,15 +130,6 @@
     text-shadow: none;
     font-size: x-large;
     font-weight: 800;    
-
-    /* color: #082f4e;
-    text-decoration: none;
-    text-shadow: none;
-    position: relative;
-    bottom: 5rem; 
-    font-size: x-large; 
-    font-weight: 800;    
-    font-family: "Baloo Tammudu 2", cursive; */
   }
   .projectName:hover {color: #51adcf;}
 
@@ -187,39 +140,7 @@
     width: 45vw;
     text-align: center;
     overflow-y: hidden;
-    /* font-size: large;
-    font-family: "Baloo Tammudu 2", cursive;
-    line-height: 1.7;
-    color: rgb(0,0,0,0.6);
-    padding: 50px 100px 100px 0px;
-    position: relative;
-    top: 3rem; 
-    right: 7rem;  */
   }
   
-  
-  /******************************************  ANCHOR LINKS  ************************************************/
 
-
-  /* a {
-    color: #082f4e;
-  } Unvisited link  */
-  /* a:visited {
-    color: #082f4e;
-  } Visited link    */
-  /* a:hover {
-    color: rgb(122, 128, 141);
-  }  */
-  
-  /************************************************* CAN USE LATER **********************************************/
-  
-
-  
-  /* #search {
-    position: absolute;
-    top: 45px;
-    right: 25px;
-    position: relative;
-    top: 30px;
-  } */
   

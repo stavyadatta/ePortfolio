@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import "./Form_Page.css";
-//import firebase from "../Firebase";
 import {useSelector} from "react-redux";
 import {firebaseUpload}from "../storageFirebaseUpload";
 import { useHistory } from "react-router-dom";
 import NavbarPad from "../Navbar/NavbarPad";
 import firebase from "../Firebase";
-
-
-// import { Link } from "react-router-dom";
-// import { withRouter } from "react-router-dom";
-// import {Redirect} from "react-router-dom";
-
 
 
 function FormPage(props) {
@@ -33,7 +26,7 @@ function FormPage(props) {
   let buttonStyle = {borderRadius:radius, backgroundColor:color};
   let entryStyle = {borderRadius:radius};
 
-  let history = useHistory(); // NEWLY ADDED
+  let history = useHistory(); 
   if (isLoading === true) {
     return <div>Loading...</div>}
   else if (isLoading === 'submitted') {
@@ -133,7 +126,7 @@ function FormPage(props) {
                 <input type="text" id="tags_entry" name="projectTags" placeholder="Enter Project Tags separated by comma" onChange={updateField} value={pTags} style={entryStyle}/>
 
                 <label htmlFor="main_image_upload">Main Project Image Upload</label>
-                <input type="file" id="main_image_upload" name="mainImage" accept="image/*" onChange={handleImageAsFile} style={entryStyle}/>  {/* MIGHT NEED TO USE VALUE PROPERTY LATER INSIDE THIS INPUT TAG*/}
+                <input type="file" id="main_image_upload" name="mainImage" accept="image/*" onChange={handleImageAsFile} style={entryStyle}/> 
 
                 <input type="submit" id="submitButton" value="Save Project" style={buttonStyle}/>
             </form>
@@ -147,13 +140,5 @@ function FormPage(props) {
       
   );
 }
-
-// export default withRouter(FormPage);      //MIGHT NEED LATER
-//export default FormPage;
-// const mapStateToProps = (state) => {
-//   return {
-//       auth:state.firebase.auth
-//   };
-// };
 
 export default FormPage;
