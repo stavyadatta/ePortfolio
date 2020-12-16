@@ -23,7 +23,7 @@ cache:
   directories:
   - "/home/travis/.cache/firebase/emulators"
 deploy:
-  cleanup: false
+  skip_cleanup: true
   provider: firebase
   token: "$FIREBASE_TOKEN"
   on:
