@@ -346,6 +346,16 @@ body { overflow-x: hidden; }
 	top: 9%;
 }
 
+@media screen and (min-width: 1567px) {
+	#home_explore {
+		font-size: 2vw;
+	}
+
+	#home_explore_subheading {
+		font-size: 1.4vw;
+	}
+}
+
 @media screen and (max-width: 620px) {
 	#home_explore {
 		font-size: 26px;
@@ -408,24 +418,46 @@ body { overflow-x: hidden; }
 	#third_segment_mountain { width: 800px; }
 }
 
+@media screen and (min-width: 1567px) {
+	#third_segment_image {
+		top: 41vh;
+	}
+}
+
 @media screen and (max-width: 768px) {
-	#third_segment_mountain { top: 56%; }
+	#third_segment_mountain { top: 57%; }
 }
 
-@media screen and (max-width: 567px) {
+@media screen and (max-width: 580px) {
 	#third_segment_mountain { top: 60%; }
+	#homepage_sun { display: block; width: 40%; top: 60%; left: 30%;}
 }
 
-@media screen and (max-width: 489px) {
+@media screen and (max-width: 491px) {
 	#third_segment_mountain { top: 65%; }
 }
 
 @media screen and (max-width: 415px) {
 	#third_segment_mountain { top: 70%; }
+	#homepage_sun {display: block; top: 70%; }
 }
 
 @media screen and (max-width: 316px) {
 	#third_segment_mountain { top: 73%; }
+	#homepage_sun { display: block; top: 72%;}
+}
+
+@media screen and (max-height: 670px) {
+	#third_segment_image { top: 42vh; }
+}
+
+@media screen and (max-height: 580px) {
+	#third_segment_mountain {display: none;}
+}
+
+@media screen and (max-height: 550px) {
+	#third_segment_image { top: 44vh; }
+	#homepage_sun { width: 25%; }
 }
 
 /* ********************Segment One Large Btns******************************* */
@@ -600,4 +632,25 @@ body { overflow-x: hidden; }
 	#project_search_submit, #user_search_submit {
 		width: 17vw;
 	}
+}
+
+@media screen and (min-width: 1500px) {
+	#home_user_id, #home_search_project_id {
+		width: 25vw;
+		height: 2.4vw;
+		font-size: 0.9vw;
+	}
+	#project_search_submit, #user_search_submit {
+		width: 7vw;
+		height: 2.4vw;
+		font-size: 0.9vw;
+	}
+	.search_heading {
+		font-size: 1.1vw;
+		top: -1.8vw;
+	}
+}
+
+@media screen and (max-height: 580px) {
+	#search_fields_home { top: 40vh; }
 }
