@@ -1,15 +1,13 @@
 import React, {useState} from "react";
 import "./Home_Page.css";
 import { Link } from "react-router-dom";
-import Homepage_Image from "./Images/homepage_background_img.svg";
+import Homepage_Image from "./Images/homepage_background_img.png";
 import Responsive_Ftr_Image from "./Icons/responsive.png";
 import No_Coding_Required_Ftr_Image from "./Icons/no_coding_required.png";
 import Secure_Ftr_Image from "./Icons/secure.png";
 import Templates_Provided_Ftr_Image from "./Icons/templates_provided.png";
 import Get_Started_Unhovered_Icon from "./Icons/Get_Started_Icon_Unhovered.svg";
 import Get_Started_Hovered_Icon from "./Icons/Get_Started_Icon_Hovered.svg";
-//import { useSelector } from "react-redux";
-
 import firebase from "./Firebase"
 import EntryBox from "./Generic_Components/Entry_Box";
 import Logo from "./Images/Everest_Logo.svg";
@@ -18,23 +16,24 @@ import GuyPointing from "./Images/Guy_Pointing.svg";
 import Mountain from "./Images/mountain_filler.svg";
 import Sun from "./Images/sun_bg_image.png";
 import {Link as ScrollLink} from "react-scroll";
+import SideBar from "./Generic_Components/Sidebar_Menu";
 
 function HomePage() {
     return (
         <div className="home_page">
+            <SideBar pageWrapId={"home_page"} outerContainerId={"home_page"} />
             <FirstSegment />
             <SecondSegment />
-            <ThirdSegment />        
+            <ThirdSegment />   
         </div>
     );
 };
 
 function FirstSegment() {
     return(
-        <div className = "homepage_first_segment">
+        <div className = "homepage_first_segment" id = "segment_one_home">
                 <div className="background_graphics">
                     <img src={Homepage_Image} id="homepage_image" alt="homepage" />
-                    <div id = "cover_up"></div>
                   {/* <img src = {Logo} id = "homepage_logo" alt = "Everest" /> */}
                 </div>
                 <div className="page_headers">
@@ -42,6 +41,7 @@ function FirstSegment() {
                 <h5 id="homepage_description">Showcase and reflect on your achievements</h5>
             </div>
             <FirstSegmentBtns />
+            
         </div>
     );
 }
@@ -53,8 +53,14 @@ function SecondSegment() {
                 <p id = "features_heading">Portfolio Features</p>
                 <p id="features_subheading">Share your accomplishments and experience personal growth</p>
             </div>
+            
+            <div className = "cards_and_btn">
+                <FeatureCards />
+                <Link to ="/register">
+                    <button className = "bottom_btns" id = "get_started_home">Get Started</button>
+                </Link>
+            </div>
 
-            <FeatureCards />
             <Link to ="/register">
                 <img src = {Get_Started_Unhovered_Icon} alt = "get_started" id = "get_started_icon" 
                 onMouseOver={e => (e.currentTarget.src = Get_Started_Hovered_Icon)}
@@ -68,7 +74,7 @@ function SecondSegment() {
 function ThirdSegment() {
     return(
         <div className = "homepage_third_segment" id = "search_functionality">
-            <div id = "third_segment_headings">
+            <div className = "third_segment_headings">
                 <p id = "home_explore">Explore Existing Portfolios</p>
                 <p id = "home_explore_subheading">Search for portfolios made by existing users</p>
             </div>
@@ -77,8 +83,10 @@ function ThirdSegment() {
                 <img src = {GuyPointing} alt = "" id = "third_segment_image"/>
                 <img src = {Mountain} alt = "" id = "third_segment_mountain"/>
             </div>
-            <UserSearch />
-            <ProjectSearch />
+            <div id = "search_fields_home">
+                <UserSearch />
+                <ProjectSearch />
+            </div>
             <Footer />
         </div>
     );

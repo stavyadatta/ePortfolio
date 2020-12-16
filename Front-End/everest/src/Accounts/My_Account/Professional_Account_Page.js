@@ -85,29 +85,26 @@ function MyAccountPage() {
     	else { setTemplate(fieldValue); }
 	}
 
-	const updateDatabase = () => {
+	const updateDatabase = async () => {
 
 		const updatedTemplate = (template === "") ? userProfile.template : template;
 
 		let fname = document.getElementById("fname_active").placeholder;
 		let lname = document.getElementById("lname_active").placeholder;
 		let email = document.getElementById("email_input_active").placeholder;
-		let user = firebase.auth().currentUser
+		let user = firebase.auth().currentUser;
 
-		firebase.functions().httpsCallable("user-update")({
+		await firebase.functions().httpsCallable("user-update")({
 			userId: user.uid,
 			firstName: fname,
 			lastName: lname,
 			email: email,
 			template: updatedTemplate
-		}).then(()=>{
-			user.updateEmail(email)
-		}).then(()=>{
-			//Send email verification
-		}).catch(e=>console.log(e));
-
+		}).catch(e=>alert(e));
+		
+		
 	}
-	
+
 	return(
 		<div className = "account_page">
 			<h1 id = "account_header">My Account</h1>

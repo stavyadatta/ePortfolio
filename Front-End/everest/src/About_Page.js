@@ -1,5 +1,5 @@
 import React from "react";
-import BackgroundImage from "./Images/homepage_background_img.svg";
+import BackgroundImage from "./Images/homepage_background_img.png";
 import "./About_Page.css";
 import BackIcon from "./Generic_Components/Back_Icon";
 import Stavya from "./Images/Creators_Pics/Stavya_Pic.JPG";
