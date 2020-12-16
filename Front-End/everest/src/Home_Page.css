@@ -596,9 +596,9 @@ body { overflow-x: hidden; }
 	height: 37px;
 }
 
-
 #project_search_submit:hover, #user_search_submit:hover {
 	box-shadow: 0px 0px 10px white;
+	height: 37px;
 }
 
 #copyright_statement {
