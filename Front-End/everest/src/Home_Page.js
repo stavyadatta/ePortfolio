@@ -34,6 +34,7 @@ function FirstSegment() {
         <div className = "homepage_first_segment" id = "segment_one_home">
                 <div className="background_graphics">
                     <img src={Homepage_Image} id="homepage_image" alt="homepage" />
+                  {/* <img src = {Logo} id = "homepage_logo" alt = "Everest" /> */}
                 </div>
                 <div className="page_headers">
                 <p>Welcome to Everest!</p>
