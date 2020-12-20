@@ -145,6 +145,7 @@ body { overflow-x: hidden; }
 .page_headers {
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-inline-box;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
@@ -205,6 +206,7 @@ body { overflow-x: hidden; }
 .port_features {
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-inline-box;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
@@ -278,6 +280,7 @@ body { overflow-x: hidden; }
 .feature_cards {
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-inline-box;
 	display: flex;
 	position: relative;
 	-webkit-box-orient: horizontal;
@@ -347,6 +350,7 @@ body { overflow-x: hidden; }
 	.cards_and_btn {
 		display: -webkit-box;
 		display: -ms-flexbox;
+		display: -webkit-inline-box;
 		display: flex;
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
@@ -383,6 +387,7 @@ body { overflow-x: hidden; }
 .third_segment_headings {
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-inline-box;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
@@ -428,6 +433,7 @@ body { overflow-x: hidden; }
 	.third_segment_headings {
 		display: -webkit-box;
 		display: -ms-flexbox;
+		display: -webkit-inline-box;
 		display: flex;
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
