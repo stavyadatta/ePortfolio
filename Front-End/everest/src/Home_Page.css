@@ -20,9 +20,14 @@ p {
 	}
 }
 
+body { overflow-x: hidden; }
+
 .home_page { max-width: 100vw; overflow-x: hidden; overflow-y: hidden; }
 
-.homepage_first_segment { height: 100vh; background: #082f4e; }
+.homepage_first_segment { 
+	height: 100vh; 
+	background: #082f4e; 
+}
 
 .homepage_second_segment {
 	background: white;
